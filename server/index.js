@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+// MONGO SCHEME
+
 const mongoose = require('mongoose');
 mongoose.connect('bdurl', {
         dbName: '',
