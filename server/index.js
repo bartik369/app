@@ -1,37 +1,9 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const mongoose = require('mongoose');
+const app = express()
 const cors = require('cors');
 
 // MONGO SCHEME
-
-const mongoose = require('mongoose');
-mongoose.connect('bdurl', {
-        dbName: '',
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }, error =>
-    ?
-    console.log(error) :
-    console.log('Connected to DB')
-)
-
-const DeviceScheme = new mongoose.Schema({
-    id: {
-
-    },
-    deviceName: {
-
-    },
-    inventoryNumber: {
-
-    },
-    userName: {
-
-    }
-});
-
-const Device = mongoose.model('devices', DeviceScheme);
-Device.createIndexes();
 
 
 
@@ -41,6 +13,15 @@ app.use(cors());
 app.get('/', (req, resp) => {
     resp.send('The App is working');
 });
+
+mongoose.connect('mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+        dbName: '',
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }, error => error ?
+    console.log(error) :
+    console.log('Connected to DB')
+)
 
 app.post('/register', async(req, resp) => {
     try {
@@ -56,4 +37,4 @@ app.post('/register', async(req, resp) => {
     }
 })
 
-app.listen(5000, () => console.log('The server was started on 5000 port'))
+app.listen(5001, () => console.log('The server was started on 5000 port'))

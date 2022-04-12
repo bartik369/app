@@ -1,8 +1,18 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "mongodb": "^4.5.0",
-    "mongoose": "^6.2.10"
-  }
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.3",
+        "mongodb": "^4.5.0",
+        "mongoose": "^6.2.10"
+    },
+    "name": "server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
 }
