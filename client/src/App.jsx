@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DeviceLists from "./components/DeviceLists";
+import AddDeviceForm from "./components/form/AddDeviceForm";
 import "./styles/App.css";
 
 // const[device, setDevice] = useState({
@@ -28,7 +29,13 @@ function App() {
 
   return (
     <div className="App">
-      <DeviceLists devices={devices} />
+      <AddDeviceForm
+        onClick={addDevice}
+      />
+      <DeviceLists 
+      devices={devices}
+      title='Devices'
+       />
     </div>
   );
 }
