@@ -25,17 +25,14 @@ function App() {
     },
   ]);
 
-  function addDevice(device) {}
+  function createNewDevice(newDevice) { 
+    setDevices([...devices, newDevice])
+  }
 
   return (
     <div className="App">
-      <AddDeviceForm
-        onClick={addDevice}
-      />
-      <DeviceLists 
-      devices={devices}
-      title='Devices'
-       />
+      <AddDeviceForm create={createNewDevice}/>
+      <DeviceLists title="Devices" devices={devices} />
     </div>
   );
 }
