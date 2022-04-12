@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
+import DeviceItem from "./DeviceItem";
 
-const DeviceLists = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+const DeviceLists = ({ devices }) => {
+  return (
+    <div className="device-list">
+      {devices.map((device) => (
+        <DeviceItem key={device.id} devItem={device} />
+      ))}
+    </div>
+  );
 };
 
 export default DeviceLists;
