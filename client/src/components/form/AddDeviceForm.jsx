@@ -26,14 +26,12 @@ const AddDeviceForm = ({create}) => {
       <FormInput
         placeholder="Название устройства"
         value={device.deviceName}
-        onChange={(e) => setDevice({ ...device, deviceName: e.target.value })}
+        onChange={(e) => setDevice({ ...device, deviceName: e.target.value})}
       />
       <FormInput
         placeholder="Инвентарный номер"
         value={device.inventoryNumber}
-        onChange={(e) =>
-          setDevice({ ...device, inventoryNumber: e.target.value })
-        }
+        onChange={(e) => setDevice({ ...device, iinventoryNumber: e.target.value })}
       />
       <FormInput
         placeholder="Имя пользователя"

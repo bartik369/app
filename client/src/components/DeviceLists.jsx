@@ -6,7 +6,7 @@ const DeviceLists = ({ devices, title }) => {
     <div className="device-list">
       <h1>{title}</h1>
       {devices.map((device) => (
-        <DeviceItem key={device.id} devItem={device} />
+        <DeviceItem key={device.id} deviceItem={device} />
       ))}
     </div>
   );

@@ -3,8 +3,7 @@ import classes from './FormInput.module.css'
 
 const FormInput = (props) => {
     return (
-        <input className={classes.FormInput} {...props}
-        />
+        <input className={classes.FormInput} {...props} />
     );
 };
 
