@@ -3,24 +3,34 @@ import FormInput from "../UI/input/FormInput";
 
 const AddDeviceForm = ({create}) => {
   const[device, setDevice] = useState(
-    {     
+    {  
+      id: '',
+      deviceType: '',
       deviceName: '',
       deviceNumber: '',
       userName: '',
+      addDeviceTime: '',
     },
   );  
 
   const addNewDevice = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const newDevice = {
         ...device,
         id: Date.now(),
+        addDeviceTime: Date.now(),
     }
     create(newDevice);
   }
 
   return (
     <form>
+      <FormInput
+        placeholder="Тип устройства"
+        type='text'
+        value={device.deviceType}
+        onChange={(e) => setDevice({...device, deviceType: e.target.value})}
+      />
       <FormInput
         placeholder="Название устройства"
         type='text'

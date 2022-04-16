@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
 const cors = require('cors');
+const Device = require('./DB/deviceScheme')
 
 // MONGO SCHEME
 

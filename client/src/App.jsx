@@ -6,10 +6,12 @@ import "./styles/App.css";
 function App() {
   const [devices, setDevices] = useState([
     {
-      id: '',
-      deviceName: '',
-      deviceNumber: '',
-      userName: '',
+      id: '1',
+      deviceType: 'Ноутбук',
+      deviceName: 'Dell 5490',
+      deviceNumber: '7002135',
+      userName: 'bartale',
+      addDeviceTime: Date.now(),
     },
   ]);
 
@@ -17,10 +19,14 @@ function App() {
     setDevices([...devices, newDevice])
   }
 
+  function removeDevice(device) {
+    setDevices(devices.filter(d => d.id !== device.id))
+  }
+
   return (
     <div className="App">
       <AddDeviceForm create={createNewDevice}/>
-      <DeviceLists title="Devices" devices={devices} />
+      <DeviceLists remove={removeDevice} title="Devices" devices={devices} />
     </div>
   );
 }

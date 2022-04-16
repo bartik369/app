@@ -90,7 +90,13 @@ h6 {
 }
 
 .App {
-    width: 500px;
+    width: 700px;
+}
+
+.device-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(12, 209, 120);
 }
 
 
