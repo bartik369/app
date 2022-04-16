@@ -8,7 +8,7 @@ function App() {
     {
       id: '',
       deviceName: '',
-      inventoryNumber: '',
+      deviceNumber: '',
       userName: '',
     },
   ]);

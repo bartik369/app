@@ -5,9 +5,9 @@ const DeviceLists = ({ devices, title }) => {
   return (
     <div className="device-list">
       <h1>{title}</h1>
-      {devices.map((device) => (
-        <DeviceItem key={device.id} deviceItem={device} />
-      ))}
+      {devices.map((device, index) => 
+        <DeviceItem key={device.id} device={device} number={index + 1}/>
+      )}
     </div>
   );
 };

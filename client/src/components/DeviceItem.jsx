@@ -4,13 +4,14 @@ const DeviceItem = (props) => {
     return (
         <div className="device-item">
             <div className="device-item__device-name">
-                {props.deviceItem.deviceName}
+                {props.number}
+                {props.device.deviceName}
             </div>
             <div className="device-item__inventory-number">
-                {props.deviceItem.inventoryNumber}
+                {props.device.deviceNumber}
             </div>
             <div className="device-item__username">
-                {props.deviceItem.userName}
+                {props.device.userName}
             </div>
         </div>
     );
