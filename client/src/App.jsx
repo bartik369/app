@@ -6,16 +6,28 @@ import "./styles/App.css";
 function App() {
   const [devices, setDevices] = useState([
     {
-      id: '1',
-      deviceType: 'Ноутбук',
-      deviceName: 'Dell 5490',
-      deviceNumber: '7002135',
-      userName: 'bartale',
-      addDeviceTime: Date.now(),
+      id: '',
+      deviceType: '',
+      deviceName: '',
+      deviceNumber: '',
+      userName: '',
+      deviceAddTime: Date.now(),
     },
   ]);
 
   function createNewDevice(newDevice) { 
+    let result = await fetch(
+      'http://localhost:50001/register', 
+      {
+      method: 'POST',
+      body: JSON.stringify({newDevice}),
+      headers: {
+        'Content-Type': 'aplication/json' 
+      }
+    })
+
+    result = await result.json();
+
     setDevices([...devices, newDevice])
   }
 

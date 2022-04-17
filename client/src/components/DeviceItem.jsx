@@ -19,7 +19,7 @@ const DeviceItem = (props) => {
                 {props.device.userName}
             </div>
             <div className="device-item__username">
-                {props.device.addDeviceTime}
+                {props.device.deviceAddTime}
             </div>
             <button onClick={() => props.remove(props.device)}>Удалить</button>
         </div>

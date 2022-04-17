@@ -9,11 +9,11 @@ const AddDeviceForm = ({create}) => {
       deviceName: '',
       deviceNumber: '',
       userName: '',
-      addDeviceTime: '',
+      deviceAddTime: '',
     },
   );  
 
-  const addNewDevice = (event) => {
+  const addNewDevice = async (event) => {
     event.preventDefault();
     const newDevice = {
         ...device,
