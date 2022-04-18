@@ -18,7 +18,6 @@ const AddDeviceForm = ({create}) => {
     const newDevice = {
         ...device,
         id: Date.now(),
-        addDeviceTime: Date.now(),
     }
     create(newDevice);
   }

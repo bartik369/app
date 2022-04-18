@@ -5,16 +5,16 @@ import Axios from 'axios'
 import "./styles/App.css";
 
 function App() {
-  const [devices, setDevices] = useState([
-    {
-      id: '',
-      deviceType: '',
-      deviceName: '',
-      deviceNumber: '',
-      userName: '',
-      // deviceAddTime: Date.now(),
-    },
-  ]);
+   const [devices, setDevices] = useState([
+     {
+       id: '',
+       deviceType: '',
+       deviceName: '',
+       deviceNumber: '',
+       userName: '',
+       deviceAddTime: Date.now(),
+     },
+   ]);
 
   function createNewDevice(newDevice) {
     Axios.post('http://localhost:5001/insert', {
@@ -23,7 +23,7 @@ function App() {
       deviceNumber: deviceNumber,
       userName: userName,
     } )
-    setDevices(...devices, newDevice)
+    //setDevices(...devices, newDevice)
   }
 
   function removeDevice(device) {
