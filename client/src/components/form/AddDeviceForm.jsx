@@ -9,7 +9,7 @@ const AddDeviceForm = ({create}) => {
       deviceName: '',
       deviceNumber: '',
       userName: '',
-      deviceAddTime: '',
+      // deviceAddTime: '',
     },
   );  
 

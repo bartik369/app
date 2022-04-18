@@ -13,10 +13,20 @@ mongoose.connect('mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongo
 })
 
 app.post('/insert', async (req, res) => {
+    const deviceType = req.body.deviceType;
+    const deviceName = req.body.deviceName;
+    const deviceNumber = req.body.deviceNumber;
+    const userName = req.body.userName;
+
     const device = new DeviceModel({
-        device
+        deviceType: deviceType,
+        deviceName: deviceName,
+        deviceNumber: deviceNumber,
+        userName: userName,
     })
     try {
+        await device.save();
+        console.log('Device data has been sent')
         
     } catch (error) {
         console.log(error)

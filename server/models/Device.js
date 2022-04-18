@@ -15,9 +15,9 @@ const DeviceScheme = new mongoose.Schema({
         type: String,
         require: true,
     },
-    deviceAddTime: {
+    /* deviceAddTime: {
         type: String,
-    }
+    } */
 })
 
 const Device = mongoose.model("DeviceData",DeviceScheme);

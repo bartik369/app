@@ -12,12 +12,17 @@ function App() {
       deviceName: '',
       deviceNumber: '',
       userName: '',
-      deviceAddTime: Date.now(),
+      // deviceAddTime: Date.now(),
     },
   ]);
 
   function createNewDevice(newDevice) {
-    Axios.post
+    Axios.post('http://localhost:5001/insert', {
+      deviceType: deviceType,
+      deviceName: devicesName,
+      deviceNumber: deviceNumber,
+      userName: userName,
+    } )
     setDevices(...devices, newDevice)
   }
 
