@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DeviceLists from "./components/DeviceLists";
 import AddDeviceForm from "./components/form/AddDeviceForm";
+import Axios from 'axios'
 import "./styles/App.css";
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
     },
   ]);
 
-  function createNewDevice(newDevice) { 
+  function createNewDevice(newDevice) {
+    Axios.post
     setDevices(...devices, newDevice)
   }
 

@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
 const cors = require('cors');
-const DeviceModel = require('./modules/Device')
+const DeviceModel = require('./models/Device')
 // MONGO SCHEME
 
 app.use(express.json());
@@ -12,8 +12,15 @@ mongoose.connect('mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongo
     useNewUrlParser: true,
 })
 
-app.get('/', (req, res) => {
-
+app.post('/insert', async (req, res) => {
+    const device = new DeviceModel({
+        device
+    })
+    try {
+        
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 const start = async() => {
