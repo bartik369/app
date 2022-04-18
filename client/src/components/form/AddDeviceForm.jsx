@@ -13,8 +13,8 @@ const AddDeviceForm = ({create}) => {
     },
   );  
 
-  const addNewDevice =(event) => {
-    event.preventDefault();
+  const addNewDevice = (e) => {
+    e.preventDefault();
     const newDevice = {
         ...device,
         id: Date.now(),
