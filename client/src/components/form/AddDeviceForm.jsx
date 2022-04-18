@@ -13,7 +13,7 @@ const AddDeviceForm = ({create}) => {
     },
   );  
 
-  const addNewDevice = async (event) => {
+  const addNewDevice =(event) => {
     event.preventDefault();
     const newDevice = {
         ...device,

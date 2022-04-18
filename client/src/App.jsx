@@ -16,19 +16,7 @@ function App() {
   ]);
 
   function createNewDevice(newDevice) { 
-    let result = await fetch(
-      'http://localhost:50001/register', 
-      {
-      method: 'POST',
-      body: JSON.stringify({newDevice}),
-      headers: {
-        'Content-Type': 'aplication/json' 
-      }
-    })
-
-    result = await result.json();
-
-    setDevices([...devices, newDevice])
+    setDevices(...devices, newDevice)
   }
 
   function removeDevice(device) {
