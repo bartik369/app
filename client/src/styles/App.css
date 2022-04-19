@@ -113,7 +113,7 @@ h6 {
 }
 
 .add-btn {
-    padding: 7px 12px;
+    padding: 9px 12px;
     margin: 10px 0;
     text-transform: uppercase;
     font-family:sans-serif;
@@ -124,7 +124,7 @@ h6 {
 }
 
 .delete-btn {
-    padding: 7px 12px;
+    padding: 9px 12px;
     text-transform: uppercase;
     font-family:sans-serif;
     background-color: rgb(255, 137, 143);

@@ -6,9 +6,6 @@ import "./styles/App.css";
 
 function App() {
   const date = new Date();
-
-  const deviceAddDate = `${date.getFullYear()} - ${(date.getMonth() + 1)} - ${date.getDay()}`
-  const deviceAddTime = `${date.getHours()} : ${date.getMinutes()} :${ date.getSeconds()}`
   
   const [devices, setDevices] = useState([
     {
@@ -17,7 +14,7 @@ function App() {
       deviceName: 'Dell 5440',
       deviceNumber: '7001274',
       userName: 'bartale',
-      deviceAddTime: `${deviceAddDate} > ${deviceAddTime}`
+      deviceAddTime: date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
     },
   ]);
 
