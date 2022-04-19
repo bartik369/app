@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express()
 const cors = require('cors');
 const DeviceModel = require('./models/Device')
-// MONGO SCHEME
+
 
 app.use(express.json());
 app.use(cors());
