@@ -90,14 +90,46 @@ h6 {
 }
 
 .App {
-    width: 700px;
+    width: 600px;
+}
+
+.title {
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: -.5px;
 }
 
 .device-item {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(12, 209, 120);
+    border: 1px solid rgb(228, 228, 228);
+    padding: 10px 20px;
+    align-items: center;
 }
 
+.add-btn {
+    padding: 7px 12px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    font-family:sans-serif;
+    background-color: rgb(255, 234, 189);
+    font-weight: 600;
+    font-size: 11px;
+    color: #000;
+}
+
+.delete-btn {
+    padding: 7px 12px;
+    text-transform: uppercase;
+    font-family:sans-serif;
+    background-color: rgb(255, 137, 143);
+    font-weight: 600;
+    font-size: 11px;
+    color: #000;
+}
 
 /*--------------------*/

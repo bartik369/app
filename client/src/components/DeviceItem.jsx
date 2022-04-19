@@ -21,7 +21,7 @@ const DeviceItem = (props) => {
             <div className="device-item__username">
                 {props.device.deviceAddTime} 
             </div> 
-            <button onClick={() => props.remove(props.device)}>Удалить</button>
+            <button className="delete-btn" onClick={() => props.remove(props.device)}>Удалить</button>
         </div>
     );
 };

@@ -48,7 +48,7 @@ const AddDeviceForm = ({create}) => {
         value={device.userName}
         onChange={(e) => setDevice({ ...device, userName: e.target.value })}
       />
-      <button onClick={addNewDevice}>Добавить</button>
+      <button className="add-btn" onClick={addNewDevice}>Добавить</button>
     </form>
   );
 };

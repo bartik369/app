@@ -5,15 +5,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const DeviceModel = require('./models/Device');
 const port = 5001;
-const dbUrl = 'mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongodb.net/warehouse?retryWrites=true&w=majority'
+const dbUrl = 'mongodb+srv://zzc0de:12345678910@digitalcluster.chauh.mongodb.net/warehouse?retryWrites=true&w=majority'
 
 
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
 
 app.post('/insert', async (req, res) => {
