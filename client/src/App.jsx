@@ -5,16 +5,21 @@ import Axios from 'axios'
 import "./styles/App.css";
 
 function App() {
-   const [devices, setDevices] = useState([
-     {
-       id: '',
-       deviceType: '',
-       deviceName: '',
-       deviceNumber: '',
-       userName: '',
-       deviceAddTime: Date.now(),
-     },
-   ]);
+  const date = new Date();
+
+  const deviceAddDate = `${date.getFullYear()} - ${(date.getMonth() + 1)} - ${date.getDay()}`
+  const deviceAddTime = `${date.getHours()} : ${date.getMinutes()} :${ date.getSeconds()}`
+  
+  const [devices, setDevices] = useState([
+    {
+      id: '',
+      deviceType: 'Laptop',
+      deviceName: 'Dell 5440',
+      deviceNumber: '7001274',
+      userName: 'bartale',
+      deviceAddTime: `${deviceAddDate} > ${deviceAddTime}`
+    },
+  ]);
 
   function createNewDevice(newDevice) {
     const {deviceType, deviceName, deviceNumber, userName} = newDevice
