@@ -17,13 +17,14 @@ function App() {
    ]);
 
   function createNewDevice(newDevice) {
+    const {deviceType, deviceName, deviceNumber, userName} = newDevice
+
     Axios.post('http://localhost:5001/insert', {
       deviceType: deviceType,
-      deviceName: devicesName,
+      deviceName: deviceName,
       deviceNumber: deviceNumber,
       userName: userName,
     } )
-    //setDevices(...devices, newDevice)
   }
 
   function removeDevice(device) {

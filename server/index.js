@@ -1,8 +1,8 @@
-const express = require('express')
+const express = require('express');
 const mongoose = require('mongoose');
-const app = express()
+const app = express();
 const cors = require('cors');
-const DeviceModel = require('./models/Device')
+const DeviceModel = require('./models/Device');
 
 
 app.use(express.json());

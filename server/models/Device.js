@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const DeviceScheme = new mongoose.Schema({
     deviceType: {
@@ -15,11 +15,8 @@ const DeviceScheme = new mongoose.Schema({
         type: String,
         require: true,
     },
-    /* deviceAddTime: {
-        type: String,
-    } */
 })
 
-const Device = mongoose.model("DeviceData",DeviceScheme);
+const Device = mongoose.model("DeviceData", DeviceScheme);
 
 module.exports = Device;
