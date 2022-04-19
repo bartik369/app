@@ -1,14 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const DeviceModel = require('./models/Device');
+const port = 5001;
+const dbUrl = 'mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongodb.net/warehouse?retryWrites=true&w=majority'
 
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://zzc0de:PfrhsnsqL0cneg@digitalcluster.chauh.mongodb.net/devices?retryWrites=true&w=majority', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
 })
 
@@ -26,16 +30,15 @@ app.post('/insert', async (req, res) => {
     })
     try {
         await device.save();
-        console.log('Device data has been sent')
-        
+        console.log('Device data has been sent');       
     } catch (error) {
-        console.log(error)
+        console.log(`There is the error ${error}` );
     }
 })
 
 const start = async() => {
     try {
-        app.listen(5001, () => console.log('The server started on 50001 port'))
+        app.listen(port, () => console.log('The server is running on 50001 port'))
     } catch (error) {
         console.log(error)
     }
