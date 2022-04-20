@@ -20,6 +20,14 @@ const AddDeviceForm = ({create}) => {
         id: Date.now(),
     }
     create(newDevice);
+    setDevice({  
+      id: '',
+      deviceType: '',
+      deviceName: '',
+      deviceNumber: '',
+      userName: '',
+      // deviceAddTime: '',
+    },)
   }
 
   return (

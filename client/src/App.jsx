@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeviceLists from "./components/DeviceLists";
 import AddDeviceForm from "./components/form/AddDeviceForm";
 import Axios from 'axios'
@@ -10,13 +10,19 @@ function App() {
   const [devices, setDevices] = useState([
     {
       id: '',
-      deviceType: 'Laptop',
-      deviceName: 'Dell 5440',
-      deviceNumber: '7001274',
-      userName: 'bartale',
+      deviceType: '',
+      deviceName: '',
+      deviceNumber: '',
+      userName: '',
       deviceAddTime: date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
     },
   ]);
+  
+  useEffect(() => {
+    Axios.get('http://localhost:50001/read').then((response) => {
+      setDevices(response.data)
+    });
+  }, []);
 
   function createNewDevice(newDevice) {
     const {deviceType, deviceName, deviceNumber, userName} = newDevice
