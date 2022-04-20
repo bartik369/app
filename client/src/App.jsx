@@ -3,9 +3,9 @@ import DeviceLists from "./components/DeviceLists";
 import AddDeviceForm from "./components/form/AddDeviceForm";
 import Axios from 'axios'
 import "./styles/App.css";
+import SearchData from "./components/UI/search/SearchData";
 
 function App() {
-  const date = new Date();
   
   const [devices, setDevices] = useState([
     {
@@ -14,7 +14,7 @@ function App() {
       deviceName: '',
       deviceNumber: '',
       userName: '',
-      deviceAddTime: date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+      deviceAddTime: '',
     },
   ]);
   
@@ -42,6 +42,7 @@ function App() {
   return (
     <div className="App">
       <AddDeviceForm create={createNewDevice}/>
+      <SearchData />
       <DeviceLists remove={removeDevice} title="Devices" devices={devices} />
     </div>
   );

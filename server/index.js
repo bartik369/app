@@ -17,6 +17,15 @@ mongoose.connect(dbUrl, {
     useUnifiedTopology: true,
 })
 
+app.get('/read', async (req, res) => {
+    DeviceModel.find({}, (err, result) => {
+        if (err) {
+            res.send(err)
+        }
+        res.send(result);
+    } )
+});
+
 app.post('/insert', async (req, res) => {
     const deviceType = req.body.deviceType;
     const deviceName = req.body.deviceName;
@@ -33,9 +42,9 @@ app.post('/insert', async (req, res) => {
         await device.save();
         console.log('Device data has been sent');       
     } catch (error) {
-        console.log(`There is the error ${error}` );
+        console.log(`There is an error ${error}` );
     }
-})
+});
 
 const start = async() => {
     try {
