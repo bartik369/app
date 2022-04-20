@@ -19,19 +19,20 @@ function App() {
   ]);
   
   useEffect(() => {
-    Axios.get('http://localhost:50001/read').then((response) => {
+    Axios.get('http://localhost:5001/read').then((response) => {
       setDevices(response.data)
     });
   }, []);
 
   function createNewDevice(newDevice) {
-    const {deviceType, deviceName, deviceNumber, userName} = newDevice
+    const {deviceType, deviceName, deviceNumber, userName, deviceAddTime} = newDevice
 
     Axios.post('http://localhost:5001/insert', {
       deviceType: deviceType,
       deviceName: deviceName,
       deviceNumber: deviceNumber,
       userName: userName,
+      deviceAddTime: deviceAddTime,
     } )
   }
 

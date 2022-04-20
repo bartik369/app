@@ -12,15 +12,16 @@ const AddDeviceForm = ({create}) => {
       deviceAddTime: '',
     },
   );  
-  
-  const date = new Date();
+
 
   const addNewDevice = (e) => {
     e.preventDefault();
+    const date = new Date();
+    const deviceTime = date.toLocaleDateString() + ' ' + date.toLocaleTimeString('en-GB');
     const newDevice = {
         ...device,
         id: Date.now(),
-        deviceAddTime: date.toLocaleDateString() + ' ' + date.toLocaleTimeString(),
+        deviceAddTime: deviceTime,
     }
     create(newDevice);
     setDevice({  

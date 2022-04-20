@@ -90,9 +90,8 @@ h6 {
 }
 
 .App {
-    width: 600px;
+    width: 900px;
 }
-
 
 .title {
     font-size: 25px;
@@ -104,19 +103,11 @@ h6 {
     letter-spacing: -.5px;
 }
 
-.device-item {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid rgb(228, 228, 228);
-    padding: 10px 20px;
-    align-items: center;
-}
-
 .add-btn {
     padding: 9px 12px;
     margin: 10px 0;
     text-transform: uppercase;
-    font-family:sans-serif;
+    font-family: sans-serif;
     background-color: rgb(255, 234, 189);
     font-weight: 600;
     font-size: 11px;
@@ -126,11 +117,32 @@ h6 {
 .delete-btn {
     padding: 9px 12px;
     text-transform: uppercase;
-    font-family:sans-serif;
+    font-family: sans-serif;
     background-color: rgb(255, 137, 143);
     font-weight: 600;
     font-size: 11px;
     color: #000;
 }
+
+.device-item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(228, 228, 228);
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.device-item__device-id {}
+
+.device-item__device-type,
+.device-item__device-name,
+.device-item__inventory-number,
+.device-item__username,
+.device-item__device-addtime {
+    padding: 20px;
+    background-color: #f6fdf1;
+    flex-basis: 20%;
+}
+
 
 /*--------------------*/
