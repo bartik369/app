@@ -17,6 +17,7 @@ mongoose.connect(dbUrl, {
     useUnifiedTopology: true,
 })
 
+// Get
 app.get('/read', async(req, res) => {
     DeviceModel.find({}, (err, result) => {
         if (err) {
@@ -26,6 +27,7 @@ app.get('/read', async(req, res) => {
     })
 });
 
+// Post
 app.post('/insert', async(req, res) => {
     const deviceType = req.body.deviceType;
     const deviceName = req.body.deviceName;
@@ -47,6 +49,14 @@ app.post('/insert', async(req, res) => {
         console.log(`There is an error ${error}`);
     }
 });
+
+//Delete
+app.delete('/delete/:id', async (req, res) => {
+    const id = req.params.id;
+
+    await DeviceModel.findByIdAndRemove(id).exec();
+    res.send('The device has been deleted')
+})
 
 const start = async() => {
     try {

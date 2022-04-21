@@ -14,7 +14,7 @@ const DeviceItem = (props) => {
       <div className="device-item__device-addtime">
         {props.device.deviceAddTime}
       </div>
-      <button className="delete-btn" onClick={() => props.remove(props.device)}>
+      <button className="delete-btn" onClick={() => props.remove(props.device._id)}>
         Удалить
       </button>
     </div>

@@ -36,8 +36,8 @@ function App() {
     } )
   }
 
-  function removeDevice(device) {
-    setDevices(devices.filter(d => d.id !== device.id))
+  function removeDevice(id) {
+    Axios.delete(`http://localhost:5001/delete/${id}`)
   }
 
   return (
