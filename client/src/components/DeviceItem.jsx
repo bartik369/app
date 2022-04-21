@@ -17,6 +17,7 @@ const DeviceItem = (props) => {
       <button className="delete-btn" onClick={() => props.remove(props.device._id)}>
         Удалить
       </button>
+      <button className="update-btn">Изменить</button>
     </div>
   );
 };

@@ -11,8 +11,7 @@ const AddDeviceForm = ({create}) => {
       userName: '',
       deviceAddTime: '',
     },
-  );  
-
+  );
 
   const addNewDevice = (e) => {
     e.preventDefault();
@@ -33,8 +32,9 @@ const AddDeviceForm = ({create}) => {
     },)
   }
 
+
   return (
-    <form>
+    <form className="add-device-form">
       <FormInput
         placeholder="Тип устройства"
         type='text'
