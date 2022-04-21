@@ -4,7 +4,7 @@ import classes from './SearchData.module.css'
 const SearchData = () => {
     return (
         <div className={classes.searchInput}>
-            <input type="text" />
+            <input type="text" placeholder="Поиск..." />
             <div className={classes.searchBtn}></div>
         </div>
     )

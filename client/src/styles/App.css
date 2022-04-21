@@ -140,7 +140,6 @@ h6 {
 .device-item__username,
 .device-item__device-addtime {
     padding: 20px;
-    background-color: #f6fdf1;
     flex-basis: 20%;
 }
 
