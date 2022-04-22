@@ -5,7 +5,7 @@ const SearchData = () => {
     return (
         <div className={classes.searchInput}>
             <input type="text" placeholder="Поиск..." />
-            <div className={classes.searchBtn}></div>
+            <div className={classes.searchBtn}><i class="bi bi-search"></i></div>
         </div>
     )
 }

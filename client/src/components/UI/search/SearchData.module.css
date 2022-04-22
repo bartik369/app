@@ -25,5 +25,5 @@
     text-align: center;
 }
 .searchBtn::after {
-    content: "OK";
+    content: "";
 }
