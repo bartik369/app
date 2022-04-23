@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SideBar = (props) => {
+const Sidebar = (props) => {
   const [inActive, setInactive] = useState(false);
 
   return (
@@ -20,8 +20,45 @@ const SideBar = (props) => {
           )}
         </button>
       </div>
+      <nav className="menu">
+        <ul className="menu__list">
+          <li className="menu__item">
+            <div className="icon">
+              <i class="bi bi-house-door"></i>
+            </div>
+            <a href="" className="menu__link">
+              Главная
+            </a>
+          </li>
+          <li className="menu__item">
+            <div className="icon">
+              <i class="bi bi-bar-chart"></i>
+            </div>
+            <a href="" className="menu__link">
+              Статистика
+            </a>
+          </li>
+          <li className="menu__item">
+            <div className="icon">
+              <i class="bi bi-people"></i>
+            </div>
+            <a href="" className="menu__link">
+              Пользователи
+            </a>
+          </li>
+          <li className="menu__item">
+            <div className="icon">
+              <i class="bi bi-check2-square"></i>
+            </div>
+            <a href="" className="menu__link">
+              Задачи
+            </a>
+          </li>
+          <li className="menu__item"></li>
+        </ul>
+      </nav>
     </div>
   );
 };
 
-export default SideBar;
+export default Sidebar;

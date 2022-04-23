@@ -206,8 +206,33 @@ h6 {
     right: 0px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 9;
 }
 
 .sidebar.inactive .top-section .toggle-menu-btn {
     right: -60px;
+}
+
+.menu .menu__list .menu__item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.menu .menu__list .menu__item .icon {
+    font-size: 25px;
+    color: rgb(246, 244, 154);
+    display: inline-block;
+}
+
+.menu .menu__list .menu__item .menu__link {
+    color: rgb(105, 105, 105);
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: block;
+    font-size: 12px;
+    display: inline-block;
+    top: 50%;
+    margin-left: 10px;
+    transform: translateY(-50%);
 }
