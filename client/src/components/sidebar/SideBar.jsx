@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import userAvatar from '../../assets/users/profile.jpeg'
 
 const Sidebar = (props) => {
   const [inActive, setInactive] = useState(false);
@@ -57,6 +58,16 @@ const Sidebar = (props) => {
           <li className="menu__item"></li>
         </ul>
       </nav>
+      <div className="sidebar-footer">
+        <div className="sidebar-footer__user">
+          <div className="user-icon">
+            <img src={userAvatar} alt="" />
+          </div>
+          <div className="user-info">
+            Administator
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

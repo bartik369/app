@@ -178,7 +178,7 @@ h6 {
 }
 
 .sidebar.inactive {
-    width: 80px;
+    width: 70px;
     height: 100vh;
 }
 
@@ -235,4 +235,36 @@ h6 {
     top: 50%;
     margin-left: 10px;
     transform: translateY(-50%);
+}
+
+.sidebar-footer {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 80px;
+    background-color: cornflowerblue;
+    bottom: 0;
+    left: 0;
+}
+
+.sidebar-footer__user {
+    width: 100%;
+    background-color: violet;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.user-icon img {
+    width: 100%;
+}
+
+.user-info {
+    color: bisque;
+    font-size: 10px;
+    display: inline-block;
 }
