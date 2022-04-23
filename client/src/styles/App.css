@@ -32,6 +32,7 @@ aside {
 html,
 body {
     font-size: 100%;
+    background: #f7f7f7;
     line-height: 1;
     font-size: 14px;
     -ms-text-size-adjust: 100%;
@@ -171,10 +172,11 @@ h6 {
     position: fixed;
     width: 270px;
     height: 100vh;
-    background: rgb(55, 50, 61);
+    background: rgb(255, 255, 255);
     box-sizing: border-box;
     padding: 30px 20px;
     transition: width .5s ease-in-out;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar.inactive {
@@ -200,7 +202,8 @@ h6 {
 
 .sidebar .top-section .toggle-menu-btn {
     font-size: 29px;
-    color: rgb(137, 0, 94);
+    color: #555556;
+    background: transparent;
     position: absolute;
     cursor: pointer;
     right: 0px;
@@ -223,9 +226,11 @@ h6 {
 }
 
 .menu .menu__list .menu__item .icon {
-    font-size: 25px;
-    color: rgb(246, 244, 154);
+    font-size: 23px;
+    color: #60686f;
+    font-family: bold;
     display: inline-block;
+    padding: 5px 0;
 }
 
 .menu .menu__list .menu__item .menu__link {
@@ -238,7 +243,7 @@ h6 {
     font-size: 12px;
     display: inline-block;
     top: 50%;
-    margin-left: 23px;
+    margin-left: 16px;
     transform: translateY(-50%);
 }
 
