@@ -120,6 +120,7 @@ h6 {
     font-size: 11px;
     color: #000;
 }
+
 .update-btn {
     padding: 9px 12px;
     text-transform: uppercase;
@@ -130,7 +131,6 @@ h6 {
     color: #000;
     margin-left: 5px;
 }
-
 
 .device-item {
     display: flex;
@@ -159,6 +159,7 @@ h6 {
     padding: 30px;
 }
 
+
 /*--------------------*/
 
 .bi-search {
@@ -168,42 +169,45 @@ h6 {
 
 .sidebar {
     position: fixed;
-    width: 300px;
+    width: 270px;
     height: 100vh;
     background: rgb(55, 50, 61);
     box-sizing: border-box;
     padding: 30px 20px;
-}
-.sidebar .sidebar__top-section {
-    position: relative;
-    top: 20px;
-    background-color: rgb(0, 0, 0);
-}
-.sidebar .sidebar__top-section .logo {
-    display: inline-block;
-    background-color: rgb(27, 27, 27);
+    transition: width .8s ease-in-out;
 }
 
-.sidebar .sidebar__top-section .logo-text {
-    color: rgb(173, 173, 173);
-    font-size: 15px;
-    font-family: sans-serif;
-    display: inline-block;
-    top: -50%;
-    transform: translateY(-50%);
+.sidebar.inactive {
+    width: 80px;
+    height: 100vh;
 }
+
+.top-section {
+    position: relative;
+    top: 20px;
+}
+
+.top-section .logo {
+    display: inline-block;
+}
+
 .bi-laptop {
     font-size: 30px;
-    color:#fff;
+    color: #fff;
     text-transform: uppercase;
     margin-right: 15px;
 }
 
-.sidebar .sidebar__top-section .toggle-menu-btn {
+.sidebar .top-section .toggle-menu-btn {
     font-size: 29px;
-    color: rgb(225, 255, 57);
+    color: rgb(137, 0, 94);
     position: absolute;
-    display: inline-block;
+    cursor: pointer;
     right: 0px;
-    top: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sidebar.inactive .top-section .toggle-menu-btn {
+    right: -60px;
 }
