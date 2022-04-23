@@ -249,7 +249,7 @@ h6 {
 
 .sidebar-footer__user {
     width: 100%;
-    background-color: violet;
+    position: relative;
 }
 
 .user-icon {
