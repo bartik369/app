@@ -174,7 +174,7 @@ h6 {
     background: rgb(55, 50, 61);
     box-sizing: border-box;
     padding: 30px 20px;
-    transition: width .8s ease-in-out;
+    transition: width .5s ease-in-out;
 }
 
 .sidebar.inactive {
@@ -213,6 +213,10 @@ h6 {
     right: -60px;
 }
 
+.menu {
+    margin-top: 90px;
+}
+
 .menu .menu__list .menu__item {
     position: relative;
     margin-bottom: 30px;
@@ -226,6 +230,7 @@ h6 {
 
 .menu .menu__list .menu__item .menu__link {
     color: rgb(105, 105, 105);
+    position: absolute;
     text-decoration: none;
     cursor: pointer;
     text-transform: uppercase;
@@ -233,38 +238,16 @@ h6 {
     font-size: 12px;
     display: inline-block;
     top: 50%;
-    margin-left: 10px;
+    margin-left: 23px;
     transform: translateY(-50%);
 }
 
-.sidebar-footer {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 80px;
-    background-color: cornflowerblue;
-    bottom: 0;
-    left: 0;
+.sidebar .menu__link {
+    opacity: 1;
+    transition: opacity .7s ease-in;
 }
 
-.sidebar-footer__user {
-    width: 100%;
-    position: relative;
-}
-
-.user-icon {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 50%;
-}
-
-.user-icon img {
-    width: 100%;
-}
-
-.user-info {
-    color: bisque;
-    font-size: 10px;
-    display: inline-block;
+.sidebar.inactive .menu__link {
+    opacity: 0;
+    transition: opacity .1s ease-in;
 }

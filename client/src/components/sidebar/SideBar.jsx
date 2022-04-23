@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import userAvatar from '../../assets/users/profile.jpeg'
+import MenuItem from './MenuItem';
 
 const Sidebar = (props) => {
   const [inActive, setInactive] = useState(false);
+  const menuItem = [
+    {name: 'Главная', to: '/', iconClassName: 'bi bi-house-door'},
+    {name: 'Статистика', to: '/statistic', iconClassName: 'bi bi-bar-chart'},
+    {name: 'Пользователи', to: '/users', iconClassName: 'bi bi-people'},
+    {name: 'Задачи', to: 'Tasks', iconClassName: 'bi bi-check2-square'},
+  ]
 
   return (
     <div className={`sidebar inactive${inActive ? "inactive" : ""}`}>
@@ -23,7 +29,15 @@ const Sidebar = (props) => {
       </div>
       <nav className="menu">
         <ul className="menu__list">
-          <li className="menu__item">
+          {menuItem.map((item, index) => (
+            <MenuItem
+            key={index}
+            name={item.name}
+            icon={item.iconClassName}
+            to={item.to}
+             />
+          ))}
+          {/* <li className="menu__item">
             <div className="icon">
               <i class="bi bi-house-door"></i>
             </div>
@@ -55,19 +69,9 @@ const Sidebar = (props) => {
               Задачи
             </a>
           </li>
-          <li className="menu__item"></li>
+          <li className="menu__item"></li> */}
         </ul>
       </nav>
-      <div className="sidebar-footer">
-        <div className="sidebar-footer__user">
-          <div className="user-icon">
-            <img src={userAvatar} alt="" />
-          </div>
-          <div className="user-info">
-            Administator
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
