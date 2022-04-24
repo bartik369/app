@@ -201,19 +201,52 @@ h6 {
 }
 
 .sidebar .top-section .toggle-menu-btn {
-    font-size: 29px;
-    color: #555556;
-    background: transparent;
+    width: 40px;
+    height: 40px;
     position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     cursor: pointer;
     right: 0px;
-    top: 50%;
-    transform: translateY(-50%);
+    background: #0573d3;
     z-index: 9;
 }
 
+.toggle-menu-btn .burger {
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: #000;
+    transition: all .5s ease-in-out;
+}
+
+.toggle-menu-btn .burger::before,
+.toggle-menu-btn .burger::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: #000;
+    transition: all .5s ease-in-out;
+}
+
+.toggle-menu-btn .burger::before {
+    transform: translateY(-8px);
+}
+
+.toggle-menu-btn .burger::after {
+    transform: translateY(8px);
+}
+
+.toggle-menu-btn.open .burger {
+    transform: translateX(-50px);
+    background: transparent
+}
+
 .sidebar.inactive .top-section .toggle-menu-btn {
-    right: -60px;
+    right: -70px;
 }
 
 .menu {

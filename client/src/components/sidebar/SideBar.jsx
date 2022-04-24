@@ -10,6 +10,8 @@ const Sidebar = (props) => {
     {name: 'Задачи', to: 'Tasks', iconClassName: 'bi bi-file-earmark-check-fill'},
   ]
 
+  let menuBurger = document.querySelector('.burger');
+
   return (
     <div className={`sidebar inactive${inActive ? "inactive" : ""}`}>
       <div className="top-section">
@@ -20,10 +22,11 @@ const Sidebar = (props) => {
           onClick={() => setInactive(!inActive)}
           className="toggle-menu-btn"
         >
+          
           {inActive ? (
-            <i class="bi bi-arrow-left"></i>
+            menuBurger.classList.add('open')
           ) : (
-            <i class="bi bi-arrow-right"></i>
+            menuBurger.classList.remove('open')
           )}
         </button>
       </div>
