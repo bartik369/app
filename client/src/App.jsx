@@ -4,7 +4,7 @@ import AddDeviceForm from "./components/form/AddDeviceForm";
 import Axios from 'axios'
 import "./styles/App.css";
 import SearchData from "./components/UI/search/SearchData";
-import Sidebar from "./components/sidebar/Sidebar";
+import SideBar from "./components/sidebar/SideBar";
 
 function App() {
   
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar />
+      <SideBar />
       <AddDeviceForm create={createNewDevice}/>
       <SearchData />
       <DeviceLists remove={removeDevice} title="Devices" devices={devices} />
