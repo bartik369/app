@@ -168,11 +168,12 @@
     
     .sidebar {
         position: fixed;
-        width: 270px;
+        width: 230px;
         height: 100vh;
         background: #747c89;
         box-sizing: border-box;
         transition: width .5s ease-in-out;
+        box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
     }
     
     .sidebar.inactive {
@@ -205,25 +206,25 @@
         align-items: center;
         display: flex;
         cursor: pointer;
-        font-size: 25px;
+        font-size: 29px;
         right: -50px;
-        color: #fee369;
+        color: #000;
         z-index: 9;
     }
     
     .sidebar.inactive .top-section .toggle-menu-btn {
-        right: -70px;
+        right: -50px;
         color: #000;
     }
     
     .menu {
         margin-top: 90px;
-        padding: 30px 20px;
+        padding: 30px 12px;
     }
     
     .menu .menu__list .menu__item {
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     
     .menu .menu__list .menu__item .icon {
@@ -231,7 +232,12 @@
         color: #f8f9fe;
         font-family: bold;
         display: inline-block;
-        padding: 5px 0;
+        padding: 10px;
+        border-radius: 7px;
+    }
+    
+    .sidebar.inactive .menu .menu__list .menu__item .icon:hover {
+        background: #9ca4b3;
     }
     
     .menu .menu__list .menu__item .menu__link {

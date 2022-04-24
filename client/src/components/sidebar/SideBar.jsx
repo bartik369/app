@@ -22,7 +22,7 @@ const Sidebar = (props) => {
           className="toggle-menu-btn"
         >
           {inActive ? (
-            <i class="bi bi-arrow-left-square-fill"></i>
+            <i class="bi bi-arrow-left-square"></i>
           ) : (
             <i class="bi bi-arrow-right-square"></i>
           )}
