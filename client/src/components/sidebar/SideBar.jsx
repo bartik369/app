@@ -17,7 +17,6 @@ const Sidebar = (props) => {
     <div className={`sidebar inactive${inActive ? "inactive" : ""}`}>
       <div className="top-section">
         <div className="logo">
-          <i class="bi bi-laptop"></i>
         </div>
         <button
           onClick={() => setInactive(!inActive)}
