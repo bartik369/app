@@ -222,15 +222,17 @@
         padding: 30px 12px;
     }
     
-    .menu .menu__list .menu__item{
+    .menu .menu__list .menu__item {
         position: relative;
         padding: 5px 0;
         border-top: 1px solid #606772;
         border-bottom: 1px solid #858e9c;
     }
+    
     .menu .menu__list .menu__item:first-child {
         border-top: none;
     }
+    
     .menu .menu__list .menu__item:last-child {
         border-bottom: none;
     }
@@ -244,7 +246,7 @@
         border-radius: 7px;
         cursor: pointer;
     }
-
+    
     .sidebar.inactive .menu .menu__list .menu__item .icon:hover {
         background: #9ca4b3;
     }
@@ -263,6 +265,7 @@
         margin-left: 8px;
         transform: translateY(-50%);
     }
+    
     .sidebar.inactive .menu .menu__list .menu__item .menu__link {
         margin-left: 18px;
     }
