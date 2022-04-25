@@ -3,6 +3,7 @@ import MenuItem from './MenuItem';
 
 const Sidebar = (props) => {
   const [inActive, setInactive] = useState(false);
+  
   const menuItem = [
     {name: 'Главная', to: '/', iconClassName: 'bi bi-house'},
     {name: 'Поиск', to: '/search', iconClassName: 'bi bi-binoculars'},

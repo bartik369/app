@@ -171,7 +171,6 @@
         width: 210px;
         height: 100vh;
         background: #747c89;
-        box-sizing: border-box;
         transition: width .5s ease-in-out;
         box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
     }
@@ -206,7 +205,7 @@
         align-items: center;
         display: flex;
         cursor: pointer;
-        font-size: 22px;
+        font-size: 20px;
         right: 10px;
         color: #000;
         z-index: 9;
@@ -214,7 +213,7 @@
     }
     
     .sidebar.inactive .top-section .toggle-menu-btn {
-        right: 20px;
+        right: 10px;
         color: #000;
     }
     
