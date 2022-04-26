@@ -89,6 +89,14 @@
     .App {
         width: 100%;
         background: #ffffff;
+        display: flex;
+    }
+    .menu-container {
+
+    }
+    .content-container {
+        padding: 20px;
+        width: 100%;
     }
     
     .title {
@@ -154,7 +162,7 @@
     
     .add-device-form {
         background-color: rgb(243, 243, 243);
-        max-width: 500px;
+        max-width: 900px;
         width: 100%;
         margin: 0 auto;
         padding: 30px;
@@ -167,7 +175,6 @@
     }
     
     .sidebar {
-        position: fixed;
         width: 210px;
         height: 100vh;
         background: #747c89;

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
 import DeviceLists from "../DeviceLists";
+import SearchData from "../UI/search/SearchData";
 
 const DeviceSearch = () => {
 
@@ -14,6 +15,7 @@ const DeviceSearch = () => {
           deviceAddTime: '',
         },
       ]);
+      const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
         Axios.get('http://localhost:5001/read').then((response) => {
@@ -27,6 +29,7 @@ const DeviceSearch = () => {
 
     return (
         <div className="device-search">
+            <SearchData/>
             <DeviceLists remove={removeDevice} title="Devices" devices={devices} />
         </div>
     )

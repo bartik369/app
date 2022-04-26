@@ -1,10 +1,14 @@
 import React from "react";
 import classes from './SearchData.module.css'
 
-const SearchData = () => {
+const SearchData = (props) => {
     return (
         <div className={classes.searchInput}>
-            <input type="text" placeholder="Поиск..." />
+            <input 
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="text" 
+            value={searchQuery}
+            placeholder="Поиск..." />
             <div className={classes.searchBtn}><i class="bi bi-search"></i></div>
         </div>
     )

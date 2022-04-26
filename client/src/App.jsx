@@ -54,20 +54,24 @@ function App() {
 
   return (
     <div className="App">
-      <SideBar />
+      <div className="menu-container">
+        <SideBar />
+      </div>
       {/* <AddDeviceForm create={createNewDevice}/> */}
       {/* <SearchData /> */}
       {/* <DeviceLists remove={removeDevice} title="Devices" devices={devices} /> */}
-      <Routes>
-        <Route path='/' element={<Homepage />}></Route>
-        <Route path='/add_device' element={<AddDevice />}></Route>
-        <Route path='/search' element={<DeviceSearch />}></Route>
-        <Route path='/statistic' element={<Statistic />}></Route>
-        <Route path='/users' element={<Users />}></Route>
-        <Route path='/tasks' element={<Tasks />}></Route>
-        <Route path='/calendar' element={<Calendar />}></Route>
-        <Route path='/settings' element={<Settings />}></Route>
-      </Routes>
+      <div className="content-container">
+        <Routes>
+          <Route path='/' element={<Homepage />}></Route>
+          <Route path='/add_device' element={<AddDevice />}></Route>
+          <Route path='/search' element={<DeviceSearch />}></Route>
+          <Route path='/statistic' element={<Statistic />}></Route>
+          <Route path='/users' element={<Users />}></Route>
+          <Route path='/tasks' element={<Tasks />}></Route>
+          <Route path='/calendar' element={<Calendar />}></Route>
+          <Route path='/settings' element={<Settings />}></Route>
+        </Routes>
+      </div>
     </div>
   );
 }
