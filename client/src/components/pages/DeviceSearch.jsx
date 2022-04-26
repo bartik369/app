@@ -15,7 +15,7 @@ const DeviceSearch = () => {
     },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     Axios.get("http://localhost:5001/read").then((response) => {
@@ -27,20 +27,23 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
-  const sortedAndSearchDevices = useMemo(() => {
-    return devices.filter(device => device.deviceNumber.includes(searchQuery))
+
+  const searchAndSortDevice = useMemo(() => {
+    console.log('type');
+    return [...devices].filter(device => device.deviceNumber.includes(searchQuery))
   }, [searchQuery, devices]);
 
   return ( 
     <div className="device-search">
       <SearchData
         placeholder='Поиск...'
+        value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
       />
       <DeviceLists
         remove={removeDevice}
         title="Devices"
-        devices={sortedAndSearchDevices}
+        devices={searchAndSortDevice}
       />
     </div>
   );
