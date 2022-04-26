@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from './SearchData.module.css'
 
 const SearchData = (props) => {
+    const [searchQuery, setSearchQuery] = useState('');
+
     return (
         <div className={classes.searchInput}>
             <input 

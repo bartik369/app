@@ -15,7 +15,6 @@ const DeviceSearch = () => {
           deviceAddTime: '',
         },
       ]);
-      const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
         Axios.get('http://localhost:5001/read').then((response) => {
