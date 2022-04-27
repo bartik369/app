@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import classes from './SearchData.module.css'
+import React from "react";
+import './SearchData.css'
 
 const SearchData = (props) => {
 
     return (
-        <div className={classes.searchInput}>
+        <div className="search-input">
             <input {...props} />
         </div>
     )

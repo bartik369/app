@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './FormInput.module.css'
+import './FormInput.css';
 
 const FormInput = (props) => {
     return (
-        <input className={classes.FormInput} {...props} />
+        <input className="form-input" {...props} />
     );
 };
 

@@ -30,7 +30,7 @@ const DeviceSearch = () => {
 
   const searchAndSortDevice = useMemo(() => {
     console.log('type');
-    return [...devices].filter(device => device.deviceNumber.includes(searchQuery))
+    return [...devices].filter(device => device.deviceNumber.toLowerCase().includes(searchQuery.toLowerCase()))
   }, [searchQuery, devices]);
 
   return ( 
@@ -42,7 +42,7 @@ const DeviceSearch = () => {
       />
       <DeviceLists
         remove={removeDevice}
-        title="Devices"
+        title="Список устройств"
         devices={searchAndSortDevice}
       />
     </div>

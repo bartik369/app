@@ -91,16 +91,16 @@
         background: #ffffff;
         display: flex;
     }
-    .menu-container {
-
-    }
+    
+    .menu-container {}
+    
     .content-container {
         padding: 20px;
         width: 100%;
     }
     
     .title {
-        font-size: 25px;
+        font-size: 21px;
         text-transform: uppercase;
         text-align: center;
         margin: 20px 0;
@@ -122,31 +122,45 @@
     
     .delete-btn {
         padding: 9px 12px;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        background-color: rgb(255, 137, 143);
-        font-weight: 600;
-        font-size: 11px;
-        color: #000;
+        background-color: #D291BC;
+        border-radius: 2px;
+        font-size: 14px;
+        color: rgb(255, 255, 255);
+        transition: all .7s;
+    }
+    
+    .delete-btn:hover {
+        background-color: #ee7fa4;
     }
     
     .update-btn {
         padding: 9px 12px;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        background-color: rgb(176, 126, 255);
-        font-weight: 600;
-        font-size: 11px;
-        color: #000;
+        background-color: #828AAD;
+        font-size: 15px;
+        color: rgb(255, 255, 255);
         margin-left: 5px;
+        border-radius: 2px;
+        transition: all .7s;
+    }
+    
+    .update-btn:hover {
+        background-color: #9592e5;
     }
     
     .device-item {
         display: flex;
         justify-content: space-between;
         border: 1px solid rgb(228, 228, 228);
-        padding: 10px 20px;
+        padding: 0px 20px;
         align-items: center;
+    }
+    
+    .device-item:nth-child(2n) {
+        background-color: #f8f8f8;
+    }
+    
+    .device-item:not(:last-child) {
+        border-bottom: none;
     }
     
     .device-item__device-id {}

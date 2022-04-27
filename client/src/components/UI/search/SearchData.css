@@ -1,15 +1,18 @@
-.searchInput {
-    display: flex;
-    margin: 15px 0px;
+.search-input {
+    max-width: 700px;
+    width: 100%;
+    margin: 20px auto 30px;
     border: 1px solid rgb(38, 65, 187);
 }
-.searchInput input {
+
+.search-input input {
     background-color: rgb(244, 244, 255);
     padding: 5px 40px 5px 20px;
     width: 100%;
     font-size: 19px;
 }
-.searchBtn {
+
+.search-btn {
     width: 40px;
     height: 40px;
     line-height: 41px;
@@ -17,13 +20,15 @@
     text-align: center;
     transition: all .9s;
 }
-.searchBtn:hover {
+
+.search-btn:hover {
     width: 40px;
     height: 40px;
     line-height: 41px;
     background-color: rgb(31, 35, 223);
     text-align: center;
 }
-.searchBtn::after {
+
+.search-btn::after {
     content: "";
 }

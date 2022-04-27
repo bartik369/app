@@ -14,10 +14,12 @@ const DeviceItem = (props) => {
       <div className="device-item__device-addtime">
         {props.device.deviceAddTime}
       </div>
-      <button className="delete-btn" onClick={() => props.remove(props.device._id)}>
-        Удалить
+      <button className="delete-btn" title="Удалить" onClick={() => props.remove(props.device._id)}>
+        <i class="bi bi-trash3"></i>
       </button>
-      <button className="update-btn">Изменить</button>
+      <button className="update-btn" title="Обновить">
+      <i class="bi bi-arrow-repeat"></i>
+      </button>
     </div>
   );
 };
