@@ -172,6 +172,9 @@
     .device-item__device-addtime {
         padding: 20px;
         flex-basis: 20%;
+        font-family: sans-serif;
+        font-size: 12px;
+        color: rgb(11, 11, 11);
     }
     
     .add-device-form {
