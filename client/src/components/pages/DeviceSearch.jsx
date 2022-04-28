@@ -27,10 +27,9 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
-
   const searchAndSortDevice = useMemo(() => {
-    console.log('type');
-    return [...devices].filter(device => device.deviceNumber.toLowerCase().includes(searchQuery.toLowerCase()))
+    return [...devices].filter(device =>
+      device.userName.toLowerCase().includes(searchQuery.toLowerCase()))
   }, [searchQuery, devices]);
 
   return ( 

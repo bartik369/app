@@ -32,7 +32,6 @@
     html,
     body {
         font-size: 100%;
-        background: #f6f7fa;
         line-height: 1;
         font-size: 14px;
         -ms-text-size-adjust: 100%;
@@ -88,7 +87,7 @@
     
     .App {
         width: 100%;
-        background: #ffffff;
+        background: #f5f7fa;
         display: flex;
     }
     
@@ -102,6 +101,7 @@
     .title {
         font-size: 21px;
         text-transform: uppercase;
+        color: #212528;
         text-align: center;
         margin: 20px 0;
         font-weight: bold;
@@ -147,11 +147,19 @@
         background-color: #9592e5;
     }
     
+    .device-list {
+        box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
+        border: 1px solid #f3f5f6;
+        padding: 10px 20px 30px;
+        background: #fff;
+        border-radius: 2px;
+    }
+    
     .device-item {
         display: flex;
         justify-content: space-between;
         border: 1px solid rgb(228, 228, 228);
-        padding-left: 20px;
+        padding: 5px 5px 5px 20px;
         align-items: center;
     }
     
@@ -163,14 +171,15 @@
         border-bottom: none;
     }
     
-    .device-item__device-id {}
+    .device-item__device-id {
+        margin-right: 10px;
+    }
     
     .device-item__device-type,
     .device-item__device-name,
     .device-item__inventory-number,
     .device-item__username,
     .device-item__device-addtime {
-        padding: 10px;
         flex-basis: 20%;
         font-family: sans-serif;
         font-size: 12px;
@@ -197,6 +206,7 @@
         background: #747c89;
         transition: width .5s ease-in-out;
         box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
+        z-index: 9;
     }
     
     .sidebar.inactive {
