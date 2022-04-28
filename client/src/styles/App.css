@@ -151,7 +151,7 @@
         display: flex;
         justify-content: space-between;
         border: 1px solid rgb(228, 228, 228);
-        padding: 0px 20px;
+        padding-left: 20px;
         align-items: center;
     }
     
@@ -170,7 +170,7 @@
     .device-item__inventory-number,
     .device-item__username,
     .device-item__device-addtime {
-        padding: 20px;
+        padding: 10px;
         flex-basis: 20%;
         font-family: sans-serif;
         font-size: 12px;
