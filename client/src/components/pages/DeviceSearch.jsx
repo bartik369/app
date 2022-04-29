@@ -27,44 +27,49 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
-  let test = [
-    {one: 'ongamepaddisconnected', two: 'chickibriki'},
-    {tree: 'ongamepaddisconnected', four: 'chickibriki'},
-  ]
-
-  const searchAndSortDevice = useMemo(() => {
-    return [...devices].filter((item) => {
-      console.log(Object.keys(item))
-    })
-  }, [searchQuery, devices])
-
-  // const searchAndSortDevice = useMemo(() => {
-  //   return [...devices].filter(device =>
-  //     device.userName.toLowerCase().includes(searchQuery.toLowerCase()))
-  // }, [searchQuery, devices]);
+  const myFilter = (e, data) => {
+    return data.filter( item => {
 
 
-  // let filter=(condition,data)=>{
 
-  //   return data.filter( item => {
-  //   return Object.keys( condition ).every( key => {
-  //   return String( item[ key ] ).toLowerCase().includes(
-  //   String( condition[ key ] ).trim().toLowerCase() )
-  //   } )
-  //   } )
-  //   }
+      return Object.keys(item).every(key => {
+        console.log(Object.keys(item).includes(String( e[ key ] ).trim().toLowerCase()))
+        // return String(item[key]).toLowerCase().includes(
+        //   console.log( String(item[key]).trim().toLowerCase())
+          // String(condition[key]).trim().toLowerCase()
+        // )
+      })
+
+
+        // return Object.keys( condition ).every( key => {
+        //   // console.log(key)
+        //     return String( item[ key ] ).toLowerCase().includes(
+        //         String( condition[ key ] ).trim().toLowerCase() )
+        // } )
+    } )  
+}
+
+const searchQueryHandler = (e) => {
+  myFilter(e, devices)
+  // setDevices({...devices, [e.target.name]: e.target.value})
+  console.log( myFilter(devices))
+  // const check = myFilter(condition, devices)
+  setSearchQuery()
+
+}
+
 
   return ( 
     <div className="device-search">
       <SearchData
         placeholder='Поиск...'
         value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
+        onChange={e => searchQueryHandler(e)}
       />
       <DeviceLists
         remove={removeDevice}
         title="Список устройств"
-        devices={searchAndSortDevice}
+        devices={devices}
       />
     </div>
   );
