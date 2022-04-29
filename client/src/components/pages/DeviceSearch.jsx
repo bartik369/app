@@ -18,7 +18,7 @@ const DeviceSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/read").then((response) => {
+    Axios.get("http://localhost:5001/read").then(response => {
       setDevices(response.data);
     });
   }, []);
@@ -27,10 +27,32 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
+  let test = [
+    {one: 'ongamepaddisconnected', two: 'chickibriki'},
+    {tree: 'ongamepaddisconnected', four: 'chickibriki'},
+  ]
+
   const searchAndSortDevice = useMemo(() => {
-    return [...devices].filter(device =>
-      device.userName.toLowerCase().includes(searchQuery.toLowerCase()))
-  }, [searchQuery, devices]);
+    return [...devices].filter((item) => {
+      console.log(Object.keys(item))
+    })
+  }, [searchQuery, devices])
+
+  // const searchAndSortDevice = useMemo(() => {
+  //   return [...devices].filter(device =>
+  //     device.userName.toLowerCase().includes(searchQuery.toLowerCase()))
+  // }, [searchQuery, devices]);
+
+
+  // let filter=(condition,data)=>{
+
+  //   return data.filter( item => {
+  //   return Object.keys( condition ).every( key => {
+  //   return String( item[ key ] ).toLowerCase().includes(
+  //   String( condition[ key ] ).trim().toLowerCase() )
+  //   } )
+  //   } )
+  //   }
 
   return ( 
     <div className="device-search">

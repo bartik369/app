@@ -303,7 +303,11 @@
     .sidebar.inactive .menu .menu__list .menu__item .menu__link {
         margin-left: 18px;
     }
-    
+
+    .sidebar.inactive .menu .menu__list .menu__item .menu__link .icon:not(:hover){
+        background-color: turquoise;
+    }
+
     .sidebar .menu__link {
         opacity: 1;
         transition: opacity .7s ease-in;
