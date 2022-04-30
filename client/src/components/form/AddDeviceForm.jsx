@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormInput from "../UI/input/FormInput";
+import FormInput from "./FormInput";
 
 const AddDeviceForm = ({ create }) => {
   const [device, setDevice] = useState({

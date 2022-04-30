@@ -114,10 +114,10 @@
         margin: 10px 0;
         text-transform: uppercase;
         font-family: sans-serif;
-        background: #fee369;
-        font-weight: 600;
+        background: #5087A0;
+        border-radius: 2px;
         font-size: 11px;
-        color: #000;
+        color: rgb(255, 255, 255);
     }
     
     .delete-btn {
@@ -147,7 +147,7 @@
         background-color: #9592e5;
     }
     
-    .device-list {
+    .content-wrapper {
         box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
         border: 1px solid #f3f5f6;
         padding: 10px 20px 30px;
@@ -187,7 +187,6 @@
     }
     
     .add-device-form {
-        background-color: rgb(243, 243, 243);
         max-width: 900px;
         width: 100%;
         margin: 0 auto;
@@ -314,6 +313,11 @@
         transition: opacity .2s;
     }
     
+    .sidebar.inactive .menu__item .menu__link {
+        position: absolute;
+        left: -999px;
+    }
+    
     .sidebar.inactive .menu__item:hover .menu__link {
         opacity: 1;
         position: absolute;
@@ -325,4 +329,9 @@
         background: #fbe47e;
         transition: opacity .7s ease-in;
         box-shadow: 0 4px 4px 0 rgba(194, 175, 95, .2), 0 8px 8px 0 rgba(194, 175, 95, .2), 0 16px 16px 0 rgba(194, 175, 95, .2), 0 32px 32px 0 rgba(194, 175, 95, .2), 0 64px 64px 0 rgba(194, 175, 95, .2), 0 128px 128px 0 rgba(194, 175, 95, .2);
+    }
+    
+    .add-device {
+        background-color: #fff;
+        padding: 20px;
     }

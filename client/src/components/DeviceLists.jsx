@@ -3,7 +3,7 @@ import DeviceItem from "./DeviceItem";
 
 const DeviceLists = ({ devices, title, remove }) => {
   return (
-    <div className="device-list">
+    <div className="content-wrapper">
       <div className="title">{title}</div>
       {devices.map((device, index) => (
         <DeviceItem
