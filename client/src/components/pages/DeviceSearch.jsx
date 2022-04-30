@@ -27,49 +27,27 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
-  const myFilter = (e, data) => {
-    return data.filter( item => {
+  const filterData = devices.filter(item => {
+    return Object.keys(item).some(key =>
+      String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })
 
-
-
-      return Object.keys(item).every(key => {
-        console.log(Object.keys(item).includes(String( e[ key ] ).trim().toLowerCase()))
-        // return String(item[key]).toLowerCase().includes(
-        //   console.log( String(item[key]).trim().toLowerCase())
-          // String(condition[key]).trim().toLowerCase()
-        // )
-      })
-
-
-        // return Object.keys( condition ).every( key => {
-        //   // console.log(key)
-        //     return String( item[ key ] ).toLowerCase().includes(
-        //         String( condition[ key ] ).trim().toLowerCase() )
-        // } )
-    } )  
-}
-
-const searchQueryHandler = (e) => {
-  myFilter(e, devices)
-  // setDevices({...devices, [e.target.name]: e.target.value})
-  console.log( myFilter(devices))
-  // const check = myFilter(condition, devices)
-  setSearchQuery()
-
-}
-
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value)
+  }
 
   return ( 
     <div className="device-search">
       <SearchData
         placeholder='Поиск...'
         value={searchQuery}
-        onChange={e => searchQueryHandler(e)}
+        onChange={handleChange}
       />
       <DeviceLists
         remove={removeDevice}
         title="Список устройств"
-        devices={devices}
+        devices={filterData}
       />
     </div>
   );
