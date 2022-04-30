@@ -27,6 +27,10 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
+  function updateDevice() {
+    console.log('updating')
+  }
+
   const filterData = devices.filter(item => {
     return Object.keys(item).some(key =>
       String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
@@ -45,6 +49,7 @@ const DeviceSearch = () => {
         onChange={handleChange}
       />
       <DeviceLists
+        update={updateDevice}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}

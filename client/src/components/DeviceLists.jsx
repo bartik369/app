@@ -1,7 +1,7 @@
 import React from "react";
 import DeviceItem from "./DeviceItem";
 
-const DeviceLists = ({ devices, title, remove }) => {
+const DeviceLists = ({ devices, title, remove, update }) => {
   return (
     <div className="content-wrapper">
       <div className="title">{title}</div>
@@ -11,6 +11,7 @@ const DeviceLists = ({ devices, title, remove }) => {
           device={device}
           number={index + 1}
           remove={remove}
+          update={update}
         />
       ))}
     </div>
