@@ -5,18 +5,34 @@
     bottom: 0;
     position: fixed;
     display: none;
-    background: rgba(59, 64, 72, 0.9);
+    background: rgba(42, 46, 52, 0.9);
     z-index: 99;
 }
 
 .modal-content {
     background: rgb(255, 255, 255);
     min-width: 400px;
-    min-height: 500px;
+    position: relative;
 }
 
 .modal.active {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.close-modal {
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: brown;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    transition: all 1s ease-out;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: rgb(126, 42, 165);
 }
