@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import SearchData from "../UI/search/SearchData";
+import Modal from "../UI/modal/Modal";
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -15,10 +16,11 @@ const DeviceSearch = () => {
     },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/read").then(response => {
+    Axios.get("http://localhost:5001/read").then((response) => {
       setDevices(response.data);
     });
   }, []);
@@ -27,24 +29,28 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/delete/${id}`);
   }
 
-  function updateDevice() {
-    console.log('updating')
+  function updateDevice(id) {
+    setModalActive(true);
   }
 
-  const filterData = devices.filter(item => {
-    return Object.keys(item).some(key =>
+  const filterData = devices.filter((item) => {
+    return Object.keys(item).some((key) =>
       String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })
+    );
+  });
 
   const handleChange = (e) => {
-    setSearchQuery(e.target.value)
-  }
+    setSearchQuery(e.target.value);
+  };
 
-  return ( 
+  return (
     <div className="device-search">
+      <Modal 
+      visible={modalActive}
+      setVisible={setModalActive}
+      >sdssssadadadasdasdasafsfsf</Modal>
       <SearchData
-        placeholder='Поиск...'
+        placeholder="Поиск..."
         value={searchQuery}
         onChange={handleChange}
       />
