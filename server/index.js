@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const DeviceModel = require('./models/Device');
+const { ObjectId } = require('mongodb');
 const port = 5001;
 const dbUrl = 'mongodb+srv://zzc0de:12345678910@digitalcluster.chauh.mongodb.net/warehouse?retryWrites=true&w=majority'
 
@@ -18,8 +19,18 @@ mongoose.connect(dbUrl, {
 })
 
 // Get
-app.get('/read', async(req, res) => {
+app.get('/device', async(req, res) => {
     DeviceModel.find({}, (err, result) => {
+        if (err) {
+            res.send(err)
+        }
+        res.send(result);
+    })
+});
+
+app.get('/device/:id', async(req, res) => {
+    const id = new ObjectId(req.params.id);
+    DeviceModel.find({ _id: id }, (err, result) => {
         if (err) {
             res.send(err)
         }
@@ -51,7 +62,7 @@ app.post('/insert', async(req, res) => {
 });
 
 //Delete
-app.delete('/delete/:id', async (req, res) => {
+app.delete('/delete/:id', async(req, res) => {
     const id = req.params.id;
 
     await DeviceModel.findByIdAndRemove(id).exec();

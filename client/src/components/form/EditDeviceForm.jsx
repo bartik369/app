@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
 
-const AddDeviceForm = ({ create, update }) => {
+const EditDeviceForm = ({ update }) => {
   const [device, setDevice] = useState({
     id: "",
     deviceType: "",
@@ -10,28 +10,6 @@ const AddDeviceForm = ({ create, update }) => {
     userName: "",
     deviceAddTime: "",
   });
-
-  const addNewDevice = (e) => {
-    e.preventDefault();
-    const date = new Date();
-    const deviceTime =
-      date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
-    const newDevice = {
-      ...device,
-      id: Date.now(),
-      deviceAddTime: deviceTime,
-    };
-    create(newDevice);
-    setDevice({
-      id: "",
-      deviceType: "",
-      deviceName: "",
-      deviceNumber: "",
-      userName: "",
-    });
-  };
-  
-  
 
   return (
     <form className="add-device-form">
@@ -60,11 +38,11 @@ const AddDeviceForm = ({ create, update }) => {
         onChange={(e) => setDevice({ ...device, userName: e.target.value })}
       />
       <button className="add-btn" onClick={addNewDevice}>
-        Добавить
+        Обновить
       </button>
 
     </form>
   );
 };
 
-export default AddDeviceForm;
+export default EditDeviceForm;
