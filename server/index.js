@@ -19,7 +19,7 @@ mongoose.connect(dbUrl, {
 })
 
 // Get
-app.get('/device', async(req, res) => {
+app.get('/devices', async(req, res) => {
     DeviceModel.find({}, (err, result) => {
         if (err) {
             res.send(err)

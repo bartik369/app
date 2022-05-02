@@ -26,7 +26,7 @@ const DeviceSearch = () => {
   })
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/device").then((response) => {
+    Axios.get("http://localhost:5001/devices").then((response) => {
       setDevices(response.data);
     });
   }, []);
@@ -47,8 +47,9 @@ const DeviceSearch = () => {
 
   const handleUpdateDevice = (id) => {
     console.log(id)
-    Axios.get(`http://localhost:5001/device/${id}`)
-    setDevices([...devices], id);
+    Axios.get(`http://localhost:5001/device/${id}`).then((responce) => {
+      console.log(responce.data)
+    })
     setUpdateDeviceData({
       isEdit:true,
       deviceIndex: id,
