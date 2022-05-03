@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const DeviceScheme = new mongoose.Schema({
     deviceType: {
@@ -22,4 +22,4 @@ const DeviceScheme = new mongoose.Schema({
 
 const Device = mongoose.model("DeviceData", DeviceScheme);
 
-module.exports = Device;
+export default Device;
