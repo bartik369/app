@@ -3,6 +3,7 @@ import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
+import EditDevice from "./EditDevice";
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -19,20 +20,13 @@ const DeviceSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
 
-  const [updateDeviceData, setUpdateDeviceData] = useState({
-    isEdit: false,
-    deviceIndex: null,
-  })
+  // Load and filter devices
 
   useEffect(() => {
     Axios.get("http://localhost:5001/devices").then((response) => {
       setDevices(response.data);
     });
   }, []);
-
-  function removeDevice(id) {
-    Axios.delete(`http://localhost:5001/device/${id}`);
-  }
 
   const filterData = devices.filter((item) => {
     return Object.keys(item).some((key) =>
@@ -44,22 +38,20 @@ const DeviceSearch = () => {
     setSearchQuery(e.target.value);
   };
 
+  // Delete device
+
+  function removeDevice(id) {
+    Axios.delete(`http://localhost:5001/device/${id}`)
+  }
+
   const handleUpdateDevice = (id) => {
-    console.log(id)
-    Axios.get(`http://localhost:5001/device/${id}`).then((responce) => {
-      console.log(responce.data)
-    })
-    setUpdateDeviceData({
-      isEdit:true,
-      deviceIndex: id,
-    })
     setModalActive(true);
   }
 
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        гннгеге
+        <EditDevice />
       </Modal>
       <SearchData
         placeholder="Поиск..."

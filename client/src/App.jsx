@@ -6,6 +6,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import Homepage from './components/pages/Homepage';
 import AddDevice from './components/pages/AddDevice';
+import EditDevice from "./components/pages/EditDevice";
 import DeviceSearch from './components/pages/DeviceSearch';
 import Statistic from './components/pages/Statistic';
 import Users from './components/pages/Users';
@@ -24,12 +25,13 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage />}></Route>
           <Route path='/add_device' element={<AddDevice />}></Route>
+          <Route path='/edit_device' element={<EditDevice />}></Route> 
           <Route path='/search' element={<DeviceSearch />}></Route>
           <Route path='/statistic' element={<Statistic />}></Route>
           <Route path='/users' element={<Users />}></Route>
           <Route path='/tasks' element={<Tasks />}></Route>
           <Route path='/calendar' element={<Calendar />}></Route>
-          <Route path='/settings' element={<Settings />}></Route>
+          <Route path='/settings' element={<Settings />}></Route> 
         </Routes>
       </div>
     </div>
