@@ -49,7 +49,7 @@ const DeviceSearch = () => {
 
   function getUpdateDeviceInfo(id) {
     Axios.get(`http://localhost:5001/device/${id}`).then((response) => {
-      setUpdateDeviceId(response.data)
+      setUpdateDeviceId(response.data[0])
     })
   }
 
