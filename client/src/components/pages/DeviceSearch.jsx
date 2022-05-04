@@ -3,7 +3,7 @@ import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
-import AddDeviceForm from "../form/AddDeviceForm";
+import UpdateDeviceForm from "../form/EditDeviceForm";
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -27,7 +27,7 @@ const DeviceSearch = () => {
     Axios.get("http://localhost:5001/devices").then((response) => {
       setDevices(response.data);
     });
-  }, []);
+  }, [devices]);
 
   const filterData = devices.filter((item) => {
     return Object.keys(item).some((key) =>
@@ -53,7 +53,7 @@ const DeviceSearch = () => {
     })
   }
 
-  const handleUpdateDevice = (id) => {
+  const handleUpdateDeviceInfo = (id) => {
     setModalActive(true);
     getUpdateDeviceInfo(id);
   }
@@ -61,7 +61,7 @@ const DeviceSearch = () => {
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <AddDeviceForm updateInfo={updateDeviceId}/>
+        <UpdateDeviceForm updateInfo={updateDeviceId}/>
       </Modal>
       <SearchData
         placeholder="Поиск..."
@@ -69,7 +69,7 @@ const DeviceSearch = () => {
         onChange={handleChange}
       />
       <DeviceLists
-        update={handleUpdateDevice}
+        update={handleUpdateDeviceInfo}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}

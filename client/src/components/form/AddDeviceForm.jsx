@@ -3,44 +3,38 @@ import { useHistory, useLocaion, useParams } from "react-router-dom";
 import FormInput from "./FormInput";
 import Axios from "axios";
 
-const AddDeviceForm = ({ create, updateInfo }) => {
-  // const [device, setDevice] = useState({
-  //   id: "",
-  //   deviceType: "",
-  //   deviceName: "",
-  //   deviceNumber: "",
-  //   userName: "",
-  //   deviceAddTime: "",
-  // });
-
-  const [editDevice, setEditDevice] = useState({});
-
-  useEffect(() => {
-    setEditDevice(updateInfo);
-  },[updateInfo])
+const AddDeviceForm = ({ create }) => {
+  const [device, setDevice] = useState({
+    id: "",
+    deviceType: "",
+    deviceName: "",
+    deviceNumber: "",
+    userName: "",
+    deviceAddTime: "",
+  });
 
   
   // Add new device
 
-  // const addNewDevice = (e) => {
-  //   e.preventDefault();
-  //   const date = new Date();
-  //   const deviceTime =
-  //     date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
-  //   const newDevice = {
-  //     ...device,
-  //     id: Date.now(),
-  //     deviceAddTime: deviceTime,
-  //   };
-  //   create(newDevice);
-  //   setDevice({
-  //     id: "",
-  //     deviceType: "",
-  //     deviceName: "",
-  //     deviceNumber: "",
-  //     userName: "",
-  //   });
-  // };
+  const handleAddDevice = (e) => {
+    e.preventDefault();
+    const date = new Date();
+    const deviceTime =
+      date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
+    const newDevice = {
+      ...device,
+      id: Date.now(),
+      deviceAddTime: deviceTime,
+    };
+    create(newDevice);
+    setDevice({
+      id: "",
+      deviceType: "",
+      deviceName: "",
+      deviceNumber: "",
+      userName: "",
+    });
+  };
 
 
   return (
@@ -48,36 +42,36 @@ const AddDeviceForm = ({ create, updateInfo }) => {
       <FormInput
         placeholder="Тип устройства"
         type="text"
-        value={editDevice.deviceType}
+        value={device.deviceType}
         name="deviceType"
         id="deviceType"
-        onChange={(e) => setEditDevice({ ...editDevice, deviceType: e.target.value })}
+        onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
       />
       <FormInput
         placeholder="Название устройства"
         type="text"
-        value={editDevice.deviceName}
+        value={device.deviceName}
         name="deviceName"
         id="deviceName"
-        onChange={(e) => setEditDevice({ ...editDevice, deviceName: e.target.value })}
+        onChange={(e) => setDevice({ ...device, deviceName: e.target.value })}
       />
       <FormInput
         placeholder="Номер устройства"
         type="text"
-        value={editDevice.deviceNumber}
+        value={device.deviceNumber}
         name="deviceNumber"
         id="deviceNumber"
-        onChange={(e) => setEditDevice({ ...editDevice, deviceNumber: e.target.value })}
+        onChange={(e) => setDevice({ ...device, deviceNumber: e.target.value })}
       />
       <FormInput
         placeholder="Имя пользователя"
         type="text"
-        value={editDevice.userName}
+        value={device.userName}
         name="userName"
         id="userName"
-        onChange={(e) => setEditDevice({ ...editDevice, userName: e.target.value })}
+        onChange={(e) => setDevice({ ...device, userName: e.target.value })}
       />
-      <button className="add-btn">
+      <button className="add-btn" onClick={(e) => handleAddDevice(e)}>
         Добавить
       </button>
     </form>
