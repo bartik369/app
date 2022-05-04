@@ -50,5 +50,5 @@ export const deleteDevice = async(req, res) => {
 }
 
 export const updateDevice = async(req, res) => {
-
+    
 }

@@ -19,7 +19,7 @@ const DeviceSearch = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
-  const [getDeviceId, setGetDeviceId] = useState('');
+  const [updateDeviceId, setUpdateDeviceId] = useState('');
 
   // Load and filter devices
 
@@ -45,15 +45,23 @@ const DeviceSearch = () => {
     Axios.delete(`http://localhost:5001/device/${id}`)
   }
 
-  const handleGetUpdateDeviceId = (id) => {
+  // Update device
+
+  function getUpdateDeviceInfo(id) {
+    Axios.get(`http://localhost:5001/device/${id}`).then((response) => {
+      setUpdateDeviceId(response.data)
+    })
+  }
+
+  const handleUpdateDevice = (id) => {
     setModalActive(true);
-    setGetDeviceId(id);
+    getUpdateDeviceInfo(id);
   }
 
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <AddDeviceForm edit={getDeviceId} />
+        <AddDeviceForm updateInfo={updateDeviceId}/>
       </Modal>
       <SearchData
         placeholder="Поиск..."
@@ -61,7 +69,7 @@ const DeviceSearch = () => {
         onChange={handleChange}
       />
       <DeviceLists
-        update={handleGetUpdateDeviceId}
+        update={handleUpdateDevice}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}

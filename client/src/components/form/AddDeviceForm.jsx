@@ -3,7 +3,7 @@ import { useHistory, useLocaion, useParams } from "react-router-dom";
 import FormInput from "./FormInput";
 import Axios from "axios";
 
-const AddDeviceForm = ({ create, edit }) => {
+const AddDeviceForm = ({ create, updateInfo }) => {
   const [device, setDevice] = useState({
     id: "",
     deviceType: "",
@@ -13,7 +13,6 @@ const AddDeviceForm = ({ create, edit }) => {
     deviceAddTime: "",
   });
 
-  // console.log(`${edit}`)
 
   const [editDevice, setEditDevice] = useState({
     isEdit: false,
@@ -21,7 +20,7 @@ const AddDeviceForm = ({ create, edit }) => {
   });
 
   const handleUpdate = async (id) => {
-    const response = await Axios.get(`http://localhost:5001/device/${id}`);
+    const response = await Axios.put(`http://localhost:5001/device/${id}`);
     if (response) {
       setDevice(response.data);
       setEditDevice({
@@ -30,13 +29,6 @@ const AddDeviceForm = ({ create, edit }) => {
       });
     }
   };
-
-  // const getSingleDevice = async (id) => {
-  //     const response = await Axios.get(`http://localhost:5001/device/${id}`);
-  //     if (response.status === 200) {
-  //       setDevice({...response.data[0]})
-  //     }
-  //   };
 
   const addNewDevice = (e) => {
     e.preventDefault();
@@ -58,40 +50,6 @@ const AddDeviceForm = ({ create, edit }) => {
     });
   };
 
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   if (id) {
-  //     getSingleDevice(id);
-  //   }
-  // }, [id]);
-
-  // const getSingleDevice = async (id) => {
-  //   const response = await Axios.get(`http://localhost:5001/device/${id}`);
-  //   if (response.status === 200) {
-  //     setDevice({...response.data[0]})
-  //   }
-  // };
-
-  // const addDevice = async (data) => {
-  //   const response = await Axios("http://localhost:5001/device/", data);
-  //   setDevice(...device, response.data);
-  // };
-
-  // const updateDevice = async (data, id) => {
-  //   const response = await Axios.put(
-  //     `http://localhost:5001/device/${id}`,data);
-  //   setDevice(...device, response.data);
-  // };
-
-  // const handleUpdate = (e) => {
-  //   e.preventDefault();
-  //   if (!id) {
-  //     addDevice(device);
-  //   } else {
-  //     updateDevice(device, id);
-  //   }
-  // };
 
   return (
     <form className="add-device-form">

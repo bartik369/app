@@ -3,7 +3,9 @@ import './FormInput.css';
 
 const FormInput = (props) => {
     return (
-        <input className="form-input" {...props} />
+        <input
+        value={props.inputValue}
+        className="form-input" {...props} />
     );
 };
 
