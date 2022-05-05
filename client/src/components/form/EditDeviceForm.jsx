@@ -23,15 +23,15 @@ const UpdateDeviceForm = ({ updateInfo }) => {
       date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
     const updateDeviceData = {
       ...editDevice,
-      id: Date.now(),
       deviceAddTime: deviceTime,
     };
     updateDevice(updateDeviceData);
   };
 
   function updateDevice(updateDeviceData) {
-    const { deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
-    Axios.put(`http://localhost:5001/device/:id`, {
+    const {_id,  deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
+    Axios.put(`http://localhost:5001/device/${_id}`, {
+      id: _id,
       deviceType: deviceType,
       deviceName: deviceName,
       deviceNumber: deviceNumber,
@@ -47,7 +47,6 @@ const UpdateDeviceForm = ({ updateInfo }) => {
         type="text"
         value={editDevice.deviceType}
         name="deviceType"
-        id="deviceType"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceType: e.target.value })
         }
@@ -57,7 +56,6 @@ const UpdateDeviceForm = ({ updateInfo }) => {
         type="text"
         value={editDevice.deviceName}
         name="deviceName"
-        id="deviceName"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceName: e.target.value })
         }
@@ -67,7 +65,6 @@ const UpdateDeviceForm = ({ updateInfo }) => {
         type="text"
         value={editDevice.deviceNumber}
         name="deviceNumber"
-        id="deviceNumber"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceNumber: e.target.value })
         }
@@ -77,7 +74,6 @@ const UpdateDeviceForm = ({ updateInfo }) => {
         type="text"
         value={editDevice.userName}
         name="userName"
-        id="userName"
         onChange={(e) =>
           setEditDevice({ ...editDevice, userName: e.target.value })
         }

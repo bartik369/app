@@ -49,24 +49,27 @@ export const deleteDevice = async(req, res) => {
     res.send('The device has been deleted')
 }
 
+
 export const updateDevice = async(req, res) => {
+    const id = req.params.id;
+
     const deviceType = req.body.deviceType;
     const deviceName = req.body.deviceName;
     const deviceNumber = req.body.deviceNumber;
     const userName = req.body.userName;
     const deviceAddTime = req.body.deviceAddTime;
 
-    const device = new DeviceModel({
+    const rewriteUpdateData = DeviceModel.findByIdAndUpdate(id, {
         deviceType: deviceType,
         deviceName: deviceName,
         deviceNumber: deviceNumber,
         userName: userName,
-        deviceAddTime: deviceAddTime,
+        deviceAddTime:  deviceAddTime,
+    }, () => {
+        try {
+            rewriteUpdateData.update()  
+        } catch (error) {
+            console.log(error)
+        }
     })
-    try {
-        await device.save();
-        console.log('Device data has been update');
-    } catch (error) {
-        console.log(`There is an error ${error}`);
-    }
 }
