@@ -3,7 +3,7 @@ import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
-import UpdateDeviceForm from "../form/EditDeviceForm";
+import UpdateDeviceForm from "../form/UpdateDeviceForm";
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -29,7 +29,14 @@ const DeviceSearch = () => {
     });
   }, [devices]);
 
+
+  // useMemo(() => {
+    
+
+  // }, [devices])
+
   const filterData = devices.filter((item) => {
+    console.log(item)
     return Object.keys(item).some((key) =>
       String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -61,7 +68,7 @@ const DeviceSearch = () => {
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <UpdateDeviceForm updateInfo={updateDeviceId}/>
+        <UpdateDeviceForm updateInfo={updateDeviceId} modal={setModalActive} />
       </Modal>
       <SearchData
         placeholder="Поиск..."

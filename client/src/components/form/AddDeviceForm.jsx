@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocaion, useParams } from "react-router-dom";
 import FormInput from "./FormInput";
-import Axios from "axios";
 
 const AddDeviceForm = ({ create }) => {
   const [device, setDevice] = useState({

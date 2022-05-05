@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 
-const UpdateDeviceForm = ({ updateInfo }) => {
+const UpdateDeviceForm = ({ updateInfo, modal }) => {
   const [editDevice, setEditDevice] = useState({
     id: "",
     deviceType: "",
@@ -26,6 +26,11 @@ const UpdateDeviceForm = ({ updateInfo }) => {
       deviceAddTime: deviceTime,
     };
     updateDevice(updateDeviceData);
+
+    const popOut = () => {
+      modal(false)
+    }
+    setTimeout(popOut, 1000);
   };
 
   function updateDevice(updateDeviceData) {
