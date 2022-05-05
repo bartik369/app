@@ -30,17 +30,21 @@ const DeviceSearch = () => {
   }, [devices]);
 
 
-  // useMemo(() => {
-    
-
-  // }, [devices])
-
-  const filterData = devices.filter((item) => {
-    console.log(item)
-    return Object.keys(item).some((key) =>
+  const filterData = useMemo(() => {
+    devices.filter((item) => {
+      console.log(item)
+      return Object.keys(item).some((key) =>
       String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+      )
+    })
+  }, [searchQuery, devices]);
+
+  // const filterData = devices.filter((item) => {
+  //   console.log(item)
+  //   return Object.keys(item).some((key) =>
+  //     String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  // });
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
