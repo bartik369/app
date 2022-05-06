@@ -23,29 +23,25 @@ const DeviceSearch = () => {
 
   // Load and filter devices
 
+  
   useEffect(() => {
     Axios.get("http://localhost:5001/devices").then((response) => {
-      setDevices(response.data);
+      if (response) {
+        setDevices(response.data);
+      }
     });
-  }, [devices]);
+  }, []);
 
-
-  const filterData = useMemo(() => {
-    devices.filter((item) => {
-      console.log(item)
-      return Object.keys(item).some((key) =>
+  const filterData = devices.filter((item) => {
+    return Object.keys(item).some((key) =>
       String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    })
-  }, [searchQuery, devices]);
+    );
+  });
 
-  // const filterData = devices.filter((item) => {
-  //   console.log(item)
-  //   return Object.keys(item).some((key) =>
-  //     String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
-  //   );
-  // });
+  // console.log(filterData)
 
+
+  
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -54,6 +50,7 @@ const DeviceSearch = () => {
 
   function removeDevice(id) {
     Axios.delete(`http://localhost:5001/device/${id}`)
+    // .then + filter
   }
 
   // Update device
@@ -72,7 +69,11 @@ const DeviceSearch = () => {
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <UpdateDeviceForm updateInfo={updateDeviceId} modal={setModalActive} />
+        <UpdateDeviceForm 
+        updateInfo={updateDeviceId} 
+        modal={setModalActive} 
+        devices={devices} 
+        setDevices={setDevices} />
       </Modal>
       <SearchData
         placeholder="Поиск..."

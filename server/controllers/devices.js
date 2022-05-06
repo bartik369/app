@@ -52,7 +52,6 @@ export const deleteDevice = async(req, res) => {
 
 export const updateDevice = async(req, res) => {
     const id = req.params.id;
-
     const deviceType = req.body.deviceType;
     const deviceName = req.body.deviceName;
     const deviceNumber = req.body.deviceNumber;
@@ -67,7 +66,15 @@ export const updateDevice = async(req, res) => {
         deviceAddTime:  deviceAddTime,
     }, () => {
         try {
-            rewriteUpdateData.update()  
+            rewriteUpdateData.update();
+            res.send({
+                id: id,
+                deviceType: deviceType,
+                deviceName: deviceName,
+                deviceNumber: deviceNumber,
+                userName: userName,
+                deviceAddTime:  deviceAddTime,
+            })
         } catch (error) {
             console.log(error)
         }

@@ -1,7 +1,7 @@
-import React from "react";
 import DeviceItem from "./DeviceItem";
 
 const DeviceLists = ({ devices, title, remove, update }) => {
+
   return (
     <div className="content-wrapper">
       <div className="title">{title}</div>

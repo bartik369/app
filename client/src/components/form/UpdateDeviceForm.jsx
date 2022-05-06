@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 
-const UpdateDeviceForm = ({ updateInfo, modal }) => {
+const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
   const [editDevice, setEditDevice] = useState({
     id: "",
     deviceType: "",
@@ -42,7 +42,15 @@ const UpdateDeviceForm = ({ updateInfo, modal }) => {
       deviceNumber: deviceNumber,
       userName: userName,
       deviceAddTime: deviceAddTime,
-    });
+    }).then((response) => {
+      
+      const indexOfChangedItem = devices.findIndex((item) => 
+      item._id === response.data.id
+      );
+      const newArray = [...devices];
+      newArray[indexOfChangedItem] = response.data;
+      setDevices(newArray)
+    })
   }
 
   return (
