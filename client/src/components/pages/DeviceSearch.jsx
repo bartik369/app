@@ -49,8 +49,12 @@ const DeviceSearch = () => {
   // Delete device
 
   function removeDevice(id) {
-    Axios.delete(`http://localhost:5001/device/${id}`)
-    // .then + filter
+    Axios.delete(`http://localhost:5001/device/${id}`).then((response) => {
+      const indexOfDelitedItem = devices.filter((item) => 
+      item._id !== response.data.id
+      )
+      setDevices(indexOfDelitedItem)
+    })
   }
 
   // Update device

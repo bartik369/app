@@ -44,9 +44,15 @@ export const createDevice = async(req, res) => {
 
 export const deleteDevice = async(req, res) => {
     const id = req.params.id;
+    try {
+        await DeviceModel.findByIdAndRemove(id).exec();
+        res.send({
+            id: id,
+        })
 
-    await DeviceModel.findByIdAndRemove(id).exec();
-    res.send('The device has been deleted')
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
@@ -63,7 +69,7 @@ export const updateDevice = async(req, res) => {
         deviceName: deviceName,
         deviceNumber: deviceNumber,
         userName: userName,
-        deviceAddTime:  deviceAddTime,
+        deviceAddTime: deviceAddTime,
     }, () => {
         try {
             rewriteUpdateData.update();
@@ -73,7 +79,7 @@ export const updateDevice = async(req, res) => {
                 deviceName: deviceName,
                 deviceNumber: deviceNumber,
                 userName: userName,
-                deviceAddTime:  deviceAddTime,
+                deviceAddTime: deviceAddTime,
             })
         } catch (error) {
             console.log(error)
