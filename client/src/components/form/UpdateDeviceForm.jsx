@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
+import ENV from '../../env.config';
 
 const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
   const [editDevice, setEditDevice] = useState({
@@ -35,7 +36,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
 
   function updateDevice(updateDeviceData) {
     const {_id,  deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
-    Axios.put(`http://localhost:5001/device/${_id}`, {
+    Axios.put(`${ENV.HOSTNAME}device/${_id}`, {
       id: _id,
       deviceType: deviceType,
       deviceName: deviceName,
