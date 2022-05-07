@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import MenuItem from './MenuItem';
+import '../../styles/App.css'
 
-const Sidebar = (props) => {
+const Sidebar = ({ slideActive, slideInActive }) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
@@ -15,8 +16,9 @@ const Sidebar = (props) => {
     {name: 'Настройки', to: '/settings', iconClassName: 'bi bi-gear'},
   ]
 
+
   return (
-    <div className={`sidebar inactive${inActive ? "inactive" : ""}`}>
+    <div className={`sidebar inactive${inActive ? "inactive"  : ""}`}>
       <div className="top-section">
         <div className="logo">
         </div>
@@ -29,6 +31,7 @@ const Sidebar = (props) => {
           ) : (
             <i class="bi bi-arrow-right-square"></i>
           )}
+          {inActive ? slideActive(true) : slideActive(false)}
         </button>
       </div>
       <nav className="menu">
