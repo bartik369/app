@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MenuItem from './MenuItem';
 import '../../styles/App.css'
 
-const Sidebar = ({ slideActive, slideInActive }) => {
+const Sidebar = ({ slideContentContainer }) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
@@ -31,7 +31,10 @@ const Sidebar = ({ slideActive, slideInActive }) => {
           ) : (
             <i class="bi bi-arrow-right-square"></i>
           )}
-          {inActive ? slideActive(true) : slideActive(false)}
+          {inActive 
+          ? slideContentContainer(true) 
+          : slideContentContainer(false)
+          }
         </button>
       </div>
       <nav className="menu">

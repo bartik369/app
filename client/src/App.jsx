@@ -21,11 +21,11 @@ function App() {
     <div className="App">
       <div
         className="menu-container">
-        <SideBar slideActive={setSlideStateContainer} />
+        <SideBar slideContentContainer={setSlideStateContainer} />
       </div>
       <div
-        className={`content-container slider${
-          slideStateContainer === false ? "slider" : ''
+        className={`content-container slided-content${
+          slideStateContainer === false ? "slided-content" : ''
         }`}
       >
         <Routes>

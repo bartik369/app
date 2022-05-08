@@ -196,14 +196,15 @@
     
     .content-container {
         width: 100%;
-        height: 100%;
-        margin-left: 80px;
+        min-height: 100vh;
+        margin-left: 70px;
+        padding: 20px;
         transition: .5s ease-in-out;
     }
     
-    .content-container.slider {
+    .content-container.slided-content {
         width: 100%;
-        margin-left: 220px;
+        margin-left: 210px;
     }
     
     .sidebar {
@@ -218,7 +219,7 @@
     
     .sidebar.inactive {
         width: 70px;
-        height: 100vh;
+        height: 100%;
         box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
     }
     
