@@ -38,7 +38,7 @@ const DeviceSearch = () => {
     if (fetching) {
       Axios.get(`http://localhost:5001/devices?_limit=20&_page=${currentPage}`)
       .then(response => { 
-      setDevices([...devices, ...response.data]);
+      setDevices(response.data);
       setCurrentPage(prevState => prevState + 1);
       setTotalCount(response.headers['X-Total-Count'])
     })
