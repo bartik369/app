@@ -6,6 +6,7 @@ export const getDevices = async(req, res) => {
         if (err) {
             res.send(err)
         }
+
         res.send(result);
     })
 }

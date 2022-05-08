@@ -20,17 +20,38 @@ const DeviceSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [fetching, setFetching] = useState(true);
+  const [totalCount, setTotalCount] = useState();
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+    return function() {
+      document.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
+
 
   // Load and filter devices
 
-  
   useEffect(() => {
-    Axios.get("http://localhost:5001/devices").then((response) => {
-      if (response) {
-        setDevices(response.data);
-      }
-    });
-  }, []);
+    if (fetching) {
+      Axios.get(`http://localhost:5001/devices?_limit=20&_page=${currentPage}`)
+      .then(response => { 
+      setDevices(response.data);
+      setCurrentPage(prevState => prevState + 1);
+      setTotalCount(response.headers['x-total-count'])
+    })
+    .finally(() => setFetching(false));
+    }
+  }, [fetching]);
+
+  const scrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
+    && devices.length < totalCount) {
+       setFetching(true)
+    }
+  } 
 
   const filterData = devices.filter((item) => {
     return Object.keys(item).some((key) =>
