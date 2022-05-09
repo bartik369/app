@@ -4,6 +4,7 @@ import DeviceLists from "../DeviceLists";
 import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
+import Pagination from "../UI/pagination/Pagination";
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -20,34 +21,41 @@ const DeviceSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [devicesPerPage] = useState(15);
 
   useEffect(() => {
-    Axios.get(`http://localhost:5001/devices`).then((response) => {
-      setDevices(response.data);
-    });
+    const fetchDevices = async () => {
+      setLoading(true);
+      await Axios.get(`http://localhost:5001/devices`).then((response) => {
+        setDevices(response.data);
+      });
+      setLoading(false);
+    };
+    fetchDevices();
   }, []);
 
-  const deviceLayer = document.querySelectorAll('.device-item');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle('show', entry.isIntersecting);
-      });
-    },
-    {rootMargin: '-40px', threshold: .9}
-  );
+  const indexOfLastDevice = currentPage * devicesPerPage;
+  const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
 
-  deviceLayer.forEach((device) => {
-    observer.observe(device);
-  });
+  const filterData = devices
+    .filter((item) => {
+      return Object.keys(item).some((key) =>
+        String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    })
+    .slice(indefOfFirstDevice, indexOfLastDevice);
 
-  const filterData = devices.filter((item) => {
-    return Object.keys(item).some((key) =>
-      String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
-
-  // console.log(filterData)
+  const pageNumberHandler = (numberD) => {
+    setCurrentPage(numberD);
+    console.log(numberD)
+  }
+    // useEffect(() => {
+  //   Axios.get(`http://localhost:5001/devices`).then((response) => {
+  //     setDevices(response.data);
+  //   });
+  // }, []);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -93,10 +101,16 @@ const DeviceSearch = () => {
         onChange={handleChange}
       />
       <DeviceLists
+        loading={loading}
         update={handleUpdateDeviceInfo}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}
+      />
+      <Pagination
+        devicesPerPage={devicesPerPage}
+        totalDevices={devices.length}
+        paginate={pageNumberHandler}
       />
     </div>
   );

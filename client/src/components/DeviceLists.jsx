@@ -1,6 +1,10 @@
 import DeviceItem from "./DeviceItem";
 
-const DeviceLists = ({ devices, title, remove, update }) => {
+const DeviceLists = ({ devices, title, remove, update, loading  }) => {
+
+  if (loading) {
+    return <h2>Загрузка...</h2>
+  }
 
   return (
     <div className="content-wrapper">
