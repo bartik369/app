@@ -19,39 +19,27 @@ const DeviceSearch = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
-  const [updateDeviceId, setUpdateDeviceId] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState();
+  const [updateDeviceId, setUpdateDeviceId] = useState("");
 
   useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
-    return function() {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  }, [])
-
-
-  // Load and filter devices
-
-  useEffect(() => {
-    if (fetching) {
-      Axios.get(`http://localhost:5001/devices?_limit=20&_page=${currentPage}`)
-      .then(response => { 
+    Axios.get(`http://localhost:5001/devices`).then((response) => {
       setDevices(response.data);
-      setCurrentPage(prevState => prevState + 1);
-      setTotalCount(response.headers['X-Total-Count'])
-    })
-    .finally(() => setFetching(false));
-    }
-  }, [fetching]);
+    });
+  }, []);
 
-  const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
-    && devices.length < totalCount) {
-       setFetching(true)
-    }
-  } 
+  const deviceLayer = document.querySelectorAll('.device-item');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('show', entry.isIntersecting);
+      });
+    },
+    {rootMargin: '-40px', threshold: .9}
+  );
+
+  deviceLayer.forEach((device) => {
+    observer.observe(device);
+  });
 
   const filterData = devices.filter((item) => {
     return Object.keys(item).some((key) =>
@@ -61,8 +49,6 @@ const DeviceSearch = () => {
 
   // console.log(filterData)
 
-
-  
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -71,34 +57,35 @@ const DeviceSearch = () => {
 
   function removeDevice(id) {
     Axios.delete(`http://localhost:5001/device/${id}`).then((response) => {
-      const indexOfDelitedItem = devices.filter((item) => 
-      item._id !== response.data.id
-      )
-      setDevices(indexOfDelitedItem)
-    })
+      const indexOfDelitedItem = devices.filter(
+        (item) => item._id !== response.data.id
+      );
+      setDevices(indexOfDelitedItem);
+    });
   }
 
   // Update device
 
   function getUpdateDeviceInfo(id) {
     Axios.get(`http://localhost:5001/device/${id}`).then((response) => {
-      setUpdateDeviceId(response.data[0])
-    })
+      setUpdateDeviceId(response.data[0]);
+    });
   }
 
   const handleUpdateDeviceInfo = (id) => {
     setModalActive(true);
     getUpdateDeviceInfo(id);
-  }
+  };
 
   return (
     <div className="device-search">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <UpdateDeviceForm 
-        updateInfo={updateDeviceId} 
-        modal={setModalActive} 
-        devices={devices} 
-        setDevices={setDevices} />
+        <UpdateDeviceForm
+          updateInfo={updateDeviceId}
+          modal={setModalActive}
+          devices={devices}
+          setDevices={setDevices}
+        />
       </Modal>
       <SearchData
         placeholder="Поиск..."
