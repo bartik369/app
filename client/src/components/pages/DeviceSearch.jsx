@@ -44,9 +44,8 @@ const DeviceSearch = () => {
     })
     .slice(indefOfFirstDevice, indexOfLastDevice);
 
-  const pageNumberHandler = (numberD) => {
-    setCurrentPage(numberD);
-    console.log(numberD)
+  const pageNumberHandler = (pageNumber) => {
+    setCurrentPage(pageNumber);
   }
 
   const handleChange = (e) => {

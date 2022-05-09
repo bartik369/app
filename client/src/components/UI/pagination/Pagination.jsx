@@ -1,5 +1,6 @@
 import React from "react";
 import './pagination.css'
+import { Routes, Route, Link } from "react-router-dom";
 
 const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => {
   const pageNumbers = [];
@@ -11,8 +12,10 @@ const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => 
     <nav className="pagination">
       <ul className="container">
         {pageNumbers.map((number) => (
-          <li key={number} className={`pagination-item active ${currentPage ? 'active' : ''}` }>
-            <a onClick={() => paginate(number)} href="#!" className="pagination-link">
+          <li key={number} className="pagination-item">
+            <a onClick={() => paginate(number)} 
+            href="#!" 
+            className={number == currentPage ? "active" : ""}>
               {number}
             </a>
           </li>
@@ -23,3 +26,4 @@ const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => 
 };
 
 export default Pagination;
+
