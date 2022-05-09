@@ -1,0 +1,26 @@
+.pagination {
+    background-color: rgb(212, 133, 255);
+    text-align: center;
+}
+
+.pagination .container {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 173, 110);
+}
+
+.pagination-item {
+    padding: 9px 11px;
+    display: block;
+    background-color: darkgreen;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.pagination-item.active {
+    background-color: rgb(100, 0, 82);
+}
+
+.pagination-link {
+    cursor: pointer;
+}

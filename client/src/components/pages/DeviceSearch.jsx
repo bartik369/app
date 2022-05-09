@@ -21,17 +21,14 @@ const DeviceSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(15);
 
   useEffect(() => {
     const fetchDevices = async () => {
-      setLoading(true);
       await Axios.get(`http://localhost:5001/devices`).then((response) => {
         setDevices(response.data);
       });
-      setLoading(false);
     };
     fetchDevices();
   }, []);
@@ -51,11 +48,6 @@ const DeviceSearch = () => {
     setCurrentPage(numberD);
     console.log(numberD)
   }
-    // useEffect(() => {
-  //   Axios.get(`http://localhost:5001/devices`).then((response) => {
-  //     setDevices(response.data);
-  //   });
-  // }, []);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -101,7 +93,6 @@ const DeviceSearch = () => {
         onChange={handleChange}
       />
       <DeviceLists
-        loading={loading}
         update={handleUpdateDeviceInfo}
         remove={removeDevice}
         title="Список устройств"
@@ -111,6 +102,7 @@ const DeviceSearch = () => {
         devicesPerPage={devicesPerPage}
         totalDevices={devices.length}
         paginate={pageNumberHandler}
+        currentPage={currentPage}
       />
     </div>
   );
