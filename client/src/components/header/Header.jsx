@@ -3,7 +3,7 @@ import './header.css';
 
 const Header = () => {
   return (
-      <div className={`header stick ${scro}`}>
+      <div className={`header`}>
          yikukyu
       </div>
   )

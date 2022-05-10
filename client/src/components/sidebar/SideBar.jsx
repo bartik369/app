@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import MenuItem from './MenuItem';
-import '../../styles/App.css'
+import '../../styles/App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = ({ slideContentContainer }) => {
   const [inActive, setInactive] = useState(false);
@@ -27,9 +29,9 @@ const Sidebar = ({ slideContentContainer }) => {
           className="toggle-menu-btn"
         >
           {inActive ? (
-            <i class="bi bi-x"></i>
+            <FontAwesomeIcon icon={faBars} />
           ) : (
-            <i class="bi bi-list"></i>
+            <FontAwesomeIcon icon={faBarsStaggered} />
           )}
           {inActive 
           ? slideContentContainer(true) 

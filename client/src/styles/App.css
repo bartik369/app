@@ -256,7 +256,7 @@
         align-items: center;
         display: flex;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 20px;
         right: -35px;
         color: #000;
         z-index: 9;
@@ -266,7 +266,7 @@
     .sidebar.inactive .top-section .toggle-menu-btn {
         right: -35px;
         color: #000;
-        font-size: 25px;
+        font-size: 20px;
     }
     
     .menu {
