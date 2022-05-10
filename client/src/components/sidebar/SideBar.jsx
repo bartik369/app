@@ -29,9 +29,9 @@ const Sidebar = ({ slideContentContainer }) => {
           className="toggle-menu-btn"
         >
           {inActive ? (
-            <FontAwesomeIcon icon={faBars} />
-          ) : (
             <FontAwesomeIcon icon={faBarsStaggered} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
           )}
           {inActive 
           ? slideContentContainer(true) 

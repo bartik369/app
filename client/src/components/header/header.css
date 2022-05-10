@@ -5,6 +5,7 @@
     position: fixed;
     box-shadow: 0 4px 4px -5px rgba(0, 0, 0, .5);
     padding-left: 60px;
+    z-index: 3;
 }
 
 .header.stick {

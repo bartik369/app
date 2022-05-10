@@ -5,6 +5,8 @@
     border: 1px solid #e1e5ed;
     background: #fbfcff;
     border-radius: 7px;
+    display: flex;
+    position: relative;
 }
 
 .search-input input {
@@ -50,6 +52,10 @@
     content: "";
 }
 
-.searchQuery {
-    background-color: blueviolet;
+.delete-searchquery {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #3b3f43;
 }
