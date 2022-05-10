@@ -41,9 +41,11 @@ const DeviceSearch = () => {
       return Object.keys(item).some((key) =>
         String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
       );
-    })
-    .slice(indefOfFirstDevice, indexOfLastDevice);
+    }).slice(indefOfFirstDevice, indexOfLastDevice);
 
+  if (filterData) {
+  
+  }
   const pageNumberHandler = (pageNumber) => {
     setCurrentPage(pageNumber);
   }

@@ -10,12 +10,12 @@ const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => 
   }
   return (
     <nav className="pagination">
-      <ul className="container">
+      <ul className="page-switcher">
         {pageNumbers.map((number) => (
-          <li key={number} className="pagination-item">
+          <li key={number}>
             <a onClick={() => paginate(number)} 
             href="#!" 
-            className={number == currentPage ? "active" : ""}>
+            className={`page-switcher__link ${number == currentPage ? "active" : ""}`}>
               {number}
             </a>
           </li>
