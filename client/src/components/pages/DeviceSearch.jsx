@@ -5,6 +5,7 @@ import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
+import '../../styles/App.css'
 
 const DeviceSearch = () => {
   const [devices, setDevices] = useState([
@@ -22,7 +23,7 @@ const DeviceSearch = () => {
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [devicesPerPage] = useState(15);
+  const [devicesPerPage] = useState(20);
 
   useEffect(() => {
     const fetchDevices = async () => {

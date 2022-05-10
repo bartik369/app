@@ -27,9 +27,9 @@ const Sidebar = ({ slideContentContainer }) => {
           className="toggle-menu-btn"
         >
           {inActive ? (
-            <i class="bi bi-arrow-left-square"></i>
+            <i class="bi bi-x"></i>
           ) : (
-            <i class="bi bi-arrow-right-square"></i>
+            <i class="bi bi-list"></i>
           )}
           {inActive 
           ? slideContentContainer(true) 

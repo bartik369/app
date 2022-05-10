@@ -18,10 +18,10 @@
     padding: 7px 12px;
     margin: 2px 4px;
     border-radius: 3px;
-    background-color: #ffffff;
+    background-color: #f6f2c7;
     font-family: sans-serif;
     color: #3b3f43;
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .3);
+    box-shadow: 0 5px 5px -5px rgba(158, 155, 106, .9);
 }
 
 .page-switcher__link:hover {

@@ -4,7 +4,7 @@ const DeviceLists = ({ devices, title, remove, update }) => {
 
 
   return (
-    <div className="content-wrapper">
+    <div>
       <div className="title">{title}</div>
       {devices.map((device, index) => (
         <DeviceItem
