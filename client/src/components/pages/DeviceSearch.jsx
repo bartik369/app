@@ -44,9 +44,6 @@ const DeviceSearch = () => {
       );
     }).slice(indefOfFirstDevice, indexOfLastDevice);
 
-  if (filterData) {
-  
-  }
   const pageNumberHandler = (pageNumber) => {
     setCurrentPage(pageNumber);
   }
@@ -54,6 +51,11 @@ const DeviceSearch = () => {
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  const handleDeleteInputQuery = () => {
+    setSearchQuery('')
+  }
+
 
   // Delete device
 
@@ -93,6 +95,8 @@ const DeviceSearch = () => {
         placeholder="Поиск..."
         value={searchQuery}
         onChange={handleChange}
+        statusInput={searchQuery.length}
+        deleteSearchquery={handleDeleteInputQuery}
       />
       <DeviceLists
         update={handleUpdateDeviceInfo}

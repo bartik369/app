@@ -8,7 +8,7 @@ const SearchData = (props) => {
     return (
         <div className="search-input">
             <input {...props} />
-            <FontAwesomeIcon icon={faXmark} className="delete-searchquery" />
+            <FontAwesomeIcon icon={faXmark} className={`delete-searchquery ${props.statusInput <= 0 ? "" : "active"}`} onClick={props.deleteSearchquery}/>
         </div>
     )
 }
