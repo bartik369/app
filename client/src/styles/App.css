@@ -206,7 +206,6 @@
     }
     
     .content-container__inner {
-        margin-top: 60px;
         background-color: #fff;
         box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
         border: 1px solid #f3f5f6;
@@ -257,15 +256,15 @@
         display: flex;
         cursor: pointer;
         font-size: 20px;
-        right: -35px;
-        color: #000;
+        right: 25px;
+        color: rgb(255, 255, 255);
         z-index: 9;
         top: 15px;
     }
     
     .sidebar.inactive .top-section .toggle-menu-btn {
-        right: -35px;
-        color: #000;
+        right: 25px;
+        color: rgb(255, 255, 255);
         font-size: 20px;
     }
     

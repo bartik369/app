@@ -61,12 +61,13 @@
     cursor: pointer;
     display: none;
     font-size: 16px;
+    transition: all .4s ease-in;
 }
 
 .delete-searchquery.active {
-    color: #727b83;
+    color: #86919b;
     display: block;
 }
 .delete-searchquery.active:hover {
-    color: #3b3f43;
+    color: #2d3033;
 }
