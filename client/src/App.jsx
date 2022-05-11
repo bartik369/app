@@ -17,17 +17,21 @@ import Header from "./components/header/Header";
 
 function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
+  const [pageName, setPageName] = useState('')
 
   return (
     <div className="App">
       <div
         className="menu-container">
-        <SideBar slideContentContainer={setSlideStateContainer} />
+        <SideBar 
+        slideContentContainer={setSlideStateContainer} 
+        setPageName={setPageName}
+        />
       </div>
       <div className={`content-wrapper slided-content${
           slideStateContainer === false ? "slided-content" : ''
         }`}>
-          <Header />
+          <Header pageName={pageName}/>
         <div className="content-container">
           <div className="content-container__inner">
           <Routes>

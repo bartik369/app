@@ -4,7 +4,7 @@ import '../../styles/App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
-const Sidebar = ({ slideContentContainer }) => {
+const Sidebar = ({ slideContentContainer, setPageName}) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
@@ -43,6 +43,7 @@ const Sidebar = ({ slideContentContainer }) => {
         <ul className="menu__list">
           {menuItem.map((item, index) => (
             <MenuItem
+            setPageName={setPageName}
             key={index}
             name={item.name}
             icon={item.iconClassName}

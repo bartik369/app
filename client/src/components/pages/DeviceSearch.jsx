@@ -36,7 +36,8 @@ const DeviceSearch = () => {
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
-
+  
+// перенести в header
   const filterData = devices
     .filter((item) => {
       return Object.keys(item).some((key) =>
@@ -91,13 +92,13 @@ const DeviceSearch = () => {
           setDevices={setDevices}
         />
       </Modal>
-      <SearchData
+      {/* <SearchData
         placeholder="Поиск..."
         value={searchQuery}
         onChange={handleChange}
         statusInput={searchQuery.length}
         deleteSearchquery={handleDeleteInputQuery}
-      />
+      /> */}
       <DeviceLists
         update={handleUpdateDeviceInfo}
         remove={removeDevice}
