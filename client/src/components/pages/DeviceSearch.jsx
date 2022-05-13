@@ -18,13 +18,13 @@ const DeviceSearch = ({sendOnChage}) => {
     },
   ]);
 
-  console.log(sendOnChage)
 
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(20);
+
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -42,7 +42,7 @@ const DeviceSearch = ({sendOnChage}) => {
   const filterData = devices
     .filter((item) => {
       return Object.keys(item).some((key) =>
-        String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
+        String(item[key]).toLowerCase().includes(sendOnChage.toLowerCase())
       );
     }).slice(indefOfFirstDevice, indexOfLastDevice);
 
@@ -50,13 +50,9 @@ const DeviceSearch = ({sendOnChage}) => {
     setCurrentPage(pageNumber);
   }
 
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleDeleteInputQuery = () => {
-    setSearchQuery('')
-  }
+  // const handleDeleteInputQuery = () => {
+  //   setSearchQuery('')
+  // }
 
 
   // Delete device
