@@ -6,7 +6,7 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = () => {
+const DeviceSearch = ({sendOnChage}) => {
   const [devices, setDevices] = useState([
     {
       id: "",
@@ -17,6 +17,8 @@ const DeviceSearch = () => {
       deviceAddTime: "",
     },
   ]);
+
+  console.log(sendOnChage)
 
   const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);

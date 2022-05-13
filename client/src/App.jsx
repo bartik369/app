@@ -18,6 +18,7 @@ import Header from "./components/header/Header";
 function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [pageName, setPageName] = useState('')
+  const [recivedOnChange, setRecivedOnChange] = useState('');
 
   return (
     <div className="App">
@@ -31,14 +32,19 @@ function App() {
       <div className={`content-wrapper slided-content${
           slideStateContainer === false ? "slided-content" : ''
         }`}>
-          <Header pageName={pageName}/>
+          <Header 
+          pageName={pageName}
+          getOnChangeValue={setRecivedOnChange}
+          />
         <div className="content-container">
           <div className="content-container__inner">
           <Routes>
             <Route path="/" element={<Homepage />}></Route>
             <Route path="/add_device" element={<AddDevice />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
-            <Route path="/search" element={<DeviceSearch />}></Route>
+            <Route path="/search" element={<DeviceSearch
+              sendOnChage={recivedOnChange}
+             />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
             <Route path="/tasks" element={<Tasks />}></Route>
