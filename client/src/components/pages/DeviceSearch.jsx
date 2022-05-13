@@ -6,7 +6,7 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({sendOnChage}) => {
+const DeviceSearch = ({searchQuery}) => {
   const [devices, setDevices] = useState([
     {
       id: "",
@@ -42,7 +42,7 @@ const DeviceSearch = ({sendOnChage}) => {
   const filterData = devices
     .filter((item) => {
       return Object.keys(item).some((key) =>
-        String(item[key]).toLowerCase().includes(sendOnChage.toLowerCase())
+        String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
       );
     }).slice(indefOfFirstDevice, indexOfLastDevice);
 

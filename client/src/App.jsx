@@ -18,7 +18,7 @@ import Header from "./components/header/Header";
 function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [pageName, setPageName] = useState('')
-  const [recivedOnChange, setRecivedOnChange] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div className="App">
@@ -34,7 +34,7 @@ function App() {
         }`}>
           <Header 
           pageName={pageName}
-          getOnChangeValue={setRecivedOnChange}
+          getSearchQuery={setSearchQuery}
           />
         <div className="content-container">
           <div className="content-container__inner">
@@ -43,7 +43,7 @@ function App() {
             <Route path="/add_device" element={<AddDevice />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search" element={<DeviceSearch
-              sendOnChage={recivedOnChange}
+              searchQuery={searchQuery}
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
