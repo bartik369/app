@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Axios from "axios";
 import DeviceLists from "../DeviceLists";
-import SearchData from "../UI/search/SearchData";
 import Modal from "../UI/modal/Modal";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
