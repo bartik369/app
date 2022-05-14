@@ -50,10 +50,6 @@ const DeviceSearch = ({searchQuery}) => {
     setCurrentPage(pageNumber);
   }
 
-  // const handleDeleteInputQuery = () => {
-  //   setSearchQuery('')
-  // }
-
 
   // Delete device
 

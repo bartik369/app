@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchData from '../UI/search/SearchData';
 import './header.css';
 
-const Header = ({pageName, getSearchQuery}) => {
+const Header = ({pageName, getSearchQuery, value, delSearchQuery, searchQueryLength}) => {
 
 
   return (
@@ -10,7 +10,10 @@ const Header = ({pageName, getSearchQuery}) => {
         {pageName === 'Поиск' &&
           <SearchData
           placeholder="Поиск..."
-          onChange={(e) => getSearchQuery(e.target.value)}  
+          value={value}
+          onChange={(e) => getSearchQuery(e.target.value)}
+          delSearchQuery={delSearchQuery}
+          searchQueryLength={searchQueryLength}
           />
         }
 

@@ -20,6 +20,12 @@ function App() {
   const [pageName, setPageName] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
 
+  const delSearchQuery = () => {
+    setSearchQuery('')
+  }
+  
+  const searchQueryLength = searchQuery.length;
+  
   return (
     <div className="App">
       <div
@@ -35,6 +41,10 @@ function App() {
           <Header 
           pageName={pageName}
           getSearchQuery={setSearchQuery}
+          delSearchQuery={delSearchQuery}
+          value={searchQuery}
+          searchQueryLength={searchQueryLength}
+          
           />
         <div className="content-container">
           <div className="content-container__inner">

@@ -203,6 +203,7 @@
     .content-container {
         padding: 20px;
         width: 100%;
+        margin-top: 65px;
     }
     
     .content-container__inner {
