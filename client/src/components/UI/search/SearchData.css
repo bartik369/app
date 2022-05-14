@@ -1,22 +1,18 @@
 .delete-searchquery {
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #2d3033;
-    cursor: pointer;
     display: none;
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    background-color: cadetblue;
-    z-index: 999;
     transition: all .4s ease-in;
 }
 
 .delete-searchquery.active {
     color: #86919b;
+    width: 19px;
+    height: 19px;
+    font-size: 10px;
     display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
 }
 
 .delete-searchquery.active:hover {
@@ -24,59 +20,42 @@
 }
 
 .search-box {
+    position: relative;
+    display: flex;
+    top: 10px;
+    background-color: lightblue;
     width: fit-content;
     height: fit-content;
-    position: relative;
-    top: 15px;
-}
-
-.input-search {
-    width: 40px;
-    height: 40px;
-    border: none;
-    padding: 10px;
-    font-size: 17px;
-    outline: none;
-    border-radius: 20px;
-    transition: all .6s ease-in-out;
-    background-color: rgb(162, 0, 0);
-    padding-right: 40px;
-    color: black;
-    z-index: 100;
 }
 
 .btn-search {
-    width: 40px;
-    height: 40px;
+    padding: 10px;
     border: none;
-    font-size: 20px;
+    font-size: 19px;
     outline: none;
     cursor: pointer;
-    border-radius: 20px;
-    position: absolute;
-    right: 0px;
     color: darkblue;
     background-color: transparent;
     pointer-events: painted;
+    z-index: 99;
 }
 
-.btn-search:focus~.input-search {
-    position: absolute;
-    width: 200px;
+.input-search {
+    transition: all .6s ease-in-out;
+    color: black;
+    display: none;
+    font-size: 15px;
+    border: 1px solid rgb(2, 98, 12);
+    padding: 0px 40px 0px 10px;
+}
+
+.input-search.active-search {
+    opacity: 1;
+    display: block;
+    width: 300px;
     line-height: 40px;
     border-radius: 0px;
     border: 1px solid rgb(2, 98, 12);
-    transition: all 500ms cubic-bezier(0, 0.100, 0.35, 2);
-}
-
-.input-search:focus~.btn-search {
-    background-color: darkolivegreen;
-}
-
-.input-search:focus {
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border: 1px solid rgb(2, 98, 12);
-    transition: all .5s cubic-bezier(0, 0.100, 0.35, 2);
+    transition: all .6s ease-in-out;
+    padding-left: 40px;
 }
