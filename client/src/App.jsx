@@ -20,9 +20,8 @@ function App() {
   const [pageName, setPageName] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
 
-  const delSearchQuery = (e) => {
+  const delSearchQuery = () => {
     setSearchQuery('')
-    e.stopPropagation()
   }
   
   const searchQueryLength = searchQuery.length;
