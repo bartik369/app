@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 
 const SearchData = (props) => {
-    const [activeSearch, setActiveSearch] = useState(true)
+    const [activeSearch, setActiveSearch] = useState(true);
+
     const setStatusSearch = () => {
         setActiveSearch(false);
-    }
+    };
+    
     window.addEventListener('click', () => {
         setActiveSearch(true);
-        props.delSearchQuery()
-    })
+        props.delSearchQuery();
+    });
 
     return (
         <div className="search-box" onClick={(e) => e.stopPropagation()}>
