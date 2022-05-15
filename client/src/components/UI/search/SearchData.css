@@ -52,6 +52,7 @@
     width: 0px;
     height: 32px;
     font-size: 15px;
+    border: none;
 }
 
 .input-search.active-search {
