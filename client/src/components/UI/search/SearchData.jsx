@@ -10,10 +10,10 @@ const SearchData = (props) => {
         setActiveSearch(false);
     };
     
-    window.addEventListener('click', () => {
-        setActiveSearch(true);
-        props.delSearchQuery();
-    });
+    // window.addEventListener('click', () => {
+    //     // setActiveSearch(true);
+    //     // props.delSearchQuery();
+    // });
 
     return (
         <div className="search-box" onClick={(e) => e.stopPropagation()}>

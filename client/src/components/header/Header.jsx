@@ -7,7 +7,7 @@ const Header = ({pageName, getSearchQuery, value, delSearchQuery, searchQueryLen
 
   return (
       <div className="header">
-        {pageName === 'Поиск' &&
+        {(pageName === 'Поиск' || pageName === 'calendar') &&
           <SearchData
           placeholder="Поиск..."
           value={value}

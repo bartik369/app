@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MenuItem from './MenuItem';
 import '../../styles/App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBarsStaggered, faTv} from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = ({ slideContentContainer, setPageName}) => {
   const [inActive, setInactive] = useState(false);
@@ -23,6 +23,8 @@ const Sidebar = ({ slideContentContainer, setPageName}) => {
     <div className={`sidebar inactive${inActive ? "inactive"  : ""}`}>
       <div className="top-section">
         <div className="logo">
+          <FontAwesomeIcon icon={faTv} />
+          <div className={`text-logo disable${inActive ? 'disable' : ''}`}>Warehouse</div>
         </div>
         <button
           onClick={() => setInactive(!inActive)}

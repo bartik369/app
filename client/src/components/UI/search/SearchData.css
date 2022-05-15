@@ -30,7 +30,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #e8d8c2;
+    background-color: #c3dfdf;
     border: none;
     font-size: 12px;
     text-align: center;
@@ -43,7 +43,7 @@
 }
 
 .btn-search:hover {
-    background-color: #BAD6D6;
+    background-color: #e8d8c2;
 }
 
 .input-search {
@@ -59,7 +59,7 @@
     color: #a4a7ab;
     font-size: 13px;
     visibility: visible;
-    background-color: #edf0f3;
+    background-color: #ebeff3;
     border-radius: 5px;
     width: 300px;
     line-height: 40px;
