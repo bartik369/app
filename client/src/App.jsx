@@ -19,17 +19,12 @@ function App() {
 
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchUrl, setSearchUrl] = useState();
   const [pageName, setPageName] = useState('');
 
   const delSearchQuery = () => {
     setSearchQuery('')
   }
 
-  const useUrl = () => {
-    setSearchUrl(window.location.pathname);
-  }
-  
   const searchQueryLength = searchQuery.length;
   
   return (
@@ -38,8 +33,6 @@ function App() {
         className="menu-container">
         <SideBar 
         slideContentContainer={setSlideStateContainer}
-        getLink={useUrl}
-        getLinkName={setPageName}
         />
       </div>
       <div className={`content-wrapper slided-content${
@@ -50,9 +43,7 @@ function App() {
           delSearchQuery={delSearchQuery}
           value={searchQuery}
           searchQueryLength={searchQueryLength}
-          searchUrl={searchUrl}
           pageName={pageName}
-          
           />
         <div className="content-container">
           <div className="content-container__inner">
@@ -62,6 +53,7 @@ function App() {
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search" element={<DeviceSearch
               searchQuery={searchQuery}
+              setPageName={setPageName}
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>

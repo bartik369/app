@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 import SearchData from '../UI/search/SearchData';
 import './header.css';
 
-const Header = ({pageName, searchUrl, getSearchQuery, value, delSearchQuery, searchQueryLength}) => {
+const Header = ({pageName, getSearchQuery, value, delSearchQuery, searchQueryLength}) => {
 
-  const [conditions, setConditions] = useState(false);
+  const [checkPageName, setPageName] = useState(false);
 
   useEffect(() => {
-    if(pageName === 'Поиск' || searchUrl === '/search') {
-      setConditions(true)
+    if(pageName === 'deviceSearhPage') {
+      setPageName(true)
     }
-  }, [pageName, searchUrl]);
+  }, [pageName])
 
   return (
       <div className="header">
-        {conditions && 
-           <SearchData
-           placeholder="Поиск..."
-           value={value}
-           onChange={(e) => getSearchQuery(e.target.value)}
-           delSearchQuery={delSearchQuery}
-           searchQueryLength={searchQueryLength}
-           />
-        } 
+        { checkPageName && 
+        <SearchData
+        placeholder="Поиск..."
+        value={value}
+        onChange={(e) => getSearchQuery(e.target.value)}
+        delSearchQuery={delSearchQuery}
+        searchQueryLength={searchQueryLength}
+        />
+        }
       </div>
   )
 }

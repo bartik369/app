@@ -6,7 +6,7 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery}) => {
+const DeviceSearch = ({searchQuery, setPageName}) => {
   const [devices, setDevices] = useState([
     {
       id: "",
@@ -25,7 +25,7 @@ const DeviceSearch = ({searchQuery}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(20);
 
-
+  setPageName('deviceSearhPage')
 
 
   useEffect(() => {
