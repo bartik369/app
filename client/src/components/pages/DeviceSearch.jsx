@@ -26,6 +26,8 @@ const DeviceSearch = ({searchQuery}) => {
   const [devicesPerPage] = useState(20);
 
 
+
+
   useEffect(() => {
     const fetchDevices = async () => {
       await Axios.get(`http://localhost:5001/devices`).then((response) => {

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import MenuItem from './MenuItem';
 import '../../styles/App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBarsStaggered, faSquareH} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBarsStaggered} from '@fortawesome/free-solid-svg-icons';
 
-const Sidebar = ({ slideContentContainer, setPageName}) => {
+const Sidebar = ({ slideContentContainer, getLink, getLinkName}) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
@@ -23,8 +23,8 @@ const Sidebar = ({ slideContentContainer, setPageName}) => {
     <div className={`sidebar inactive${inActive ? "inactive"  : ""}`}>
       <div className="top-section">
         <div className="logo">
-          <FontAwesomeIcon icon={faSquareH} />
-          <div className={`text-logo disable${inActive ? 'disable' : ''}`}>Warehouse</div>
+          {/* <FontAwesomeIcon icon={faSquareH} />
+          <div className={`text-logo disable${inActive ? 'disable' : ''}`}>Warehouse</div> */}
         </div>
         <button
           onClick={() => setInactive(!inActive)}
@@ -45,11 +45,12 @@ const Sidebar = ({ slideContentContainer, setPageName}) => {
         <ul className="menu__list">
           {menuItem.map((item, index) => (
             <MenuItem
-            setPageName={setPageName}
             key={index}
             name={item.name}
             icon={item.iconClassName}
             to={item.to}
+            getLink={getLink}
+            getLinkName={getLinkName}
              />
           ))}
         </ul>

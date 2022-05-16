@@ -11,8 +11,8 @@ const SearchData = (props) => {
     };
     
     // window.addEventListener('click', () => {
-    //     // setActiveSearch(true);
-    //     // props.delSearchQuery();
+    //     setActiveSearch(true);
+    //     props.delSearchQuery();
     // });
 
     return (

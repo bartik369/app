@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
 
@@ -16,12 +16,18 @@ import Settings from "./components/pages/Settings";
 import Header from "./components/header/Header";
 
 function App() {
+
   const [slideStateContainer, setSlideStateContainer] = useState(false);
-  const [pageName, setPageName] = useState('')
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchUrl, setSearchUrl] = useState();
+  const [pageName, setPageName] = useState('');
 
   const delSearchQuery = () => {
     setSearchQuery('')
+  }
+
+  const useUrl = () => {
+    setSearchUrl(window.location.pathname);
   }
   
   const searchQueryLength = searchQuery.length;
@@ -31,19 +37,21 @@ function App() {
       <div
         className="menu-container">
         <SideBar 
-        slideContentContainer={setSlideStateContainer} 
-        setPageName={setPageName}
+        slideContentContainer={setSlideStateContainer}
+        getLink={useUrl}
+        getLinkName={setPageName}
         />
       </div>
       <div className={`content-wrapper slided-content${
           slideStateContainer === false ? "slided-content" : ''
         }`}>
-          <Header 
-          pageName={pageName}
+          <Header
           getSearchQuery={setSearchQuery}
           delSearchQuery={delSearchQuery}
           value={searchQuery}
           searchQueryLength={searchQueryLength}
+          searchUrl={searchUrl}
+          pageName={pageName}
           
           />
         <div className="content-container">
