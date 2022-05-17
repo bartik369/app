@@ -9,7 +9,7 @@ const MenuItem = ({getLinkName, ...props}) => {
     <li onClick={() => getLinkName(props.name)} className="menu__item">
       <Link to={props.to}>
         <div className="icon">
-          <i class={props.icon}></i>
+          <i className={props.icon}></i>
         </div>
         <a href={props.to} className="menu__link">
           {props.name}

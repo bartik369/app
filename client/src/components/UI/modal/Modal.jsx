@@ -16,7 +16,7 @@ const Modal = ({ children, visible, setVisible }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
         <div className="close-modal" onClick={() => setVisible(false)}>
-        <i class="bi bi-x-circle-fill"></i>
+        <i className="bi bi-x-circle-fill"></i>
         </div>
       </div>
     </div>

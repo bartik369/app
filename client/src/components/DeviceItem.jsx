@@ -8,6 +8,7 @@ const DeviceItem = (props) => {
       <div className="device-item__device-type">{props.device.deviceType}</div>
       <div className="device-item__device-name">{props.device.deviceName}</div>
       <div className="device-item__inventory-number">
+        {props.device.id}
         {props.device.deviceNumber}
       </div>
       <div className="device-item__username">{props.device.userName}</div>
@@ -15,10 +16,10 @@ const DeviceItem = (props) => {
         {props.device.deviceAddTime}
       </div>
       <button className="delete-btn" title="Удалить" onClick={() => props.remove(props.device._id)}>
-        <i class="bi bi-trash3"></i>
+        <i className="bi bi-trash3"></i>
       </button>
       <button className="update-btn" title="Обновить" onClick={() => props.update(props.device._id)}>
-      <i class="bi bi-arrow-repeat"></i>
+      <i className="bi bi-arrow-repeat"></i>
       </button>
     </div>
   );
