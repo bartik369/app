@@ -3,18 +3,12 @@ import SearchData from '../UI/search/SearchData';
 import './header.css';
 
 const Header = ({pageName, getSearchQuery, value, delSearchQuery, searchQueryLength}) => {
+ 
 
-  const [checkPageName, setPageName] = useState(false);
-
-  useEffect(() => {
-    if(pageName === 'deviceSearhPage') {
-      setPageName(true)
-    }
-  }, [pageName])
 
   return (
       <div className="header">
-        { checkPageName && 
+        { pageName === 'deviceSearhPage' && 
         <SearchData
         placeholder="Поиск..."
         value={value}

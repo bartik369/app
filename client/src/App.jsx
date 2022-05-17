@@ -33,6 +33,7 @@ function App() {
         className="menu-container">
         <SideBar 
         slideContentContainer={setSlideStateContainer}
+        getLinkName={setPageName}
         />
       </div>
       <div className={`content-wrapper slided-content${

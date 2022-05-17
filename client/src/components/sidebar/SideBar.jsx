@@ -4,7 +4,7 @@ import '../../styles/App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBarsStaggered} from '@fortawesome/free-solid-svg-icons';
 
-const Sidebar = ({ slideContentContainer, getLink, getLinkName}) => {
+const Sidebar = ({ slideContentContainer, getLinkName}) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
@@ -49,7 +49,6 @@ const Sidebar = ({ slideContentContainer, getLink, getLinkName}) => {
             name={item.name}
             icon={item.iconClassName}
             to={item.to}
-            getLink={getLink}
             getLinkName={getLinkName}
              />
           ))}
