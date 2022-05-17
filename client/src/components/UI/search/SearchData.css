@@ -30,7 +30,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #c3dfdf;
+    background-color: #f6f6f7;
     border: none;
     font-size: 12px;
     text-align: center;
@@ -43,7 +43,7 @@
 }
 
 .btn-search:hover {
-    background-color: #e8d8c2;
+    background-color: #e4e4ec;
 }
 
 .input-search {
@@ -60,11 +60,11 @@
     color: #a4a7ab;
     font-size: 13px;
     visibility: visible;
-    background-color: #ebeff3;
+    background-color: #fff;
     border-radius: 5px;
     width: 300px;
     line-height: 40px;
-    border: 1px solid #e7eaee;
+    border: 1px solid #eaedf1;
     padding: 0px 40px 0px 20px;
     transition: all .6s ease-in-out;
 }

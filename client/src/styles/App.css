@@ -88,7 +88,7 @@
     .title {
         font-size: 21px;
         text-transform: uppercase;
-        color: #212528;
+        color: #0d0c21;
         margin: 20px 0;
         font-weight: bold;
         font-family: sans-serif;
@@ -100,38 +100,36 @@
         margin: 10px 0;
         text-transform: uppercase;
         font-family: sans-serif;
-        background: #5087A0;
+        background: #26bea6;
         border-radius: 2px;
         font-size: 11px;
-        color: rgb(255, 255, 255);
+        color: #fff;
     }
     
     .delete-btn {
         padding: 9px 12px;
-        background-color: #D291BC;
+        background-color: transparent;
         border-radius: 2px;
-        font-size: 14px;
-        color: rgb(255, 255, 255);
+        font-size: 16px;
+        font-weight: 800;
+        color: #5b626b;
         transition: all .7s;
     }
     
-    .delete-btn:hover {
-        background-color: #ee7fa4;
-    }
+    .delete-btn:hover {}
     
     .update-btn {
         padding: 9px 12px;
-        background-color: #828AAD;
-        font-size: 15px;
-        color: rgb(255, 255, 255);
+        background-color: transparent;
+        font-size: 16px;
+        font-weight: 800;
+        color: #5b626b;
         margin-left: 5px;
         border-radius: 2px;
         transition: all .7s;
     }
     
-    .update-btn:hover {
-        background-color: #9592e5;
-    }
+    .update-btn:hover {}
     
     .device-item {
         display: flex;
@@ -179,7 +177,7 @@
     
     .App {
         width: 100%;
-        background: #f5f7fa;
+        background: #f2f3f8;
         display: flex;
     }
     
@@ -210,8 +208,8 @@
         background-color: #fff;
         box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
         border: 1px solid #f3f5f6;
-        padding: 10px 20px 30px;
-        border-radius: 2px;
+        padding: 15px 30px 30px;
+        border-radius: 6px;
         width: 100%;
         min-height: 100vh;
     }
@@ -220,21 +218,21 @@
         width: 210px;
         position: fixed;
         height: 100%;
-        background: #747c89;
+        background: #736ec7;
         transition: width .5s ease-in-out;
-        box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
+        box-shadow: 0 0 15px rgba(109, 104, 192, 0.9);
         z-index: 9;
     }
     
     .sidebar.inactive {
         width: 70px;
         height: 100%;
-        box-shadow: 0 0 15px rgba(116, 124, 137, 0.9);
+        box-shadow: 0 0 15px rgba(109, 104, 192, 0.9);
     }
     
     .top-section {
         position: relative;
-        background: #fee369;
+        background: #736ec7;
         width: 100%;
         height: 65px;
         display: flex;
@@ -282,14 +280,14 @@
         cursor: pointer;
         font-size: 20px;
         right: -35px;
-        color: rgb(0, 0, 0);
+        color: #465077;
         z-index: 9;
         top: 23px;
     }
     
     .sidebar.inactive .top-section .toggle-menu-btn {
         right: -35px;
-        color: rgb(0, 0, 0);
+        color: #465077;
         font-size: 20px;
     }
     
@@ -301,8 +299,8 @@
     .menu .menu__list .menu__item {
         position: relative;
         padding: 5px 0;
-        border-top: 1px solid #606772;
-        border-bottom: 1px solid #858e9c;
+        border-top: 1px solid #6963b6;
+        border-bottom: 1px solid #7e77d9;
     }
     
     .menu .menu__list .menu__item:first-child {
@@ -324,7 +322,7 @@
     }
     
     .sidebar.inactive .menu .menu__list .menu__item .icon:hover {
-        background: #9ca4b3;
+        background: #6763b3;
     }
     
     .menu .menu__list .menu__item .menu__link {
@@ -367,11 +365,11 @@
         left: 30px;
         top: 5px;
         border-radius: 3px;
-        color: rgb(22, 22, 22);
+        color: #fff;
         padding: 10px 14px;
-        background: #fbe47e;
+        background: #26bea6;
         transition: opacity .7s ease-in;
-        box-shadow: 0 4px 4px 0 rgba(194, 175, 95, .2), 0 8px 8px 0 rgba(194, 175, 95, .2), 0 16px 16px 0 rgba(194, 175, 95, .2), 0 32px 32px 0 rgba(194, 175, 95, .2), 0 64px 64px 0 rgba(194, 175, 95, .2), 0 128px 128px 0 rgba(194, 175, 95, .2);
+        box-shadow: 0 4px 4px 0 rgba(38, 190, 166, .2), 0 8px 8px 0 rgba(38, 190, 166, .2), 0 16px 16px 0 rgba(38, 190, 166, .2), 0 32px 32px 0 rgba(38, 190, 166, .2), 0 64px 64px 0 rgba(38, 190, 166, .2), 0 128px 128px 0 rgba(38, 190, 166, .2);
     }
     
     .add-device {

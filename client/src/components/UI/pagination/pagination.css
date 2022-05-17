@@ -18,19 +18,19 @@
     padding: 7px 12px;
     margin: 2px 4px;
     border-radius: 3px;
-    background-color: #F9E9D9;
+    background-color: #f4f4f4;
     font-family: sans-serif;
     color: #3b3f43;
     box-shadow: 0 5px 5px -5px rgba(158, 155, 106, .9);
 }
 
 .page-switcher__link:hover {
-    background-color: #d8c2b0;
+    background-color: #26bea6;
     color: #fff;
 }
 
 .page-switcher__link.active {
-    background-color: #d8c2b0;
+    background-color: #26bea6;
     box-shadow: 0 5px 5px -5px rgba(83, 109, 84, .3);
     color: #fff;
 }
