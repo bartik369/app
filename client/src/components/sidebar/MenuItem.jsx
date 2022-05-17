@@ -11,9 +11,9 @@ const MenuItem = ({getLinkName, ...props}) => {
         <div className="icon">
           <i className={props.icon}></i>
         </div>
-        <a href={props.to} className="menu__link">
+      </Link>
+      <Link to={props.to} className="menu__link">
           {props.name}
-        </a>
       </Link>
     </li>
   );
