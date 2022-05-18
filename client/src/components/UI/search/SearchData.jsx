@@ -3,7 +3,7 @@ import './SearchData.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-const SearchData = (props) => {
+const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
     const [activeSearch, setActiveSearch] = useState(true);
 
     const setStatusSearch = () => {
@@ -12,7 +12,7 @@ const SearchData = (props) => {
     
     window.addEventListener('click', () => {
         setActiveSearch(true);
-        props.delSearchQuery();
+        delSearchQuery();
     });
 
     return (
@@ -22,11 +22,11 @@ const SearchData = (props) => {
             </button>
             <input {...props} className={`input-search active-search${activeSearch 
                 ? "active-search" 
-                : "" && props.delSearchQuery}`}/>
+                : "" && delSearchQuery}`}/>
             <FontAwesomeIcon 
             icon={faXmark} 
-            className={`delete-searchquery ${props.searchQueryLength <= 0 ? "" : "active"}`} 
-            onClick={props.delSearchQuery}/>
+            className={`delete-searchquery ${searchQueryLength <= 0 ? "" : "active"}`} 
+            onClick={delSearchQuery}/>
         </div>
     )
 }

@@ -25,9 +25,6 @@ const DeviceSearch = ({searchQuery, setPageName}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(20);
 
-  setPageName('deviceSearhPage')
-
-
   useEffect(() => {
     const fetchDevices = async () => {
       await Axios.get(`http://localhost:5001/devices`).then((response) => {
@@ -35,6 +32,7 @@ const DeviceSearch = ({searchQuery, setPageName}) => {
       });
     };
     fetchDevices();
+    setPageName('deviceSearhPage');
   }, []);
 
   const indexOfLastDevice = currentPage * devicesPerPage;

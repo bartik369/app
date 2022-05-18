@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuItem from './MenuItem';
 import '../../styles/App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,6 +18,13 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
     {name: 'Настройки', to: '/settings', iconClassName: 'bi bi-gear'},
   ]
 
+  useEffect(() => {
+    if (inActive) {
+      slideContentContainer(true);
+    } else {
+      slideContentContainer(false);
+    }
+  });
 
   return (
     <div className={`sidebar inactive${inActive ? "inactive"  : ""}`}>
@@ -35,10 +42,6 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
           ) : (
             <FontAwesomeIcon icon={faBars} />
           )}
-          {inActive 
-          ? slideContentContainer(true) 
-          : slideContentContainer(false)
-          }
         </button>
       </div>
       <nav className="menu">

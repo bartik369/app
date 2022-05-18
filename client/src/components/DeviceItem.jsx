@@ -8,7 +8,6 @@ const DeviceItem = (props) => {
       <div className="device-item__device-type">{props.device.deviceType}</div>
       <div className="device-item__device-name">{props.device.deviceName}</div>
       <div className="device-item__inventory-number">
-        {props.device.id}
         {props.device.deviceNumber}
       </div>
       <div className="device-item__username">{props.device.userName}</div>
