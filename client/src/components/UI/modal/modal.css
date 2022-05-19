@@ -11,8 +11,9 @@
 
 .modal-content {
     background: rgb(255, 255, 255);
-    min-width: 400px;
+    max-width: 400px;
     position: relative;
+    border-radius: 8px;
 }
 
 .modal.active {
@@ -22,17 +23,25 @@
 }
 
 .close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30px;
     height: 30px;
-    font-size: 30px;
-    color: brown;
+    font-size: 16px;
     position: absolute;
-    right: -10px;
-    top: -10px;
+    right: -33px;
+    top: -33px;
     transition: all 1s ease-out;
     cursor: pointer;
+    color: #73f5e1;
+    border: 2px solid #73f5e1;
+    border-radius: 30px;
+    transition: all .5s;
 }
 
 .close-modal:hover {
-    color: rgb(126, 42, 165);
+    color: #aaa6ff;
+    border: 2px solid #aaa6ff;
+    transform: rotate(180deg);
 }

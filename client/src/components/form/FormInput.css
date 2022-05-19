@@ -1,15 +1,17 @@
 .form-input {
     border: 1px solid rgb(210, 210, 210);
-    padding: 15px;
+    padding: 14px;
     color: #000;
     font-size: 12px;
     font-family: sans-serif;
     width: 100%;
     margin: 10px 0;
     border-radius: 8px;
+    transition: all .4s;
 }
 
 .form-input:focus {
-    border: 2px solid #5087A0;
+    border: 1px solid #5087A0;
     padding: 14px;
+    transition: all .4s;
 }

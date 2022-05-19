@@ -1,5 +1,7 @@
 import React from "react";
 import "../modal/modal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = ({ children, visible, setVisible }) => {
   const mainModalVisibleClass = ["modal"];
@@ -16,7 +18,7 @@ const Modal = ({ children, visible, setVisible }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
         <div className="close-modal" onClick={() => setVisible(false)}>
-        <i className="bi bi-x-circle-fill"></i>
+        <FontAwesomeIcon icon={faXmark} />
         </div>
       </div>
     </div>
