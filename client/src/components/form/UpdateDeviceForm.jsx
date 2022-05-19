@@ -60,7 +60,6 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
         placeholder="Тип устройства"
         type="text"
         value={editDevice.deviceType}
-        name="deviceType"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceType: e.target.value })
         }
@@ -69,7 +68,6 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
         placeholder="Название устройства"
         type="text"
         value={editDevice.deviceName}
-        name="deviceName"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceName: e.target.value })
         }
@@ -78,7 +76,6 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
         placeholder="Номер устройства"
         type="text"
         value={editDevice.deviceNumber}
-        name="deviceNumber"
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceNumber: e.target.value })
         }
@@ -87,7 +84,6 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
         placeholder="Имя пользователя"
         type="text"
         value={editDevice.userName}
-        name="userName"
         onChange={(e) =>
           setEditDevice({ ...editDevice, userName: e.target.value })
         }

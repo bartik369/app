@@ -42,32 +42,26 @@ const AddDeviceForm = ({ create }) => {
         placeholder="Тип устройства"
         type="text"
         value={device.deviceType}
-        name="deviceType"
-        id="deviceType"
         onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
       />
       <FormInput
         placeholder="Название устройства"
         type="text"
         value={device.deviceName}
-        name="deviceName"
-        id="deviceName"
         onChange={(e) => setDevice({ ...device, deviceName: e.target.value })}
       />
       <FormInput
         placeholder="Номер устройства"
         type="text"
         value={device.deviceNumber}
-        name="deviceNumber"
-        id="deviceNumber"
         onChange={(e) => setDevice({ ...device, deviceNumber: e.target.value })}
       />
       <FormInput
         placeholder="Имя пользователя"
         type="text"
         value={device.userName}
-        name="userName"
-        id="userName"
+        // name="userName"
+        // id="userName"
         onChange={(e) => setDevice({ ...device, userName: e.target.value })}
       />
       <button className="add-btn" onClick={(e) => handleAddDevice(e)}>

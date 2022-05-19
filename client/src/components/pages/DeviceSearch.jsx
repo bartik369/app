@@ -33,7 +33,7 @@ const DeviceSearch = ({searchQuery, setPageName}) => {
     };
     fetchDevices();
     setPageName('deviceSearhPage');
-  }, []);
+  }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;

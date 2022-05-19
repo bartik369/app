@@ -1,9 +1,10 @@
 import React from "react";
+import LastAddDevices from "../widgets/LastAddDevices";
 
 const Homepage = () => {
     return (
         <div className="home">
-            homepage
+            <LastAddDevices />
         </div>
     )
 }
