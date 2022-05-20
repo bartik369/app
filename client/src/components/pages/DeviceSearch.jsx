@@ -6,7 +6,7 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery, setPageName}) => {
+const DeviceSearch = ({searchQuery, setPageName, getLastDevices}) => {
   const [devices, setDevices] = useState([
     {
       id: "",
@@ -33,6 +33,7 @@ const DeviceSearch = ({searchQuery, setPageName}) => {
     };
     fetchDevices();
     setPageName('deviceSearhPage');
+    getLastDevices(devices);
   }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;

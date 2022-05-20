@@ -20,12 +20,15 @@ function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [pageName, setPageName] = useState('');
+  const [lastDevices, setLastDevices] = useState();
 
   const delSearchQuery = () => {
     setSearchQuery('')
   }
 
   const searchQueryLength = searchQuery.length;
+
+  console.log(lastDevices)
   
   return (
     <div className="App">
@@ -55,6 +58,7 @@ function App() {
             <Route path="/search" element={<DeviceSearch
               searchQuery={searchQuery}
               setPageName={setPageName}
+              getLastDevices={setLastDevices}
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
