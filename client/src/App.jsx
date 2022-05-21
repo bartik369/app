@@ -17,10 +17,21 @@ import Header from "./components/header/Header";
 
 function App() {
 
+  const [devices, setDevices] = useState([
+    {
+      id: "",
+      deviceType: "",
+      deviceName: "",
+      deviceNumber: "",
+      userName: "",
+      deviceAddTime: "",
+    },
+  ]);
+
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [pageName, setPageName] = useState('');
-  const [lastDevices, setLastDevices] = useState();
+
 
   const delSearchQuery = () => {
     setSearchQuery('')
@@ -28,8 +39,6 @@ function App() {
 
   const searchQueryLength = searchQuery.length;
 
-  console.log(lastDevices)
-  
   return (
     <div className="App">
       <div
@@ -58,7 +67,8 @@ function App() {
             <Route path="/search" element={<DeviceSearch
               searchQuery={searchQuery}
               setPageName={setPageName}
-              getLastDevices={setLastDevices}
+              devices={devices}
+              setDevices={setDevices}
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>

@@ -6,20 +6,8 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery, setPageName, getLastDevices}) => {
-  const [devices, setDevices] = useState([
-    {
-      id: "",
-      deviceType: "",
-      deviceName: "",
-      deviceNumber: "",
-      userName: "",
-      deviceAddTime: "",
-    },
-  ]);
+const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
 
-
-  // const [searchQuery, setSearchQuery] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,13 +21,12 @@ const DeviceSearch = ({searchQuery, setPageName, getLastDevices}) => {
     };
     fetchDevices();
     setPageName('deviceSearhPage');
-    getLastDevices(devices);
   }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
   
-// перенести в header
+
   const filterData = devices
     .filter((item) => {
       return Object.keys(item).some((key) =>
