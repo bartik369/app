@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const LastAddDevices = (devices) => {
 
-    function test() {
-        devices.map((item) => {
-            console.log(item)
-        })
-    }
-    test();
-
     return (
-        <div>last added devices</div>
+        <div>
+        
+        </div>
     )
 }
 

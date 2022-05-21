@@ -2,16 +2,39 @@ import React, { useEffect, useMemo, useState } from "react";
 import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import Modal from "../UI/modal/Modal";
+import ENV from "../../env.config";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery, devices, setDevices}) => {
+const DeviceSearch = ({searchQuery, setPageName}) => {
+
+  const [devices, setDevices] = useState([
+    {
+      id: "",
+      deviceType: "",
+      deviceName: "",
+      deviceNumber: "",
+      userName: "",
+      deviceAddTime: "",
+    },
+  ]);
+
+  console.log(devices)
 
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(20);
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      await Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
+        setDevices(response.data);
+      });
+    };
+    fetchDevices();
+  }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
@@ -28,11 +51,12 @@ const DeviceSearch = ({searchQuery, devices, setDevices}) => {
     setCurrentPage(pageNumber);
   }
 
+  setPageName('deviceSearhPage');
 
   // Delete device
 
   function removeDevice(id) {
-    Axios.delete(`http://localhost:5001/device/${id}`).then((response) => {
+    Axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
       const indexOfDelitedItem = devices.filter(
         (item) => item._id !== response.data.id
       );
@@ -43,7 +67,7 @@ const DeviceSearch = ({searchQuery, devices, setDevices}) => {
   // Update device
 
   function getUpdateDeviceInfo(id) {
-    Axios.get(`http://localhost:5001/device/${id}`).then((response) => {
+    Axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
       setUpdateDeviceId(response.data[0]);
     });
   }
