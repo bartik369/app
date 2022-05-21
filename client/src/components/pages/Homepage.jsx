@@ -1,31 +1,46 @@
 import React from "react";
-import LastAddDevices from "../widgets/LastAddDevices";
-import '../widgets/widgets.css'
+import "../widgets/widgets.css";
 
-const Homepage = ({devices}) => {
+const Homepage = ({ devices }) => {
+  const array = [...devices];
+  const reverseArray = array.reverse().slice(0, 8);
 
-    const array = [...devices];
-    const reverseArray = array.reverse().slice(0, 8);
-
-    return (
-        <div className="home-wrapper">
-            <div className="top-side">
-                <div className="top-side__item">
-                <div className="title">
-                Последние добавленные
-                </div>
-                {reverseArray.map((device) => (
-                <LastAddDevices 
-                device={device} 
-                key={device.id} 
-                />
-            ))}
-                </div>
-            </div>
+  return (
+    <div className="home-wrapper">
+      <div className="top-side">
+        <div className="widget-item">
+          <div className="widget-item__title">Последние добавленные</div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Модель устройства</th>
+                      <th>Номер</th>
+                      <th>Пользователь</th>
+                      <th>Дата</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {reverseArray.map((device) => (
+                      <tr>
+                          <td>{device.deviceName}</td>
+                          <td>{device.deviceNumber}</td>
+                          <td>{device.userName}</td>
+                          <td>{device.deviceAddTime}</td>
+                      </tr>
+                  ))}
+              </tbody>
+          </table>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default Homepage;
 
-{/* <LastAddDevices /> */}
+{
+  /* <LastAddDevices /> */
+//   {reverseArray.map((device) => (
+//     <LastAddDevices device={device} key={device.id} />
+//   ))}
+}
