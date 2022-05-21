@@ -1,13 +1,11 @@
 import React from "react";
 import LastAddDevices from "../widgets/LastAddDevices";
 
-const Homepage = (lastDevices) => {
+const Homepage = (devices) => {
 
-    lastDevices()
-    
     return (
         <div className="home">
-            <LastAddDevices />
+            <LastAddDevices devices={devices}/>
         </div>
     )
 }

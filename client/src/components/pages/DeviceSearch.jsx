@@ -6,22 +6,12 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
+const DeviceSearch = ({searchQuery, devices, setDevices}) => {
 
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(20);
-
-  useEffect(() => {
-    const fetchDevices = async () => {
-      await Axios.get(`http://localhost:5001/devices`).then((response) => {
-        setDevices(response.data);
-      });
-    };
-    fetchDevices();
-    setPageName('deviceSearhPage');
-  }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;

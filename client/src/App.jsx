@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
+import Axios from 'axios'
 
 import { Routes, Route, Link } from "react-router-dom";
 
@@ -30,7 +31,16 @@ function App() {
 
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [pageName, setPageName] = useState('');
+  const [pageName, setPageName] = useState('deviceSearhPage');
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      await Axios.get(`http://localhost:5001/devices`).then((response) => {
+        setDevices(response.data);
+      });
+    };
+    fetchDevices();
+  }, [setPageName]);
 
 
   const delSearchQuery = () => {
@@ -61,7 +71,9 @@ function App() {
         <div className="content-container">
           <div className="content-container__inner">
           <Routes>
-            <Route path="/" element={<Homepage />}></Route>
+            <Route path="/" element={<Homepage
+            devices={devices}
+             />}></Route>
             <Route path="/add_device" element={<AddDevice />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search" element={<DeviceSearch
