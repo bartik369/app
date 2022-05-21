@@ -1,10 +1,10 @@
 import React from 'react';
 
-const LastAddDevices = (devices) => {
+const LastAddDevices = (props) => {
 
     return (
         <div>
-        
+            {props.device.deviceName}
         </div>
     )
 }

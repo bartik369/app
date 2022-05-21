@@ -1,11 +1,13 @@
 import React from "react";
 import LastAddDevices from "../widgets/LastAddDevices";
 
-const Homepage = (devices) => {
+const Homepage = ({devices}) => {
 
     return (
         <div className="home">
-            <LastAddDevices devices={devices}/>
+            {devices.map((device) => (
+             <LastAddDevices device={device}/>
+            ))}
         </div>
     )
 }
