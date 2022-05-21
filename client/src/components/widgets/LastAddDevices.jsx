@@ -1,4 +1,5 @@
 import React from 'react';
+import '../widgets/widgets.css'
 
 const LastAddDevices = (props) => {
 

@@ -1,0 +1,19 @@
+.home-wrapper {
+    background-color: rgb(231, 231, 231);
+}
+
+.top-side {
+    background-color: blanchedalmond;
+    display: flex;
+}
+
+.top-side__item {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.last-devices .title {
+    font-size: 28px;
+    color: black;
+}
