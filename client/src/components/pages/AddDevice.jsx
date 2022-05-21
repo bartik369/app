@@ -17,10 +17,10 @@ const AddDevice = () => {
       }
 
     return (
-        <div>
+      <div className="content-container__inner">
           <div className="title">Добавить устройство</div>
             <AddDeviceForm create={createNewDevice}/>
-        </div>
+      </div>
     )
 }
 

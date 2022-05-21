@@ -3,8 +3,11 @@ import React from 'react';
 const LastAddDevices = (props) => {
 
     return (
-        <div>
+        <div className="last-devices">
+            {props.device.id}
             {props.device.deviceName}
+            {props.device.deviceNumber}
+            {props.device.userName}
         </div>
     )
 }

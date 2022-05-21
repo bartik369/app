@@ -69,7 +69,7 @@ function App() {
           pageName={pageName}
           />
         <div className="content-container">
-          <div className="content-container__inner">
+          
           <Routes>
             <Route path="/" element={<Homepage 
             devices={devices}
@@ -88,7 +88,7 @@ function App() {
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>
-          </div>
+        
         </div>
       </div>
     </div>

@@ -7,20 +7,8 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 
-const DeviceSearch = ({searchQuery, setPageName}) => {
+const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
 
-  const [devices, setDevices] = useState([
-    {
-      id: "",
-      deviceType: "",
-      deviceName: "",
-      deviceNumber: "",
-      userName: "",
-      deviceAddTime: "",
-    },
-  ]);
-
-  console.log(devices)
 
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
@@ -78,7 +66,7 @@ const DeviceSearch = ({searchQuery, setPageName}) => {
   };
 
   return (
-    <div className="device-search">
+    <div className="content-container__inner">
       <Modal visible={modalActive} setVisible={setModalActive}>
         <UpdateDeviceForm
           updateInfo={updateDeviceId}
