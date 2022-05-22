@@ -13,7 +13,6 @@ const AddDeviceForm = ({ create }) => {
   });
 
   const devicesType = ['Компьютер', 'Монитор', 'Телефон', 'Аксессуар',]
-
   
   // Add new device
 
@@ -37,14 +36,19 @@ const AddDeviceForm = ({ create }) => {
     });
   };
 
+  const test = document.getElementById('typeDevice');
+
 
   return (
     <form className="add-device-form">
       <label for="typeDevice">Selec type:</label>
-      <select name="typeDevice" id="typeDevice">
+      <select
+      name="typeDevice" 
+      id="typeDevice"
+      onChange={() => console.log("sasas")}
+      >
         {devicesType.map((item) => (
           <option 
-          onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
           value={device.deviceType}>{item}</option>
         ))}
       </select>
