@@ -12,6 +12,8 @@ const AddDeviceForm = ({ create }) => {
     deviceAddTime: "",
   });
 
+  const devicesType = ['Компьютер', 'Монитор', 'Телефон', 'Аксессуар',]
+
   
   // Add new device
 
@@ -38,12 +40,20 @@ const AddDeviceForm = ({ create }) => {
 
   return (
     <form className="add-device-form">
-      <FormInput
+      <label for="typeDevice">Selec type:</label>
+      <select name="typeDevice" id="typeDevice">
+        {devicesType.map((item) => (
+          <option 
+          onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
+          value={device.deviceType}>{item}</option>
+        ))}
+      </select>
+      {/* <FormInput
         placeholder="Тип устройства"
         type="text"
         value={device.deviceType}
         onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
-      />
+      /> */}
       <FormInput
         placeholder="Название устройства"
         type="text"
