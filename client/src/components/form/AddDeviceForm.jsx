@@ -12,8 +12,15 @@ const AddDeviceForm = ({ create }) => {
     deviceAddTime: "",
   });
 
-  const devicesType = ['Компьютер', 'Монитор', 'Телефон', 'Аксессуар',]
-  
+
+  const deviceTypeArray = [
+    {name: 'Компьютеры', value: 'pc'},
+    {name: 'Сетевое оборудование', value: 'network'},
+    {name: 'Принтеры', value: 'printers'},
+    {name: 'Телефоны', value: 'phones'},
+    {name: 'Аксессуары', value: 'accessories'},
+  ];
+
   // Add new device
 
   const handleAddDevice = (e) => {
@@ -36,28 +43,24 @@ const AddDeviceForm = ({ create }) => {
     });
   };
 
-  const test = document.getElementById('typeDevice');
+  // const handleSelect = (e) => {
+  //   let {name, value} = e.target;
+  //   console.log(value)
+  // }
 
 
   return (
     <form className="add-device-form">
-      <label for="typeDevice">Selec type:</label>
       <select
       name="typeDevice" 
       id="typeDevice"
-      onChange={() => console.log("sasas")}
+      onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
       >
-        {devicesType.map((item) => (
-          <option 
-          value={device.deviceType}>{item}</option>
+        <option value="" selected="selected" disabled="disabled">Тип устройства</option>
+        {deviceTypeArray.map((item) => (
+            <option>{item.name}</option>
         ))}
       </select>
-      {/* <FormInput
-        placeholder="Тип устройства"
-        type="text"
-        value={device.deviceType}
-        onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
-      /> */}
       <FormInput
         placeholder="Название устройства"
         type="text"

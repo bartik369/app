@@ -54,16 +54,36 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
     })
   }
 
+  const deviceTypeArray = [
+    {name: 'Компьютеры', value: 'pc'},
+    {name: 'Сетевое оборудование', value: 'network'},
+    {name: 'Принтеры', value: 'printers'},
+    {name: 'Телефоны', value: 'phones'},
+    {name: 'Аксессуары', value: 'accessories'},
+  ];
+
+
   return (
     <form className="add-device-form">
-      <FormInput
+       <select
+      name="typeDevice" 
+      id="typeDevice"
+      value={editDevice.deviceType}
+      onChange={(e) => setEditDevice({ ...editDevice, deviceType: e.target.value })}
+      >
+        <option value="" disabled="disabled">Тип устройства</option>
+        {deviceTypeArray.map((item) => (
+            <option>{item.name}</option>
+        ))}
+      </select>
+      {/* <FormInput
         placeholder="Тип устройства"
         type="text"
         value={editDevice.deviceType}
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceType: e.target.value })
         }
-      />
+      /> */}
       <FormInput
         placeholder="Название устройства"
         type="text"

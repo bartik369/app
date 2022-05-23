@@ -29,6 +29,9 @@ function App() {
     },
   ]);
 
+
+  console.log(devices)
+  
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [pageName, setPageName] = useState('');
