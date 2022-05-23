@@ -205,13 +205,29 @@
     }
     
     .content-container__inner {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        position: relative;
+    }
+
+    .devices-list {
         background-color: #fff;
         box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
         border: 1px solid #f3f5f6;
         padding: 15px 30px 30px;
         border-radius: 6px;
         width: 100%;
-        min-height: 100vh;
+    }
+
+    .add-device-block {
+        width: 300px;
+        height: 400px;
+        background-color: #7e77d9;
+        position: sticky;
+        margin-top: 5%;
+        top: 50px;
+
     }
     
     .sidebar {

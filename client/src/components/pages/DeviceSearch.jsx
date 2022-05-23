@@ -6,6 +6,7 @@ import ENV from "../../env.config";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
+import AddDeviceForm from "../form/AddDeviceForm";
 
 const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
 
@@ -64,6 +65,7 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
     setModalActive(true);
     getUpdateDeviceInfo(id);
   };
+  
 
   return (
     <div className="content-container__inner">
@@ -82,18 +84,23 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
         statusInput={searchQuery.length}
         deleteSearchquery={handleDeleteInputQuery}
       /> */}
+      <div className="devices-list">
       <DeviceLists
         update={handleUpdateDeviceInfo}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}
       />
-      <Pagination
+       <Pagination
         devicesPerPage={devicesPerPage}
         totalDevices={devices.length}
         paginate={pageNumberHandler}
         currentPage={currentPage}
       />
+      </div>
+      <div className="add-device-block">
+        <AddDeviceForm />
+      </div>
     </div>
   );
 };
