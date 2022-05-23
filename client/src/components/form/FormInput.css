@@ -1,4 +1,4 @@
-.form-input {
+.form-input, #typeDevice {
     border: 1px solid rgb(210, 210, 210);
     padding: 14px;
     color: #000;

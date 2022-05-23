@@ -27,7 +27,7 @@ const AddDeviceForm = ({ create }) => {
     e.preventDefault();
     const date = new Date();
     const deviceTime =
-      date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
+      date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
     const newDevice = {
       ...device,
       id: Date.now(),
@@ -42,11 +42,6 @@ const AddDeviceForm = ({ create }) => {
       userName: "",
     });
   };
-
-  // const handleSelect = (e) => {
-  //   let {name, value} = e.target;
-  //   console.log(value)
-  // }
 
 
   return (
@@ -77,8 +72,6 @@ const AddDeviceForm = ({ create }) => {
         placeholder="Имя пользователя"
         type="text"
         value={device.userName}
-        // name="userName"
-        // id="userName"
         onChange={(e) => setDevice({ ...device, userName: e.target.value })}
       />
       <button className="add-btn" onClick={(e) => handleAddDevice(e)}>
