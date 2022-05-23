@@ -104,6 +104,18 @@
         border-radius: 2px;
         font-size: 11px;
         color: #fff;
+        transition: all .7s ease-in;
+    }
+    
+    .add-btn:hover {
+        padding: 9px 12px;
+        margin: 10px 0;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        background: #2acab2;
+        border-radius: 2px;
+        font-size: 11px;
+        color: #fff;
     }
     
     .delete-btn {
@@ -163,10 +175,9 @@
     }
     
     .add-device-form {
-        max-width: 900px;
         width: 100%;
         margin: 0 auto;
-        padding: 30px;
+        padding: 30px 20px;
     }
     /*--------------------*/
     
@@ -210,7 +221,7 @@
         display: flex;
         position: relative;
     }
-
+    
     .devices-list {
         background-color: #fff;
         box-shadow: 0 5px 5px -5px rgba(157 162 169 / 55%);
@@ -219,15 +230,17 @@
         border-radius: 6px;
         width: 100%;
     }
-
+    
     .add-device-block {
-        width: 300px;
-        height: 400px;
-        background-color: #7e77d9;
+        width: 330px;
+        height: 380px;
+        padding: 5px;
+        background-color: #A67BB5;
+        box-shadow: 0 4px 4px 0 rgba(166, 123, 181, .2), 0 8px 8px 0 rgba(166, 123, 181, .2), 0 16px 16px 0 rgba(166, 123, 181, .2), 0 32px 32px 0 rgba(166, 123, 181, .2), 0 64px 64px 0 rgba(166, 123, 181, .2), 0 128px 128px 0 rgba(166, 123, 181, .2);
         position: sticky;
-        margin-top: 5%;
+        margin: 5% 0 0 20px;
+        border-radius: 12px;
         top: 50px;
-
     }
     
     .sidebar {
@@ -392,7 +405,7 @@
         background-color: #fff;
         padding: 20px;
     }
-
+    
     .block-content {
         margin: 0 auto;
         padding: 20px;

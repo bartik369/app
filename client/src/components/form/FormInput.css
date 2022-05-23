@@ -1,6 +1,7 @@
-.form-input, #typeDevice {
+.form-input,
+#typeDevice {
     border: 1px solid rgb(210, 210, 210);
-    padding: 14px;
+    padding: 12px;
     color: #000;
     font-size: 12px;
     font-family: sans-serif;
@@ -11,7 +12,7 @@
 }
 
 .form-input:focus {
-    border: 1px solid #5087A0;
-    padding: 14px;
+    border: 1px solid rgb(210, 210, 210);
+    padding: 12px;
     transition: all .4s;
 }

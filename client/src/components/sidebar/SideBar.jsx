@@ -9,7 +9,6 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
 
   const menuItem = [
     {name: 'Главная', to: '/', iconClassName: 'bi bi-house'},
-    {name: 'Добавить', to: '/add_device', iconClassName: 'bi bi-file-earmark-plus'},
     {name: 'Поиск', to: '/search', iconClassName: 'bi bi-binoculars'},
     {name: 'Статистика', to: '/statistic', iconClassName: 'bi bi-bar-chart'},
     {name: 'Пользователи', to: '/users', iconClassName: 'bi bi-people'},

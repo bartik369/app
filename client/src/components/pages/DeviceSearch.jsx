@@ -14,7 +14,7 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
   const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [devicesPerPage] = useState(20);
+  const [devicesPerPage] = useState(25);
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -65,7 +65,18 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
     setModalActive(true);
     getUpdateDeviceInfo(id);
   };
-  
+
+  function createNewDevice(newDevice) {
+    const {deviceType, deviceName, deviceNumber, userName, deviceAddTime} = newDevice
+
+    Axios.post('http://localhost:5001/insert', {
+      deviceType: deviceType,
+      deviceName: deviceName,
+      deviceNumber: deviceNumber,
+      userName: userName,
+      deviceAddTime: deviceAddTime,
+    } )
+  }
 
   return (
     <div className="content-container__inner">
@@ -99,7 +110,7 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
       />
       </div>
       <div className="add-device-block">
-        <AddDeviceForm />
+        <AddDeviceForm create={createNewDevice}/>
       </div>
     </div>
   );

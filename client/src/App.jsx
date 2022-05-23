@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+     import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
 import Axios from 'axios';
@@ -77,7 +77,6 @@ function App() {
             <Route path="/" element={<Homepage 
             devices={devices}
             />}></Route>
-            <Route path="/add_device" element={<AddDevice />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search" element={<DeviceSearch
               searchQuery={searchQuery}
