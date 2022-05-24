@@ -2,11 +2,11 @@
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
 import Axios from 'axios';
+import ENV from "./env.config";
 
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 import Homepage from "./components/pages/Homepage";
-import AddDevice from "./components/pages/AddDevice";
 import EditDevice from "./components/pages/EditDevice";
 import DeviceSearch from "./components/pages/DeviceSearch";
 import Statistic from "./components/pages/Statistic";
@@ -33,19 +33,16 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [pageName, setPageName] = useState('');
 
-  useEffect(() => {
-    const fetchDevices = async () => {
-      await Axios.get(`http://localhost:5001/devices`).then((response) => {
-        setDevices(response.data);
-      });
-    };
-    fetchDevices();
-  }, [setPageName]);
-
-
   const delSearchQuery = () => {
     setSearchQuery('')
   }
+
+  useEffect(() => {
+    Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
+      setDevices(response.data);
+    });
+
+  },[]);
 
   const searchQueryLength = searchQuery.length;
 

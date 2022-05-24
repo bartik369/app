@@ -10,7 +10,7 @@ const Homepage = ({ devices }) => {
       <div className="top-side">
         <div className="widget-item">
           <div className="widget-item__title">Последние добавленные</div>
-          <table>
+          <table className="last-devices-table">
               <thead>
                   <tr>
                       <th>Модель устройства</th>
@@ -37,10 +37,3 @@ const Homepage = ({ devices }) => {
 };
 
 export default Homepage;
-
-{
-  /* <LastAddDevices /> */
-//   {reverseArray.map((device) => (
-//     <LastAddDevices device={device} key={device.id} />
-//   ))}
-}

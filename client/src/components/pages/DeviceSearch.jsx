@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DeviceLists from "../DeviceLists";
 import Modal from "../UI/modal/Modal";
