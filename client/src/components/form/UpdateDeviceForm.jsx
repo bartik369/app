@@ -72,8 +72,8 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       onChange={(e) => setEditDevice({ ...editDevice, deviceType: e.target.value })}
       >
         <option value="" disabled="disabled">Тип устройства</option>
-        {deviceTypeArray.map((item) => (
-            <option>{item.name}</option>
+        {deviceTypeArray.map((item, index) => (
+            <option key={index}>{item.name}</option>
         ))}
       </select>
       {/* <FormInput

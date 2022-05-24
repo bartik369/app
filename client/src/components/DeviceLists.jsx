@@ -8,9 +8,8 @@ const DeviceLists = ({ devices, title, remove, update }) => {
       <div className="title">{title}</div>
       {devices.map((device, index) => (
         <DeviceItem
-          key={device.id}
+          key={index}
           device={device}
-          number={index + 1}
           remove={remove}
           update={update}
         />

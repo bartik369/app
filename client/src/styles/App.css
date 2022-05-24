@@ -238,9 +238,10 @@
         background-color: #A67BB5;
         box-shadow: 0 4px 4px 0 rgba(166, 123, 181, .2), 0 8px 8px 0 rgba(166, 123, 181, .2), 0 16px 16px 0 rgba(166, 123, 181, .2), 0 32px 32px 0 rgba(166, 123, 181, .2), 0 64px 64px 0 rgba(166, 123, 181, .2), 0 128px 128px 0 rgba(166, 123, 181, .2);
         position: sticky;
+        z-index: 3;
         margin: 5% 0 0 20px;
         border-radius: 12px;
-        top: 50px;
+        top: 78px;
     }
     
     .sidebar {

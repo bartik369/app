@@ -4,7 +4,7 @@ import "../styles/App.css";
 const DeviceItem = (props) => {
 
   return (
-    <div className="device-item">
+    <div className="device-item" {...props.device.index}>
       {/* <div className="device-item__device-id">{props.number}</div> */}
       <div className="device-item__device-type">{props.device.deviceType}</div>
       <div className="device-item__device-name">{props.device.deviceName}</div>

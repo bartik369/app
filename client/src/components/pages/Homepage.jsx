@@ -20,8 +20,8 @@ const Homepage = ({ devices }) => {
                   </tr>
               </thead>
               <tbody>
-                  {reverseArray.map((device) => (
-                      <tr>
+                  {reverseArray.map((device, index) => (
+                      <tr key={index}>
                           <td>{device.deviceName}</td>
                           <td>{device.deviceNumber}</td>
                           <td>{device.userName}</td>

@@ -28,9 +28,6 @@ function App() {
       deviceAddTime: "",
     },
   ]);
-
-
-  console.log(devices)
   
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');

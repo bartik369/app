@@ -47,13 +47,14 @@ const AddDeviceForm = ({ create }) => {
   return (
     <form className="add-device-form">
       <select
+      defaultValue=""
       name="typeDevice" 
       id="typeDevice"
       onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
       >
-        <option value="" selected="selected" disabled="disabled">Тип устройства</option>
-        {deviceTypeArray.map((item) => (
-            <option>{item.name}</option>
+        <option value="" disabled>Тип устройства</option>
+        {deviceTypeArray.map((item, index) => (
+            <option key={index}>{item.name}</option>
         ))}
       </select>
       <FormInput
