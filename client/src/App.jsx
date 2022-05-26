@@ -32,10 +32,9 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: "",
-      toDoTitle: "",
-      toDoDescription: "",
-      toDoAddTime: "",
-      toDoDeadline: "",
+      todoTitle: "",
+      todoDescription: "",
+      todoAddTime: "",
     }
   ])
   

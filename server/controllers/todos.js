@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 
 export const getTodos = async(req, res) => {
     ToDoModel.find({}, (err, result) => {
-        if(err) {
+        if (err) {
             res.send(err);
         } else {
             res.send(result)
@@ -11,9 +11,9 @@ export const getTodos = async(req, res) => {
     })
 }
 
-export const  getTodo = async(req, res) => {
+export const getTodo = async(req, res) => {
     const id = new ObjectId(req.params.id);
-    ToDoModel.find({ _id: id}, (err, result) => {
+    ToDoModel.find({ _id: id }, (err, result) => {
         if (err) {
             res.send(err);
         } else {
@@ -22,7 +22,7 @@ export const  getTodo = async(req, res) => {
     })
 }
 
-export const  createTodo = async(req, res) => {
+export const createTodo = async(req, res) => {
     const todoTitle = req.body.todoTitle;
     const todoDescription = req.body.todoDescription;
     const todoAddTime = req.body.todoAddTime;
@@ -41,10 +41,10 @@ export const  createTodo = async(req, res) => {
     }
 }
 
-export const  deleteTodo = async(req, res) => {
-   
+export const deleteTodo = async(req, res) => {
+
 }
 
-export const  updateTodo = async(req, res) => {
-   
+export const updateTodo = async(req, res) => {
+
 }

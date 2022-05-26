@@ -7,12 +7,14 @@ const Todos = () => {
 
 
     const createToDo = (todoData) => {
-       const {toDoTitle, toDoDescription, toDoAddTime} = todoData;
+
+       const {todoTitle, todoDescription, todoAddTime} = todoData;
+       console.log(todoData)
 
        Axios.post(`${ENV.HOSTNAME}newtodo/`, {
-        toDoTitle: toDoTitle,
-        toDoDescription: toDoDescription,
-        toDoAddTime: toDoAddTime,
+        todoTitle: todoTitle,
+        todoDescription: todoDescription,
+        todoAddTime: todoAddTime,
        })
        
     }
