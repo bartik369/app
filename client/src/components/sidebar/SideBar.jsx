@@ -12,7 +12,7 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
     {name: 'Поиск', to: '/search', iconClassName: 'bi bi-binoculars'},
     {name: 'Статистика', to: '/statistic', iconClassName: 'bi bi-bar-chart'},
     {name: 'Пользователи', to: '/users', iconClassName: 'bi bi-people'},
-    {name: 'Задачи', to: '/tasks', iconClassName: 'bi bi-check2-square'},
+    {name: 'Задачи', to: '/todos', iconClassName: 'bi bi-check2-square'},
     {name: 'Календарь', to: '/calendar', iconClassName: 'bi bi-calendar-date'},
     {name: 'Настройки', to: '/settings', iconClassName: 'bi bi-gear'},
   ]

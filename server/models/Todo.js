@@ -12,9 +12,6 @@ const ToDoScheme = new mongoose.Schema({
     toDoAddTime: {
         type: String,
     },
-    toDoDeadline: {
-        type: String,
-    },
 });
 
 const ToDo = mongoose.model("TodoData", ToDoScheme);

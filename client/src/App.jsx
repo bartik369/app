@@ -11,7 +11,7 @@ import EditDevice from "./components/pages/EditDevice";
 import DeviceSearch from "./components/pages/DeviceSearch";
 import Statistic from "./components/pages/Statistic";
 import Users from "./components/pages/Users";
-import Tasks from "./components/pages/Tasks";
+import Todos from "./components/pages/Todos";
 import Calendar from "./components/pages/Calendar";
 import Settings from "./components/pages/Settings";
 import Header from "./components/header/Header";
@@ -28,6 +28,16 @@ function App() {
       deviceAddTime: "",
     },
   ]);
+
+  const [todos, setTodos] = useState([
+    {
+      id: "",
+      toDoTitle: "",
+      toDoDescription: "",
+      toDoAddTime: "",
+      toDoDeadline: "",
+    }
+  ])
   
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -80,7 +90,7 @@ function App() {
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
-            <Route path="/tasks" element={<Tasks />}></Route>
+            <Route path="/todos" element={<Todos />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>

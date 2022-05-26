@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocaion, useParams } from "react-router-dom";
+import React, { useState} from "react";
 import FormInput from "./FormInput";
 
 const AddDeviceForm = ({ create }) => {
