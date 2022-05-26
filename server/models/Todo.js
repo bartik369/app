@@ -1,19 +1,17 @@
 import mongoose from "mongoose";
 
 const ToDoScheme = new mongoose.Schema({
-    toDoTitle: {
+    todoTitle: {
         type: String,
-        required: true,
     },
-    toDoDescription: {
+    todoDescription: {
         type: String,
-        required: true,
     },
-    toDoAddTime: {
+    todoAddTime: {
         type: String,
     },
 });
 
 const ToDo = mongoose.model("TodoData", ToDoScheme);
 
-export default ToDo
+export default ToDo;
