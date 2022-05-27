@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import AddTodoForm from "../form/AddTodoForm";
 import Axios from 'axios';
 import ENV from "../../env.config";
 
 const Todos = () => {
 
+    const [todo, setTodo] = useState([
+        {
+          id: "",
+          todoTitle: "",
+          todoDescription: "",
+          todoAddTime: "",
+        }
+    ])
 
     const createToDo = (todoData) => {
 

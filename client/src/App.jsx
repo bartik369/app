@@ -53,6 +53,13 @@ function App() {
 
   },[]);
 
+  useEffect(() => {
+    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+      setTodos(response.data);
+    });
+    console.log(todos)
+  },[]);
+
   const searchQueryLength = searchQuery.length;
 
   return (
@@ -89,7 +96,8 @@ function App() {
              />}></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
-            <Route path="/todos" element={<Todos />}></Route>
+            <Route path="/todos" element={<Todos
+             />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>

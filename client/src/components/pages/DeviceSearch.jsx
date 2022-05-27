@@ -25,6 +25,15 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
     fetchDevices();
   }, [setPageName]);
 
+  useEffect(() => {
+    const fetchTodos = async () => {
+      await Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+        console.log(response.data)
+      })
+    }
+    fetchTodos();
+  }, [])
+
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
   
