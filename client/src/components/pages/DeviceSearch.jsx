@@ -78,6 +78,7 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
   function createNewDevice(newDevice) {
     const {deviceType, deviceName, deviceNumber, userName, deviceAddTime} = newDevice
 
+
     Axios.post('http://localhost:5001/insert', {
       deviceType: deviceType,
       deviceName: deviceName,

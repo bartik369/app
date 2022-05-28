@@ -36,6 +36,7 @@ export const createTodo = async(req, res) => {
     try {
         await todo.save();
         console.log('Todo data has been added');
+        console.log(todo)
     } catch (error) {
         console.log(`There is an error ${error}`)
     }

@@ -29,14 +29,14 @@ function App() {
     },
   ]);
 
-  const [todos, setTodos] = useState([
-    {
-      id: "",
-      todoTitle: "",
-      todoDescription: "",
-      todoAddTime: "",
-    }
-  ])
+  // const [todos, setTodos] = useState([
+  //   {
+  //     id: "",
+  //     todoTitle: "",
+  //     todoDescription: "",
+  //     todoAddTime: "",
+  //   }
+  // ])
   
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -51,13 +51,6 @@ function App() {
       setDevices(response.data);
     });
 
-  },[]);
-
-  useEffect(() => {
-    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-      setTodos(response.data);
-    });
-    console.log(todos)
   },[]);
 
   const searchQueryLength = searchQuery.length;
