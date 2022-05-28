@@ -49,6 +49,10 @@ function App() {
     Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
       setDevices(response.data);
     });
+
+    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+      setTodos(response.data)
+    })
   }, []);
 
   const searchQueryLength = searchQuery.length;
@@ -90,7 +94,9 @@ function App() {
             ></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
-            <Route path="/todos" element={<Todos />}></Route>
+            <Route path="/todos" element={<Todos 
+            todos={todos}
+            />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>
