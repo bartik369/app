@@ -25,14 +25,15 @@ const AddTodoForm = ({ create }) => {
       <FormInput
         placeholder="Название задачи"
         value={todo.todoTitle}
-        name="title"
+        name="todotitle"
         onChange={(e) => addTodoInfo(e)}
       />
       <textarea
-      value={todo.todoDescription}
-      name="description"
-      onChange={(e) => addTodoInfo(e)}
-      cols="30" rows="10"
+        value={todo.todoDescription}
+        name="tododescription"
+        onChange={(e) => addTodoInfo(e)}
+        cols="30"
+        rows="10"
       />
       {/* <FormInput
         placeholder="Описание задачи"

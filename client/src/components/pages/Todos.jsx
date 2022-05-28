@@ -1,25 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AddTodoForm from "../form/AddTodoForm";
-import Axios from 'axios';
+import Axios from "axios";
 import ENV from "../../env.config";
 
 const Todos = () => {
-    const createToDo = (todoData) => {
+  const createToDo = (todoData) => {
+    const { todotitle, tododescription, todoAddTime } = todoData;
 
-       const { todoTitle, todoDescription, todoAddTime } = todoData;
+    Axios.post(`${ENV.HOSTNAME}newtodo`, {
+      todoTitle: todotitle,
+      todoDescription: tododescription,
+      todoAddTime: todoAddTime,
+    });
+  };
 
-       Axios.post('http://localhost:5001/insert', {
-        todoTitle: todoTitle,
-        todoDescription: todoDescription,
-        todoAddTime: todoAddTime,
-       });
-    };
-
-    return (
-        <div className="tasks">
-           <AddTodoForm create={createToDo} />
-        </div>
-    )
-}
+  return (
+    <div className="tasks">
+      <AddTodoForm create={createToDo} />
+    </div>
+  );
+};
 
 export default Todos;
