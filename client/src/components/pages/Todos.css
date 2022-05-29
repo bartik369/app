@@ -21,8 +21,9 @@
     box-shadow: -8px 12px 18px 0 #dadee8;
     border-radius: 6px;
     margin: 15px;
-    padding: 10px;
-    max-width: 220px;
+    padding: 30px;
+    height: fit-content;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -52,7 +53,7 @@
     height: 2px;
     background-color: #0d0c21;
     width: 40%;
-    margin: 20px auto;
+    margin: 20px auto 0px;
 }
 
 .todo-btns {
