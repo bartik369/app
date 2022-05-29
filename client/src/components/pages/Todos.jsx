@@ -4,12 +4,6 @@ import Axios from "axios";
 import ENV from "../../env.config";
 import "./Todos.css";
 import Modal from "../UI/modal/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPenToSquare,
-  faSquareCheck,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
 
 const Todos = ({ todos }) => {
   const createToDo = (todoData) => {
@@ -24,6 +18,15 @@ const Todos = ({ todos }) => {
 
   return (
     <div className="todos">
+        <div className="add-todo">
+          <button 
+          className="add-todo-btn"
+          onClick={() => console.log('add todo')}
+          >Новая задача</button>
+        <Modal>
+          <AddTodoForm create={createToDo} />
+        </Modal>
+      </div>
       <div className="todo-list">
         {todos.map((todo, index) => {
           return (
@@ -44,7 +47,7 @@ const Todos = ({ todos }) => {
                       onClick={() => console.log("end")}
                       className="todoend-btn"
                     >
-                      <FontAwesomeIcon icon={faSquareCheck} />
+                      <i className="bi bi-check2-square" title="Завершить"></i>
                     </button>
                   </li>
                   <li className="todo-btns__item">
@@ -52,15 +55,15 @@ const Todos = ({ todos }) => {
                       onClick={() => console.log("update")}
                       className="todoupdate-btn"
                     >
-                      <FontAwesomeIcon icon={faPenToSquare} />
+                      <i className="bi bi-arrow-counterclockwise"></i>
                     </button>
                   </li>
-                  <li className="todo-btns__item">
+                  <li className="todo-btns__item" title="Обновить">
                     <button
                       onClick={() => console.log("delete")}
                       className="tododel-btn"
                     >
-                      <FontAwesomeIcon icon={faTrashCan} />
+                      <i className="bi bi-trash3" title="Удалить"></i>
                     </button>
                   </li>
                 </ul>
@@ -68,11 +71,6 @@ const Todos = ({ todos }) => {
             </div>
           );
         })}
-      </div>
-      <div className="add-todo">
-        <Modal>
-          <AddTodoForm create={createToDo} />
-        </Modal>
       </div>
     </div>
   );

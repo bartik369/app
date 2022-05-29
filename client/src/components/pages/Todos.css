@@ -12,7 +12,22 @@
 
 .add-todo {
     position: relative;
-    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 7px 0px;
+}
+
+.add-todo-btn {
+    padding: 10px 14px;
+    color: #fff;
+    border-radius: 4px;
+    background-color: cadetblue;
+    font-family: sans-serif;
+    transition: all .7s ease-out;
+}
+
+.add-todo-btn:hover {
+    background-color: rgb(109, 95, 160);
 }
 
 .todo-item {
@@ -35,15 +50,18 @@
 .todo-item__title {
     color: #0d0c21;
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 17px;
     margin: 15px 0px;
     font-weight: 600;
-    line-height: 19px;
+    line-height: 20px;
     font-family: sans-serif;
 }
 
 .todo-item__description {
     margin: 10px 0px;
+    color: #656c7c;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .time-info {
@@ -52,7 +70,7 @@
 
 .separate {
     height: 2px;
-    background-color: #0d0c21;
+    background-color: #565f88;
     width: 40%;
     margin: 20px auto 0px;
 }
@@ -79,27 +97,28 @@
 .todoend-btn,
 .todoupdate-btn,
 .tododel-btn {
-    padding: 4px;
+    padding: 0px 3px;
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     transition: all .9s ease-in;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .todoend-btn {
-    color: #2a8b19;
+    color: #565f88;
 }
 
 .todoend-btn:hover {}
 
 .todoupdate-btn {
-    color: blue;
+    color: #565f88;
 }
 
 .todoupdate-btn:hover {}
 
 .tododel-btn {
-    color: brown;
+    color: #565f88;
 }
 
 .tododel-btn:hover {}
