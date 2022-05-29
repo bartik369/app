@@ -26,13 +26,17 @@
     transition: all .7s ease-out;
 }
 
+.add-todo-form {
+    padding: 30px 20px;
+}
+
 .add-todo-btn:hover {
     background-color: rgb(109, 95, 160);
 }
 
 .todo-item {
     background-color: #fff;
-    order: 1px solid #deebfd;
+    border: 1px solid #deebfd;
     box-shadow: -8px 9px 14px 0 #dadee8;
     border-radius: 6px;
     margin: 15px;
@@ -49,7 +53,7 @@
 }
 
 .todo-item:hover {
-    box-shadow: -8px 14px 19px 0 #c7cbd5;
+    box-shadow: -8px 14px 19px 0 #c7cddd;
 }
 
 .todo-item__title {

@@ -23,6 +23,7 @@ const Todos = ({ todos, newTodoHandler, modalActive, setModalActive, popup}) => 
           className="add-todo-btn"
           onClick={() => newTodoHandler()}
           >Новая задача</button>
+        
         <Modal visible={modalActive} setVisible={setModalActive}>
           <AddTodoForm create={createToDo} popup={popup}/>
         </Modal>

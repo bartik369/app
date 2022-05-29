@@ -25,7 +25,7 @@ const AddTodoForm = ({ create, modal }) => {
   };
 
   return (
-    <div>
+    <div className="add-todo-form">
       <FormInput
         placeholder="Название задачи"
         value={todo.todoTitle}
