@@ -33,7 +33,7 @@
 .todo-item {
     background-color: #fff;
     order: 1px solid #deebfd;
-    box-shadow: -8px 12px 18px 0 #dadee8;
+    box-shadow: -8px 9px 14px 0 #dadee8;
     border-radius: 6px;
     margin: 15px;
     padding: 10px 30px 50px 40px;
@@ -45,6 +45,11 @@
     position: relative;
     font-size: 14px;
     font-family: sans-serif;
+    transition: all .5s ease-out;
+}
+
+.todo-item:hover {
+    box-shadow: -8px 14px 19px 0 #c7cbd5;
 }
 
 .todo-item__title {

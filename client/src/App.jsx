@@ -55,12 +55,11 @@ function App() {
   const delSearchQuery = () => {
     setSearchQuery("");
   };
+  const searchQueryLength = searchQuery.length;
 
   const addVisibleModal = () => {
     setModalActive(true);
   }
-
-  const searchQueryLength = searchQuery.length;
 
   return (
     <div className="App">
