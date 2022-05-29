@@ -37,13 +37,10 @@ function App() {
     },
   ]);
 
+  const [modalActive, setModalActive] = useState(false);
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
-
-  const delSearchQuery = () => {
-    setSearchQuery("");
-  };
 
   useEffect(() => {
     Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
@@ -54,6 +51,14 @@ function App() {
       setTodos(response.data)
     })
   }, []);
+
+  const delSearchQuery = () => {
+    setSearchQuery("");
+  };
+
+  const addVisibleModal = () => {
+    setModalActive(true);
+  }
 
   const searchQueryLength = searchQuery.length;
 
@@ -81,14 +86,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage devices={devices} />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
-            <Route
-              path="/search"
+            <Route path="/search"
               element={
                 <DeviceSearch
                   searchQuery={searchQuery}
                   setPageName={setPageName}
                   devices={devices}
                   setDevices={setDevices}
+                  setModalActive={setModalActive}
+                  modalActive={modalActive}
                 />
               }
             ></Route>
@@ -96,6 +102,10 @@ function App() {
             <Route path="/users" element={<Users />}></Route>
             <Route path="/todos" element={<Todos 
             todos={todos}
+            newTodoHandler={addVisibleModal}
+            modalActive={modalActive} 
+            setModalActive={setModalActive}
+            modal={setModalActive}
             />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>

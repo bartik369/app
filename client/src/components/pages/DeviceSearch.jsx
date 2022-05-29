@@ -8,10 +8,14 @@ import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
 
-const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
+const DeviceSearch = ({
+  searchQuery, 
+  setPageName, 
+  devices, 
+  setDevices, 
+  modalActive, 
+  setModalActive}) => {
 
-
-  const [modalActive, setModalActive] = useState(false);
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
@@ -25,14 +29,14 @@ const DeviceSearch = ({searchQuery, setPageName, devices, setDevices}) => {
     fetchDevices();
   }, [setPageName]);
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      await Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-        console.log(response.data)
-      })
-    }
-    fetchTodos();
-  }, [])
+  // useEffect(() => {
+  //   const fetchTodos = async () => {
+  //     await Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+  //     })
+  //   }
+  //   fetchTodos();
+  // }, [])
+
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;

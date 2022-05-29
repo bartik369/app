@@ -5,10 +5,10 @@ import ENV from "../../env.config";
 import "./Todos.css";
 import Modal from "../UI/modal/Modal";
 
-const Todos = ({ todos }) => {
+const Todos = ({ todos, newTodoHandler, modalActive, setModalActive, popup}) => {
   const createToDo = (todoData) => {
-    const { todotitle, tododescription, todoAddTime } = todoData;
 
+    const { todotitle, tododescription, todoAddTime } = todoData;
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       todoTitle: todotitle,
       todoDescription: tododescription,
@@ -21,10 +21,10 @@ const Todos = ({ todos }) => {
         <div className="add-todo">
           <button 
           className="add-todo-btn"
-          onClick={() => console.log('add todo')}
+          onClick={() => newTodoHandler()}
           >Новая задача</button>
-        <Modal>
-          <AddTodoForm create={createToDo} />
+        <Modal visible={modalActive} setVisible={setModalActive}>
+          <AddTodoForm create={createToDo} popup={popup}/>
         </Modal>
       </div>
       <div className="todo-list">
@@ -52,7 +52,7 @@ const Todos = ({ todos }) => {
                   </li>
                   <li className="todo-btns__item">
                     <button
-                      onClick={() => console.log("update")}
+                      onClick={() => console.log('dds')}
                       className="todoupdate-btn"
                     >
                       <i className="bi bi-arrow-counterclockwise"></i>
@@ -60,7 +60,7 @@ const Todos = ({ todos }) => {
                   </li>
                   <li className="todo-btns__item" title="Обновить">
                     <button
-                      onClick={() => console.log("delete")}
+                      onClick={() => console.log('deleted')}
                       className="tododel-btn"
                     >
                       <i className="bi bi-trash3" title="Удалить"></i>

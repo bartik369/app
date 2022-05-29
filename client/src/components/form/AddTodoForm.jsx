@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
 
-const AddTodoForm = ({ create }) => {
+const AddTodoForm = ({ create, modal }) => {
   const [todo, setTodo] = useState([]);
 
   const addTodoInfo = (e) => {
@@ -18,6 +18,10 @@ const AddTodoForm = ({ create }) => {
       todoAddTime: todoTime,
     };
     create(newTodo);
+    const popOut = () => {
+      modal(false)
+    }
+    setTimeout(popOut, 1000);
   };
 
   return (
@@ -35,12 +39,6 @@ const AddTodoForm = ({ create }) => {
         cols="30"
         rows="10"
       />
-      {/* <FormInput
-        placeholder="Описание задачи"
-        value={todo.todoDescription}
-        name="description"
-        onChange={(e) => addTodoInfo(e)}
-      /> */}
       <button className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
