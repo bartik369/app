@@ -4,14 +4,19 @@ import Axios from "axios";
 import ENV from "../../env.config";
 import "./Todos.css";
 import Modal from "../UI/modal/Modal";
+import UpdateTodoForm from "../form/UpdateTodoForm";
 
 const Todos = ({ 
   todos, 
   setTodos, 
   newTodoHandler, 
   modalActive, 
-  setModalActive, 
-  popup}) => {
+  setModalActive,
+  updateModalActive,
+  setUpdateModalActive,
+  modal}) => {
+
+  const [updateTodoId, setUpdateTodoId] = useState([]);
   
   const createToDo = (todoData) => {
 
@@ -30,17 +35,27 @@ const Todos = ({
     });
   }
 
+  const updateTodoHandler = (id) => {
+    setUpdateModalActive(true);
+    Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
+      setUpdateTodoId(response.data[0]);
+    });
+    console.log(updateTodoId)
+  }
+
   return (
     <div className="todos">
+       <Modal visible={modalActive} setVisible={setModalActive}>
+          <AddTodoForm create={createToDo} modal={modal}/>
+        </Modal >
+        <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
+          <UpdateTodoForm updateTodoId={updateTodoId}/>
+        </Modal >
         <div className="add-todo">
           <button 
           className="add-todo-btn"
           onClick={() => newTodoHandler()}
           >Новая задача</button>
-        
-        <Modal visible={modalActive} setVisible={setModalActive}>
-          <AddTodoForm create={createToDo} popup={popup}/>
-        </Modal>
       </div>
       <div className="todo-list">
         {todos.map((todo, index) => {
@@ -67,7 +82,7 @@ const Todos = ({
                   </li>
                   <li className="todo-btns__item">
                     <button
-                      onClick={() => console.log('dds')}
+                      onClick={() => updateTodoHandler(todo._id)}
                       className="todoupdate-btn"
                     >
                       <i className="bi bi-arrow-counterclockwise"></i>

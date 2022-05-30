@@ -38,6 +38,7 @@ function App() {
   ]);
 
   const [modalActive, setModalActive] = useState(false);
+  const [updateModalActive, setUpdateModalActive] = useState(false);
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
@@ -106,6 +107,8 @@ function App() {
             modalActive={modalActive} 
             setModalActive={setModalActive}
             modal={setModalActive}
+            updateModalActive={updateModalActive}
+            setUpdateModalActive={setUpdateModalActive}
             />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>

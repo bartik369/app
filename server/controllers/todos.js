@@ -55,5 +55,27 @@ export const deleteTodo = async(req, res) => {
 }
 
 export const updateTodo = async(req, res) => {
+    const id = req.params.id;
+    const todoTitle = req.body.todoTitle;
+    const todoDescription = req.body.todoDescription;
+    const todoAddTime = req.body.todoAddTime;
+    
+    const rewriteUpdateData = ToDoModel.findByIdAndUpdate(id, {
+        todoTitle: todoTitle,
+        todoDescription: todoDescription,
+        todoAddTime: todoAddTime,
+    });
 
+    try {
+        rewriteUpdateData.update();
+        res.send({
+            id:id,
+            todoTitle: todoTitle,
+            todoDescription: todoDescription,
+            todoAddTime: todoAddTime
+
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }

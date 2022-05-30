@@ -25,7 +25,7 @@ app.get('/devices', deviceRoutes);
 app.get('/todos', todoRoutes);
 
 app.get('/device/:id', deviceRoutes);
-app.get('/todos/:id', todoRoutes)
+app.get('/todo/:id', todoRoutes)
 
 // Post
 app.post('/insert', deviceRoutes);

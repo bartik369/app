@@ -5,8 +5,8 @@ import { getTodos, getTodo, createTodo, deleteTodo, updateTodo} from '../control
 const router = express.Router();
 
 router.get('/todos', getTodos);
-router.get('/todos/:id', getTodo);
-router.post('/newtodo/', createTodo);
+router.get('/todo/:id', getTodo);
+router.post('/newtodo', createTodo);
 router.delete('/todo/:id', deleteTodo);
 router.put('/todo/:id', updateTodo);
 
