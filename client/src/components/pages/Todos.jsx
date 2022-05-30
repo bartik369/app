@@ -16,7 +16,7 @@ const Todos = ({
   setUpdateModalActive,
   modal}) => {
 
-  const [updateTodoId, setUpdateTodoId] = useState([]);
+  const [updateTodoId, setUpdateTodoId] = useState('');
   
   const createToDo = (todoData) => {
 
@@ -40,7 +40,6 @@ const Todos = ({
     Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
       setUpdateTodoId(response.data[0]);
     });
-    console.log(updateTodoId)
   }
 
   return (
