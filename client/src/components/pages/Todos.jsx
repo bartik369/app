@@ -5,7 +5,14 @@ import ENV from "../../env.config";
 import "./Todos.css";
 import Modal from "../UI/modal/Modal";
 
-const Todos = ({ todos, newTodoHandler, modalActive, setModalActive, popup}) => {
+const Todos = ({ 
+  todos, 
+  setTodos, 
+  newTodoHandler, 
+  modalActive, 
+  setModalActive, 
+  popup}) => {
+  
   const createToDo = (todoData) => {
 
     const { todotitle, tododescription, todoAddTime } = todoData;
@@ -15,6 +22,13 @@ const Todos = ({ todos, newTodoHandler, modalActive, setModalActive, popup}) => 
       todoAddTime: todoAddTime,
     });
   };
+
+  const deleteTodoHandler = (id) => {
+    Axios.delete(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
+      const indexOfDelitedItem = todos.filter((item) => item._id !== response.data.id);
+      setTodos(indexOfDelitedItem);
+    });
+  }
 
   return (
     <div className="todos">
@@ -61,7 +75,7 @@ const Todos = ({ todos, newTodoHandler, modalActive, setModalActive, popup}) => 
                   </li>
                   <li className="todo-btns__item" title="Обновить">
                     <button
-                      onClick={() => console.log('deleted')}
+                      onClick={() => deleteTodoHandler(todo._id)}
                       className="tododel-btn"
                     >
                       <i className="bi bi-trash3" title="Удалить"></i>

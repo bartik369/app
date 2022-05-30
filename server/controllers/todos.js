@@ -42,7 +42,16 @@ export const createTodo = async(req, res) => {
 }
 
 export const deleteTodo = async(req, res) => {
+    const id = req.params.id;
 
+    try {
+        await ToDoModel.findByIdAndDelete(id).exec();
+        res.send({
+            id: id,
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const updateTodo = async(req, res) => {

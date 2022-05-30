@@ -36,7 +36,7 @@ const AddTodoForm = ({ create, modal }) => {
         value={todo.todoDescription}
         name="tododescription"
         onChange={(e) => addTodoInfo(e)}
-        cols="30"
+        cols="20"
         rows="10"
       />
       <button className="add-btn" onClick={() => addTodoHandler()}>

@@ -29,13 +29,6 @@ const DeviceSearch = ({
     fetchDevices();
   }, [setPageName]);
 
-  // useEffect(() => {
-  //   const fetchTodos = async () => {
-  //     await Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-  //     })
-  //   }
-  //   fetchTodos();
-  // }, [])
 
 
   const indexOfLastDevice = currentPage * devicesPerPage;

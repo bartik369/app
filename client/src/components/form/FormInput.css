@@ -16,3 +16,8 @@
     padding: 12px;
     transition: all .4s;
 }
+
+textarea {
+    border: 1px solid rgb(210, 210, 210);
+    width: 100%;
+}
