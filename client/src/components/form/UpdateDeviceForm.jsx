@@ -87,7 +87,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       <FormInput
         placeholder="Название устройства"
         type="text"
-        value={editDevice.deviceName}
+        value={editDevice.deviceName || ""}
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceName: e.target.value })
         }
@@ -95,7 +95,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       <FormInput
         placeholder="Номер устройства"
         type="text"
-        value={editDevice.deviceNumber}
+        value={editDevice.deviceNumber || ""}
         onChange={(e) =>
           setEditDevice({ ...editDevice, deviceNumber: e.target.value })
         }
@@ -103,7 +103,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       <FormInput
         placeholder="Имя пользователя"
         type="text"
-        value={editDevice.userName}
+        value={editDevice.userName || ""}
         onChange={(e) =>
           setEditDevice({ ...editDevice, userName: e.target.value })
         }

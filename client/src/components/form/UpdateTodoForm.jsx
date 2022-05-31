@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import Todos from '../pages/Todos'
+import React, { useEffect, useState } from 'react'
 import FormInput from './FormInput';
 import '../pages/Todos.css'
 
@@ -13,28 +12,25 @@ const [todo, setTodo] = useState({
 });
 
 useEffect(() => {
-  setTodo(updateTodoId);
-}, [updateTodoId]);
+  setTodo(updateTodoId)
+}, [updateTodoId])
 
-const handleUpdate = (e) => {
-  e.preventDefault()
-}
 
 
   return (
         <div className="update-todo-form">
             <FormInput
             placeholder="update me"
-            value={todo.todoTitle}
+            value={updateTodoId.todoTitle || ""}
             name="todotitle"
-            onChange={(e) => handleUpdate(e)}
+            onChange={(e) => setTodo({...todo, todoTitle: e.target.value})}
             />
             <textarea 
             cols="30" 
             rows="10"
             name="tododescription"
-            value={todo.todoDescription}
-            onChange={(e) => handleUpdate(e)}
+            value={updateTodoId.todoDescription || ""}
+            onChange={(e) => setTodo({...todo, todoDescription: e.target.value})}
             />
             <button onClick={() => console.log('fdfdfd')}>Обновить</button>
         </div>
