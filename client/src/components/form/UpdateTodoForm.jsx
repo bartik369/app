@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import FormInput from './FormInput';
 import '../pages/Todos.css'
 
-export default function UpdateTodoForm({updateTodoId}) {
+const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
 
-const [todo, setTodo] = useState({
+const [updatedTodo, setUpdatedTodo] = useState({
   id: "",
   todoTitle: "",
   todoDescription: "",
@@ -12,27 +12,36 @@ const [todo, setTodo] = useState({
 });
 
 useEffect(() => {
-  setTodo(updateTodoId)
+  setUpdatedTodo(updateTodoId)
 }, [updateTodoId])
 
-
+const handleTodoUpdate = () => {
+  const date = new Date();
+  const todoTime =
+    date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
+  const updateTodoData = {
+    ...updatedTodo,
+    todoAddTime: todoTime,
+  }
+  updateTodo(updateTodoData)
+}
 
   return (
         <div className="update-todo-form">
             <FormInput
-            placeholder="update me"
-            value={updateTodoId.todoTitle || ""}
+            value={updatedTodo.todoTitle || ""}
             name="todotitle"
-            onChange={(e) => setTodo({...todo, todoTitle: e.target.value})}
+            onChange={(e) => setUpdatedTodo({...updatedTodo, todoTitle: e.target.value})}
             />
-            <textarea 
-            cols="30" 
+            <textarea
             rows="10"
             name="tododescription"
-            value={updateTodoId.todoDescription || ""}
-            onChange={(e) => setTodo({...todo, todoDescription: e.target.value})}
+            value={updatedTodo.todoDescription || ""}
+            onChange={(e) => setUpdatedTodo({...updatedTodo, todoDescription: e.target.value})}
             />
-            <button onClick={() => console.log('fdfdfd')}>Обновить</button>
+            <button onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>
   )
 }
+
+export default UpdateTodoForm;

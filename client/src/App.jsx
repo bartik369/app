@@ -28,14 +28,7 @@ function App() {
     },
   ]);
 
-  const [todos, setTodos] = useState([
-    {
-      id: "",
-      todoTitle: "",
-      todoDescription: "",
-      todoAddTime: "",
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const [modalActive, setModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);

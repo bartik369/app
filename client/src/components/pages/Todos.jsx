@@ -17,6 +17,7 @@ const Todos = ({
   modal}) => {
 
   const [updateTodoId, setUpdateTodoId] = useState('');
+  // const [isDeleted, setDeleted] = useState(false)
   
   const createToDo = (todoData) => {
 
@@ -42,13 +43,34 @@ const Todos = ({
     });
   }
 
+  const updateTodo = (updateTodoData) => {
+    const {_id, todoTitle, todoDescription, todoAddTime } = updateTodoData;
+    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
+      id: _id,
+      todoTitle: todoTitle,
+      todoDescription: todoDescription,
+      todoAddTime: todoAddTime,
+    }).then((response) => {
+      const indexOfChangedItem = todos.findIndex((item) =>
+      item._id === response.data.id
+      )
+      const newArray = [...todos];
+      newArray[indexOfChangedItem] = response.data;
+      setTodos(newArray)
+    })
+  }
+
+
   return (
     <div className="todos">
        <Modal visible={modalActive} setVisible={setModalActive}>
           <AddTodoForm create={createToDo} modal={modal}/>
         </Modal >
         <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
-          <UpdateTodoForm updateTodoId={updateTodoId}/>
+          <UpdateTodoForm 
+          updateTodoId={updateTodoId}
+          updateTodo={updateTodo}
+          />
         </Modal >
         <div className="add-todo">
           <button 

@@ -59,23 +59,24 @@ export const updateTodo = async(req, res) => {
     const todoTitle = req.body.todoTitle;
     const todoDescription = req.body.todoDescription;
     const todoAddTime = req.body.todoAddTime;
+
+    console.log(id, todoTitle, todoDescription, todoAddTime)
     
     const rewriteUpdateData = ToDoModel.findByIdAndUpdate(id, {
         todoTitle: todoTitle,
         todoDescription: todoDescription,
         todoAddTime: todoAddTime,
-    });
-
-    try {
-        rewriteUpdateData.update();
-        res.send({
-            id:id,
-            todoTitle: todoTitle,
-            todoDescription: todoDescription,
-            todoAddTime: todoAddTime
-
-        })
-    } catch (error) {
-        console.log(error);
-    }
+    }, () => {
+        try {
+            rewriteUpdateData.update();
+            res.send({
+                id:id,
+                todoTitle: todoTitle,
+                todoDescription: todoDescription,
+                todoAddTime: todoAddTime,
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    })
 }
