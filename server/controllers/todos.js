@@ -26,11 +26,13 @@ export const createTodo = async(req, res) => {
     const todoTitle = req.body.todoTitle;
     const todoDescription = req.body.todoDescription;
     const todoAddTime = req.body.todoAddTime;
+    const todoStatus = req.body.todoStatus;
 
     const todo = new ToDoModel({
         todoTitle: todoTitle,
         todoDescription: todoDescription,
         todoAddTime: todoAddTime,
+        todoStatus: todoStatus,
     });
 
     try {

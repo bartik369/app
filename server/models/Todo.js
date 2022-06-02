@@ -10,7 +10,9 @@ const ToDoScheme = new mongoose.Schema({
     todoAddTime: {
         type: String,
     },
-
+    todoStatus: {
+        type: String,
+    }
 });
 
 const ToDo = mongoose.model("TodoData", ToDoScheme);

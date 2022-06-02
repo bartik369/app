@@ -9,7 +9,7 @@ const [updatedTodo, setUpdatedTodo] = useState({
   todoTitle: "",
   todoDescription: "",
   todoAddTime: "",
-
+  todoStatus: "",
 });
 
 useEffect(() => {

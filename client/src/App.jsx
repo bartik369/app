@@ -17,16 +17,7 @@ import Settings from "./components/pages/Settings";
 import Header from "./components/header/Header";
 
 function App() {
-  const [devices, setDevices] = useState([
-    {
-      id: "",
-      deviceType: "",
-      deviceName: "",
-      deviceNumber: "",
-      userName: "",
-      deviceAddTime: "",
-    },
-  ]);
+  const [devices, setDevices] = useState([]);
 
   const [todos, setTodos] = useState([]);
 

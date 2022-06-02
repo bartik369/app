@@ -2,22 +2,30 @@ import React, { useState } from "react";
 import FormInput from "./FormInput";
 
 const AddTodoForm = ({ create, modal }) => {
-  const [todo, setTodo] = useState([]);
-
-  const addTodoInfo = (e) => {
-    setTodo({ ...todo, [e.target.name]: e.target.value });
-  };
+  const [todo, setTodo] = useState("");
 
   const addTodoHandler = () => {
     const date = new Date();
-    const todoTime =
-      date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
-    const newTodo = {
+    const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
+     const newTodo = {
       ...todo,
       id: Date.now(),
+      todoStatus: "inprocess",
       todoAddTime: todoTime,
     };
-    create(newTodo);
+    // const date = new Date();
+    // const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
+
+    // const newTodo = {
+    //   id: Date.now(),
+    //   todoTitle: todo.todoTitle,
+    //   todoDescription: todo.todoDescription,
+    //   todoStatus: "inprocess",
+    //   todoAddTime: todoTime,
+    // };
+    setTodo(newTodo)
+    create(todo);
+    console.log(newTodo)
     const popOut = () => {
       modal(false)
     }
@@ -30,12 +38,12 @@ const AddTodoForm = ({ create, modal }) => {
         placeholder="Название задачи"
         value={todo.todoTitle}
         name="todotitle"
-        onChange={(e) => addTodoInfo(e)}
+        onChange={(e) => setTodo({...todo, todoTitle: e.target.value})}
       />
       <textarea
         value={todo.todoDescription}
         name="tododescription"
-        onChange={(e) => addTodoInfo(e)}
+        onChange={(e) => setTodo({...todo, todoDescription: e.target.value})}
         cols="20"
         rows="10"
       />
