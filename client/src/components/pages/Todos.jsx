@@ -29,15 +29,17 @@ const Todos = ({
     });
   };
 
-  const deleteTodoHandler = (id) => {
+  const handleTodoDelete = (id) => {
     Axios.delete(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
       const indexOfDelitedItem = todos.filter((item) => item._id !== response.data.id);
+
       setTodos(indexOfDelitedItem);
     });
   }
 
-  const updateTodoHandler = (id) => {
+  const handleTodoUpdate = (id) => {
     setUpdateModalActive(true);
+
     Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
       setUpdateTodoId(response.data[0]);
     });
@@ -51,12 +53,24 @@ const Todos = ({
       todoDescription: todoDescription,
       todoAddTime: todoAddTime,
     }).then((response) => {
+
       const indexOfChangedItem = todos.findIndex((item) =>
       item._id === response.data.id
       )
       const newArray = [...todos];
       newArray[indexOfChangedItem] = response.data;
-      setTodos(newArray)
+      setTodos(newArray);
+
+      const popOut = () => setUpdateModalActive(false);
+      setInterval(popOut, 1000);
+
+    })
+  }
+
+  const handleTodoComplete = (id) => {
+    Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
+      const indexOfCompleteItem = todos.filter((item) => item._id === response.data.id);
+      console.log(indexOfCompleteItem)
     })
   }
 
@@ -95,7 +109,7 @@ const Todos = ({
                 <ul className="todo-btns__inner">
                   <li className="todo-btns__item">
                     <button
-                      onClick={() => console.log("end")}
+                      onClick={() => handleTodoComplete(todo._id)}
                       className="todoend-btn"
                     >
                       <i className="bi bi-check2-square" title="Завершить"></i>
@@ -103,7 +117,7 @@ const Todos = ({
                   </li>
                   <li className="todo-btns__item">
                     <button
-                      onClick={() => updateTodoHandler(todo._id)}
+                      onClick={() => handleTodoUpdate(todo._id)}
                       className="todoupdate-btn"
                     >
                       <i className="bi bi-arrow-counterclockwise"></i>
@@ -111,7 +125,7 @@ const Todos = ({
                   </li>
                   <li className="todo-btns__item" title="Обновить">
                     <button
-                      onClick={() => deleteTodoHandler(todo._id)}
+                      onClick={() => handleTodoDelete(todo._id)}
                       className="tododel-btn"
                     >
                       <i className="bi bi-trash3" title="Удалить"></i>

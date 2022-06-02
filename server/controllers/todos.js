@@ -59,8 +59,6 @@ export const updateTodo = async(req, res) => {
     const todoTitle = req.body.todoTitle;
     const todoDescription = req.body.todoDescription;
     const todoAddTime = req.body.todoAddTime;
-
-    console.log(id, todoTitle, todoDescription, todoAddTime)
     
     const rewriteUpdateData = ToDoModel.findByIdAndUpdate(id, {
         todoTitle: todoTitle,
