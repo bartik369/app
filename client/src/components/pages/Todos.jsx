@@ -47,6 +47,27 @@ const Todos = ({
     });
   }
 
+  const handleTodoComplete = (id) => {
+    const indexOfDone = todos.find((item) =>
+      item._id === id
+    )
+    indexOfDone.todoStatus = "done";
+    const { _id, todoTitle, todoDescription, todoAddTime, todoStatus } = indexOfDone;
+    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
+      id: _id,
+      todoTitle: todoTitle,
+      todoDescription: todoDescription,
+      todoStatus: todoStatus,
+      todoAddTime: todoAddTime,
+    }).then((response) => {
+      console.log(response.data)
+      const newArray = [...todos];
+      newArray[indexOfDone] = response.data;
+      setTodos(newArray);
+    })
+  }
+
+
   const updateTodo = (updateTodoData) => {
     const {_id, todoTitle, todoDescription, todoAddTime } = updateTodoData;
     Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
@@ -69,15 +90,7 @@ const Todos = ({
     })
   }
 
-  const handleTodoComplete = (id) => {
-    const indexOfDone = todos.find((item) =>
-      item._id === id
-    )
-    console.log(indexOfDone)
-  }
-
   console.log(todos)
-
 
   return (
     <div className="todos">
