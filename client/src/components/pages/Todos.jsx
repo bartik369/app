@@ -22,12 +22,12 @@ const Todos = ({
 
     console.log(todoData)
 
-    const { todotitle, tododescription, todoAddTime, todoStatus } = todoData;
+    const { todoTitle, todoDescription, todoAddTime, todoStatus } = todoData;
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
-      todoTitle: todotitle,
-      todoDescription: tododescription,
-      todoAddTime: todoAddTime,
+      todoTitle: todoTitle,
+      todoDescription: todoDescription,
       todoStatus: todoStatus,
+      todoAddTime: todoAddTime,
     });
   };
 

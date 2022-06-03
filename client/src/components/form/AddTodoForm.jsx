@@ -2,30 +2,30 @@ import React, { useState } from "react";
 import FormInput from "./FormInput";
 
 const AddTodoForm = ({ create, modal }) => {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState(
+    {
+      id: "",
+      todoTitle: "",
+      todoDescription: "",
+      todoStatus: "",
+      todoAddTime: "",
+    }
+  );
 
   const addTodoHandler = () => {
     const date = new Date();
     const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
      const newTodo = {
-      ...todo,
+      todoTitle: todo.todoTitle,
+      todoDescription: todo.todoDescription,
       id: Date.now(),
       todoStatus: "inprocess",
       todoAddTime: todoTime,
     };
-    // const date = new Date();
-    // const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
 
-    // const newTodo = {
-    //   id: Date.now(),
-    //   todoTitle: todo.todoTitle,
-    //   todoDescription: todo.todoDescription,
-    //   todoStatus: "inprocess",
-    //   todoAddTime: todoTime,
-    // };
-    setTodo(newTodo)
-    create(todo);
+    create(newTodo);
     console.log(newTodo)
+
     const popOut = () => {
       modal(false)
     }
