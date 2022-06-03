@@ -17,12 +17,12 @@ const Todos = ({
   modal}) => {
 
   const [updateTodoId, setUpdateTodoId] = useState('');
-  
+
   const createToDo = (todoData) => {
 
     console.log(todoData)
-
     const { todoTitle, todoDescription, todoAddTime, todoStatus } = todoData;
+
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       todoTitle: todoTitle,
       todoDescription: todoDescription,
@@ -38,8 +38,6 @@ const Todos = ({
       setTodos(indexOfDelitedItem);
     });
   }
-
-  console.log(todos)
 
   const handleTodoUpdate = (id) => {
     setUpdateModalActive(true);
@@ -72,11 +70,13 @@ const Todos = ({
   }
 
   const handleTodoComplete = (id) => {
-    Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
-      const indexOfCompleteItem = todos.filter((item) => item._id === response.data.id);
-      console.log(indexOfCompleteItem)
-    })
+    const indexOfDone = todos.find((item) =>
+      item._id === id
+    )
+    console.log(indexOfDone)
   }
+
+  console.log(todos)
 
 
   return (
