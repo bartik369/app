@@ -20,14 +20,13 @@ const Todos = ({
 
   const createToDo = (todoData) => {
 
-    console.log(todoData)
-    const { todoTitle, todoDescription, todoAddTime, todoStatus } = todoData;
+    const { title, description, addTime, status } = todoData;
 
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
-      todoTitle: todoTitle,
-      todoDescription: todoDescription,
-      todoStatus: todoStatus,
-      todoAddTime: todoAddTime,
+      title: title,
+      description: description,
+      status: status,
+      addTime: addTime,
     });
   };
 
@@ -47,18 +46,19 @@ const Todos = ({
     });
   }
 
+
   const handleTodoComplete = (id) => {
     const indexOfDone = todos.find((item) =>
       item._id === id
     )
-    indexOfDone.todoStatus = "done";
-    const { _id, todoTitle, todoDescription, todoAddTime, todoStatus } = indexOfDone;
+    indexOfDone.status = "done";
+    const { _id, title, description, addTime, status } = indexOfDone;
     Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
       id: _id,
-      todoTitle: todoTitle,
-      todoDescription: todoDescription,
-      todoStatus: todoStatus,
-      todoAddTime: todoAddTime,
+      title: title,
+      description: description,
+      status: status,
+      addTime: addTime,
     }).then((response) => {
       console.log(response.data)
       const newArray = [...todos];
@@ -69,12 +69,14 @@ const Todos = ({
 
 
   const updateTodo = (updateTodoData) => {
-    const {_id, todoTitle, todoDescription, todoAddTime } = updateTodoData;
-    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
-      id: _id,
-      todoTitle: todoTitle,
-      todoDescription: todoDescription,
-      todoAddTime: todoAddTime,
+    console.log(updateTodoData)
+    const {id, title, description, status, addTime } = updateTodoData;
+    Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
+      id: id,
+      title: title,
+      description: description,
+      status: status,
+      addTime: addTime,
     }).then((response) => {
 
       const indexOfChangedItem = todos.findIndex((item) =>
@@ -83,6 +85,7 @@ const Todos = ({
       const newArray = [...todos];
       newArray[indexOfChangedItem] = response.data;
       setTodos(newArray);
+      console.log(newArray)
 
       const popOut = () => setUpdateModalActive(false);
       setInterval(popOut, 1000);
@@ -113,13 +116,13 @@ const Todos = ({
         {todos.map((todo, index) => {
           return (
             <div className="todo-item" key={index}>
-              <div className="todo-item__title">{todo.todoTitle}</div>
+              <div className="todo-item__title">{todo.title}</div>
               <div className="todo-item__description">
-                {todo.todoDescription}
+                {todo.description}
               </div>
               <hr className="separate"/>
               <div className="time-info">
-                <div className="todo-item__addtime">{todo.todoAddTime}</div>
+                <div className="todo-item__addtime">{todo.addTime}</div>
                 <div className="todo-item__deadline">5/28/2022 22:39:12</div>
               </div>
               <div className="todo-btns">

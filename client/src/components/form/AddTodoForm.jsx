@@ -5,10 +5,10 @@ const AddTodoForm = ({ create, modal }) => {
   const [todo, setTodo] = useState(
     {
       id: "",
-      todoTitle: "",
-      todoDescription: "",
-      todoStatus: "",
-      todoAddTime: "",
+      title: "",
+      description: "",
+      status: "",
+      addTime: "",
     }
   );
 
@@ -16,11 +16,11 @@ const AddTodoForm = ({ create, modal }) => {
     const date = new Date();
     const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
      const newTodo = {
-      todoTitle: todo.todoTitle,
-      todoDescription: todo.todoDescription,
+      title: todo.title,
+      description: todo.description,
       id: Date.now(),
-      todoStatus: "inprocess",
-      todoAddTime: todoTime,
+      status: "inprocess",
+      addTime: todoTime,
     };
 
     create(newTodo);
@@ -36,14 +36,14 @@ const AddTodoForm = ({ create, modal }) => {
     <div className="add-todo-form">
       <FormInput
         placeholder="Название задачи"
-        value={todo.todoTitle}
-        name="todotitle"
-        onChange={(e) => setTodo({...todo, todoTitle: e.target.value})}
+        value={todo.title}
+        name="title"
+        onChange={(e) => setTodo({...todo, title: e.target.value})}
       />
       <textarea
-        value={todo.todoDescription}
-        name="tododescription"
-        onChange={(e) => setTodo({...todo, todoDescription: e.target.value})}
+        value={todo.description}
+        name="description"
+        onChange={(e) => setTodo({...todo, description: e.target.value})}
         cols="20"
         rows="10"
       />

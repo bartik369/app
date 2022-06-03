@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
 const ToDoScheme = new mongoose.Schema({
-    todoTitle: {
+    title: {
         type: String,
     },
-    todoDescription: {
+    description: {
         type: String,
     },
-    todoAddTime: {
+    addTime: {
         type: String,
     },
-    todoStatus: {
+    status: {
         type: String,
     }
 });

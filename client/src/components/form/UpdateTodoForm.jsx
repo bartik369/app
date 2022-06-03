@@ -6,10 +6,10 @@ const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
 
 const [updatedTodo, setUpdatedTodo] = useState({
   id: "",
-  todoTitle: "",
-  todoDescription: "",
-  todoAddTime: "",
-  todoStatus: "",
+  title: "",
+  description: "",
+  status: "",
+  addTime: "",
 });
 
 useEffect(() => {
@@ -21,8 +21,11 @@ const handleTodoUpdate = () => {
   const todoTime =
     date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
   const updateTodoData = {
-    ...updatedTodo,
-    todoAddTime: todoTime,
+    id: updatedTodo.id,
+    title: updatedTodo.title,
+    description: updatedTodo.description,
+    status: updatedTodo.status,
+    addTime: todoTime,
   }
   updateTodo(updateTodoData)
 }
@@ -30,15 +33,15 @@ const handleTodoUpdate = () => {
   return (
         <div className="update-todo-form">
             <FormInput
-            value={updatedTodo.todoTitle || ""}
-            name="todotitle"
-            onChange={(e) => setUpdatedTodo({...updatedTodo, todoTitle: e.target.value})}
+            value={updatedTodo.title || ""}
+            name="title"
+            onChange={(e) => setUpdatedTodo({...updatedTodo, title: e.target.value})}
             />
             <textarea
             rows="10"
-            name="tododescription"
-            value={updatedTodo.todoDescription || ""}
-            onChange={(e) => setUpdatedTodo({...updatedTodo, todoDescription: e.target.value})}
+            name="description"
+            value={updatedTodo.description || ""}
+            onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
             />
             <button onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>

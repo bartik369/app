@@ -23,16 +23,16 @@ export const getTodo = async(req, res) => {
 }
 
 export const createTodo = async(req, res) => {
-    const todoTitle = req.body.todoTitle;
-    const todoDescription = req.body.todoDescription;
-    const todoAddTime = req.body.todoAddTime;
-    const todoStatus = req.body.todoStatus;
+    const title = req.body.title;
+    const description = req.body.description;
+    const addTime = req.body.addTime;
+    const status = req.body.status;
 
     const todo = new ToDoModel({
-        todoTitle: todoTitle,
-        todoDescription: todoDescription,
-        todoAddTime: todoAddTime,
-        todoStatus: todoStatus,
+        title: title,
+        description: description,
+        addTime: addTime,
+        status: status,
     });
 
     try {
@@ -58,25 +58,25 @@ export const deleteTodo = async(req, res) => {
 
 export const updateTodo = async(req, res) => {
     const id = req.params.id;
-    const todoTitle = req.body.todoTitle;
-    const todoDescription = req.body.todoDescription;
-    const todoStatus = req.body.todoStatus;
-    const todoAddTime = req.body.todoAddTime;
+    const title = req.body.title;
+    const description = req.body.description;
+    const status = req.body.status;
+    const addTime = req.body.addTime;
 
     const rewriteUpdateData = ToDoModel.findByIdAndUpdate(id, {
-        todoTitle: todoTitle,
-        todoDescription: todoDescription,
-        todoStatus: todoStatus,
-        todoAddTime: todoAddTime,
+        title: title,
+        description: description,
+        status: status,
+        addTime: addTime,
     }, () => {
         try {
             rewriteUpdateData.update();
             res.send({
                 id: id,
-                todoTitle: todoTitle,
-                todoDescription: todoDescription,
-                todoStatus: todoStatus,
-                todoAddTime: todoAddTime,
+                title: title,
+                description: description,
+                status: status,
+                addTime: addTime,
             })
         } catch (error) {
             console.log(error);
