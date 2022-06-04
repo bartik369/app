@@ -46,30 +46,9 @@ const Todos = ({
     });
   }
 
-
-  const handleTodoComplete = (id) => {
-    const indexOfDone = todos.find((item) =>
-      item._id === id
-    )
-    indexOfDone.status = "done";
-    const { _id, title, description, addTime, status } = indexOfDone;
-    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
-      id: _id,
-      title: title,
-      description: description,
-      status: status,
-      addTime: addTime,
-    }).then((response) => {
-      console.log(response.data)
-      const newArray = [...todos];
-      newArray[indexOfDone] = response.data;
-      setTodos(newArray);
-    })
-  }
-
-
   const updateTodo = (updateTodoData) => {
     console.log(updateTodoData)
+
     const {id, title, description, status, addTime } = updateTodoData;
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,
@@ -90,6 +69,27 @@ const Todos = ({
       const popOut = () => setUpdateModalActive(false);
       setInterval(popOut, 1000);
 
+    })
+  }
+
+
+  const handleTodoComplete = (id) => {
+    const indexOfDone = todos.find((item) =>
+      item._id === id
+    )
+    indexOfDone.status = "done";
+    const { _id, title, description, addTime, status } = indexOfDone;
+    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
+      id: _id,
+      title: title,
+      description: description,
+      status: status,
+      addTime: addTime,
+    }).then((response) => {
+      console.log(response.data)
+      const newArray = [...todos];
+      newArray[indexOfDone] = response.data;
+      setTodos(newArray);
     })
   }
 

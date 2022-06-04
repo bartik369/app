@@ -21,7 +21,7 @@ const handleTodoUpdate = () => {
   const todoTime =
     date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
   const updateTodoData = {
-    id: updatedTodo.id,
+    id: updatedTodo._id,
     title: updatedTodo.title,
     description: updatedTodo.description,
     status: updatedTodo.status,

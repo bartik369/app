@@ -33,7 +33,7 @@ function App() {
     });
 
     Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-      setTodos(response.data)
+      setTodos(response.data);
     })
   }, []);
 
