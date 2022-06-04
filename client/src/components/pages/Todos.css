@@ -53,6 +53,15 @@
     transition: all .5s ease-out;
 }
 
+.todo-item.done {
+    opacity: .5;
+}
+
+.todoend-btn.delete,
+.todoupdate-btn.delete {
+    display: none;
+}
+
 .todo-item:hover {
     box-shadow: -8px 14px 19px 0 #c7cddd;
 }
