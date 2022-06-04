@@ -55,6 +55,9 @@
 
 .todo-item.done {
     opacity: .5;
+    background-color: #cfd4e3;
+    background-image: url('../../assets/portal/tick.png');
+    background-position: center;
 }
 
 .todoend-btn.delete,

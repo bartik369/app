@@ -17,8 +17,6 @@ const Todos = ({
   modal,
 }) => {
   const [updateTodoId, setUpdateTodoId] = useState("");
-  const [todoDone, setTodoDone] = useState(false);
-
   const createToDo = (todoData) => {
     const { title, description, addTime, status } = todoData;
 
@@ -49,9 +47,8 @@ const Todos = ({
   };
 
   const updateTodo = (updateTodoData) => {
-    console.log(updateTodoData);
-
     const { id, title, description, status, addTime } = updateTodoData;
+
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,
       title: title,
@@ -107,9 +104,10 @@ const Todos = ({
       </div>
       <div className="todo-list">
         {todos.map((todo, index) => {
+          const todoDone = todo.status === "done";
           return (
             <div
-              className={`todo-item ${todo.status === "done" ? "done" : ""}`}
+              className={`todo-item ${todoDone ? "done" : ""}`}
               key={index}
             >
               <div className="todo-item__title">{todo.title}</div>
@@ -124,7 +122,7 @@ const Todos = ({
                   <li className="todo-btns__item">
                     <button
                       onClick={() => handleTodoComplete(todo._id)}
-                      className={`todoend-btn ${todo.status === "done" ? "delete" : ""}`}
+                      className={`todoend-btn ${todoDone ? "delete" : ""}`}
                     >
                       <i className="bi bi-check2-square" title="Завершить"></i>
                     </button>
@@ -132,7 +130,7 @@ const Todos = ({
                   <li className="todo-btns__item">
                     <button
                       onClick={() => handleTodoUpdate(todo._id)}
-                      className={`todoupdate-btn ${todo.status === "done" ? "delete" : ""}`}
+                      className={`todoupdate-btn ${todoDone ? "delete" : ""}`}
                     >
                       <i className="bi bi-arrow-counterclockwise"></i>
                     </button>
