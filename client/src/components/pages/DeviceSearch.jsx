@@ -32,11 +32,8 @@ const DeviceSearch = ({
 
   console.log(devices)
 
-
-
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
-  
 
   const filterData = devices
     .filter((item) => {
