@@ -105,7 +105,7 @@
         background-color: #7a7fdc;
         border-color: #7a7fdc;
         font-family: inherit;
-        border-radius: 2px;
+        border-radius: 5px;
         font-size: 11px;
         color: #fff;
         transition: all .7s ease-in;
@@ -126,7 +126,7 @@
         padding: 9px 12px;
         background-color: transparent;
         border-radius: 2px;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 800;
         color: #5b626b;
         transition: all .7s;
@@ -137,7 +137,7 @@
     .update-btn {
         padding: 9px 12px;
         background-color: transparent;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 800;
         color: #5b626b;
         margin-left: 5px;
@@ -147,36 +147,40 @@
     
     .update-btn:hover {}
     
-    .device-item {
-        display: flex;
-        justify-content: space-between;
-        border: 1px solid rgb(228, 228, 228);
-        padding: 5px 5px 5px 20px;
-        align-items: center;
+    .devices-table {
+        border-collapse: collapse;
+        font-family: sans-serif;
+        color: #222529;
+        font-size: 12px;
+        width: 100%;
     }
     
-    .device-item:nth-child(2n) {
+    .devices-table td,
+    .devices-table th {
+        border: 1px solid #ebedf1;
+        padding: 10px;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 13px;
+        text-align: center;
+    }
+    
+    .devices-table tr:nth-child(even) {
         background-color: #f5f6fb;
     }
     
-    .device-item:not(:last-child) {
-        border-bottom: none;
+    .devices-table tr:hover {
+        background-color: rgb(240, 240, 240);
     }
     
-    .device-item__device-id {
-        margin-right: 10px;
-    }
-    
-    .device-item__device-type,
-    .device-item__device-name,
-    .device-item__inventory-number,
-    .device-item__username,
-    .device-item__device-addtime {
-        flex-basis: 20%;
-        font-family: sans-serif;
-        font-size: 14px;
-        color: rgb(11, 11, 11);
-        font-family: 'Roboto Condensed', sans-serif;
+    .devices-table th {
+        padding-top: 12px;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: inherit;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #6259ca;
+        color: #fff;
     }
     
     .add-device-form {
