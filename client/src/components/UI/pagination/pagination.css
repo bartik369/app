@@ -25,12 +25,12 @@
 }
 
 .page-switcher__link:hover {
-    background-color: #26bea6;
+    background-color: #52b5f9;
     color: #fff;
 }
 
 .page-switcher__link.active {
-    background-color: #26bea6;
+    background-color: #52b5f9;
     box-shadow: 0 5px 5px -5px rgba(83, 109, 84, .3);
     color: #fff;
 }

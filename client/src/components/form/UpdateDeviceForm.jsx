@@ -23,7 +23,11 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
     const deviceTime =
       date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
     const updateDeviceData = {
-      ...editDevice,
+      id: editDevice._id,
+      deviceType: editDevice.deviceType,
+      deviceName: editDevice.deviceName,
+      deviceNumber: editDevice.deviceNumber,
+      userName: editDevice.userName,
       deviceAddTime: deviceTime,
     };
     updateDevice(updateDeviceData);
@@ -35,9 +39,9 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
   };
 
   function updateDevice(updateDeviceData) {
-    const {_id,  deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
-    Axios.put(`${ENV.HOSTNAME}device/${_id}`, {
-      id: _id,
+    const {id,  deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
+    Axios.put(`${ENV.HOSTNAME}device/${id}`, {
+      id: id,
       deviceType: deviceType,
       deviceName: deviceName,
       deviceNumber: deviceNumber,
