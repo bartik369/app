@@ -2,6 +2,7 @@
         padding: 0;
         margin: 0;
         border: 0;
+        font-family: 'Roboto Condensed', sans-serif;
     }
     
     *,
@@ -93,6 +94,7 @@
         font-weight: bold;
         font-family: sans-serif;
         letter-spacing: -.5px;
+        font-family: 'Roboto Condensed', sans-serif;
     }
     
     .add-btn {
@@ -100,7 +102,9 @@
         margin: 10px 0;
         text-transform: uppercase;
         font-family: sans-serif;
-        background: #26bea6;
+        background-color: #7a7fdc;
+        border-color: #7a7fdc;
+        font-family: inherit;
         border-radius: 2px;
         font-size: 11px;
         color: #fff;
@@ -172,6 +176,7 @@
         font-family: sans-serif;
         font-size: 14px;
         color: rgb(11, 11, 11);
+        font-family: 'Roboto Condensed', sans-serif;
     }
     
     .add-device-form {
@@ -235,8 +240,8 @@
         width: 330px;
         height: 380px;
         padding: 5px;
-        background-color: #A67BB5;
-        box-shadow: 0 4px 4px 0 rgba(166, 123, 181, .2), 0 8px 8px 0 rgba(166, 123, 181, .2), 0 16px 16px 0 rgba(166, 123, 181, .2), 0 32px 32px 0 rgba(166, 123, 181, .2), 0 64px 64px 0 rgba(166, 123, 181, .2), 0 128px 128px 0 rgba(166, 123, 181, .2);
+        background-color: #ffffff;
+        box-shadow: 0 4px 4px 0 rgba(195, 195, 209, .2), 0 8px 8px 0 rgba(195, 195, 209, .2), 0 16px 16px 0 rgba(195, 195, 209, .2), 0 32px 32px 0 rgba(195, 195, 209, .2), 0 64px 64px 0 rgba(195, 195, 209, .2), 0 128px 128px 0 rgba(195, 195, 209, .2);
         position: sticky;
         z-index: 3;
         margin: 5% 0 0 20px;

@@ -9,15 +9,15 @@
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(179, 183, 201, .2), 0 4px 4px 0 rgba(179, 183, 201, .2), 0 8px 8px 0 rgba(179, 183, 201, .2), 0 16px 16px 0 rgba(179, 183, 201, .2), 0 32px 32px 0 rgba(179, 183, 201, .2);
     border: 1px solid #dde8f9;
-    border-radius: 12px;
+    border-radius: 11px;
 }
 
 .widget-item__title {
     font-size: 16px;
-    color: #0d0c21;
+    color: #212431;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     margin-bottom: 10px;
 }
 
@@ -32,6 +32,8 @@
 .last-devices-table th {
     border: 1px solid #ebedf1;
     padding: 12px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13px;
 }
 
 .last-devices-table tr:nth-child(even) {
@@ -44,9 +46,11 @@
 
 .last-devices-table th {
     padding-top: 12px;
+    font-size: 13px;
     font-weight: 500;
+    font-family: 'Roboto Condensed', sans-serif;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #BA869F;
+    background-color: #6259ca;
     color: #fff;
 }
