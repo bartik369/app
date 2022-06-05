@@ -110,6 +110,9 @@ const Todos = ({
               className={`todo-item ${todoDone ? "done" : ""}`}
               key={index}
             >
+              <div className={`icon-done ${todoDone ? "completed" : ""}`}>
+              <i class="bi bi-check-all"></i>
+              </div>
               <div className="todo-item__title">{todo.title}</div>
               <div className="todo-item__description">{todo.description}</div>
               <hr className="separate" />
@@ -122,7 +125,7 @@ const Todos = ({
                   <li className="todo-btns__item">
                     <button
                       onClick={() => handleTodoComplete(todo._id)}
-                      className={`todoend-btn ${todoDone ? "delete" : ""}`}
+                      className="todoend-btn"
                     >
                       <i className="bi bi-check2-square" title="Завершить"></i>
                     </button>
@@ -130,7 +133,7 @@ const Todos = ({
                   <li className="todo-btns__item">
                     <button
                       onClick={() => handleTodoUpdate(todo._id)}
-                      className={`todoupdate-btn ${todoDone ? "delete" : ""}`}
+                      className="todoupdate-btn" 
                     >
                       <i className="bi bi-arrow-counterclockwise"></i>
                     </button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from './MenuItem';
-import '../../styles/App.css';
+import '../sidebar/Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBarsStaggered} from '@fortawesome/free-solid-svg-icons';
 
