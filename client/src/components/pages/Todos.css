@@ -56,11 +56,34 @@
 }
 
 .todo-item.delete-animation {
-   animation: delete 0.82s cubic-bezier(.36,.07,.19,.97) both;;
+    -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
-@keyframes delete {
+@-webkit-keyframes slide-out-bottom {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+}
 
+@keyframes slide-out-bottom {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
 }
 
 .todo-item.done {
@@ -180,6 +203,7 @@
 .todoreopen-btn {
     display: none;
 }
+
 .todo-item.done .todoreopen-btn {
-  display: block;
+    display: block;
 }
