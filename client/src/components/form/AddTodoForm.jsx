@@ -24,7 +24,6 @@ const AddTodoForm = ({ create, modal }) => {
     };
 
     create(newTodo);
-    console.log(newTodo)
 
     const popOut = () => {
       modal(false)

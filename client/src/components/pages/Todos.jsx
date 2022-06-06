@@ -17,6 +17,8 @@ const Todos = ({
   modal,
 }) => {
   const [updateTodoId, setUpdateTodoId] = useState("");
+  const [deleteId, setDeleteId] = useState("");
+
   const createToDo = (todoData) => {
     const { title, description, addTime, status } = todoData;
 
@@ -25,7 +27,7 @@ const Todos = ({
       description: description,
       status: status,
       addTime: addTime,
-    });
+    })
   };
 
   const handleTodoDelete = (id) => {
@@ -33,8 +35,13 @@ const Todos = ({
       const indexOfDelitedItem = todos.filter(
         (item) => item._id !== response.data.id
       );
+      const deleteById = () => {
+        setTodos(indexOfDelitedItem);
+      }
+      setInterval(deleteById, 2000)
 
-      setTodos(indexOfDelitedItem);
+      const findItemId = todos.find((itemId) => itemId._id === response.data.id);
+      setDeleteId(findItemId._id)
     });
   };
 
@@ -70,9 +77,9 @@ const Todos = ({
   };
 
   const handleTodoComplete = (id) => {
-    const indexOfDone = todos.find((item) => item._id === id);
-    indexOfDone.status = "done";
-    const { _id, title, description, addTime, status } = indexOfDone;
+    const indexOfDoneItem = todos.find((item) => item._id === id);
+    indexOfDoneItem.status = "done";
+    const { _id, title, description, addTime, status } = indexOfDoneItem;
     Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
       id: _id,
       title: title,
@@ -80,12 +87,28 @@ const Todos = ({
       status: status,
       addTime: addTime,
     }).then((response) => {
-      console.log(response.data);
       const newArray = [...todos];
-      newArray[indexOfDone] = response.data;
+      newArray[indexOfDoneItem] = response.data;
       setTodos(newArray);
     });
   };
+
+  const handleTodoReopen = (id) => {
+    const indexOfReopenItem = todos.find((item) => item._id === id);
+    indexOfReopenItem.status = "inprocess";
+    const {_id, title, description, addTime, status } = indexOfReopenItem;
+    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
+      id: _id,
+      title: title,
+      description: description,
+      status: status,
+      addTime: addTime,
+    }).then((response) => {
+      const newArray = [...todos];
+      newArray[indexOfReopenItem] = response.data;
+      setTodos(newArray);
+    });
+  }
 
   console.log(todos);
 
@@ -104,13 +127,12 @@ const Todos = ({
       </div>
       <div className="todo-list">
         {todos.map((todo, index) => {
-          const todoDone = todo.status === "done";
           return (
             <div
-              className={`todo-item ${todoDone ? "done" : ""}`}
+              className={`todo-item ${(todo.status === "done" ? "done" : "")} ${todo.status === "done" && todos._id === deleteId ? "testclass" : ""})`}
               key={index}
             >
-              <div className={`icon-done ${todoDone ? "completed" : ""}`}>
+              <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>
               <i class="bi bi-check-all"></i>
               </div>
               <div className="todo-item__title">{todo.title}</div>
@@ -135,7 +157,7 @@ const Todos = ({
                       onClick={() => handleTodoUpdate(todo._id)}
                       className="todoupdate-btn" 
                     >
-                      <i className="bi bi-arrow-counterclockwise"></i>
+                      <i className="bi bi-arrow-clockwise"></i>
                     </button>
                   </li>
                   <li className="todo-btns__item" title="Обновить">
@@ -144,6 +166,14 @@ const Todos = ({
                       className="tododel-btn"
                     >
                       <i className="bi bi-trash3" title="Удалить"></i>
+                    </button>
+                  </li>
+                  <li className="todo-btns__item" title="Переоткрыть">
+                    <button
+                      onClick={() => handleTodoReopen(todo._id)}
+                      className="todoreopen-btn"
+                    >
+                     <i className="bi bi-arrow-counterclockwise"></i>
                     </button>
                   </li>
                 </ul>

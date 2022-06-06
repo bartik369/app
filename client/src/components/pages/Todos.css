@@ -55,15 +55,12 @@
     transition: all .5s ease-out;
 }
 
-.todo-item.done {
-    opacity: .5;
+.todo-item.testclass {
+    background-color: rgb(9, 139, 96);
 }
 
-.icon-done {
-    font-size: 20px;
-    position: absolute;
-    right: 10px;
-    opacity: 0;
+.todo-item.done {
+    opacity: .5;
 }
 
 .icon-done {
@@ -147,7 +144,8 @@
 
 .todoend-btn,
 .todoupdate-btn,
-.tododel-btn {
+.tododel-btn,
+.todoreopen-btn {
     width: 22px;
     height: 22px;
     font-size: 18px;
@@ -173,4 +171,11 @@
 
 .tododel-btn:hover {
     color: #f16d75;
+}
+
+.todoreopen-btn {
+    display: none;
+}
+.todo-item.done .todoreopen-btn {
+  display: block;
 }
