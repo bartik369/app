@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
 import Axios from "axios";
@@ -18,7 +18,6 @@ import Header from "./components/header/Header";
 
 function App() {
   const [devices, setDevices] = useState([]);
-
   const [todos, setTodos] = useState([]);
 
   const [modalActive, setModalActive] = useState(false);
@@ -27,15 +26,17 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
 
-  useEffect(() => {
+  useMemo(() => {
     Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
       setDevices(response.data);
     });
-
-    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-      setTodos(response.data);
-    })
+    // Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+    //   setTodos(response.data);
+    // })
   }, []);
+
+  console.log(devices)
+  console.log(todos)
 
   const delSearchQuery = () => {
     setSearchQuery("");

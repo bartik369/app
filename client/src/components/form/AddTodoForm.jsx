@@ -22,9 +22,14 @@ const AddTodoForm = ({ create, modal }) => {
       status: "inprocess",
       addTime: todoTime,
     };
-
     create(newTodo);
-
+    setTodo({
+      id: "",
+      title: "",
+      description: "",
+      status: "",
+      addTime: "",
+    })
     const popOut = () => {
       modal(false)
     }

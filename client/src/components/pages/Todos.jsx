@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import AddTodoForm from "../form/AddTodoForm";
 import Axios from "axios";
 import ENV from "../../env.config";
@@ -19,9 +19,14 @@ const Todos = ({
   const [updateTodoId, setUpdateTodoId] = useState("");
   const [deleteId, setDeleteId] = useState();
 
+  useMemo(() => {
+    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+      setTodos(response.data);
+    })
+  }, []);
+
   const createToDo = (todoData) => {
     const { title, description, addTime, status } = todoData;
-
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       title: title,
       description: description,
@@ -132,7 +137,7 @@ const Todos = ({
               key={index}
             >
               <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>
-              <i class="bi bi-check-all"></i>
+              <i className="bi bi-check-all"></i>
               </div>
               <div className="todo-item__title">{todo.title}</div>
               <div className="todo-item__description">{todo.description}</div>
