@@ -17,7 +17,7 @@ const Todos = ({
   modal,
 }) => {
   const [updateTodoId, setUpdateTodoId] = useState("");
-  const [deleteId, setDeleteId] = useState("");
+  const [deleteId, setDeleteId] = useState();
 
   const createToDo = (todoData) => {
     const { title, description, addTime, status } = todoData;
@@ -38,8 +38,7 @@ const Todos = ({
       const deleteById = () => {
         setTodos(indexOfDelitedItem);
       }
-      setInterval(deleteById, 2000)
-
+      setTimeout(deleteById, 1000)
       const findItemId = todos.find((itemId) => itemId._id === response.data.id);
       setDeleteId(findItemId._id)
     });
@@ -129,7 +128,7 @@ const Todos = ({
         {todos.map((todo, index) => {
           return (
             <div
-              className={`todo-item ${(todo.status === "done" ? "done" : "")} ${todo.status === "done" && todos._id === deleteId ? "testclass" : ""})`}
+              className={`todo-item ${todo.status === "done" ? "done" : ""} ${deleteId === todo._id ? "delete-animation" : ""}`}
               key={index}
             >
               <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>

@@ -55,8 +55,22 @@
     transition: all .5s ease-out;
 }
 
-.todo-item.testclass {
-    background-color: rgb(9, 139, 96);
+.todo-item.delete-animation {
+   animation: delete 0.82s cubic-bezier(.36,.07,.19,.97) both;;
+}
+
+@keyframes delete {
+    from {
+       top: 50%;
+       position: absolute;
+      }
+      
+      to {
+          right: 9999px;
+          position: absolute;
+      }
+    
+      
 }
 
 .todo-item.done {
