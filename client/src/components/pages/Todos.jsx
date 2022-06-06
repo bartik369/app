@@ -38,7 +38,7 @@ const Todos = ({
       const deleteById = () => {
         setTodos(indexOfDelitedItem);
       }
-      setTimeout(deleteById, 1000)
+      setTimeout(deleteById, 700)
       const findItemId = todos.find((itemId) => itemId._id === response.data.id);
       setDeleteId(findItemId._id)
     });

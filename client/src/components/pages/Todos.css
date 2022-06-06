@@ -60,17 +60,7 @@
 }
 
 @keyframes delete {
-    from {
-       top: 50%;
-       position: absolute;
-      }
-      
-      to {
-          right: 9999px;
-          position: absolute;
-      }
-    
-      
+
 }
 
 .todo-item.done {
