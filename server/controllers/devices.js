@@ -24,18 +24,18 @@ export const getDevice = async(req, res) => {
 }
 
 export const createDevice = async(req, res) => {
-    const deviceType = req.body.deviceType;
-    const deviceName = req.body.deviceName;
-    const deviceNumber = req.body.deviceNumber;
-    const userName = req.body.userName;
-    const deviceAddTime = req.body.deviceAddTime;
+    const type = req.body.type;
+    const name = req.body.name;
+    const number = req.body.number;
+    const user = req.body.user;
+    const addTime = req.body.addTime;
 
     const device = new DeviceModel({
-        deviceType: deviceType,
-        deviceName: deviceName,
-        deviceNumber: deviceNumber,
-        userName: userName,
-        deviceAddTime: deviceAddTime,
+        type: type,
+        name: name,
+        number: number,
+        user: user,
+        addTime: addTime,
     })
     try {
         await device.save();
@@ -62,31 +62,23 @@ export const deleteDevice = async(req, res) => {
 
 export const updateDevice = async(req, res) => {
     const id = req.params.id;
-    const deviceType = req.body.deviceType;
-    const deviceName = req.body.deviceName;
-    const deviceNumber = req.body.deviceNumber;
-    const userName = req.body.userName;
-    const deviceAddTime = req.body.deviceAddTime;
+    const type = req.body.type;
+    const name = req.body.name;
+    const number = req.body.number;
+    const user = req.body.user;
+    const addTime = req.body.addTime;
 
-    const rewriteUpdateData = DeviceModel.findByIdAndUpdate(id, {
-        deviceType: deviceType,
-        deviceName: deviceName,
-        deviceNumber: deviceNumber,
-        userName: userName,
-        deviceAddTime: deviceAddTime,
-    }, () => {
-        try {
-            rewriteUpdateData.update();
-            res.send({
-                id: id,
-                deviceType: deviceType,
-                deviceName: deviceName,
-                deviceNumber: deviceNumber,
-                userName: userName,
-                deviceAddTime: deviceAddTime,
-            })
-        } catch (error) {
-            console.log(error)
-        }
+    const rewriteUpdateData = await DeviceModel.findByIdAndUpdate(id, {
+        type: type,
+        name: name,
+        number: number,
+        user: user,
+        addTime: addTime,
     })
+    try {
+        await rewriteUpdateData.save();
+        res.send(rewriteUpdateData)
+    } catch (error) {
+        console.log(error)
+    }
 }

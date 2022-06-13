@@ -21,11 +21,11 @@ const DeviceLists = ({ devices, title, remove, update }) => {
               <tbody>
                   {devices.map((device, index) => (
                       <tr key={index}>
-                          <td>{device.deviceType}</td>
-                          <td>{device.deviceName}</td>
-                          <td>{device.deviceNumber}</td>
-                          <td>{device.userName}</td>
-                          <td>{device.deviceAddTime}</td>
+                          <td>{device.type}</td>
+                          <td>{device.name}</td>
+                          <td>{device.number}</td>
+                          <td>{device.user}</td>
+                          <td>{device.addTime}</td>
                           <td><button className="delete-btn" title="Удалить" onClick={() => remove(device._id)}>
         <i className="bi bi-trash3"></i>
       </button></td>

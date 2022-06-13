@@ -20,12 +20,13 @@ const DeviceSearch = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
 
+  const fetchDevices = async () => {
+    await Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
+      setDevices(response.data);
+    });
+  };
+
   useEffect(() => {
-    const fetchDevices = async () => {
-      await Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
-        setDevices(response.data);
-      });
-    };
     fetchDevices();
   }, [setPageName]);
 
@@ -73,14 +74,14 @@ const DeviceSearch = ({
   };
 
   function createNewDevice(newDevice) {
-    const {deviceType, deviceName, deviceNumber, userName, deviceAddTime} = newDevice
+    const {type, name, number, user, addTime} = newDevice
 
     Axios.post('http://localhost:5001/insert', {
-      deviceType: deviceType,
-      deviceName: deviceName,
-      deviceNumber: deviceNumber,
-      userName: userName,
-      deviceAddTime: deviceAddTime,
+      type: type,
+      name: name,
+      number: number,
+      user: user,
+      addTime: addTime,
     }).
     then((response) => {
       setDevices([...devices, response.data]);
@@ -95,15 +96,9 @@ const DeviceSearch = ({
           modal={setModalActive}
           devices={devices}
           setDevices={setDevices}
+          fetchDevices={fetchDevices}
         />
       </Modal>
-      {/* <SearchData
-        placeholder="Поиск..."
-        value={searchQuery}
-        onChange={handleChange}
-        statusInput={searchQuery.length}
-        deleteSearchquery={handleDeleteInputQuery}
-      /> */}
       <div className="devices-list">
       <DeviceLists
         update={handleUpdateDeviceInfo}

@@ -8,11 +8,11 @@ import axios from "axios";
 const EditDevice = (props) => {
   const [device, setDevice] = useState({
     id: "",
-    deviceType: "",
-    deviceName: "",
-    deviceNumber: "",
-    userName: "",
-    deviceAddTime: "",
+    type: "",
+    name: "",
+    number: "",
+    user: "",
+    addTime: "",
   });
 
   const { id } = useParams();
@@ -65,7 +65,7 @@ const EditDevice = (props) => {
           type="text"
           name="deviceType"
           id="deviceType"
-          value={device.deviceType}
+          value={device.type}
           onChange={handleInputChange}
         />
         <FormInput
@@ -73,7 +73,7 @@ const EditDevice = (props) => {
           type="text"
           name="deviceName"
           id="deviceName"
-          value={device.deviceName}
+          value={device.name}
           onChange={handleInputChange}
         />
         <FormInput
@@ -81,7 +81,7 @@ const EditDevice = (props) => {
           type="text"
           name="deviceNumber"
           id="deviceNumber"
-          value={device.deviceNumber}
+          value={device.number}
           onChange={handleInputChange}
         />
         <FormInput
@@ -89,7 +89,7 @@ const EditDevice = (props) => {
           type="text"
           name="userName"
           id="userName"
-          value={device.userName}
+          value={device.user}
           onChange={handleInputChange}
         />
         <button className="add-btn" onClick={handleUpdate}>

@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import ENV from '../../env.config';
 
-const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
+const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices }) => {
   const [editDevice, setEditDevice] = useState({
     id: "",
-    deviceType: "",
-    deviceName: "",
-    deviceNumber: "",
-    userName: "",
-    deviceAddTime: "",
+    type: "",
+    name: "",
+    number: "",
+    user: "",
+    addTime: "",
   });
 
   useEffect(() => {
@@ -24,14 +24,13 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
     const updateDeviceData = {
       id: editDevice._id,
-      deviceType: editDevice.deviceType,
-      deviceName: editDevice.deviceName,
-      deviceNumber: editDevice.deviceNumber,
-      userName: editDevice.userName,
-      deviceAddTime: deviceTime,
+      type: editDevice.type,
+      name: editDevice.name,
+      number: editDevice.number,
+      user: editDevice.user,
+      addTime: deviceTime,
     };
     updateDevice(updateDeviceData);
-
     const popOut = () => {
       modal(false)
     }
@@ -39,14 +38,14 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
   };
 
   function updateDevice(updateDeviceData) {
-    const {id,  deviceType, deviceName, deviceNumber, userName, deviceAddTime } = updateDeviceData;
+    const {id,  type, name, number, user, addTime } = updateDeviceData;
     Axios.put(`${ENV.HOSTNAME}device/${id}`, {
       id: id,
-      deviceType: deviceType,
-      deviceName: deviceName,
-      deviceNumber: deviceNumber,
-      userName: userName,
-      deviceAddTime: deviceAddTime,
+      type: type,
+      name: name,
+      number: number,
+      user: user,
+      addTime: addTime,
     }).then((response) => {
       
       const indexOfChangedItem = devices.findIndex((item) => 
@@ -54,7 +53,8 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       );
       const newArray = [...devices];
       newArray[indexOfChangedItem] = response.data;
-      setDevices(newArray)
+      setDevices(newArray);
+      fetchDevices();
     })
   }
 
@@ -72,8 +72,8 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
        <select
       name="typeDevice" 
       id="typeDevice"
-      value={editDevice.deviceType}
-      onChange={(e) => setEditDevice({ ...editDevice, deviceType: e.target.value })}
+      value={editDevice.type}
+      onChange={(e) => setEditDevice({ ...editDevice, type: e.target.value })}
       >
         <option value="" disabled="disabled">Тип устройства</option>
         {deviceTypeArray.map((item, index) => (
@@ -83,25 +83,25 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices }) => {
       <FormInput
         placeholder="Название устройства"
         type="text"
-        value={editDevice.deviceName}
+        value={editDevice.name}
         onChange={(e) =>
-          setEditDevice({ ...editDevice, deviceName: e.target.value })
+          setEditDevice({ ...editDevice, name: e.target.value })
         }
       />
       <FormInput
         placeholder="Номер устройства"
         type="text"
-        value={editDevice.deviceNumber}
+        value={editDevice.number}
         onChange={(e) =>
-          setEditDevice({ ...editDevice, deviceNumber: e.target.value })
+          setEditDevice({ ...editDevice, number: e.target.value })
         }
       />
       <FormInput
         placeholder="Имя пользователя"
         type="text"
-        value={editDevice.userName}
+        value={editDevice.user}
         onChange={(e) =>
-          setEditDevice({ ...editDevice, userName: e.target.value })
+          setEditDevice({ ...editDevice, user: e.target.value })
         }
       />
       <button className="add-btn" onClick={(e) => handleUpdateDevice(e)}>

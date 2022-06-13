@@ -4,11 +4,11 @@ import FormInput from "./FormInput";
 const AddDeviceForm = ({ create }) => {
   const [device, setDevice] = useState({
     id: "",
-    deviceType: "",
-    deviceName: "",
-    deviceNumber: "",
-    userName: "",
-    deviceAddTime: "",
+    type: "",
+    name: "",
+    number: "",
+    user: "",
+    addTime: "",
   });
 
 
@@ -30,15 +30,15 @@ const AddDeviceForm = ({ create }) => {
     const newDevice = {
       ...device,
       id: Date.now(),
-      deviceAddTime: deviceTime,
+      addTime: deviceTime,
     };
     create(newDevice);
     setDevice({
       id: "",
-      deviceType: "",
-      deviceName: "",
-      deviceNumber: "",
-      userName: "",
+      type: "",
+      name: "",
+      number: "",
+      user: "",
     });
   };
 
@@ -49,7 +49,7 @@ const AddDeviceForm = ({ create }) => {
       defaultValue=""
       name="typeDevice" 
       id="typeDevice"
-      onChange={(e) => setDevice({ ...device, deviceType: e.target.value })}
+      onChange={(e) => setDevice({ ...device, type: e.target.value })}
       >
         <option value="" disabled>Тип устройства</option>
         {deviceTypeArray.map((item, index) => (
@@ -59,20 +59,20 @@ const AddDeviceForm = ({ create }) => {
       <FormInput
         placeholder="Название устройства"
         type="text"
-        value={device.deviceName}
-        onChange={(e) => setDevice({ ...device, deviceName: e.target.value })}
+        value={device.name}
+        onChange={(e) => setDevice({ ...device, name: e.target.value })}
       />
       <FormInput
         placeholder="Номер устройства"
         type="text"
-        value={device.deviceNumber}
-        onChange={(e) => setDevice({ ...device, deviceNumber: e.target.value })}
+        value={device.number}
+        onChange={(e) => setDevice({ ...device, number: e.target.value })}
       />
       <FormInput
         placeholder="Имя пользователя"
         type="text"
-        value={device.userName}
-        onChange={(e) => setDevice({ ...device, userName: e.target.value })}
+        value={device.user}
+        onChange={(e) => setDevice({ ...device, user: e.target.value })}
       />
       <button className="add-btn" onClick={(e) => handleAddDevice(e)}>
         Добавить

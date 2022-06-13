@@ -5,14 +5,14 @@ import Axios from 'axios';
 const AddDevice = () => {
 
     function createNewDevice(newDevice) {
-        const {deviceType, deviceName, deviceNumber, userName, deviceAddTime} = newDevice
+        const {type, name, number, user, addTime} = newDevice
     
         Axios.post('http://localhost:5001/insert', {
-          deviceType: deviceType,
-          deviceName: deviceName,
-          deviceNumber: deviceNumber,
-          userName: userName,
-          deviceAddTime: deviceAddTime,
+          type: type,
+          name: name,
+          number: number,
+          user: user,
+          addTime: addTime,
         } )
       }
 

@@ -1,21 +1,21 @@
 import mongoose from 'mongoose';
 
 const DeviceScheme = new mongoose.Schema({
-    deviceType: {
+    type: {
         type: String,
         require: true,
     },
-    deviceName: {
+    name: {
         type: String
     },
-    deviceNumber: {
+    number: {
         type: String
     },
-    userName: {
+    user: {
         type: String,
         require: true,
     },
-    deviceAddTime: {
+    addTime: {
         type: String,
     },
 })
