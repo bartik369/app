@@ -39,7 +39,6 @@ const Todos = ({
       addTime: addTime,
     })
     .then((response) => {
-      console.log(response.data)
      setTodos([...todos, response.data])
     })
   };
@@ -120,8 +119,6 @@ const Todos = ({
       setTodos(newArray);
     });
   }
-
-  console.log(todos);
 
   return (
     <div className="todos">

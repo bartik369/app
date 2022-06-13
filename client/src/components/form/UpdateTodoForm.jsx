@@ -43,7 +43,7 @@ const handleTodoUpdate = () => {
             value={updatedTodo.description || ""}
             onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
             />
-            <button onClick={() => handleTodoUpdate()}>Обновить</button>
+            <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>
   )
 }

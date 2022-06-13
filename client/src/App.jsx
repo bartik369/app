@@ -30,13 +30,13 @@ function App() {
     Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
       setDevices(response.data);
     });
-    // Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-    //   setTodos(response.data);
-    // })
+    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+      setTodos(response.data);
+    })
   }, []);
 
-  console.log(devices)
-  console.log(todos)
+  // console.log(devices)
+  // console.log(todos)
 
   const delSearchQuery = () => {
     setSearchQuery("");

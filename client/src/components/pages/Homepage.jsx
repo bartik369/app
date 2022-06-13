@@ -22,10 +22,10 @@ const Homepage = ({ devices }) => {
               <tbody>
                   {reverseArray.map((device, index) => (
                       <tr key={index}>
-                          <td>{device.deviceName}</td>
-                          <td>{device.deviceNumber}</td>
-                          <td>{device.userName}</td>
-                          <td>{device.deviceAddTime}</td>
+                          <td>{device.name}</td>
+                          <td>{device.number}</td>
+                          <td>{device.user}</td>
+                          <td>{device.addTime}</td>
                       </tr>
                   ))}
               </tbody>

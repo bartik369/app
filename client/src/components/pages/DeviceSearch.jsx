@@ -31,7 +31,7 @@ const DeviceSearch = ({
   }, [setPageName]);
 
 
-  console.log(devices)
+  // console.log(devices)
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
