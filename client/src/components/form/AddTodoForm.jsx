@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const AddTodoForm = ({ create, modal }) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [todo, setTodo] = useState(
     {
       id: "",
@@ -50,6 +55,23 @@ const AddTodoForm = ({ create, modal }) => {
         onChange={(e) => setTodo({...todo, description: e.target.value})}
         cols="20"
         rows="10"
+      />
+      <label>Start</label>
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        selectsStart
+        startDate={startDate}
+        endDate={endDate}
+      />
+      <label>End</label>
+      <DatePicker
+        selected={endDate}
+        onChange={(date) => setEndDate(date)}
+        selectsEnd
+        startDate={startDate}
+        endDate={endDate}
+        minDate={startDate}
       />
       <button className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
