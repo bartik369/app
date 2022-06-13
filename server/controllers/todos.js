@@ -37,6 +37,7 @@ export const createTodo = async(req, res) => {
 
     try {
         await todo.save();
+        res.send(todo);
         console.log('Todo data has been added');
     } catch (error) {
         console.log(`There is an error ${error}`)
@@ -57,29 +58,23 @@ export const deleteTodo = async(req, res) => {
 }
 
 export const updateTodo = async(req, res) => {
+    if (!req.body) return res.sendStatus(400);
     const id = req.params.id;
     const title = req.body.title;
     const description = req.body.description;
     const status = req.body.status;
     const addTime = req.body.addTime;
 
-    const rewriteUpdateData = ToDoModel.findByIdAndUpdate(id, {
+    const rewriteUpdateData = await ToDoModel.findByIdAndUpdate(id, {
         title: title,
         description: description,
         status: status,
         addTime: addTime,
-    }, () => {
-        try {
-            rewriteUpdateData.update();
-            res.send({
-                id: id,
-                title: title,
-                description: description,
-                status: status,
-                addTime: addTime,
-            })
-        } catch (error) {
-            console.log(error);
-        }
     })
+    try {
+        await rewriteUpdateData.save();
+        res.send(rewriteUpdateData)
+    } catch (error) {
+        console.log(error);
+    }
 }

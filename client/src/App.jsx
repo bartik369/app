@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
 import Axios from "axios";
@@ -26,7 +26,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
 
-  useMemo(() => {
+  useEffect(() => {
     Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
       setDevices(response.data);
     });

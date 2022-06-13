@@ -39,6 +39,7 @@ export const createDevice = async(req, res) => {
     })
     try {
         await device.save();
+        res.send(device);
         console.log('Device data has been sent');
     } catch (error) {
         console.log(`There is an error ${error}`);

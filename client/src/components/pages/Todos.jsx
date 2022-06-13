@@ -19,19 +19,28 @@ const Todos = ({
   const [updateTodoId, setUpdateTodoId] = useState("");
   const [deleteId, setDeleteId] = useState();
 
-  useMemo(() => {
+  const getTodos = () => {
     Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
       setTodos(response.data);
-    })
-  }, []);
+    });
+  };
+
+  useEffect(() => {
+    getTodos();
+  }, [setTodos]);
 
   const createToDo = (todoData) => {
-    const { title, description, addTime, status } = todoData;
+    const { id, title, description, addTime, status } = todoData;
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
+      id: id,
       title: title,
       description: description,
       status: status,
       addTime: addTime,
+    })
+    .then((response) => {
+      console.log(response.data)
+     setTodos([...todos, response.data])
     })
   };
 
@@ -50,15 +59,15 @@ const Todos = ({
   };
 
   const handleTodoUpdate = (id) => {
-    setUpdateModalActive(true);
-
+    !updateModalActive ? setUpdateModalActive(true) : setUpdateModalActive(false);
+    
     Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
       setUpdateTodoId(response.data[0]);
     });
   };
 
-  const updateTodo = (updateTodoData) => {
-    const { id, title, description, status, addTime } = updateTodoData;
+  const updateTodo = (updatedData) => {
+    const { id, title, description, status, addTime } = updatedData;
 
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,
@@ -67,16 +76,14 @@ const Todos = ({
       status: status,
       addTime: addTime,
     }).then((response) => {
-      const indexOfChangedItem = todos.findIndex(
+      let indexOfChangedItem = todos.findIndex(
         (item) => item._id === response.data.id
       );
       const newArray = [...todos];
       newArray[indexOfChangedItem] = response.data;
       setTodos(newArray);
-      console.log(newArray);
-
-      const popOut = () => setUpdateModalActive(false);
-      setInterval(popOut, 1000);
+      setUpdateModalActive(false);
+      getTodos()
     });
   };
 
@@ -133,7 +140,9 @@ const Todos = ({
         {todos.map((todo, index) => {
           return (
             <div
-              className={`todo-item ${todo.status === "done" ? "done" : ""} ${deleteId === todo._id ? "delete-animation" : ""}`}
+              className={`todo-item 
+              ${todo.status === "done" ? "done" : ""}
+              ${deleteId === todo._id ? "delete-animation" : ""}`}
               key={index}
             >
               <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>
