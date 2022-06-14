@@ -25,14 +25,16 @@ export const getTodo = async(req, res) => {
 export const createTodo = async(req, res) => {
     const title = req.body.title;
     const description = req.body.description;
-    const addTime = req.body.addTime;
     const status = req.body.status;
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTime;
 
     const todo = new ToDoModel({
         title: title,
         description: description,
-        addTime: addTime,
         status: status,
+        startTime: startTime,
+        endTime: endTime,
     });
 
     try {
@@ -63,13 +65,15 @@ export const updateTodo = async(req, res) => {
     const title = req.body.title;
     const description = req.body.description;
     const status = req.body.status;
-    const addTime = req.body.addTime;
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTime;
 
     const rewriteUpdateData = await ToDoModel.findByIdAndUpdate(id, {
         title: title,
         description: description,
         status: status,
-        addTime: addTime,
+        startTime: startTime,
+        endTime: endTime,
     })
     try {
         await rewriteUpdateData.save();

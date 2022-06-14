@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import FormInput from './FormInput';
-import '../pages/Todos.css'
+import '../pages/Todos.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
+console.log()
 
 const [updatedTodo, setUpdatedTodo] = useState({
   id: "",
   title: "",
   description: "",
   status: "",
-  addTime: "",
+  startTime: "",
+  endTime: "",
 });
 
 useEffect(() => {
@@ -17,15 +22,13 @@ useEffect(() => {
 }, [updateTodoId])
 
 const handleTodoUpdate = () => {
-  const date = new Date();
-  const todoTime =
-    date.toLocaleDateString() + " " + date.toLocaleTimeString("en-GB");
   const updateTodoData = {
     id: updatedTodo._id,
     title: updatedTodo.title,
     description: updatedTodo.description,
     status: updatedTodo.status,
-    addTime: todoTime,
+    startTime: updatedTodo.startTime,
+    endTime: updatedTodo.endTime,
   }
   updateTodo(updateTodoData)
 }
@@ -42,6 +45,18 @@ const handleTodoUpdate = () => {
             name="description"
             value={updatedTodo.description || ""}
             onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
+            />
+            <DatePicker
+              className="date-input"
+              placeholderText="Дата начала"
+              value={updatedTodo.startTime}
+              onChange={(date) => setUpdatedTodo({...updatedTodo, startTime: date})}
+            />
+            <DatePicker 
+              className="date-input"
+              placeholderText="Дата завершения"
+              value={updatedTodo.endTime}
+              onChange={(date) => setUpdatedTodo({...updatedTodo, endTime: date})} 
             />
             <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>

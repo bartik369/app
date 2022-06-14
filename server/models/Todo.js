@@ -7,12 +7,15 @@ const ToDoScheme = new mongoose.Schema({
     description: {
         type: String,
     },
-    addTime: {
-        type: String,
-    },
     status: {
         type: String,
-    }
+    },
+    startTime: {
+        type: String,
+    },
+    endTime: {
+        type: String,
+    },
 });
 
 const ToDo = mongoose.model("TodoData", ToDoScheme);

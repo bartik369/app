@@ -5,27 +5,25 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const AddTodoForm = ({ create, modal }) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+
   const [todo, setTodo] = useState(
     {
       id: "",
       title: "",
       description: "",
       status: "",
-      addTime: "",
+      startTime: "",
+      endTime: "",
     }
   );
 
   const addTodoHandler = () => {
-    const date = new Date();
-    const todoTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
      const newTodo = {
       title: todo.title,
       description: todo.description,
-      id: Date.now(),
       status: "inprocess",
-      addTime: todoTime,
+      startTime: todo.startTime,
+      endTime: todo.endTime,
     };
     create(newTodo);
     setTodo({
@@ -33,7 +31,9 @@ const AddTodoForm = ({ create, modal }) => {
       title: "",
       description: "",
       status: "",
-      addTime: "",
+      startTime: "",
+      endTime: "",
+
     })
     const popOut = () => {
       modal(false)
@@ -56,23 +56,16 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      <label>Start</label>
       <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-      />
-      <label>End</label>
-      <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
-        selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-      />
+      className="date-input"
+      placeholderText="Дата начала"
+      selected={todo.startTime} 
+      onChange={(date) => setTodo({...todo, startTime:date})} />
+      <DatePicker 
+      className="date-input"
+      placeholderText="Дата завершения"
+      selected={todo.endTime} 
+      onChange={(date) => setTodo({...todo, endTime:date})} />
       <button className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>

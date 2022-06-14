@@ -30,13 +30,16 @@ const Todos = ({
   }, [setTodos]);
 
   const createToDo = (todoData) => {
-    const { id, title, description, addTime, status } = todoData;
+    const { id, title, description, status, startTime, endTime  } = todoData;
+    const startDate = (startTime.toLocaleDateString('en-US'));
+    const endDate = (endTime.toLocaleDateString('en-US'));
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       id: id,
       title: title,
       description: description,
       status: status,
-      addTime: addTime,
+      startTime: startDate,
+      endTime: endDate,
     })
     .then((response) => {
      setTodos([...todos, response.data])
@@ -66,14 +69,19 @@ const Todos = ({
   };
 
   const updateTodo = (updatedData) => {
-    const { id, title, description, status, addTime } = updatedData;
+    console.log(updatedData)
+    const { id, title, description, status, startTime, endTime } = updatedData;
+
+    const startDate = (startTime.toLocaleDateString('en-US'));
+    const endDate = (endTime.toLocaleDateString('en-US'));
 
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,
       title: title,
       description: description,
       status: status,
-      addTime: addTime,
+      startTime: startDate,
+      endTime: endDate,
     }).then((response) => {
       let indexOfChangedItem = todos.findIndex(
         (item) => item._id === response.data.id
@@ -89,13 +97,14 @@ const Todos = ({
   const handleTodoComplete = (id) => {
     const indexOfDoneItem = todos.find((item) => item._id === id);
     indexOfDoneItem.status = "done";
-    const { _id, title, description, addTime, status } = indexOfDoneItem;
+    const { _id, title, description, status, startTime, endTime} = indexOfDoneItem;
     Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
       id: _id,
       title: title,
       description: description,
       status: status,
-      addTime: addTime,
+      startTime: startTime,
+      endTime: endTime,
     }).then((response) => {
       const newArray = [...todos];
       newArray[indexOfDoneItem] = response.data;
@@ -106,13 +115,14 @@ const Todos = ({
   const handleTodoReopen = (id) => {
     const indexOfReopenItem = todos.find((item) => item._id === id);
     indexOfReopenItem.status = "inprocess";
-    const {_id, title, description, addTime, status } = indexOfReopenItem;
+    const {_id, title, description, status, startTime, endTime } = indexOfReopenItem;
     Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
       id: _id,
       title: title,
       description: description,
       status: status,
-      addTime: addTime,
+      startTime: startTime,
+      endTime: endTime,
     }).then((response) => {
       const newArray = [...todos];
       newArray[indexOfReopenItem] = response.data;
@@ -149,8 +159,10 @@ const Todos = ({
               <div className="todo-item__description">{todo.description}</div>
               <hr className="separate" />
               <div className="time-info">
-                <div className="todo-item__addtime">{todo.addTime}</div>
-                <div className="todo-item__deadline">5/28/2022 22:39:12</div>
+                <span className="time-text">Начать с:</span>
+                <span className="time-date">{todo.startTime}</span>
+                <span className="time-text">Закончить к:</span>
+                <span className="time-date">{todo.endTime}</span>
               </div>
               <div className="todo-btns">
                 <ul className="todo-btns__inner">
