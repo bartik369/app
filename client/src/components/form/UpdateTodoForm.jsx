@@ -4,9 +4,7 @@ import '../pages/Todos.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
-console.log()
 
 const [updatedTodo, setUpdatedTodo] = useState({
   id: "",
@@ -50,12 +48,14 @@ const handleTodoUpdate = () => {
               className="date-input"
               placeholderText="Дата начала"
               value={updatedTodo.startTime}
+              selected={Date.parse(updatedTodo.startTime)}
               onChange={(date) => setUpdatedTodo({...updatedTodo, startTime: date})}
             />
             <DatePicker 
               className="date-input"
               placeholderText="Дата завершения"
               value={updatedTodo.endTime}
+              selected={Date.parse(updatedTodo.endTime)}
               onChange={(date) => setUpdatedTodo({...updatedTodo, endTime: date})} 
             />
             <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
