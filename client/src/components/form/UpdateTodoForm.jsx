@@ -45,18 +45,28 @@ const handleTodoUpdate = () => {
             onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
             />
             <DatePicker
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy hh:mm"
               className="date-input"
               placeholderText="Дата начала"
-              value={updatedTodo.startTime}
-              selected={Date.parse(updatedTodo.startTime)}
-              onChange={(date) => setUpdatedTodo({...updatedTodo, startTime: date})}
+              value={updateTodo.startTime}
+              selected={Date.parse(updatedTodo.startTime)} 
+              onChange={(date) =>  setUpdatedTodo({...updatedTodo, startTime:date})}
             />
             <DatePicker 
-              className="date-input"
-              placeholderText="Дата завершения"
-              value={updatedTodo.endTime}
-              selected={Date.parse(updatedTodo.endTime)}
-              onChange={(date) => setUpdatedTodo({...updatedTodo, endTime: date})} 
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy hh:mm"
+             className="date-input"
+             placeholderText="Дата завершения"
+             value={updateTodo.endTime}
+             selected={Date.parse(updatedTodo.endTime)} 
+             onChange={(date) =>  setUpdatedTodo({...updatedTodo, endTime:date})} 
             />
             <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>

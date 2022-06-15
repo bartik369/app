@@ -31,8 +31,22 @@ const Todos = ({
 
   const createToDo = (todoData) => {
     const { id, title, description, status, startTime, endTime  } = todoData;
-    const startDate = (startTime.toLocaleDateString('en-US'));
-    const endDate = (endTime.toLocaleDateString('en-US'));
+    const startDate = (startTime.toLocaleString('ru-RU', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }));
+    const endDate = (endTime.toLocaleString('ru-RU', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }));
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       id: id,
       title: title,
@@ -72,8 +86,22 @@ const Todos = ({
     console.log(updatedData)
     const { id, title, description, status, startTime, endTime } = updatedData;
 
-    const startDate = (startTime.toLocaleDateString('en-US'));
-    const endDate = (endTime.toLocaleDateString('en-US'));
+    const startDate = (startTime.toLocaleString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }));
+    const endDate = (endTime.toLocaleString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }));
 
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,

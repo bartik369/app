@@ -57,11 +57,21 @@ const AddTodoForm = ({ create, modal }) => {
         rows="10"
       />
       <DatePicker
+      showTimeSelect
+      timeFormat="HH:mm"
+      timeIntervals={15}
+      timeCaption="time"
+      dateFormat="MMMM d, yyyy hh:mm"
       className="date-input"
       placeholderText="Дата начала"
       selected={todo.startTime} 
       onChange={(date) => setTodo({...todo, startTime:date})} />
-      <DatePicker 
+      <DatePicker
+       showTimeSelect
+       timeFormat="HH:mm"
+       timeIntervals={15}
+       timeCaption="time"
+       dateFormat="MMMM d, yyyy hh:mm"
       className="date-input"
       placeholderText="Дата завершения"
       selected={todo.endTime} 
