@@ -86,7 +86,7 @@ const Todos = ({
     console.log(updatedData)
     const { id, title, description, status, startTime, endTime } = updatedData;
 
-    const startDate = (startTime.toLocaleString('en-US', {
+    const startDate = (startTime.toLocaleString('ru-RU', {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
@@ -94,7 +94,7 @@ const Todos = ({
       month: 'numeric',
       day: 'numeric',
     }));
-    const endDate = (endTime.toLocaleString('en-US', {
+    const endDate = (endTime.toLocaleString('ru-RU', {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
@@ -189,7 +189,7 @@ const Todos = ({
               <div className="time-info">
                 <span className="time-text">Начать с:</span>
                 <span className="time-date">{todo.startTime}</span>
-                <span className="time-text">Закончить к:</span>
+                <span className="time-text">Закончить до:</span>
                 <span className="time-date">{todo.endTime}</span>
               </div>
               <div className="todo-btns">

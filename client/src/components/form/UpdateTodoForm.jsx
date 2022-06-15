@@ -3,6 +3,7 @@ import FormInput from './FormInput';
 import '../pages/Todos.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ru from 'date-fns/locale/ru';
 
 const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
 
@@ -46,27 +47,29 @@ const handleTodoUpdate = () => {
             />
             <DatePicker
               showTimeSelect
-              timeFormat="HH:mm"
+              timeFormat="p"
               timeIntervals={15}
+              dateFormat="Pp"
+              locale={ru}
               timeCaption="time"
-              dateFormat="MMMM d, yyyy hh:mm"
               className="date-input"
               placeholderText="Дата начала"
-              value={updateTodo.startTime}
+              value={updatedTodo.startTime}
               selected={Date.parse(updatedTodo.startTime)} 
               onChange={(date) =>  setUpdatedTodo({...updatedTodo, startTime:date})}
             />
             <DatePicker 
               showTimeSelect
-              timeFormat="HH:mm"
+              timeFormat="p"
               timeIntervals={15}
+              dateFormat="Pp"
+              locale={ru}
               timeCaption="time"
-              dateFormat="MMMM d, yyyy hh:mm"
-             className="date-input"
-             placeholderText="Дата завершения"
-             value={updateTodo.endTime}
-             selected={Date.parse(updatedTodo.endTime)} 
-             onChange={(date) =>  setUpdatedTodo({...updatedTodo, endTime:date})} 
+              className="date-input"
+              placeholderText="Дата завершения"
+              value={updatedTodo.endTime}
+              selected={Date.parse(updatedTodo.endTime)} 
+              onChange={(date) =>  setUpdatedTodo({...updatedTodo, endTime:date})} 
             />
             <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>
