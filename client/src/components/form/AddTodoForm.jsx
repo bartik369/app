@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormInput from "./FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ru from 'date-fns/locale/ru'
 
 
 const AddTodoForm = ({ create, modal }) => {
@@ -58,10 +59,11 @@ const AddTodoForm = ({ create, modal }) => {
       />
       <DatePicker
       showTimeSelect
-      timeFormat="HH:mm"
+      timeFormat={"HH:mm"}
       timeIntervals={15}
       timeCaption="time"
       dateFormat="MMMM d, yyyy hh:mm"
+      locale={ru}
       className="date-input"
       placeholderText="Дата начала"
       selected={todo.startTime} 
@@ -72,6 +74,7 @@ const AddTodoForm = ({ create, modal }) => {
        timeIntervals={15}
        timeCaption="time"
        dateFormat="MMMM d, yyyy hh:mm"
+       locale={ru}
       className="date-input"
       placeholderText="Дата завершения"
       selected={todo.endTime} 
