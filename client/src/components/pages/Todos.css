@@ -63,6 +63,11 @@
     transition: all .5s ease-out;
     overflow: hidden;
 }
+
+.todo-item.danger {
+    background-color: #f16d75;
+}
+
 .time-info {
     font-family: inherit;
     display: flex;
@@ -84,7 +89,6 @@
     letter-spacing: -.5px;
     margin-bottom: 3px;
 }
-
 
 .todo-item.delete-animation {
     -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;

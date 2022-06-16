@@ -157,7 +157,7 @@ const Todos = ({
       setTodos(newArray);
     });
   }
-
+  const dateNow = new Date().toLocaleString('ru-RU');
   return (
     <div className="todos">
       <Modal visible={modalActive} setVisible={setModalActive}>
@@ -176,6 +176,7 @@ const Todos = ({
           return (
             <div
               className={`todo-item 
+              ${todo.endTime <= dateNow ? "danger" : ""}
               ${todo.status === "done" ? "done" : ""}
               ${deleteId === todo._id ? "delete-animation" : ""}`}
               key={index}
