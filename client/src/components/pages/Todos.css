@@ -64,8 +64,19 @@
     overflow: hidden;
 }
 
-.todo-item.danger {
-    background-color: #f16d75;
+.todo-item:hover {
+    box-shadow: -8px 14px 19px 0 #c7cddd;
+}
+
+.todo-item.overdue .end-time {
+    color: #de4958;
+    font-size: 18px;
+}
+
+.todo-item.overdue:hover {
+    background-color: #ebd4d6;
+    border: 1px solid rgba(128, 111, 111, 0.125);
+    box-shadow: -8px 14px 19px 0 #bfa5a9;
 }
 
 .time-info {
@@ -82,7 +93,8 @@
     font-family: inherit;
 }
 
-.time-date {
+.start-time,
+.end-time {
     font-family: inherit;
     font-size: 15px;
     font-weight: 700;
@@ -144,10 +156,6 @@
 
 .todo-item.done .todoupdate-btn {
     display: none;
-}
-
-.todo-item:hover {
-    box-shadow: -8px 14px 19px 0 #c7cddd;
 }
 
 .todo-item__title {

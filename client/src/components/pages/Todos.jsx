@@ -176,7 +176,7 @@ const Todos = ({
           return (
             <div
               className={`todo-item 
-              ${todo.endTime <= dateNow ? "danger" : ""}
+              ${todo.endTime <= dateNow ? "overdue" : ""}
               ${todo.status === "done" ? "done" : ""}
               ${deleteId === todo._id ? "delete-animation" : ""}`}
               key={index}
@@ -189,9 +189,9 @@ const Todos = ({
               <hr className="separate" />
               <div className="time-info">
                 <span className="time-text">Начать с:</span>
-                <span className="time-date">{todo.startTime}</span>
+                <span className="start-time">{todo.startTime}</span>
                 <span className="time-text">Закончить до:</span>
-                <span className="time-date">{todo.endTime}</span>
+                <span className="end-time">{todo.endTime}</span>
               </div>
               <div className="todo-btns">
                 <ul className="todo-btns__inner">
