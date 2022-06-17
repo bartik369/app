@@ -45,32 +45,39 @@ const handleTodoUpdate = () => {
             value={updatedTodo.description || ""}
             onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
             />
-            <DatePicker
-              showTimeSelect
-              timeFormat="p"
-              timeIntervals={15}
-              dateFormat="Pp"
-              locale={ru}
-              timeCaption="time"
+             <DatePicker
+              selected={Date.parse(updatedTodo.startTime)}
+              onChange={(date) => setUpdatedTodo({...updatedTodo, startTime:date})}
+              selectsStart
+              startDate={Date.parse(updatedTodo.startTime)}
+              endDate={Date.parse(updatedTodo.endTime)}
               className="date-input"
               placeholderText="Дата начала"
-              value={updatedTodo.startTime}
-              selected={Date.parse(updatedTodo.startTime)} 
-              onChange={(date) =>  setUpdatedTodo({...updatedTodo, startTime:date})}
-            />
-            <DatePicker 
               showTimeSelect
               timeFormat="p"
               timeIntervals={15}
               dateFormat="Pp"
-              locale={ru}
               timeCaption="time"
-              className="date-input"
-              placeholderText="Дата завершения"
-              value={updatedTodo.endTime}
-              selected={Date.parse(updatedTodo.endTime)} 
-              onChange={(date) =>  setUpdatedTodo({...updatedTodo, endTime:date})} 
-            />
+              locale={ru}
+              value={updatedTodo.startTime}
+              />
+              <DatePicker 
+                selected={Date.parse(updatedTodo.endTime)}
+                onChange={(date) => setUpdatedTodo({...updatedTodo, endTime:date})}
+                selectsEnd
+                startDate={Date.parse(updatedTodo.startTime)}
+                endDate={Date.parse(updatedTodo.endTime)}
+                minDate={Date.parse(updatedTodo.startTime)}
+                className="date-input"
+                placeholderText="Дата завершения"
+                showTimeSelect
+                timeFormat="p"
+                timeIntervals={15}
+                dateFormat="Pp"
+                timeCaption="time"
+                locale={ru}
+                value={updatedTodo.endTime}
+              />
             <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>
   )

@@ -57,7 +57,7 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      <DatePicker
+      {/* <DatePicker
       showTimeSelect
       timeFormat="p"
       timeIntervals={15}
@@ -78,7 +78,39 @@ const AddTodoForm = ({ create, modal }) => {
       className="date-input"
       placeholderText="Дата завершения"
       selected={todo.endTime} 
-      onChange={(date) => setTodo({...todo, endTime:date})} />
+      onChange={(date) => setTodo({...todo, endTime:date})} /> */}
+      <DatePicker
+        selected={todo.startTime}
+        onChange={(date) => setTodo({...todo, startTime:date})}
+        selectsStart
+        startDate={todo.startTime}
+        endDate={todo.endTime}
+        className="date-input"
+        placeholderText="Дата начала"
+        showTimeSelect
+        timeFormat="p"
+        timeIntervals={15}
+        dateFormat="Pp"
+        timeCaption="time"
+        locale={ru}
+      />
+      <DatePicker
+        selected={todo.endTime}
+        onChange={(date) => setTodo({...todo, endTime:date})}
+        selectsEnd
+        startDate={todo.startTime}
+        endDate={todo.endTime}
+        minDate={todo.startTime}
+        className="date-input"
+        placeholderText="Дата завершения"
+        showTimeSelect
+        timeFormat="p"
+        timeIntervals={15}
+        dateFormat="Pp"
+        timeCaption="time"
+        locale={ru}
+      />
+      
       <button className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
