@@ -1,9 +1,11 @@
 import React from "react";
 import "../widgets/widgets.css";
 
-const Homepage = ({ devices }) => {
-  const array = [...devices];
-  const reverseArray = array.reverse().slice(0, 8);
+const Homepage = ({ devices, todos }) => {
+  const arrayDevices = [...devices];
+  const arrayTodos = [...todos]
+  const reverseArrayDevices = arrayDevices.reverse().slice(0, 8);
+  const reverseArrayTodos = arrayTodos.reverse().slice(0, 5);
 
   return (
     <div className="home-wrapper">
@@ -20,7 +22,7 @@ const Homepage = ({ devices }) => {
                   </tr>
               </thead>
               <tbody>
-                  {reverseArray.map((device, index) => (
+                  {reverseArrayDevices.map((device, index) => (
                       <tr key={index}>
                           <td>{device.name}</td>
                           <td>{device.number}</td>
@@ -30,6 +32,12 @@ const Homepage = ({ devices }) => {
                   ))}
               </tbody>
           </table>
+        </div>
+        <div className="widget-item">
+          <div className="widget-item__title">Последние задачи</div>
+          {reverseArrayTodos.map((todo, index) => (
+            <div key={index}>{todo.title}</div>
+          ))}
         </div>
       </div>
     </div>

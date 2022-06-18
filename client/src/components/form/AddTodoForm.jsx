@@ -57,28 +57,6 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      {/* <DatePicker
-      showTimeSelect
-      timeFormat="p"
-      timeIntervals={15}
-      dateFormat="Pp"
-      timeCaption="time"
-      locale={ru}
-      className="date-input"
-      placeholderText="Дата начала"
-      selected={todo.startTime} 
-      onChange={(date) => setTodo({...todo, startTime:date})} />
-      <DatePicker
-       showTimeSelect
-       timeFormat="p"
-      timeIntervals={15}
-      dateFormat="Pp"
-       timeCaption="time"
-       locale={ru}
-      className="date-input"
-      placeholderText="Дата завершения"
-      selected={todo.endTime} 
-      onChange={(date) => setTodo({...todo, endTime:date})} /> */}
       <DatePicker
         selected={todo.startTime}
         onChange={(date) => setTodo({...todo, startTime:date})}
@@ -119,3 +97,5 @@ const AddTodoForm = ({ create, modal }) => {
 };
 
 export default AddTodoForm;
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis molestias minus ut atque neque. Eveniet quod ab beatae aliquid sapiente!
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laborum, id consequuntur explicabo voluptate libero facilis, similique quo non pariatur itaque possimus saepe deleniti veritatis soluta repellendus natus amet, eius sint? Natus, debitis? Assumenda delectus libero, soluta itaque omnis inventore.
