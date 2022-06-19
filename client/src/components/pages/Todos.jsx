@@ -5,6 +5,7 @@ import ENV from "../../env.config";
 import "./Todos.css";
 import Modal from "../UI/modal/Modal";
 import UpdateTodoForm from "../form/UpdateTodoForm";
+import Masonry from 'react-masonry-css';
 
 const Todos = ({
   todos,
@@ -158,6 +159,19 @@ const Todos = ({
     });
   }
   const dateNow = new Date().toLocaleString('ru-RU');
+  const breakpoints = {
+    2560: 8,
+    1920: 6,
+    1800: 5,
+    1600: 5,
+    1400: 4,
+    1201: 4,
+    1100: 3,
+    900: 2,
+    700: 2,
+    500: 1
+  };
+
   return (
     <div className="todos">
       <Modal visible={modalActive} setVisible={setModalActive}>
@@ -171,69 +185,74 @@ const Todos = ({
           Новая задача
         </button>
       </div>
-      <div className="todo-list">
+      <Masonry
+      breakpointCols={breakpoints}
+      className="my-masonry-grid"
+      columnClassName="my-masonry-grid_column">
         {todos.map((todo, index) => {
           return (
             <div
-              className={`todo-item 
-              ${todo.endTime <= dateNow && todo.status !== "done" ? "overdue" : ""}
-              ${todo.status === "done" ? "done" : ""}
-              ${deleteId === todo._id ? "delete-animation" : ""}`}
-              key={index}
-            >
-              <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>
-              <i className="bi bi-check-all"></i>
-              </div>
-              <div className="todo-item__title">{todo.title}</div>
-              <div className="todo-item__description">{todo.description}</div>
-              <hr className="separate" />
-              <div className="time-info">
-                <span className="time-text">Начать с:</span>
-                <span className="start-time">{todo.startTime}</span>
-                <span className="time-text">Закончить до:</span>
-                <span className="end-time">{todo.endTime}</span>
-              </div>
-              <div className="todo-btns">
-                <ul className="todo-btns__inner">
-                  <li className="todo-btns__item">
-                    <button
-                      onClick={() => handleTodoComplete(todo._id)}
-                      className="todoend-btn"
-                    >
-                      <i className="bi bi-check2-square" title="Завершить"></i>
-                    </button>
-                  </li>
-                  <li className="todo-btns__item">
-                    <button
-                      onClick={() => handleTodoUpdate(todo._id)}
-                      className="todoupdate-btn" 
-                    >
-                      <i className="bi bi-arrow-clockwise"></i>
-                    </button>
-                  </li>
-                  <li className="todo-btns__item" title="Обновить">
-                    <button
-                      onClick={() => handleTodoDelete(todo._id)}
-                      className="tododel-btn"
-                    >
-                      <i className="bi bi-trash3" title="Удалить"></i>
-                    </button>
-                  </li>
-                  <li className="todo-btns__item" title="Переоткрыть">
-                    <button
-                      onClick={() => handleTodoReopen(todo._id)}
-                      className="todoreopen-btn"
-                    >
-                     <i className="bi bi-arrow-counterclockwise"></i>
-                    </button>
-                  </li>
-                </ul>
-              </div>
+            className={`todo-item 
+            ${(todo.endTime <= dateNow) && todo.status !== "done" ? "overdue" : ""}
+            ${todo.status === "done" ? "done" : ""}
+            ${deleteId === todo._id ? "delete-animation" : ""}`}
+            key={index}
+          >
+            <div className={`icon-done ${todo.status === "done" ? "completed" : ""}`}>
+            <i className="bi bi-check-all"></i>
             </div>
-          );
+            <div className="todo-item__title">{todo.title}</div>
+            <div className="todo-item__description">{todo.description}</div>
+            <hr className="separate" />
+            <div className="time-info">
+              <span className="time-text">Начать с:</span>
+              <span className="start-time">{todo.startTime}</span>
+              <span className="time-text">Закончить до:</span>
+              <span className="end-time">{todo.endTime}</span>
+            </div>
+            <div className="todo-item__bottom">
+            <div className="todo-btns">
+              <ul className="todo-btns__inner">
+                <li className="todo-btns__item">
+                  <button
+                    onClick={() => handleTodoComplete(todo._id)}
+                    className="todoend-btn"
+                  >
+                    <i className="bi bi-check2-square" title="Завершить"></i>
+                  </button>
+                </li>
+                <li className="todo-btns__item">
+                  <button
+                    onClick={() => handleTodoUpdate(todo._id)}
+                    className="todoupdate-btn" 
+                  >
+                    <i className="bi bi-arrow-clockwise"></i>
+                  </button>
+                </li>
+                <li className="todo-btns__item" title="Обновить">
+                  <button
+                    onClick={() => handleTodoDelete(todo._id)}
+                    className="tododel-btn"
+                  >
+                    <i className="bi bi-trash3" title="Удалить"></i>
+                  </button>
+                </li>
+                <li className="todo-btns__item" title="Переоткрыть">
+                  <button
+                    onClick={() => handleTodoReopen(todo._id)}
+                    className="todoreopen-btn"
+                  >
+                   <i className="bi bi-arrow-counterclockwise"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        );
         })}
+      </Masonry>
       </div>
-    </div>
   );
 };
 

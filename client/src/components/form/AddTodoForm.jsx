@@ -97,5 +97,3 @@ const AddTodoForm = ({ create, modal }) => {
 };
 
 export default AddTodoForm;
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis molestias minus ut atque neque. Eveniet quod ab beatae aliquid sapiente!
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laborum, id consequuntur explicabo voluptate libero facilis, similique quo non pariatur itaque possimus saepe deleniti veritatis soluta repellendus natus amet, eius sint? Natus, debitis? Assumenda delectus libero, soluta itaque omnis inventore.

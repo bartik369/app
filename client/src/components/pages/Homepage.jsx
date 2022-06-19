@@ -36,7 +36,10 @@ const Homepage = ({ devices, todos }) => {
         <div className="widget-item">
           <div className="widget-item__title">Последние задачи</div>
           {reverseArrayTodos.map((todo, index) => (
-            <div key={index}>{todo.title}</div>
+            <div key={index}>
+              {todo.title}
+              {todo.startTime}
+          </div>
           ))}
         </div>
       </div>
