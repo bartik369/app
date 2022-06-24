@@ -25,6 +25,14 @@
     padding: 30px 20px;
 }
 
+.form-error {
+    color: #c44661;
+    position: relative;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 5px;
+    width: 100%;
+}
 .date-input {
     border: 1px solid rgba(0, 0, 0, .125);
     padding: 12px;

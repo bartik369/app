@@ -17,10 +17,10 @@ const AddTodoForm = ({ create, modal }) => {
     }
   );
 
-  const [titleDirty, setTitleDirty] = useState(false);
-  const [descriptionDirty, setDescriptionDirty] = useState(false);
-  const [startTimeDirty, setStartTimeDirty] = useState(false);
-  const [endTimeDirty, setEndTimeDirty] = useState(false);
+  const [titleWrong, setTitleWrong] = useState(false);
+  const [descriptionWrong, setDescriptionWrong] = useState(false);
+  const [startTimeWrong, setStartTimeWrong] = useState(false);
+  const [endTimeWrong, setEndTimeWrong] = useState(false);
 
   const [titleError, setTitleError] = useState('Укажите название');
   const [descriptionError, setDescriptionError] = useState('Укажите описание');
@@ -41,16 +41,16 @@ const AddTodoForm = ({ create, modal }) => {
   const bluerHandler = (e) => {
     switch (e.target.name) {
       case 'title':
-        setTitleDirty(true)
+        setTitleWrong(true)
         break
       case 'description':
-        setDescriptionDirty(true)
+        setDescriptionWrong(true)
         break
       case 'starttime':
-        setStartTimeDirty(true)
+        setStartTimeWrong(true)
         break
       case 'endtime':
-        setEndTimeDirty(true)
+        setEndTimeWrong(true)
         break
     }
 
@@ -60,7 +60,7 @@ const AddTodoForm = ({ create, modal }) => {
     setTodo({...todo, title: e.target.value});
     setTitleError('');
     if (!e.target.value) {
-      setTitleError('Укажите название')
+      setTitleError('Укажите заголовок задачи')
     }
   }
 
@@ -68,7 +68,7 @@ const AddTodoForm = ({ create, modal }) => {
     setTodo({...todo, description: e.target.value})
     setDescriptionError('');
     if (!e.target.value) {
-      setDescriptionError('Укажите описание')
+      setDescriptionError('Укажите описание задачи')
     }
   }
 
@@ -76,14 +76,14 @@ const AddTodoForm = ({ create, modal }) => {
     setTodo({...todo, startTime:date})
     setStartTimeError('');
     if (!date.target.value) {
-      setStartTimeError('Укажите дату начала')
+      setStartTimeError('Укажите дату')
     }
   }
   const endTimeHandler = (date) => {
     setTodo({...todo, endTime:date})
     setEndTimeError('');
     if (!date.target.value) {
-      setEndTimeError('Укажите дату конца')
+      setEndTimeError('Укажите дату')
     }
   }
 
@@ -114,7 +114,7 @@ const AddTodoForm = ({ create, modal }) => {
 
   return (
     <div className="add-todo-form">
-      {(titleDirty && titleError) && <div>{titleError}</div>}
+      {(titleWrong && titleError) && <div className="form-error">{titleError}</div>}
       <FormInput
         onBlur={e => bluerHandler(e)}
         placeholder="Название задачи"
@@ -122,7 +122,7 @@ const AddTodoForm = ({ create, modal }) => {
         name="title"
         onChange={(e) => titleHandler(e)}
       />
-      {(descriptionDirty && descriptionError) && <div>{descriptionError}</div>}
+      {(descriptionWrong && descriptionError) && <div className="form-error">{descriptionError}</div>}
       <textarea
         onBlur={e => bluerHandler(e)}
         value={todo.description}
@@ -131,7 +131,7 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      {(startTimeDirty && startTimeError) && <div>{startTimeError}</div>}
+      {(startTimeWrong && startTimeError) && <div className="form-error">{startTimeError}</div>}
       <DatePicker
         onBlur={e => bluerHandler(e)}
         name="starttime"
@@ -149,7 +149,7 @@ const AddTodoForm = ({ create, modal }) => {
         timeCaption="time"
         locale={ru}
       />
-       {(endTimeDirty && endTimeError) && <div>{endTimeError}</div>}
+       {(endTimeWrong && endTimeError) && <div className="form-error">{endTimeError}</div>}
       <DatePicker
         onBlur={e => bluerHandler(e)}
         name="endtime"
