@@ -193,7 +193,7 @@ const Todos = ({
           return (
             <div
             className={`todo-item 
-            ${(todo.endTime <= dateNow) && todo.status !== "done" ? "overdue" : ""}
+            ${(todo.endTime <= dateNow && todo.status !== "done") ? "overdue" : ""}
             ${todo.status === "done" ? "done" : ""}
             ${deleteId === todo._id ? "delete-animation" : ""}`}
             key={index}

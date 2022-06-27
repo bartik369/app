@@ -17,75 +17,9 @@ const AddTodoForm = ({ create, modal }) => {
     }
   );
 
-  const [titleWrong, setTitleWrong] = useState(false);
-  const [descriptionWrong, setDescriptionWrong] = useState(false);
-  const [startTimeWrong, setStartTimeWrong] = useState(false);
-  const [endTimeWrong, setEndTimeWrong] = useState(false);
-
-  const [titleError, setTitleError] = useState('Укажите название');
-  const [descriptionError, setDescriptionError] = useState('Укажите описание');
-  const [startTimeError, setStartTimeError] = useState('Укажите дату начала');
-  const [endTimeError, setEndTimeError] = useState('Укажите дату окончания');
-  const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-    if (titleError || descriptionError || startTimeError || endTimeError) {
-      setValidForm(false)
-    } else {
-      setValidForm(true)
-    }
-
-  }, [titleError, descriptionError, startTimeError, endTimeError]);
-
-
-  const bluerHandler = (e) => {
-    switch (e.target.name) {
-      case 'title':
-        setTitleWrong(true)
-        break
-      case 'description':
-        setDescriptionWrong(true)
-        break
-      case 'starttime':
-        setStartTimeWrong(true)
-        break
-      case 'endtime':
-        setEndTimeWrong(true)
-        break
-    }
-
-  }
-
-  const titleHandler = (e) => {
-    setTodo({...todo, title: e.target.value});
-    setTitleError('');
-    if (!e.target.value) {
-      setTitleError('Укажите заголовок задачи')
-    }
-  }
-
-  const descriptionHandler = (e) => {
-    setTodo({...todo, description: e.target.value})
-    setDescriptionError('');
-    if (!e.target.value) {
-      setDescriptionError('Укажите описание задачи')
-    }
-  }
-
-  const startTimeHandler = (date) => {
-    setTodo({...todo, startTime:date})
-    setStartTimeError('');
-    if (!date.target.value) {
-      setStartTimeError('Укажите дату')
-    }
-  }
-  const endTimeHandler = (date) => {
-    setTodo({...todo, endTime:date})
-    setEndTimeError('');
-    if (!date.target.value) {
-      setEndTimeError('Укажите дату')
-    }
-  }
+  }, []);
 
 
   const addTodoHandler = () => {
@@ -112,31 +46,38 @@ const AddTodoForm = ({ create, modal }) => {
     setTimeout(popOut, 1000);
   };
 
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setTodo({...todo, [name]: value})
+  }
+
+  const handleStartTime = (date) => {
+    setTodo({...todo, startTime: date})
+  }
+
+  const handleEndTime = (date) => {
+    setTodo({...todo, endTime: date})
+  }
+
   return (
     <div className="add-todo-form">
-      {(titleWrong && titleError) && <div className="form-error">{titleError}</div>}
       <FormInput
-        onBlur={e => bluerHandler(e)}
         placeholder="Название задачи"
         value={todo.title}
         name="title"
-        onChange={(e) => titleHandler(e)}
+        onChange={(e) => handleChange(e)}
       />
-      {(descriptionWrong && descriptionError) && <div className="form-error">{descriptionError}</div>}
       <textarea
-        onBlur={e => bluerHandler(e)}
         value={todo.description}
         name="description"
-        onChange={(e) => descriptionHandler(e)}
+        onChange={(e) => handleChange(e)}
         cols="20"
         rows="10"
       />
-      {(startTimeWrong && startTimeError) && <div className="form-error">{startTimeError}</div>}
       <DatePicker
-        onBlur={e => bluerHandler(e)}
         name="starttime"
         selected={todo.startTime}
-        onChange={(date) => startTimeHandler(date)}
+        onChange={(date) => handleStartTime(date)}
         selectsStart
         startDate={todo.startTime}
         endDate={todo.endTime}
@@ -149,12 +90,10 @@ const AddTodoForm = ({ create, modal }) => {
         timeCaption="time"
         locale={ru}
       />
-       {(endTimeWrong && endTimeError) && <div className="form-error">{endTimeError}</div>}
       <DatePicker
-        onBlur={e => bluerHandler(e)}
         name="endtime"
         selected={todo.endTime}
-        onChange={(date) => endTimeHandler(date)}
+        onChange={(date) => handleEndTime(date)}
         selectsEnd
         startDate={todo.startTime}
         endDate={todo.endTime}
@@ -169,7 +108,7 @@ const AddTodoForm = ({ create, modal }) => {
         locale={ru}
       />
       
-      <button disabled={!validForm} type='submit' className="add-btn" onClick={() => addTodoHandler()}>
+      <button type='submit' className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
     </div>

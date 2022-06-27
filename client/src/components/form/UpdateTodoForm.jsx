@@ -32,22 +32,35 @@ const handleTodoUpdate = () => {
   updateTodo(updateTodoData)
 }
 
+const handleChange = (e) => {
+  const {name, value} = e.target;
+  setUpdatedTodo({...updatedTodo, [name]: value})
+}
+
+const handleStartTime = (date) => {
+  setUpdatedTodo({...updatedTodo, startTime: date})
+}
+
+const handleEndTime = (date) => {
+  setUpdatedTodo({...updatedTodo, endTime: date})
+}
+
   return (
         <div className="update-todo-form">
             <FormInput
             value={updatedTodo.title || ""}
             name="title"
-            onChange={(e) => setUpdatedTodo({...updatedTodo, title: e.target.value})}
+            onChange={(e) => handleChange(e)}
             />
             <textarea
             rows="10"
             name="description"
             value={updatedTodo.description || ""}
-            onChange={(e) => setUpdatedTodo({...updatedTodo, description: e.target.value})}
+            onChange={(e) => handleChange(e)}
             />
              <DatePicker
               selected={Date.parse(updatedTodo.startTime)}
-              onChange={(date) => setUpdatedTodo({...updatedTodo, startTime:date})}
+              onChange={(date) => handleStartTime(date)}
               selectsStart
               startDate={Date.parse(updatedTodo.startTime)}
               endDate={Date.parse(updatedTodo.endTime)}
@@ -63,7 +76,7 @@ const handleTodoUpdate = () => {
               />
               <DatePicker 
                 selected={Date.parse(updatedTodo.endTime)}
-                onChange={(date) => setUpdatedTodo({...updatedTodo, endTime:date})}
+                onChange={(date) => handleEndTime(date)}
                 selectsEnd
                 startDate={Date.parse(updatedTodo.startTime)}
                 endDate={Date.parse(updatedTodo.endTime)}
