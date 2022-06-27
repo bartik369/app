@@ -66,14 +66,18 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
     {name: 'Аксессуары', value: 'accessories'},
   ];
 
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setEditDevice({...editDevice, [name]: value});
+  }
 
   return (
     <form className="add-device-form">
        <select
-      name="typeDevice" 
+      name="type" 
       id="typeDevice"
       value={editDevice.type}
-      onChange={(e) => setEditDevice({ ...editDevice, type: e.target.value })}
+      onChange={(e) => handleChange(e)}
       >
         <option value="" disabled="disabled">Тип устройства</option>
         {deviceTypeArray.map((item, index) => (
@@ -82,27 +86,24 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
       </select>
       <FormInput
         placeholder="Название устройства"
+        name="name"
         type="text"
         value={editDevice.name}
-        onChange={(e) =>
-          setEditDevice({ ...editDevice, name: e.target.value })
-        }
+        onChange={(e) => handleChange(e)}
       />
       <FormInput
         placeholder="Номер устройства"
+        name="number"
         type="text"
         value={editDevice.number}
-        onChange={(e) =>
-          setEditDevice({ ...editDevice, number: e.target.value })
-        }
+        onChange={(e) => handleChange(e)}
       />
       <FormInput
         placeholder="Имя пользователя"
+        name="user"
         type="text"
         value={editDevice.user}
-        onChange={(e) =>
-          setEditDevice({ ...editDevice, user: e.target.value })
-        }
+        onChange={(e) => handleChange(e)}
       />
       <button className="add-btn" onClick={(e) => handleUpdateDevice(e)}>
         Обновить

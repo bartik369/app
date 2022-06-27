@@ -42,14 +42,19 @@ const AddDeviceForm = ({ create }) => {
     });
   };
 
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setDevice({...device, [name]: value})
+  }
+
 
   return (
     <form className="add-device-form">
       <select
       defaultValue=""
-      name="typeDevice" 
+      name="type" 
       id="typeDevice"
-      onChange={(e) => setDevice({ ...device, type: e.target.value })}
+      onChange={(e) => handleChange(e)}
       >
         <option value="" disabled>Тип устройства</option>
         {deviceTypeArray.map((item, index) => (
@@ -58,21 +63,24 @@ const AddDeviceForm = ({ create }) => {
       </select>
       <FormInput
         placeholder="Название устройства"
+        name="name"
         type="text"
         value={device.name}
-        onChange={(e) => setDevice({ ...device, name: e.target.value })}
+        onChange={(e) => handleChange(e)}
       />
       <FormInput
         placeholder="Номер устройства"
+        name="number"
         type="text"
         value={device.number}
-        onChange={(e) => setDevice({ ...device, number: e.target.value })}
+        onChange={(e) => handleChange(e)}
       />
       <FormInput
         placeholder="Имя пользователя"
+        name="user"
         type="text"
         value={device.user}
-        onChange={(e) => setDevice({ ...device, user: e.target.value })}
+        onChange={(e) => handleChange(e)}
       />
       <button className="add-btn" onClick={(e) => handleAddDevice(e)}>
         Добавить
