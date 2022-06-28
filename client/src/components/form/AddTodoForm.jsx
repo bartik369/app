@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
+import FormErrors from "./FormErrors";
 
 
 const AddTodoForm = ({ create, modal }) => {
@@ -14,13 +15,20 @@ const AddTodoForm = ({ create, modal }) => {
       status: "",
       startTime: "",
       endTime: "",
+
+      formErrors: {
+        title: 'Enter todo title',
+        description: 'Enter description',
+      },
+      titleValid: false,
+      descriptionValid: false,
+      formValid: false,
     }
   );
 
 
   useEffect(() => {
   }, []);
-
 
   const addTodoHandler = () => {
      const newTodo = {
@@ -48,7 +56,8 @@ const AddTodoForm = ({ create, modal }) => {
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    setTodo({...todo, [name]: value})
+    setTodo({...todo, [name]: value}, () => validateField(name, value))
+
   }
 
   const handleStartTime = (date) => {
@@ -59,8 +68,18 @@ const AddTodoForm = ({ create, modal }) => {
     setTodo({...todo, endTime: date})
   }
 
+  const validateField = (fieldName, value) => {
+    let fieldValidationErrors = todo.formErrors;
+    let titleValid = todo.titleValid;
+
+    switch(fieldName) {
+      case 'title':
+    }
+  }
+
   return (
     <div className="add-todo-form">
+      <FormErrors />
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
