@@ -74,12 +74,19 @@ const AddTodoForm = ({ create, modal }) => {
 
     switch(fieldName) {
       case 'title':
+        titleValid = "";
+        fieldValidationErrors.title = titleValid ? "" : "please add title"
+        break;
     }
+    setTodo({formErrors: fieldValidationErrors, titleValid: titleValid}, validateForm())
+  }
+  const validateForm = () => {
+    setTodo({formValid: todo.titleValid})
   }
 
   return (
     <div className="add-todo-form">
-      <FormErrors />
+      <FormErrors formErrors={todo.formErrors}/>
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
