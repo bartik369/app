@@ -56,7 +56,7 @@ const AddTodoForm = ({ create, modal }) => {
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    setTodo({...todo, [name]: value}, () => validateField(name, value))
+    setTodo({...todo, [name]: value})
 
   }
 
@@ -68,25 +68,9 @@ const AddTodoForm = ({ create, modal }) => {
     setTodo({...todo, endTime: date})
   }
 
-  const validateField = (fieldName, value) => {
-    let fieldValidationErrors = todo.formErrors;
-    let titleValid = todo.titleValid;
-
-    switch(fieldName) {
-      case 'title':
-        titleValid = "";
-        fieldValidationErrors.title = titleValid ? "" : "please add title"
-        break;
-    }
-    setTodo({formErrors: fieldValidationErrors, titleValid: titleValid}, validateForm())
-  }
-  const validateForm = () => {
-    setTodo({formValid: todo.titleValid})
-  }
-
   return (
     <div className="add-todo-form">
-      <FormErrors formErrors={todo.formErrors}/>
+      <FormErrors />
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
