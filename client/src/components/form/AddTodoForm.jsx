@@ -15,20 +15,61 @@ const AddTodoForm = ({ create, modal }) => {
       status: "",
       startTime: "",
       endTime: "",
-
       formErrors: {
-        title: 'Enter todo title',
-        description: 'Enter description',
+        title: "",
+        description: "",
       },
       titleValid: false,
-      descriptionValid: false,
+      descriptionValide: false,
+      stratTimeValid: false,
+      endTimeValid: false,
       formValid: false,
-    }
+      }
   );
 
 
   useEffect(() => {
   }, []);
+
+  const validateField = (name, value) => {
+    let fieldValidationErros = todo.formErrors;
+    let titleValid = todo.titleValid;
+    let descriptionValid = todo.descriptionValide;
+
+    switch(name) {
+      case "title":
+        titleValid = value.length >= 5;
+        fieldValidationErros.title = titleValid ? "" : "please more symbol";
+        break;
+      case "description":
+        descriptionValid = value.length >= 15;
+        fieldValidationErros.description = descriptionValid ? "" : "please more symbol title"
+        break;
+    }
+    setTodo({
+      formErrors: fieldValidationErros, 
+      titleValid: titleValid,
+      descriptionValide: descriptionValid,
+    }, validateForm())
+  }
+
+  const validateForm = () => { 
+    setTodo({formValid: todo.titleValid && todo.descriptionValide})
+  }
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setTodo({...todo, [name]: value})
+    validateField(name, value)
+  }
+
+  const handleStartTime = (date) => {
+    setTodo({...todo, startTime: date})
+  }
+
+  const handleEndTime = (date) => {
+    setTodo({...todo, endTime: date})
+  }
 
   const addTodoHandler = () => {
      const newTodo = {
@@ -54,29 +95,17 @@ const AddTodoForm = ({ create, modal }) => {
     setTimeout(popOut, 1000);
   };
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setTodo({...todo, [name]: value})
-
-  }
-
-  const handleStartTime = (date) => {
-    setTodo({...todo, startTime: date})
-  }
-
-  const handleEndTime = (date) => {
-    setTodo({...todo, endTime: date})
-  }
-
   return (
     <div className="add-todo-form">
-      <FormErrors />
+      <FormErrors formErrors={todo.formErrors}/>
+      <div>{todo.formErrors.title}</div>
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
         name="title"
         onChange={(e) => handleChange(e)}
       />
+      <div>{todo.formErrors.description}</div>
       <textarea
         value={todo.description}
         name="description"
@@ -118,7 +147,7 @@ const AddTodoForm = ({ create, modal }) => {
         locale={ru}
       />
       
-      <button type='submit' className="add-btn" onClick={() => addTodoHandler()}>
+      <button disabled={!todo.formValid} type='submit' className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
     </div>
