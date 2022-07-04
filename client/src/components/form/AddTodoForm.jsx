@@ -15,54 +15,44 @@ const AddTodoForm = ({ create, modal }) => {
       status: "",
       startTime: "",
       endTime: "",
-      formErrors: {
-        title: "",
-        description: "",
-      },
-      titleValid: false,
-      descriptionValide: false,
-      stratTimeValid: false,
-      endTimeValid: false,
-      formValid: false,
       }
   );
 
-
+  const [errors, setErrors] = useState(
+    {
+      title: "",
+      description: "",
+    }
+    )
   useEffect(() => {
   }, []);
 
-  const validateField = (name, value) => {
-    let fieldValidationErros = todo.formErrors;
-    let titleValid = todo.titleValid;
-    let descriptionValid = todo.descriptionValide;
-
-    switch(name) {
+  const validate = (name, value) => {
+    switch (name) {
       case "title":
-        titleValid = value.length >= 5;
-        fieldValidationErros.title = titleValid ? "" : "Заголовок должен быть не короче 5 символов";
+        if (value.length <= 4) {
+          setErrors({...errors, title: "Title is so short"})
+        } else {
+          setErrors({...errors, title: ""})
+        }
         break;
       case "description":
-        descriptionValid = value.length >= 15;
-        fieldValidationErros.description = descriptionValid ? "" : "Описание должно быть не короче 15 символов"
-        break;
-        default:
+        if (value.length <= 15) {
+          setErrors({...errors, description: "Description too short"})
+        } else {
+          setErrors({...errors, description: ""})
+        }
+        break
+      default:
         break;
     }
-    setTodo({
-      formErrors: fieldValidationErros, 
-      titleValid: titleValid,
-      descriptionValide: descriptionValid,
-    }, validateForm())
   }
 
-  const validateForm = () => { 
-    setTodo({formValid: todo.titleValid && todo.descriptionValide})
-  }
-
+ 
   const handleChange = (e) => {
     const {name, value} = e.target;
+    validate(name, value)
     setTodo({...todo, [name]: value})
-    validateField(name, value)
   }
 
   const handleStartTime = (date) => {
@@ -99,15 +89,14 @@ const AddTodoForm = ({ create, modal }) => {
 
   return (
     <div className="add-todo-form">
-      {/* <FormErrors formErrors={todo.formErrors}/> */}
-      <div>{todo.formErrors.title}</div>
+      {errors.title && <h3>{errors.title}</h3>}
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
         name="title"
         onChange={(e) => handleChange(e)}
       />
-      <div>{todo.formErrors.description}</div>
+      {errors.description && <h3>{errors.description}</h3>}
       <textarea
         value={todo.description}
         name="description"
@@ -149,7 +138,7 @@ const AddTodoForm = ({ create, modal }) => {
         locale={ru}
       />
       
-      <button disabled={!todo.formValid} type='submit' className="add-btn" onClick={() => addTodoHandler()}>
+      <button type='submit' className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
     </div>
