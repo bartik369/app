@@ -39,11 +39,13 @@ const AddTodoForm = ({ create, modal }) => {
     switch(name) {
       case "title":
         titleValid = value.length >= 5;
-        fieldValidationErros.title = titleValid ? "" : "please more symbol";
+        fieldValidationErros.title = titleValid ? "" : "Заголовок должен быть не короче 5 символов";
         break;
       case "description":
         descriptionValid = value.length >= 15;
-        fieldValidationErros.description = descriptionValid ? "" : "please more symbol title"
+        fieldValidationErros.description = descriptionValid ? "" : "Описание должно быть не короче 15 символов"
+        break;
+        default:
         break;
     }
     setTodo({
@@ -97,7 +99,7 @@ const AddTodoForm = ({ create, modal }) => {
 
   return (
     <div className="add-todo-form">
-      <FormErrors formErrors={todo.formErrors}/>
+      {/* <FormErrors formErrors={todo.formErrors}/> */}
       <div>{todo.formErrors.title}</div>
       <FormInput
         placeholder="Название задачи"
