@@ -17,35 +17,48 @@ const AddTodoForm = ({ create, modal }) => {
       endTime: "",
       }
   );
+  const [valid, setValid] = useState(
+    {
+      title: "",
+      description: "",
+    }
+  )
 
   const [errors, setErrors] = useState(
     {
       title: "",
       description: "",
     }
-    )
+  )
+  const [validForm, setValidForm] = useState(false);
+
   useEffect(() => {
   }, []);
 
   const validate = (name, value) => {
+    let titleValid = valid.title;
+    let descriptionValid = valid.description;
+    titleValid = value.match(/^[^\s]/)
     switch (name) {
       case "title":
-        if (value.length <= 4) {
-          setErrors({...errors, title: "Title is so short"})
-        } else {
-          setErrors({...errors, title: ""})
-        }
+        !titleValid || value === ""
+          ? setErrors({...errors, title: "Укажите корректный заголовок"})
+          : setErrors({...errors, title: ""})
         break;
-      case "description":
-        if (value.length <= 15) {
-          setErrors({...errors, description: "Description too short"})
-        } else {
-          setErrors({...errors, description: ""})
-        }
-        break
+      // case "description":
+      //   if (!value.match(regexpText)) {
+      //     setErrors({...errors, description: "Укажите корректное описание задачи"})
+      //   } else {
+      //     setErrors({...errors, description: ""})
+      //   }
+      //   break
       default:
         break;
     }
+    validateForm()
+  }
+  const validateForm = () => {
+   
   }
 
  
@@ -138,7 +151,7 @@ const AddTodoForm = ({ create, modal }) => {
         locale={ru}
       />
       
-      <button type='submit' className="add-btn" onClick={() => addTodoHandler()}>
+      <button disabled={!validForm} type='submit' className="add-btn" onClick={() => addTodoHandler()}>
         Добавить
       </button>
     </div>
