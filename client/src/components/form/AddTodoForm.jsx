@@ -21,14 +21,13 @@ const AddTodoForm = ({ create, modal }) => {
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-    if (errors.title && errors.description === "") {
-      console.log('correct')
+    if ((errors.title === "") && (errors.description === "")) {
+      setValidForm(true)
     } else {
-      console.log("incorrect")
     }
   }, [errors.description, errors.title]);
 
-  const validate = (name, value) => {
+  const validate = (name, value, date) => {
 
     switch (name) {
       case "title":
@@ -41,6 +40,16 @@ const AddTodoForm = ({ create, modal }) => {
           ? setErrors({...errors, description: "Укажите корректное описание"})
           : setErrors({...errors, description: ""})
         break;
+      case "starttime":
+        !new RegExp(/^\d+$/).test(date)
+          ? setErrors({...errors, starttime: "Введите цифры"})
+          : setErrors({...errors, starttime: ""})
+        break
+      case "endtime":
+        !new RegExp(/^\d+$/).test(date)
+          ? setErrors({...errors, endtime: "Введите цифры"})
+          : setErrors({...errors, endtime: ""})
+        break
       default:
         break;
     }
@@ -101,8 +110,10 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
+      {errors.starttime && <h3>{errors.starttime}</h3>}
       <DatePicker
         name="starttime"
+        value={todo.startTime}
         selected={todo.startTime}
         onChange={(date) => handleStartTime(date)}
         selectsStart
@@ -117,8 +128,10 @@ const AddTodoForm = ({ create, modal }) => {
         timeCaption="time"
         locale={ru}
       />
+      {errors.endtime && <h3>{errors.endtime}</h3>}
       <DatePicker
         name="endtime"
+        value={todo.endTime}
         selected={todo.endTime}
         onChange={(date) => handleEndTime(date)}
         selectsEnd
