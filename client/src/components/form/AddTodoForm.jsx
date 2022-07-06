@@ -3,8 +3,6 @@ import FormInput from "./FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
-import FormErrors from "./FormErrors";
-
 
 const AddTodoForm = ({ create, modal }) => {
   const [todo, setTodo] = useState(
@@ -17,51 +15,37 @@ const AddTodoForm = ({ create, modal }) => {
       endTime: "",
       }
   );
-  const [valid, setValid] = useState(
-    {
-      title: "",
-      description: "",
-    }
-  )
 
-  const [errors, setErrors] = useState(
-    {
-      title: "",
-      description: "",
-    }
-  )
+  const [errors, setErrors] = useState({});
+  
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-  }, []);
+    if (errors.title && errors.description === "") {
+      console.log('correct')
+    } else {
+      console.log("incorrect")
+    }
+  }, [errors.description, errors.title]);
 
   const validate = (name, value) => {
-    let titleValid = valid.title;
-    let descriptionValid = valid.description;
-    titleValid = value.match(/^[^\s]/)
+
     switch (name) {
       case "title":
-        !titleValid || value === ""
+        !new RegExp(/^[^\s]/).test(value)
           ? setErrors({...errors, title: "Укажите корректный заголовок"})
           : setErrors({...errors, title: ""})
         break;
-      // case "description":
-      //   if (!value.match(regexpText)) {
-      //     setErrors({...errors, description: "Укажите корректное описание задачи"})
-      //   } else {
-      //     setErrors({...errors, description: ""})
-      //   }
-      //   break
+      case "description":
+        !new RegExp(/^[^\s]/).test(value)
+          ? setErrors({...errors, description: "Укажите корректное описание"})
+          : setErrors({...errors, description: ""})
+        break;
       default:
         break;
     }
-    validateForm()
-  }
-  const validateForm = () => {
-   
   }
 
- 
   const handleChange = (e) => {
     const {name, value} = e.target;
     validate(name, value)
