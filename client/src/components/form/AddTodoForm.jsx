@@ -15,9 +15,9 @@ const AddTodoForm = ({ create, modal }) => {
       endTime: "",
       }
   );
+  //dsfddf
 
   const [errors, setErrors] = useState({});
-  
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
@@ -27,8 +27,7 @@ const AddTodoForm = ({ create, modal }) => {
     }
   }, [errors.description, errors.title]);
 
-  const validate = (name, value, date) => {
-
+  const validate = (name, value) => {
     switch (name) {
       case "title":
         !new RegExp(/^[^\s]/).test(value)
@@ -40,16 +39,6 @@ const AddTodoForm = ({ create, modal }) => {
           ? setErrors({...errors, description: "Укажите корректное описание"})
           : setErrors({...errors, description: ""})
         break;
-      case "starttime":
-        !new RegExp(/^\d+$/).test(date)
-          ? setErrors({...errors, starttime: "Введите цифры"})
-          : setErrors({...errors, starttime: ""})
-        break
-      case "endtime":
-        !new RegExp(/^\d+$/).test(date)
-          ? setErrors({...errors, endtime: "Введите цифры"})
-          : setErrors({...errors, endtime: ""})
-        break
       default:
         break;
     }
@@ -62,6 +51,7 @@ const AddTodoForm = ({ create, modal }) => {
   }
 
   const handleStartTime = (date) => {
+    validate(date)
     setTodo({...todo, startTime: date})
   }
 
