@@ -15,19 +15,27 @@ const AddTodoForm = ({ create, modal }) => {
       endTime: "",
       }
   );
-  //dsfddf
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    errors: "",
+    title: "",
+    starttime: "",
+    endtime: "",
+  });
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-    if ((errors.title === "") && (errors.description === "")) {
+    if ((errors.title === "") 
+    && (errors.description === "")
+    && (errors.starttime === "")
+    && (errors.endtime === "")
+    ) {
       setValidForm(true)
     } else {
     }
-  }, [errors.description, errors.title]);
+  }, [errors.description, errors.title, errors.starttime, errors.endtime]);
 
-  const validate = (name, value) => {
+  const validate = (name, value, startTime) => {
     switch (name) {
       case "title":
         !new RegExp(/^[^\s]/).test(value)
@@ -39,6 +47,13 @@ const AddTodoForm = ({ create, modal }) => {
           ? setErrors({...errors, description: "Укажите корректное описание"})
           : setErrors({...errors, description: ""})
         break;
+      case "starttime":
+       if (startTime.length === 0) {
+        setErrors({...errors, starttime: "Укажите корректный заголовок"})
+       } else {
+        setErrors({...errors, starttime: ""})
+       }
+      break;
       default:
         break;
     }
@@ -51,11 +66,13 @@ const AddTodoForm = ({ create, modal }) => {
   }
 
   const handleStartTime = (date) => {
-    validate(date)
+    const startTime = (date.toLocaleString('ru-RU'));
+    validate(startTime)
     setTodo({...todo, startTime: date})
   }
 
   const handleEndTime = (date) => {
+    validate(date)
     setTodo({...todo, endTime: date})
   }
 
@@ -75,7 +92,6 @@ const AddTodoForm = ({ create, modal }) => {
       status: "",
       startTime: "",
       endTime: "",
-
     })
     const popOut = () => {
       modal(false)

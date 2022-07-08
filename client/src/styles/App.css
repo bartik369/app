@@ -114,6 +114,9 @@ h6 {
     color: #fff;
     transition: all .7s ease-in;
 }
+.add-btn:disabled {
+    cursor: not-allowed;
+}
 
 .add-btn:hover {
     background: #2acab2;
