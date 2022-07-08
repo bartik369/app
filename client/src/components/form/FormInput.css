@@ -21,3 +21,8 @@ textarea {
     width: 100%;
     padding: 12px;
 }
+
+.validation-error {
+    color: hotpink;
+    font-size: 15px;
+}

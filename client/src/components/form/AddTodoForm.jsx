@@ -25,17 +25,12 @@ const AddTodoForm = ({ create, modal }) => {
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-    if ((errors.title === "") 
-    && (errors.description === "")
-    && (errors.starttime === "")
-    && (errors.endtime === "")
-    ) {
+    if (todo.title !== "" && todo.description !== "" && todo.startTime !== "" && todo.endTime !== "") {
       setValidForm(true)
-    } else {
     }
-  }, [errors.description, errors.title, errors.starttime, errors.endtime]);
+  }, [todo.title, todo.description, todo.startTime, todo.endTime]);
 
-  const validate = (name, value, startTime) => {
+  const validate = (name, value) => {
     switch (name) {
       case "title":
         !new RegExp(/^[^\s]/).test(value)
@@ -47,13 +42,6 @@ const AddTodoForm = ({ create, modal }) => {
           ? setErrors({...errors, description: "Укажите корректное описание"})
           : setErrors({...errors, description: ""})
         break;
-      case "starttime":
-       if (startTime.length === 0) {
-        setErrors({...errors, starttime: "Укажите корректный заголовок"})
-       } else {
-        setErrors({...errors, starttime: ""})
-       }
-      break;
       default:
         break;
     }
@@ -66,13 +54,10 @@ const AddTodoForm = ({ create, modal }) => {
   }
 
   const handleStartTime = (date) => {
-    const startTime = (date.toLocaleString('ru-RU'));
-    validate(startTime)
     setTodo({...todo, startTime: date})
   }
 
   const handleEndTime = (date) => {
-    validate(date)
     setTodo({...todo, endTime: date})
   }
 
@@ -101,14 +86,14 @@ const AddTodoForm = ({ create, modal }) => {
 
   return (
     <div className="add-todo-form">
-      {errors.title && <h3>{errors.title}</h3>}
+      {errors.title && <div className="validation-error">{errors.title}</div>}
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
         name="title"
         onChange={(e) => handleChange(e)}
       />
-      {errors.description && <h3>{errors.description}</h3>}
+      {errors.description && <div className="validation-error">{errors.description}</div>}
       <textarea
         value={todo.description}
         name="description"
@@ -116,7 +101,7 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      {errors.starttime && <h3>{errors.starttime}</h3>}
+      {errors.starttime && <div className="validation-error">{errors.starttime}</div>}
       <DatePicker
         name="starttime"
         value={todo.startTime}
@@ -134,7 +119,7 @@ const AddTodoForm = ({ create, modal }) => {
         timeCaption="time"
         locale={ru}
       />
-      {errors.endtime && <h3>{errors.endtime}</h3>}
+      {errors.endtime && <div className="validation-error">{errors.endtime}</div>}
       <DatePicker
         name="endtime"
         value={todo.endTime}
