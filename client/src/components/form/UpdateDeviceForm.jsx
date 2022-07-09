@@ -17,6 +17,27 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
     setEditDevice(updateInfo);
   }, [updateInfo]);
 
+  useEffect(() => {
+    if (editDevice.type !== "" 
+    && editDevice.name !== "" 
+    && editDevice.number !== "" 
+    && editDevice.user !== "") {
+      setValidForm(true)
+    } else {
+      setValidForm(false)
+    }
+  }, [editDevice.type, editDevice.name, editDevice.number, editDevice.user]);
+
+  const [errors, setErrors] = useState(
+    {
+      type: "",
+      name: "",
+      number: "",
+      user: "",
+    }
+  );
+  const [validForm, setValidForm] = useState(false);
+
   const handleUpdateDevice = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -66,13 +87,43 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
     {name: 'Аксессуары', value: 'accessories'},
   ];
 
+  const validate = (name, value) => {
+    const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
+    switch (name) {
+      case "type":
+        !new RegExp(/^[^\s]/).test(value)
+          ? setErrors({...errors, type: "Укажите тип устройства"})
+          : setErrors({...errors, type: ""})
+        break;
+      case "name":
+        !checkRegExp
+          ? setErrors({...errors, name: "Введите корректное имя"})
+          : setErrors({...errors, name: ""})
+        break;
+      case "number":
+        !checkRegExp
+          ? setErrors({...errors, number: "Введите корректный номер"})
+          : setErrors({...errors, number: ""})
+        break;
+      case "user":
+        !checkRegExp
+          ? setErrors({...errors, user: "Введите корректное имя"})
+          : setErrors({...errors, user: ""})
+        break;
+      default:
+        break;
+    }
+  }
+
   const handleChange = (e) => {
     const {name, value} = e.target;
+    validate(name, value)
     setEditDevice({...editDevice, [name]: value});
   }
 
   return (
     <form className="add-device-form">
+      {errors.type && <div className="form-error">{errors.type}</div>}
        <select
       name="type" 
       id="typeDevice"
@@ -84,6 +135,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
             <option key={index}>{item.name}</option>
         ))}
       </select>
+      {errors.name && <div className="form-error">{errors.name}</div>}
       <FormInput
         placeholder="Название устройства"
         name="name"
@@ -91,6 +143,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
         value={editDevice.name}
         onChange={(e) => handleChange(e)}
       />
+      {errors.number && <div className="form-error">{errors.number}</div>}
       <FormInput
         placeholder="Номер устройства"
         name="number"
@@ -98,6 +151,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
         value={editDevice.number}
         onChange={(e) => handleChange(e)}
       />
+      {errors.user && <div className="form-error">{errors.user}</div>}
       <FormInput
         placeholder="Имя пользователя"
         name="user"
@@ -105,7 +159,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
         value={editDevice.user}
         onChange={(e) => handleChange(e)}
       />
-      <button className="add-btn" onClick={(e) => handleUpdateDevice(e)}>
+      <button disabled={!validForm} type="submit" className="add-btn" onClick={(e) => handleUpdateDevice(e)}>
         Обновить
       </button>
     </form>

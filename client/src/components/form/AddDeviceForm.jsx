@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import FormInput from "./FormInput";
 
 const AddDeviceForm = ({ create }) => {
@@ -11,6 +11,16 @@ const AddDeviceForm = ({ create }) => {
     addTime: "",
   });
 
+  const [errors, setErrors] = useState(
+    {
+      type: "",
+      name: "",
+      number: "",
+      user: "",
+    }
+  );
+  const [validForm, setValidForm] = useState(false);
+
 
   const deviceTypeArray = [
     {name: 'Компьютеры', value: 'pc'},
@@ -19,6 +29,17 @@ const AddDeviceForm = ({ create }) => {
     {name: 'Телефоны', value: 'phones'},
     {name: 'Аксессуары', value: 'accessories'},
   ];
+
+  useEffect(() => {
+    if (device.type !== "" 
+    && device.name !== "" 
+    && device.number !== "" 
+    && device.user !== "") {
+      setValidForm(true)
+    } else {
+      setValidForm(false)
+    }
+  }, [device.type, device.name, device.number, device.user]);
 
   // Add new device
 
@@ -42,14 +63,44 @@ const AddDeviceForm = ({ create }) => {
     });
   };
 
+  const validate = (name, value) => {
+    const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
+    switch (name) {
+      case "type":
+        !new RegExp(/^[^\s]/).test(value)
+          ? setErrors({...errors, type: "Укажите тип устройства"})
+          : setErrors({...errors, type: ""})
+        break;
+      case "name":
+        !checkRegExp
+          ? setErrors({...errors, name: "Введите корректное имя"})
+          : setErrors({...errors, name: ""})
+        break;
+      case "number":
+        !checkRegExp
+          ? setErrors({...errors, number: "Введите корректный номер"})
+          : setErrors({...errors, number: ""})
+        break;
+      case "user":
+        !checkRegExp
+          ? setErrors({...errors, user: "Введите корректное имя"})
+          : setErrors({...errors, user: ""})
+        break;
+      default:
+        break;
+    }
+  }
+
   const handleChange = (e) => {
     const {name, value} = e.target;
+    validate(name, value)
     setDevice({...device, [name]: value})
   }
 
 
   return (
     <form className="add-device-form">
+      {errors.type && <div className="form-error">{errors.type}</div>}
       <select
       defaultValue=""
       name="type" 
@@ -61,6 +112,7 @@ const AddDeviceForm = ({ create }) => {
             <option key={index}>{item.name}</option>
         ))}
       </select>
+      {errors.name && <div className="form-error">{errors.name}</div>}
       <FormInput
         placeholder="Название устройства"
         name="name"
@@ -68,6 +120,7 @@ const AddDeviceForm = ({ create }) => {
         value={device.name}
         onChange={(e) => handleChange(e)}
       />
+      {errors.number && <div className="form-error">{errors.number}</div>}
       <FormInput
         placeholder="Номер устройства"
         name="number"
@@ -75,6 +128,7 @@ const AddDeviceForm = ({ create }) => {
         value={device.number}
         onChange={(e) => handleChange(e)}
       />
+      {errors.user && <div className="form-error">{errors.user}</div>}
       <FormInput
         placeholder="Имя пользователя"
         name="user"
@@ -82,7 +136,7 @@ const AddDeviceForm = ({ create }) => {
         value={device.user}
         onChange={(e) => handleChange(e)}
       />
-      <button className="add-btn" onClick={(e) => handleAddDevice(e)}>
+      <button disabled={!validForm} type="submit" className="add-btn" onClick={(e) => handleAddDevice(e)}>
         Добавить
       </button>
     </form>

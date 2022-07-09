@@ -114,6 +114,7 @@ h6 {
     color: #fff;
     transition: all .7s ease-in;
 }
+
 .add-btn:disabled {
     cursor: not-allowed;
 }
@@ -186,7 +187,7 @@ h6 {
 .add-device-form {
     width: 100%;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 30px 20px 15px;
 }
 
 
@@ -244,7 +245,7 @@ h6 {
 
 .add-device-block {
     width: 330px;
-    height: 380px;
+    height: fit-content;
     padding: 5px;
     background-color: #ffffff;
     box-shadow: 0 4px 4px 0 rgba(195, 195, 209, .2), 0 8px 8px 0 rgba(195, 195, 209, .2), 0 16px 16px 0 rgba(195, 195, 209, .2), 0 32px 32px 0 rgba(195, 195, 209, .2), 0 64px 64px 0 rgba(195, 195, 209, .2), 0 128px 128px 0 rgba(195, 195, 209, .2);

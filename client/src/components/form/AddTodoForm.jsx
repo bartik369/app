@@ -13,20 +13,26 @@ const AddTodoForm = ({ create, modal }) => {
       status: "",
       startTime: "",
       endTime: "",
-      }
+    }
   );
 
-  const [errors, setErrors] = useState({
-    errors: "",
-    title: "",
-    starttime: "",
-    endtime: "",
-  });
+  const [errors, setErrors] = useState(
+    {
+      title: "",
+      starttime: "",
+      endtime: "",
+    }
+  );
   const [validForm, setValidForm] = useState(false);
 
   useEffect(() => {
-    if (todo.title !== "" && todo.description !== "" && todo.startTime !== "" && todo.endTime !== "") {
+    if (todo.title !== "" 
+    && todo.description !== "" 
+    && todo.startTime !== "" 
+    && todo.endTime !== "") {
       setValidForm(true)
+    } else {
+      setValidForm(false)
     }
   }, [todo.title, todo.description, todo.startTime, todo.endTime]);
 
@@ -86,14 +92,14 @@ const AddTodoForm = ({ create, modal }) => {
 
   return (
     <div className="add-todo-form">
-      {errors.title && <div className="validation-error">{errors.title}</div>}
+      {errors.title && <div className="form-error">{errors.title}</div>}
       <FormInput
         placeholder="Название задачи"
         value={todo.title}
         name="title"
         onChange={(e) => handleChange(e)}
       />
-      {errors.description && <div className="validation-error">{errors.description}</div>}
+      {errors.description && <div className="form-error">{errors.description}</div>}
       <textarea
         value={todo.description}
         name="description"
@@ -101,7 +107,6 @@ const AddTodoForm = ({ create, modal }) => {
         cols="20"
         rows="10"
       />
-      {errors.starttime && <div className="validation-error">{errors.starttime}</div>}
       <DatePicker
         name="starttime"
         value={todo.startTime}
@@ -119,7 +124,6 @@ const AddTodoForm = ({ create, modal }) => {
         timeCaption="time"
         locale={ru}
       />
-      {errors.endtime && <div className="validation-error">{errors.endtime}</div>}
       <DatePicker
         name="endtime"
         value={todo.endTime}

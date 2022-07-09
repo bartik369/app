@@ -29,9 +29,9 @@
     color: #c44661;
     position: relative;
     font-family: inherit;
-    font-size: 12px;
+    font-size: 13px;
     padding: 5px;
-    min-width: 360px;
+    width: fit-content
 }
 
 .date-input {

@@ -7,18 +7,58 @@ import ru from 'date-fns/locale/ru';
 
 const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
 
-const [updatedTodo, setUpdatedTodo] = useState({
-  id: "",
-  title: "",
-  description: "",
-  status: "",
-  startTime: "",
-  endTime: "",
-});
+const [updatedTodo, setUpdatedTodo] = useState(
+  {
+    id: "",
+    title: "",
+    description: "",
+    status: "",
+    startTime: "",
+    endTime: "",
+  }
+);
+
+const [errors, setErrors] = useState(
+  {
+    errors: "",
+    title: "",
+    starttime: "",
+    endtime: "",
+  }
+);
+const [validForm, setValidForm] = useState(false);
 
 useEffect(() => {
   setUpdatedTodo(updateTodoId)
-}, [updateTodoId])
+}, [updateTodoId]);
+
+useEffect(() => {
+  if (updatedTodo.title !== "" 
+  && updatedTodo.description !== "" 
+  && updatedTodo.startTime !== "" 
+  && updatedTodo.endTime !== "") {
+    setValidForm(true)
+  } else {
+    setValidForm(false)
+  }
+}, [kjmupdatedTodo.title, updatedTodo.description, updatedTodo.startTime, updatedTodo.endTime]);
+
+const validate = (name, value) => {
+  switch (name) {
+    case "title":
+      !new RegExp(/^[^\s]/).test(value)
+        ? setErrors({...errors, title: "Укажите корректный заголовок"})
+        : setErrors({...errors, title: ""})
+      break;
+    case "description":
+      !new RegExp(/^[^\s]/).test(value)
+        ? setErrors({...errors, description: "Укажите корректное описание"})
+        : setErrors({...errors, description: ""})
+      break;
+    default:
+      break;
+  }
+}
 
 const handleTodoUpdate = () => {
   const updateTodoData = {
@@ -34,6 +74,7 @@ const handleTodoUpdate = () => {
 
 const handleChange = (e) => {
   const {name, value} = e.target;
+  validate(name, value)
   setUpdatedTodo({...updatedTodo, [name]: value})
 }
 
@@ -47,11 +88,13 @@ const handleEndTime = (date) => {
 
   return (
         <div className="update-todo-form">
+           {errors.title && <div className="form-error">{errors.title}</div>}
             <FormInput
             value={updatedTodo.title || ""}
             name="title"
             onChange={(e) => handleChange(e)}
             />
+            {errors.description && <div className="form-error">{errors.description}</div>}
             <textarea
             rows="10"
             name="description"
@@ -59,6 +102,8 @@ const handleEndTime = (date) => {
             onChange={(e) => handleChange(e)}
             />
              <DatePicker
+              name="starttime"
+              value={updatedTodo.startTime}
               selected={Date.parse(updatedTodo.startTime)}
               onChange={(date) => handleStartTime(date)}
               selectsStart
@@ -72,9 +117,10 @@ const handleEndTime = (date) => {
               dateFormat="Pp"
               timeCaption="time"
               locale={ru}
-              value={updatedTodo.startTime}
               />
               <DatePicker 
+                name="endtime"
+                value={updatedTodo.endTime}
                 selected={Date.parse(updatedTodo.endTime)}
                 onChange={(date) => handleEndTime(date)}
                 selectsEnd
@@ -89,9 +135,8 @@ const handleEndTime = (date) => {
                 dateFormat="Pp"
                 timeCaption="time"
                 locale={ru}
-                value={updatedTodo.endTime}
               />
-            <button className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
+            <button disabled={!validForm} type='submit' className="add-btn" onClick={() => handleTodoUpdate()}>Обновить</button>
         </div>
   )
 }
