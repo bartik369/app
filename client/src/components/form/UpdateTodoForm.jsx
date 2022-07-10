@@ -41,7 +41,7 @@ useEffect(() => {
   } else {
     setValidForm(false)
   }
-}, [kjmupdatedTodo.title, updatedTodo.description, updatedTodo.startTime, updatedTodo.endTime]);
+}, [updatedTodo.title, updatedTodo.description, updatedTodo.startTime, updatedTodo.endTime]);
 
 const validate = (name, value) => {
   switch (name) {
