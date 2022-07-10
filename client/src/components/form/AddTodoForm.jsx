@@ -37,14 +37,15 @@ const AddTodoForm = ({ create, modal }) => {
   }, [todo.title, todo.description, todo.startTime, todo.endTime]);
 
   const validate = (name, value) => {
+    const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
     switch (name) {
       case "title":
-        !new RegExp(/^[^\s]/).test(value)
+        !checkRegExp
           ? setErrors({...errors, title: "Укажите корректный заголовок"})
           : setErrors({...errors, title: ""})
         break;
       case "description":
-        !new RegExp(/^[^\s]/).test(value)
+        !checkRegExp
           ? setErrors({...errors, description: "Укажите корректное описание"})
           : setErrors({...errors, description: ""})
         break;

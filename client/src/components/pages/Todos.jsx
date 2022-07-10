@@ -61,6 +61,7 @@ const Todos = ({
     })
   };
 
+
   const handleTodoDelete = (id) => {
     Axios.delete(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
       const indexOfDelitedItem = todos.filter(

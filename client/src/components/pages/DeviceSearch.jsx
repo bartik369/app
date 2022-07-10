@@ -30,9 +30,6 @@ const DeviceSearch = ({
     fetchDevices();
   }, [setPageName]);
 
-
-  // console.log(devices)
-
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
 
