@@ -6,10 +6,14 @@
 
 .widget-item {
     padding: 20px;
+    height: fit-content;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(179, 183, 201, .2), 0 4px 4px 0 rgba(179, 183, 201, .2), 0 8px 8px 0 rgba(179, 183, 201, .2), 0 16px 16px 0 rgba(179, 183, 201, .2), 0 32px 32px 0 rgba(179, 183, 201, .2);
     border: 1px solid #dde8f9;
     border-radius: 11px;
+}
+.widget-item:not(:last-child) {
+    margin-right: 20px;
 }
 
 .widget-item__title {
@@ -21,30 +25,30 @@
     margin-bottom: 10px;
 }
 
-.last-devices-table {
+.widget-table {
     border-collapse: collapse;
     font-family: sans-serif;
     color: #2f323e;
     font-size: 12px;
 }
 
-.last-devices-table td,
-.last-devices-table th {
+.widget-table td,
+.widget-table th {
     border: 1px solid #ebedf1;
     padding: 12px;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 13px;
 }
 
-.last-devices-table tr:nth-child(even) {
+.widget-table tr:nth-child(even) {
     background-color: #f5f6fb;
 }
 
-.last-devices-table tr:hover {
+.widget-table tr:hover {
     background-color: rgb(240, 240, 240);
 }
 
-.last-devices-table th {
+.widget-table th {
     padding-top: 12px;
     font-size: 13px;
     font-weight: 500;
