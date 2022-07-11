@@ -41,6 +41,7 @@ const Homepage = ({ devices, todos }) => {
                       <th>Название</th>
                       <th>Начать</th>
                       <th>Закончить</th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>
@@ -51,6 +52,17 @@ const Homepage = ({ devices, todos }) => {
                           <td>{todo.title}</td>
                           <td>{todo.startTime}</td>
                           <td>{todo.endTime}</td>
+                          <td>
+                            <button>
+                            <i className="bi bi-check2-square" title="Завершить"></i>
+                            </button>
+                            <button>
+                            <i className="bi bi-arrow-clockwise" title="Обновить"></i>
+                            </button>
+                            <button>
+                            <i className="bi bi-trash3" title="Удалить"></i>
+                            </button>
+                          </td>
                       </tr>
                       : ""
                   ))}
