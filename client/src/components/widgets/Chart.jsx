@@ -2,11 +2,18 @@ import React from "react";
 import "../widgets/widgets.css";
 
 const Chart = ({devices}) => {
+    let deviceArray = [...devices]
+    let newData = []
+    let count = [];
     return (
         <div className="widget-item">
             <div className="widget-item__title">Статиcтика по оборудованию</div>
-            {devices.map((item) => {
-                console.log(item)
+            {deviceArray.map(function(item) {
+                newData.push(item.type)
+                newData.forEach(function(i) {
+                    count[i] = (count[i]||0) + 1
+                })
+                console.log(count)
             })}
         </div>
     )
@@ -14,9 +21,3 @@ const Chart = ({devices}) => {
 
 export default Chart;
 
-
-// document.write('<pre>', JSON.stringify(
-//   [1, 3, 4, 1, 1, 3, 4, 5].reduce((acc, el) => {
-//     acc[el] = (acc[el] || 0) + 1;
-//     return acc;
-//   }, {}), null, 2), '</pre>');
