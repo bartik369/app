@@ -6,12 +6,18 @@
 
 .widget-item {
     padding: 20px;
+    width: fit-content;
     height: fit-content;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(179, 183, 201, .2), 0 4px 4px 0 rgba(179, 183, 201, .2), 0 8px 8px 0 rgba(179, 183, 201, .2), 0 16px 16px 0 rgba(179, 183, 201, .2), 0 32px 32px 0 rgba(179, 183, 201, .2);
     border: 1px solid #dde8f9;
     border-radius: 11px;
 }
+
+.chart {
+    width: 400px;
+}
+
 .widget-item:not(:last-child) {
     margin-right: 20px;
 }
