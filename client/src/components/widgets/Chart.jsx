@@ -5,10 +5,14 @@ const Chart = ({devices}) => {
 
     const getDevicesCount = () => {
         const nameArray = [];
+        const count = [];
         devices.map((item) => {
             nameArray.push(item.type);
         });
-        console.log(nameArray);
+        nameArray.forEach(function(x) {
+            count[x] = (count[x] || 0) + 1
+        })
+        console.log(count)
     }
     getDevicesCount()
 
