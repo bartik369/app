@@ -3,7 +3,7 @@ import "../widgets/widgets.css";
 
 const LastDevices = ({devices}) => {
     const arrayDevices = [...devices];
-    const reverseArrayDevices = arrayDevices.reverse().slice(0, 8);
+    const reverseArrayDevices = arrayDevices.reverse().slice(0, 5);
     return (
         <div className="widget-item">
           <div className="widget-item__title">Последние добавленные</div>
