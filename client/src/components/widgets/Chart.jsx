@@ -25,10 +25,12 @@ const Chart = ({devices}) => {
         animationEnabled: true,
         theme: "light2",
         axisX: {
+            fontSize: 12,
             title: "Категории",
             reversed: true,
         },
         axisY: {
+            fontSize: 12,
             title: "Количество",
             includeZero: true,
         },

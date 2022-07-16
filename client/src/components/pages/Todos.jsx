@@ -3,6 +3,7 @@ import AddTodoForm from "../form/AddTodoForm";
 import Axios from "axios";
 import ENV from "../../env.config";
 import "./Todos.css";
+import "../../styles/App.css"
 import Modal from "../UI/modal/Modal";
 import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';

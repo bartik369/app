@@ -8,39 +8,52 @@ const OverdueTodo = ({todos}) => {
     return (
         <div className="widget-item">
           <div className="widget-item__title">Срочно выполнить</div>
-          <table className="widget-table">
-              <thead>
-                  <tr>
-                      <th>Название</th>
-                      <th>Начать</th>
-                      <th>Закончить</th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {arrayTodos.map((todo, index) => (
+          <div className="todos_info">
+            {arrayTodos.map((todo, index) => (
                       todo.endTime <= dateNow
                       ?
-                      <tr key={index}>
-                          <td>{todo.title}</td>
-                          <td>{todo.startTime}</td>
-                          <td>{todo.endTime}</td>
-                          <td>
-                            <button>
-                            <i className="bi bi-check2-square" title="Завершить"></i>
+                      <div className="overdue__item">
+                        <div className="todos_info__title">{todo.title}</div>
+                        <div className="todos_info__endtime">{todo.endTime}</div>
+                        <div className="todos_info__btns">
+                            <button className="todos_info__btn">
+                                <i className="bi bi-check2-square" title="Завершить"></i>
                             </button>
-                            <button>
-                            <i className="bi bi-arrow-clockwise" title="Обновить"></i>
+                            <button className="todos_info__btn">
+                                <i className="bi bi-arrow-clockwise" title="Обновить"></i>
                             </button>
-                            <button>
-                            <i className="bi bi-trash3" title="Удалить"></i>
+                            <button className="todos_info__btn">
+                                <i className="bi bi-trash3" title="Удалить"></i>
                             </button>
-                          </td>
-                      </tr>
+                        </div>
+                      </div>
                       : ""
                   ))}
-              </tbody>
-          </table>
+          </div>
+          <div className="separat"></div>
+          <div className="widget-item__title">Обратить внимание</div>
+          <div className="todos_info">
+            {arrayTodos.map((todo, index) => (
+                      todo.endTime <= dateNow
+                      ?
+                      <div className="expire-soon__item">
+                        <div className="todos_info__title">{todo.title}</div>
+                        <div className="todos_info__endtime">{todo.endTime}</div>
+                        <div className="todos_info__btns">
+                        <button className="todos_info__btn">
+                            <i className="bi bi-check2-square" title="Завершить"></i>
+                            </button>
+                            <button className="todos_info__btn">
+                            <i className="bi bi-arrow-clockwise" title="Обновить"></i>
+                            </button>
+                            <button className="todos_info__btn">
+                            <i className="bi bi-trash3" title="Удалить"></i>
+                            </button>
+                        </div>
+                      </div>
+                      : ""
+                  ))}
+          </div>
         </div>
     )
 }

@@ -12,8 +12,8 @@ const Homepage = ({ devices, todos }) => {
         <div className="row">
         <div className="col-s"><LastDevices devices={devices}/></div>
         <div className="col-s"><OverdueTodo todos={todos}/></div>
-        <div className="col-s"><LastDevices devices={devices}/></div>
-        <div className="col-s"><OverdueTodo todos={todos}/></div>
+        <div className="col-s">hhgfhfhf</div>
+        <div className="col-s">hgfhf</div>
         </div>
         <div className="row">
           <div className="col-m">

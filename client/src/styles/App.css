@@ -96,7 +96,7 @@ h6 {
     font-size: 21px;
     text-transform: uppercase;
     color: #0d0c21;
-    margin: 20px 0;
+    margin: 10px 0;
     font-weight: bold;
     font-family: sans-serif;
     letter-spacing: -.5px;
@@ -276,6 +276,7 @@ h6 {
 .wrapper {}
 
 .row {
+    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
