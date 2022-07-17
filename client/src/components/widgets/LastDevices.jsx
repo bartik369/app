@@ -6,7 +6,10 @@ const LastDevices = ({devices}) => {
     const reverseArrayDevices = arrayDevices.reverse().slice(0, 5);
     return (
         <div className="widget-item">
-          <div className="widget-item__title">Последние добавленные</div>
+          <div className="wrapper-title">
+          <div className="icon-title"><i className="bi bi-collection"></i></div>
+          <div className="widget-item__title">Последние выданные</div>
+          </div>
           <table className="widget-table">
               <thead>
                   <tr>

@@ -7,7 +7,7 @@
 .widget-item {
     padding: 20px;
     width: 100%;
-    height: fit-content;
+    position: relative;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(179, 183, 201, .2), 0 4px 4px 0 rgba(179, 183, 201, .2), 0 8px 8px 0 rgba(179, 183, 201, .2), 0 16px 16px 0 rgba(179, 183, 201, .2), 0 32px 32px 0 rgba(179, 183, 201, .2);
     border: 1px solid #dde8f9;
@@ -16,15 +16,6 @@
 
 .widget-item:not(:last-child) {
     margin-right: 20px;
-}
-
-.widget-item__title {
-    font-size: 16px;
-    color: #212431;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-family: 'Roboto Condensed', sans-serif;
-    margin-bottom: 10px;
 }
 
 .widget-table {
@@ -65,35 +56,83 @@
     display: flex;
 }
 
+.wrapper-title {
+    line-height: 25px;
+    width: 100%;
+    position: relative;
+}
+
+.icon-title {
+    color: #949bab;
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.icon-title-danger,
+.icon-title-attention {
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.icon-title-danger {
+    color: #d14351;
+}
+
+.icon-title-attention {
+    color: #e2a940;
+}
+
+.widget-item__title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #212431;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: inline-block;
+}
+
 .todos_info__title {
     font-family: 'Roboto Condensed', sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 12px;
     padding: 7px 0;
+    color: #252938;
 }
 
 .todos_info__endtime {
     padding: 5px 0;
+    color: #212431;
 }
 
-.todos_info__btns {
-    margin: 10px 0 5px;
+.button-wrap {
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+    justify-content: end;
 }
 
-.todos_info__btn {
-    font-size: 16px;
-    background-color: transparent;
-    margin: 0 3px;
+.read-more {
+    background-color: #aeb5c2;
+    color: #fff;
+    padding: 5px 7px;
+    transition: .5s ease-in-out;
+}
+
+.read-more:hover {
+    background-color: #d639e1;
 }
 
 .overdue__item {
     display: flex;
     width: 33.3%;
     flex-direction: column;
-    background-color: rgb(254, 222, 232);
     justify-content: center;
-    padding: 8px;
+    padding: 6px;
     text-align: center;
 }
 
@@ -101,15 +140,19 @@
     display: flex;
     width: 33.3%;
     flex-direction: column;
-    background-color: rgb(251, 247, 218);
     justify-content: center;
-    padding: 8px;
+    padding: 0 6px;
     text-align: center;
 }
 
-.overdue__item,
+.overdue__item:not(:first-child) {
+    margin-left: 7px;
+    border-left: 1px solid #d0cdd9;
+}
+
 .expire-soon__item:not(:first-child) {
     margin-left: 7px;
+    border-left: 1px solid #d0cdd9;
 }
 
 .separat {
@@ -117,4 +160,10 @@
     background-color: #d0cdd9;
     width: 40%;
     margin: 20px auto 10px;
+}
+
+.widget-separate {
+    height: 1px;
+    background-color: #d0cdd9;
+    margin: 10px auto;
 }

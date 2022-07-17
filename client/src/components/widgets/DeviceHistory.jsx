@@ -3,14 +3,14 @@ import "../widgets/widgets.css";
 import CanvasJSReact from "../../lib/canvas/canvasjs.react"
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const Chart = ({devices}) => {
+const DeviceHistory = ({devices}) => {
     const nameArray = [];
     let newArray = []
     let count = []
 
     const getDevicesCount = () => {
         devices.map((item) => {
-            nameArray.push(item.type);
+            nameArray.push(item.addTime.split(' ')[0]);
         });
         nameArray.map((sum) => {
             count[sum] = (count[sum] || 0) + 1
@@ -20,40 +20,43 @@ const Chart = ({devices}) => {
         })
     }
     getDevicesCount()
- 
+
     const options = {
-        animationEnabled: true,
         theme: "light2",
+		animationEnabled: true,
+		exportEnabled: true,
         axisX: {
-            fontSize: 12,
-            title: "Категории",
-            reversed: true,
+            title: "Количество",
+            lineColor: "#6D78AD",
+            fontSize: "7px",
+            labelFontColor: "#6D78AD",
+            tickColor: "#6D78AD"
         },
         axisY: {
-            fontSize: 12,
-            title: "Количество",
-            includeZero: true,
+            title: "Дата выдачи",
+            lineColor: "#51CDA0",
+            labelFontColor: "#51CDA0",
         },
         data: [
             {
-                type: "bar",
-                indexLabelLineThickness: 1,
+                type: "area",
+				xValueFormatString: "DD/MM/YYYY",
                 dataPoints:[...newArray]
             }
         ]
     }
 
+    console.log(nameArray)
     return (
         <div className="widget-item">
-          <div className="wrapper-title">
-          <div className="icon-title"><i className="bi bi-card-checklist"></i></div>
-          <div className="widget-item__title">Статиcтика по оборудованию</div>
-          </div>
+             <div className="wrapper-title">
+             <div className="icon-title"><i className="bi bi-graph-up"></i></div>
+             <div className="widget-item__title">Статиcтика выданного оборудования</div>
+             </div>
             <CanvasJSChart options = {options} />
         </div>
     )
 }
 
-export default Chart;
 
-
+export default DeviceHistory;
