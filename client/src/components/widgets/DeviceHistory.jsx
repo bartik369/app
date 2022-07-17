@@ -26,16 +26,20 @@ const DeviceHistory = ({devices}) => {
 		animationEnabled: true,
 		exportEnabled: true,
         axisX: {
-            title: "Количество",
-            lineColor: "#6D78AD",
-            fontSize: "7px",
-            labelFontColor: "#6D78AD",
-            tickColor: "#6D78AD"
+            titleFontColor: "#555a6b",
+			lineColor: "#6D78AD",
+			labelFontColor: "#4c926b",
+            title: "Дата выдачи",
+            fontFamily: "calibri",
+            titleFontSize: 15,
         },
         axisY: {
-            title: "Дата выдачи",
-            lineColor: "#51CDA0",
-            labelFontColor: "#51CDA0",
+            titleFontColor: "#555a6b",
+			lineColor: "#6D78AD",
+			labelFontColor: "#555a6b",
+            title: "Количество",
+            fontFamily: "calibri",
+            titleFontSize: 15,
         },
         data: [
             {

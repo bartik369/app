@@ -13,6 +13,7 @@ const LastDevices = ({devices}) => {
           <table className="widget-table">
               <thead>
                   <tr>
+                      <th>Тип</th>
                       <th>Модель устройства</th>
                       <th>Номер</th>
                       <th>Пользователь</th>
@@ -22,6 +23,7 @@ const LastDevices = ({devices}) => {
               <tbody>
                   {reverseArrayDevices.map((device, index) => (
                       <tr key={index}>
+                          <td>{device.type}</td>
                           <td>{device.name}</td>
                           <td>{device.number}</td>
                           <td>{device.user}</td>

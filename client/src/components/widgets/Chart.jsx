@@ -25,14 +25,20 @@ const Chart = ({devices}) => {
         animationEnabled: true,
         theme: "light2",
         axisX: {
-            fontSize: 12,
+            titleFontColor: "#555a6b",
+			lineColor: "#6D78AD",
+			labelFontColor: "#555a6b",
             title: "Категории",
-            reversed: true,
+            fontFamily: "calibri",
+            titleFontSize: 15,
         },
         axisY: {
-            fontSize: 12,
+			titleFontColor: "#555a6b",
+			lineColor: "#6D78AD",
+			labelFontColor: "#555a6b",
             title: "Количество",
-            includeZero: true,
+            fontFamily: "calibri",
+            titleFontSize: 15,
         },
         data: [
             {
@@ -46,7 +52,7 @@ const Chart = ({devices}) => {
     return (
         <div className="widget-item">
           <div className="wrapper-title">
-          <div className="icon-title"><i className="bi bi-card-checklist"></i></div>
+          <div className="icon-title"><i className="bi bi-list-columns"></i></div>
           <div className="widget-item__title">Статиcтика по оборудованию</div>
           </div>
             <CanvasJSChart options = {options} />

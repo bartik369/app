@@ -23,6 +23,7 @@
     font-family: sans-serif;
     color: #2f323e;
     font-size: 12px;
+    width: 100%;
 }
 
 .widget-table td,
@@ -66,14 +67,14 @@
     color: #949bab;
     font-size: 20px;
     display: inline-block;
-    margin-right: 6px;
+    margin-right: 8px;
 }
 
 .icon-title-danger,
 .icon-title-attention {
     font-size: 20px;
     display: inline-block;
-    margin-right: 6px;
+    margin-right: 8px;
 }
 
 .icon-title-danger {

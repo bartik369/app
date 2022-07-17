@@ -64,7 +64,8 @@ const AddDeviceForm = ({ create }) => {
   };
 
   const validate = (name, value) => {
-    const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
+    const checkRegExpOne = new RegExp(/^[а-яА-ЯёЁa-zA-Z0-9]+$|\s/i).test(value);
+    const checkRegExpTwo = new RegExp(/^[а-яА-ЯёЁa-zA-Z]+$|\s/i).test(value);
     switch (name) {
       case "type":
         !new RegExp(/^[^\s]/).test(value)
@@ -72,17 +73,17 @@ const AddDeviceForm = ({ create }) => {
           : setErrors({...errors, type: ""})
         break;
       case "name":
-        !checkRegExp
+        !checkRegExpOne
           ? setErrors({...errors, name: "Введите корректное имя"})
           : setErrors({...errors, name: ""})
         break;
       case "number":
-        !checkRegExp
+        !checkRegExpOne
           ? setErrors({...errors, number: "Введите корректный номер"})
           : setErrors({...errors, number: ""})
         break;
       case "user":
-        !checkRegExp
+        !checkRegExpTwo
           ? setErrors({...errors, user: "Введите корректное имя"})
           : setErrors({...errors, user: ""})
         break;
