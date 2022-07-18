@@ -50,7 +50,6 @@ const DeviceHistory = ({devices}) => {
         ]
     }
 
-    console.log(nameArray)
     return (
         <div className="widget-item">
              <div className="wrapper-title">

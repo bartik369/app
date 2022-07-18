@@ -1,10 +1,14 @@
 import React from "react";
 import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
+import moment from "moment"
 
 const OverdueTodo = ({todos}) => {
     const arrayTodos = [...todos]
     const dateNow = new Date().toLocaleString('ru-RU')
+    arrayTodos.map((item) => {
+      console.log(moment([item.endTime]).diff([item.startTime]));
+    });
     
     return (
         <div className="widget-item">
@@ -16,7 +20,7 @@ const OverdueTodo = ({todos}) => {
             {arrayTodos.map((todo, index) => (
                       todo.endTime <= dateNow
                       ?
-                      <div className="overdue__item">
+                      <div className="overdue__item" key={index}>
                         <div className="todos_info__title">{todo.title}</div>
                         <span className="time-text">Закончить до:</span>
                         <div className="todos_info__endtime">{todo.endTime}</div>
@@ -33,7 +37,7 @@ const OverdueTodo = ({todos}) => {
             {arrayTodos.map((todo, index) => (
                       todo.endTime <= dateNow
                       ?
-                      <div className="expire-soon__item">
+                      <div className="expire-soon__item" key={index}>
                         <div className="todos_info__title">{todo.title}</div>
                         <span className="time-text">Закончить до:</span>
                         <div className="todos_info__endtime">{todo.endTime}</div>

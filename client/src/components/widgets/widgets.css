@@ -168,3 +168,10 @@
     background-color: #d0cdd9;
     margin: 10px auto;
 }
+#canvasjs-react-chart-container-0 {
+    max-height: 300px !important;
+}
+
+#canvasjs-react-chart-container-1 {
+    max-height: 300px !important;
+}
