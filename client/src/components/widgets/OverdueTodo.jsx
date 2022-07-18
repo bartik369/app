@@ -7,8 +7,9 @@ const OverdueTodo = ({todos}) => {
     const arrayTodos = [...todos]
     const dateNow = new Date().toLocaleString('ru-RU')
     arrayTodos.map((item) => {
-      console.log(moment([item.endTime]).diff([item.startTime]));
+      console.log(moment([item.endTime]).diff(moment([item.startTime]), 'seconds'));
     });
+
     
     return (
         <div className="widget-item">
