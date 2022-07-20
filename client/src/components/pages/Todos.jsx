@@ -165,15 +165,9 @@ const Todos = ({
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column">
         {todos.map((todo, index) => {
-          const startD = todo.startTime.slice(0, 10);
-          const startT = todo.startTime.slice(11, 16);
-          const startDate = startD + " " + startT;
-          console.log(startDate)
-    
-          const endD = todo.endTime.slice(0, 10);
-          const endT = todo.endTime.slice(11, 16);
-          const endDate = endD + " " + endT;
-          console.log(endDate)
+          const startD = todo.startTime.slice(0, 16).replace("T", " ");
+          const endD = todo.endTime.slice(0, 16).replace("T", " ");
+
           return (
             <div
             className={`todo-item 
@@ -190,9 +184,9 @@ const Todos = ({
             <hr className="separate" />
             <div className="time-info">
               <span className="time-text">Начать с:</span>
-              <span className="start-time">{startDate}</span>
+              <span className="start-time">{startD}</span>
               <span className="time-text">Закончить до:</span>
-              <span className="end-time">{endDate}</span>
+              <span className="end-time">{endD}</span>
             </div>
             <div className="todo-item__bottom">
             <div className="todo-btns">
