@@ -33,22 +33,9 @@ const Todos = ({
 
   const createToDo = (todoData) => {
     const { id, title, description, status, startTime, endTime  } = todoData;
-    const startDate = (startTime.toLocaleString('ru-RU', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }));
-    const endDate = (endTime.toLocaleString('ru-RU', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }));
+    const startDate = startTime;
+    const endDate = endTime;
+
     Axios.post(`${ENV.HOSTNAME}newtodo`, {
       id: id,
       title: title,
@@ -89,22 +76,8 @@ const Todos = ({
     console.log(updatedData)
     const { id, title, description, status, startTime, endTime } = updatedData;
 
-    const startDate = (startTime.toLocaleString('ru-RU', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }));
-    const endDate = (endTime.toLocaleString('ru-RU', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }));
+    const startDate = startTime;
+    const endDate = endTime;
 
     Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
       id: id,
@@ -192,6 +165,15 @@ const Todos = ({
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column">
         {todos.map((todo, index) => {
+          const startD = todo.startTime.slice(0, 10);
+          const startT = todo.startTime.slice(11, 16);
+          const startDate = startD + " " + startT;
+          console.log(startDate)
+    
+          const endD = todo.endTime.slice(0, 10);
+          const endT = todo.endTime.slice(11, 16);
+          const endDate = endD + " " + endT;
+          console.log(endDate)
           return (
             <div
             className={`todo-item 
@@ -208,9 +190,9 @@ const Todos = ({
             <hr className="separate" />
             <div className="time-info">
               <span className="time-text">Начать с:</span>
-              <span className="start-time">{todo.startTime}</span>
+              <span className="start-time">{startDate}</span>
               <span className="time-text">Закончить до:</span>
-              <span className="end-time">{todo.endTime}</span>
+              <span className="end-time">{endDate}</span>
             </div>
             <div className="todo-item__bottom">
             <div className="todo-btns">
@@ -259,3 +241,13 @@ const Todos = ({
 };
 
 export default Todos;
+
+
+// const startDate = (startTime.toLocaleString('ru-RU', {
+//   hour12: false,
+//   hour: '2-digit',
+//   minute: '2-digit',
+//   year: 'numeric',
+//   month: 'numeric',
+//   day: 'numeric',
+// }));

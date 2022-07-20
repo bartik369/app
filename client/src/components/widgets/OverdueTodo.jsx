@@ -1,16 +1,17 @@
 import React from "react";
 import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
+import moment from "moment"
 
+// 2022-07-20T18:30:00.000Z
 
 const OverdueTodo = ({todos}) => {
     const overdueTodos = []
     const dateNow = new Date().toLocaleString('ru-RU')
     todos.map((todo) => {
-      const dateOne = new Date(todo.startTime)
-      const dateTwo = new Date(todo.endTime)
-      const diffTime = Math.abs(dateOne - dateTwo)
-      console.log(diffTime)
+      const startD = moment(todo.startTime);
+      const endD = moment(todo.endTime);
+      console.log(endD.diff(startD))
     })
     todos.map((data) => {
       if (data.endTime <= dateNow) {
