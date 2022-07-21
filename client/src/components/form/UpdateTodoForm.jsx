@@ -104,7 +104,7 @@ const handleEndTime = (date) => {
             />
              <DatePicker
               name="starttime"
-              value={updatedTodo.startTime}
+              // value={updatedTodo.startTime}
               selected={Date.parse(updatedTodo.startTime)}
               onChange={(date) => handleStartTime(date)}
               selectsStart
@@ -121,7 +121,7 @@ const handleEndTime = (date) => {
               />
               <DatePicker 
                 name="endtime"
-                value={updatedTodo.endTime}
+                // value={updatedTodo.endTime}
                 selected={Date.parse(updatedTodo.endTime)}
                 onChange={(date) => handleEndTime(date)}
                 selectsEnd

@@ -164,14 +164,26 @@ const Todos = ({
       breakpointCols={breakpoints}
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column">
+        {/* 2022-07-29T14:00:00.000Z */}
         {todos.map((todo, index) => {
-          const startD = todo.startTime.slice(0, 16).replace("T", " ");
-          const endD = todo.endTime.slice(0, 16).replace("T", " ");
+          const year = todo.startTime.slice(0, 4);
+          const month = todo.startTime.slice(5, 7);
+          const day = todo.startTime.slice(8, 10);
+          const time = todo.startTime.slice(11, 16);
+          const sTime = day + "." + month + "." + year + " " + time
+
+          const year2 = todo.endTime.slice(0, 4);
+          const month2 = todo.endTime.slice(5, 7);
+          const day2 = todo.endTime.slice(8, 10);
+          const time2 = todo.endTime.slice(11, 16);
+          const eTime = day2 + "." + month2 + "." + year2 + " " + time2
+          
+          
 
           return (
             <div
             className={`todo-item 
-            ${(todo.endTime <= dateNow && todo.status !== "done") ? "overdue" : ""}
+            ${(eTime <= dateNow && todo.status !== "done") ? "overdue" : ""}
             ${todo.status === "done" ? "done" : ""}
             ${deleteId === todo._id ? "delete-animation" : ""}`}
             key={index}
@@ -184,9 +196,9 @@ const Todos = ({
             <hr className="separate" />
             <div className="time-info">
               <span className="time-text">Начать с:</span>
-              <span className="start-time">{startD}</span>
+              <span className="start-time">{sTime}</span>
               <span className="time-text">Закончить до:</span>
-              <span className="end-time">{endD}</span>
+              <span className="end-time">{eTime}</span>
             </div>
             <div className="todo-item__bottom">
             <div className="todo-btns">
