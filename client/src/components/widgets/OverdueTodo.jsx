@@ -15,14 +15,21 @@ const OverdueTodo = ({todos}) => {
       const startD = moment(todo.startTime);
       const endD = moment(todo.endTime);
       const diffDate = endD.diff(startD);
+      const beetwenDate = endD - moment();
 
-      const eight = diffDate / 100 * 80;
-      const nn = diffDate / 100 * 99
+      const eight = endD - (diffDate / 100 * 50);
+      const nn = endD - (diffDate / 100 * 99)
+
+      console.log("50", eight)
+      console.log("99", nn)
+      console.log("diff", diffDate)
+      console.log("beetw", beetwenDate)
 
       // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
-      if ( diffDate < nn && diffDate >= eight) {
+      if (beetwenDate >= eight && beetwenDate <= nn) {
+        alert("got it")
         attentionTodos.push(todo);
       }
       if (endTodoDate <= dateNow) {
