@@ -6,18 +6,33 @@ import moment from "moment"
 // 2022-07-20T18:30:00.000Z
 
 const OverdueTodo = ({todos}) => {
+    const dateNow = moment().format("DD.MM.YYYY HH:mm");
     const overdueTodos = []
-    const dateNow = new Date().toLocaleString('ru-RU')
+    const attentionTodos = []
+    let endTodoDate;
+    
     todos.map((todo) => {
       const startD = moment(todo.startTime);
       const endD = moment(todo.endTime);
-      console.log(endD.diff(startD))
-    })
-    todos.map((data) => {
-      if (data.endTime <= dateNow) {
-        overdueTodos.push(data.endTime)
+      const diffDate = endD.diff(startD);
+
+      const eight = diffDate / 100 * 80;
+      const nn = diffDate / 100 * 99
+
+      // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
+      endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
+
+      if ( diffDate < nn && diffDate >= eight) {
+        attentionTodos.push(todo);
+      }
+      if (endTodoDate <= dateNow) {
+        overdueTodos.push(todo)
       }
     })
+
+    console.log("просрочка",[...overdueTodos])
+    console.log("внимание", [...attentionTodos])
+   
 
     return (
         <div className="widget-item">
@@ -27,13 +42,13 @@ const OverdueTodo = ({todos}) => {
           </div>
           {overdueTodos.length > 0
           ? <div className="todos_info">
-          {todos.map((todo, index) => (
+          {overdueTodos.map((todo, index) => (
                     todo.endTime <= dateNow
                     ?
                     <div className="overdue__item" key={index}>
                       <div className="todos_info__title">{todo.title}</div>
                       <span className="time-text">Закончить до:</span>
-                      <div className="todos_info__endtime">{todo.endTime}</div>
+                      <div className="todos_info__endtime">{endTodoDate}</div>
                     </div>
                     : ""
                 ))}
@@ -46,15 +61,12 @@ const OverdueTodo = ({todos}) => {
           <div className="widget-item__title">Обратить внимание</div>
           </div>
           <div className="todos_info">
-            {todos.map((todo, index) => (
-                      todo.endTime <= dateNow
-                      ?
+            {attentionTodos.map((todo, index) => (
                       <div className="expire-soon__item" key={index}>
                         <div className="todos_info__title">{todo.title}</div>
                         <span className="time-text">Закончить до:</span>
                         <div className="todos_info__endtime">{todo.endTime}</div>
                       </div>
-                      : ""
                   ))}
           </div>
           <div className="button-wrap">

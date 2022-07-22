@@ -7,6 +7,7 @@ import "../../styles/App.css"
 import Modal from "../UI/modal/Modal";
 import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
+import moment from "moment";
 
 const Todos = ({
   todos,
@@ -133,7 +134,7 @@ const Todos = ({
       setTodos(newArray);
     });
   }
-  const dateNow = new Date().toLocaleString('ru-RU');
+  const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const breakpoints = {
     2560: 8,
     1920: 6,
@@ -164,26 +165,14 @@ const Todos = ({
       breakpointCols={breakpoints}
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column">
-        {/* 2022-07-29T14:00:00.000Z */}
         {todos.map((todo, index) => {
-          const year = todo.startTime.slice(0, 4);
-          const month = todo.startTime.slice(5, 7);
-          const day = todo.startTime.slice(8, 10);
-          const time = todo.startTime.slice(11, 16);
-          const sTime = day + "." + month + "." + year + " " + time
-
-          const year2 = todo.endTime.slice(0, 4);
-          const month2 = todo.endTime.slice(5, 7);
-          const day2 = todo.endTime.slice(8, 10);
-          const time2 = todo.endTime.slice(11, 16);
-          const eTime = day2 + "." + month2 + "." + year2 + " " + time2
-          
-          
+          const startTodoDate = moment(todo.startTime).format("DD.MM.YYYY HH:mm");
+          const endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
           return (
             <div
             className={`todo-item 
-            ${(eTime <= dateNow && todo.status !== "done") ? "overdue" : ""}
+            ${(endTodoDate<= dateNow && todo.status !== "done") ? "overdue" : ""}
             ${todo.status === "done" ? "done" : ""}
             ${deleteId === todo._id ? "delete-animation" : ""}`}
             key={index}
@@ -196,9 +185,9 @@ const Todos = ({
             <hr className="separate" />
             <div className="time-info">
               <span className="time-text">Начать с:</span>
-              <span className="start-time">{sTime}</span>
+              <span className="start-time">{startTodoDate}</span>
               <span className="time-text">Закончить до:</span>
-              <span className="end-time">{eTime}</span>
+              <span className="end-time">{endTodoDate}</span>
             </div>
             <div className="todo-item__bottom">
             <div className="todo-btns">
