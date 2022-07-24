@@ -15,21 +15,15 @@ const OverdueTodo = ({todos}) => {
       const startD = moment(todo.startTime);
       const endD = moment(todo.endTime);
       const diffDate = endD.diff(startD);
-      const beetwenDate = endD - moment();
+      const beetwenDate = endD - new Date();
 
-      const eight = endD - (diffDate / 100 * 50);
-      const nn = endD - (diffDate / 100 * 99)
-
-      console.log("50", eight)
-      console.log("99", nn)
-      console.log("diff", diffDate)
-      console.log("beetw", beetwenDate)
-
-      // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
+      const eight = diffDate / 100 * 50;
+      const nn = diffDate / 100 * 99;
+      
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
       if (beetwenDate >= eight && beetwenDate <= nn) {
-        alert("got it")
+        console.log("got it")
         attentionTodos.push(todo);
       }
       if (endTodoDate <= dateNow) {
@@ -37,9 +31,25 @@ const OverdueTodo = ({todos}) => {
       }
     })
 
-    console.log("просрочка",[...overdueTodos])
-    console.log("внимание", [...attentionTodos])
-   
+    // todos.map((todo) => {
+    //   const startD = moment(todo.startTime);
+    //   const endD = moment(todo.endTime);
+    //   const diffDate = endD.diff(startD);
+    //   const beetwenDate = endD - new Date();
+  
+    //   const eightyPercent = diffDate / 100 * 50;
+    //   const ninetyninePercent = diffDate / 100 * 99;
+ 
+    //   // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
+
+    //   if (beetwenDate >= eightyPercent && beetwenDate <= ninetyninePercent) {
+    //     console.log("got it")
+    //     attentionTodos.push(todo);
+    //   }
+    //   if (endD <= dateNow) {
+    //     overdueTodos.push(todo)
+    //   }
+    // })
 
     return (
         <div className="widget-item">
@@ -55,7 +65,7 @@ const OverdueTodo = ({todos}) => {
                     <div className="overdue__item" key={index}>
                       <div className="todos_info__title">{todo.title}</div>
                       <span className="time-text">Закончить до:</span>
-                      <div className="todos_info__endtime">{endTodoDate}</div>
+                      <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
                     </div>
                     : ""
                 ))}
@@ -72,7 +82,7 @@ const OverdueTodo = ({todos}) => {
                       <div className="expire-soon__item" key={index}>
                         <div className="todos_info__title">{todo.title}</div>
                         <span className="time-text">Закончить до:</span>
-                        <div className="todos_info__endtime">{todo.endTime}</div>
+                        <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
                       </div>
                   ))}
           </div>
