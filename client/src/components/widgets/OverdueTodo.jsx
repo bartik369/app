@@ -3,7 +3,6 @@ import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
 import moment from "moment"
 
-// 2022-07-20T18:30:00.000Z
 
 const OverdueTodo = ({todos}) => {
     const dateNow = moment().format("DD.MM.YYYY HH:mm");
@@ -16,43 +15,19 @@ const OverdueTodo = ({todos}) => {
       const endD = moment(todo.endTime);
       const diffDate = endD.diff(startD);
       const beetwenDate = endD - new Date();
-
-      const eight = diffDate / 100 * 50;
-      const nn = diffDate / 100 * 99;
+      const eighty = (diffDate / 100) * 80;
       
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
-      if (beetwenDate >= eight && beetwenDate <= nn) {
+      if (beetwenDate >= eighty && todo.status !== "overdue" && todo.status !== "done") {
         console.log("got it")
         attentionTodos.push(todo);
       }
       if (endTodoDate <= dateNow) {
-        overdueTodos.push(todo)
+        overdueTodos.push(todo);
       }
-      console.log(beetwenDate)
-      console.log(eight)
-      console.log(nn)
     })
 
-    // todos.map((todo) => {
-    //   const startD = moment(todo.startTime);
-    //   const endD = moment(todo.endTime);
-    //   const diffDate = endD.diff(startD);
-    //   const beetwenDate = endD - new Date();
-  
-    //   const eightyPercent = diffDate / 100 * 50;
-    //   const ninetyninePercent = diffDate / 100 * 99;
- 
-    //   // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
-
-    //   if (beetwenDate >= eightyPercent && beetwenDate <= ninetyninePercent) {
-    //     console.log("got it")
-    //     attentionTodos.push(todo);
-    //   }
-    //   if (endD <= dateNow) {
-    //     overdueTodos.push(todo)
-    //   }
-    // })
 
     return (
         <div className="widget-item">
@@ -99,3 +74,26 @@ const OverdueTodo = ({todos}) => {
 }
 
 export default OverdueTodo;
+
+
+
+
+    // todos.map((todo) => {
+    //   const startD = moment(todo.startTime);
+    //   const endD = moment(todo.endTime);
+    //   const diffDate = endD.diff(startD);
+    //   const beetwenDate = endD - new Date();
+  
+    //   const eightyPercent = diffDate / 100 * 50;
+    //   const ninetyninePercent = diffDate / 100 * 99;
+ 
+    //   // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
+
+    //   if (beetwenDate >= eightyPercent && beetwenDate <= ninetyninePercent) {
+    //     console.log("got it")
+    //     attentionTodos.push(todo);
+    //   }
+    //   if (endD <= dateNow) {
+    //     overdueTodos.push(todo)
+    //   }
+    // })
