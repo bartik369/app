@@ -14,12 +14,13 @@ const OverdueTodo = ({todos}) => {
       const startD = moment(todo.startTime);
       const endD = moment(todo.endTime);
       const diffDate = endD.diff(startD);
-      const beetwenDate = endD - new Date();
+      const beetwenDate = diffDate - (endD - new Date());
       const eighty = (diffDate / 100) * 80;
+      const ninetyNine = (diffDate / 100) * 99;
       
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
-      if (beetwenDate >= eighty && todo.status !== "overdue" && todo.status !== "done") {
+      if (beetwenDate >= eighty && beetwenDate <= ninetyNine) {
         console.log("got it")
         attentionTodos.push(todo);
       }
