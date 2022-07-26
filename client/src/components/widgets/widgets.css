@@ -146,23 +146,21 @@
     text-align: center;
 }
 .expire-soon__item-empty, .overdue__item-empty {
-    height: 100px;
-    width: 100px;
-    width: 100%;
     display: flex;
     align-items: center;
 
 }
 
 .expire-soon__item-empty img, .overdue__item-empty img {
-    max-width: 100px;
+    height: 68px;
+    width: auto;
 }
 
 .todo-info {
-    font-size: 15px;
+    font-size: 14px;
     font-family: inherit;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .overdue__item:not(:first-child) {

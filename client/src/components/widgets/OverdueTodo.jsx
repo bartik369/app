@@ -21,7 +21,7 @@ const OverdueTodo = ({todos}) => {
       
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
-      if (passedTime >= eighty && passedTime <= ninetyNine) {
+      if (passedTime >= eighty && passedTime <= ninetyNine && todo.status !== "done") {
         attentionTodos.push(todo);
       }
       
@@ -32,6 +32,26 @@ const OverdueTodo = ({todos}) => {
 
     return (
         <div className="widget-item">
+          <div className="wrapper-title">
+          <div className="icon-title-attention"><i className="bi bi-exclamation-circle"></i></div>
+          <div className="widget-item__title">Обратить внимание</div>
+          </div>
+          {attentionTodos.length > 0
+          ? <div className="todos_info">
+          {attentionTodos.slice(0, 3).map((todo, index) => (
+                    <div className="expire-soon__item" key={index}>
+                      <div className="todos_info__title">{todo.title}</div>
+                      <span className="time-text">Закончить до:</span>
+                      <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
+                    </div>
+                ))}
+        </div>
+          : <div className="expire-soon__item-empty">
+            <img src={emtyImageTodos} />
+            <div className="todo-info">Срочных задач нет</div>
+          </div>
+          }
+           <div className="widget-separate"></div>
           <div className="wrapper-title">
           <div className="icon-title-danger"><i className="bi bi-alarm"></i></div>
           <div className="widget-item__title">Срочно выполнить</div>
@@ -54,26 +74,6 @@ const OverdueTodo = ({todos}) => {
           <div className="todo-info">Просроченных задач нет</div>
         </div>
         }
-          <div className="widget-separate"></div>
-          <div className="wrapper-title">
-          <div className="icon-title-attention"><i className="bi bi-exclamation-circle"></i></div>
-          <div className="widget-item__title">Обратить внимание</div>
-          </div>
-          {attentionTodos.length > 0
-          ? <div className="todos_info">
-          {attentionTodos.slice(0, 3).map((todo, index) => (
-                    <div className="expire-soon__item" key={index}>
-                      <div className="todos_info__title">{todo.title}</div>
-                      <span className="time-text">Закончить до:</span>
-                      <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
-                    </div>
-                ))}
-        </div>
-          : <div className="expire-soon__item-empty">
-            <img src={emtyImageTodos} />
-            <div className="todo-info">Срочных задач нет</div>
-          </div>
-          }
           <div className="button-wrap">
             <Link to="/todos">
               <button className="read-more">Перейти к задачам</button>
