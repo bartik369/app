@@ -2,6 +2,7 @@ import React from "react";
 import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
 import moment from "moment"
+import emtyImageTodos from "../../assets/portal/empty-todos.jpg"
 
 
 const OverdueTodo = ({todos}) => {
@@ -29,7 +30,6 @@ const OverdueTodo = ({todos}) => {
       }
     })
 
-
     return (
         <div className="widget-item">
           <div className="wrapper-title">
@@ -49,7 +49,10 @@ const OverdueTodo = ({todos}) => {
                     : ""
                 ))}
         </div>
-        : <div className="empty">Срочных задач нет</div>
+        : <div className="overdue__item-empty">
+          <img src={emtyImageTodos} />
+          <div className="todo-info">Просроченных задач нет</div>
+        </div>
         }
           <div className="widget-separate"></div>
           <div className="wrapper-title">
@@ -66,7 +69,10 @@ const OverdueTodo = ({todos}) => {
                     </div>
                 ))}
         </div>
-          : "Нет информации"
+          : <div className="expire-soon__item-empty">
+            <img src={emtyImageTodos} />
+            <div className="todo-info">Срочных задач нет</div>
+          </div>
           }
           <div className="button-wrap">
             <Link to="/todos">
@@ -79,25 +85,3 @@ const OverdueTodo = ({todos}) => {
 
 export default OverdueTodo;
 
-
-
-
-    // todos.map((todo) => {
-    //   const startD = moment(todo.startTime);
-    //   const endD = moment(todo.endTime);
-    //   const diffDate = endD.diff(startD);
-    //   const beetwenDate = endD - new Date();
-  
-    //   const eightyPercent = diffDate / 100 * 50;
-    //   const ninetyninePercent = diffDate / 100 * 99;
- 
-    //   // const checkDiffDate = (diffDate / 100 * 80) || (diffDate / 100 * 99);
-
-    //   if (beetwenDate >= eightyPercent && beetwenDate <= ninetyninePercent) {
-    //     console.log("got it")
-    //     attentionTodos.push(todo);
-    //   }
-    //   if (endD <= dateNow) {
-    //     overdueTodos.push(todo)
-    //   }
-    // })
