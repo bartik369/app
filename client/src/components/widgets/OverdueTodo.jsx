@@ -14,16 +14,16 @@ const OverdueTodo = ({todos}) => {
       const startD = moment(todo.startTime);
       const endD = moment(todo.endTime);
       const diffDate = endD.diff(startD);
-      const beetwenDate = diffDate - (endD - new Date());
+      const passedTime = diffDate - (endD - new Date());
       const eighty = (diffDate / 100) * 80;
-      const ninetyNine = (diffDate / 100) * 99;
+      const ninetyNine = (diffDate / 100) * 99.9;
       
       endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
-      if (beetwenDate >= eighty && beetwenDate <= ninetyNine) {
-        console.log("got it")
+      if (passedTime >= eighty && passedTime <= ninetyNine) {
         attentionTodos.push(todo);
       }
+      
       if (endTodoDate <= dateNow) {
         overdueTodos.push(todo);
       }
@@ -38,7 +38,7 @@ const OverdueTodo = ({todos}) => {
           </div>
           {overdueTodos.length > 0
           ? <div className="todos_info">
-          {overdueTodos.map((todo, index) => (
+          {overdueTodos.slice(0, 3).map((todo, index) => (
                     todo.endTime <= dateNow
                     ?
                     <div className="overdue__item" key={index}>
@@ -56,15 +56,18 @@ const OverdueTodo = ({todos}) => {
           <div className="icon-title-attention"><i className="bi bi-exclamation-circle"></i></div>
           <div className="widget-item__title">Обратить внимание</div>
           </div>
-          <div className="todos_info">
-            {attentionTodos.map((todo, index) => (
-                      <div className="expire-soon__item" key={index}>
-                        <div className="todos_info__title">{todo.title}</div>
-                        <span className="time-text">Закончить до:</span>
-                        <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
-                      </div>
-                  ))}
-          </div>
+          {attentionTodos.length > 0
+          ? <div className="todos_info">
+          {attentionTodos.slice(0, 3).map((todo, index) => (
+                    <div className="expire-soon__item" key={index}>
+                      <div className="todos_info__title">{todo.title}</div>
+                      <span className="time-text">Закончить до:</span>
+                      <div className="todos_info__endtime">{moment(todo.endTime).format("DD.MM.YYYY HH:mm")}</div>
+                    </div>
+                ))}
+        </div>
+          : "Нет информации"
+          }
           <div className="button-wrap">
             <Link to="/todos">
               <button className="read-more">Перейти к задачам</button>
