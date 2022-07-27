@@ -2,7 +2,10 @@ import React from "react";
 import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
 import moment from "moment"
-import emtyImageTodos from "../../assets/portal/empty-todos.jpg"
+import emtyImageDanger from "../../assets/portal/empty-danger.jpg"
+import emtyImageAttention from "../../assets/portal/empty-attention.jpg";
+
+
 
 
 const OverdueTodo = ({todos}) => {
@@ -25,7 +28,7 @@ const OverdueTodo = ({todos}) => {
         attentionTodos.push(todo);
       }
       
-      if (endTodoDate <= dateNow) {
+      if (endTodoDate <= dateNow && todo.status !== "done") {
         overdueTodos.push(todo);
       }
     })
@@ -33,7 +36,7 @@ const OverdueTodo = ({todos}) => {
     return (
         <div className="widget-item">
           <div className="wrapper-title">
-          <div className="icon-title-attention"><i className="bi bi-exclamation-circle"></i></div>
+          <div className="icon-title"><i className="bi bi-exclamation-circle"></i></div>
           <div className="widget-item__title">Обратить внимание</div>
           </div>
           {attentionTodos.length > 0
@@ -47,13 +50,13 @@ const OverdueTodo = ({todos}) => {
                 ))}
         </div>
           : <div className="expire-soon__item-empty">
-            <img src={emtyImageTodos} />
+            <img src={emtyImageAttention} />
             <div className="todo-info">Срочных задач нет</div>
           </div>
           }
            <div className="widget-separate"></div>
           <div className="wrapper-title">
-          <div className="icon-title-danger"><i className="bi bi-alarm"></i></div>
+          <div className="icon-title"><i className="bi bi-alarm"></i></div>
           <div className="widget-item__title">Срочно выполнить</div>
           </div>
           {overdueTodos.length > 0
@@ -70,7 +73,7 @@ const OverdueTodo = ({todos}) => {
                 ))}
         </div>
         : <div className="overdue__item-empty">
-          <img src={emtyImageTodos} />
+          <img src={emtyImageDanger} />
           <div className="todo-info">Просроченных задач нет</div>
         </div>
         }
