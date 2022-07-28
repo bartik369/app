@@ -91,7 +91,10 @@
 
 .todos_info__endtime {
     padding: 5px 0;
-    color: #212431;
+    color: #7c7c96;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: -.4px;
 }
 
 .button-wrap {
@@ -144,9 +147,9 @@
 }
 
 .todo-info {
-    font-size: 13px;
+    color: #3e3e48;
+    font-size: 16px;
     font-family: inherit;
-    text-transform: uppercase;
 }
 
 .overdue__item:not(:first-child) {

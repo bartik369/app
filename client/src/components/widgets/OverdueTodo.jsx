@@ -57,7 +57,7 @@ const OverdueTodo = ({todos}) => {
            <div className="widget-separate"></div>
           <div className="wrapper-title">
           <div className="icon-title"><i className="bi bi-alarm"></i></div>
-          <div className="widget-item__title">Срочно выполнить</div>
+          <div className="widget-item__title">Просроченные задачи</div>
           </div>
           {overdueTodos.length > 0
           ? <div className="todos_info">
