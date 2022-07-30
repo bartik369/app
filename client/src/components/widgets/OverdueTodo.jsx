@@ -9,7 +9,8 @@ import CountdownTimer from "../../components/timer/CountdownTimer";
 const OverdueTodo = ({ todos }) => {
 
   
-  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+  // const THREE_DAYS_IN_MS =  1 * 60 * 60 * 1000;
+  const THREE_DAYS_IN_MS =  1 * 60 * 60 * 1000;
   const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
@@ -58,6 +59,7 @@ const OverdueTodo = ({ todos }) => {
               <div className="todos_info__endtime">
                 {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
               </div>
+              <CountdownTimer targetDate={todo.endTime} />
             </div>
           ))}
         </div>
@@ -101,7 +103,6 @@ const OverdueTodo = ({ todos }) => {
           <button className="read-more">Перейти к задачам</button>
         </Link>
       </div>
-      <CountdownTimer targetDate={dateTimeAfterThreeDays} />
     </div>
   );
 };
