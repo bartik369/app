@@ -6,7 +6,7 @@ import { useCountdown } from "../../hooks/useCountdown";
 const ExpiredNotice = () => {
     return (
         <div className="expired-notice">
-            <span>Expired!!!!!</span>
+            <span>Просрочен!</span>
         </div>
     )
 }

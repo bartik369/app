@@ -5,14 +5,9 @@ import moment from "moment";
 import emtyImageDanger from "../../assets/portal/empty-danger.jpg";
 import emtyImageAttention from "../../assets/portal/empty-attention.jpg";
 import CountdownTimer from "../../components/timer/CountdownTimer";
+import "../timer/timer.css"
 
 const OverdueTodo = ({ todos }) => {
-
-  
-  // const THREE_DAYS_IN_MS =  1 * 60 * 60 * 1000;
-  const THREE_DAYS_IN_MS =  1 * 60 * 60 * 1000;
-  const NOW_IN_MS = new Date().getTime();
-  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
@@ -83,7 +78,7 @@ const OverdueTodo = ({ todos }) => {
               <div className="overdue__item" key={index}>
                 <div className="todos_info__title">{todo.title}</div>
                 <span className="time-text">Закончить до:</span>
-                <div className="todos_info__endtime">
+                <div className="todos_info__endtime-danger">
                   {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
                 </div>
               </div>
