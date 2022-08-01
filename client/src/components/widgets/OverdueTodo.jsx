@@ -71,10 +71,11 @@ const OverdueTodo = ({ todos }) => {
         </div>
         <div className="widget-item__title">Просроченные задачи</div>
       </div>
-      {overdueTodos.length > 0 ? (
+      {overdueTodos.length > 0 ? 
         <div className="todos_info">
           {overdueTodos.slice(0, 3).map((todo, index) =>
-            todo.endTime <= dateNow ? (
+            endTodoDate <= dateNow 
+            ? 
               <div className="overdue__item" key={index}>
                 <div className="todos_info__title">{todo.title}</div>
                 <span className="time-text">Закончить до:</span>
@@ -82,12 +83,11 @@ const OverdueTodo = ({ todos }) => {
                   {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
                 </div>
               </div>
-            ) : (
+             : 
               ""
-            )
           )}
         </div>
-      ) : (
+       : (
         <div className="overdue__item-empty">
           <img src={emtyImageDanger} />
           <div className="todo-info">Просроченных задач нет</div>
