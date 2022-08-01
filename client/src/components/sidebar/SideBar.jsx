@@ -8,7 +8,7 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
   const [inActive, setInactive] = useState(false);
 
   const menuItem = [
-    {name: 'Главная', to: '/', iconClassName: 'bi bi-house'},
+    {name: 'Главная', to: '/dashboard', iconClassName: 'bi bi-speedometer'},
     {name: 'Поиск', to: '/search', iconClassName: 'bi bi-binoculars'},
     {name: 'Статистика', to: '/statistic', iconClassName: 'bi bi-bar-chart'},
     {name: 'Пользователи', to: '/users', iconClassName: 'bi bi-people'},
@@ -28,10 +28,7 @@ const Sidebar = ({ slideContentContainer, getLinkName}) => {
   return (
     <div className={`sidebar inactive${inActive ? "inactive"  : ""}`}>
       <div className="top-section">
-        <div className="logo">
-          {/* <FontAwesomeIcon icon={faSquareH} />
-          <div className={`text-logo disable${inActive ? 'disable' : ''}`}>Warehouse</div> */}
-        </div>
+        <div className="logo"></div>
         <button
           onClick={() => setInactive(!inActive)}
           className="toggle-menu-btn"

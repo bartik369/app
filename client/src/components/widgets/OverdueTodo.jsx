@@ -49,7 +49,9 @@ const OverdueTodo = ({ todos }) => {
         <div className="todos_info">
           {attentionTodos.slice(0, 3).map((todo, index) => (
             <div className="expire-soon__item" key={index}>
+              <Link to="/todos">
               <div className="todos_info__title">{todo.title}</div>
+              </Link>
               <span className="time-text">Закончить до:</span>
               <div className="todos_info__endtime">
                 {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
@@ -77,7 +79,9 @@ const OverdueTodo = ({ todos }) => {
             endTodoDate <= dateNow 
             ? 
               <div className="overdue__item" key={index}>
+                <Link to="/todos">
                 <div className="todos_info__title">{todo.title}</div>
+                </Link>
                 <span className="time-text">Закончить до:</span>
                 <div className="todos_info__endtime-danger">
                   {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
@@ -94,9 +98,6 @@ const OverdueTodo = ({ todos }) => {
         </div>
       )}
       <div className="button-wrap">
-        <Link to="/todos">
-          <button className="read-more">Перейти к задачам</button>
-        </Link>
       </div>
     </div>
   );

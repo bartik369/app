@@ -107,21 +107,28 @@
 
 .button-wrap {
     width: 100%;
-    position: relative;
+    position: absolute;
+    align-items: center;
     display: flex;
     margin-top: 10px;
     justify-content: end;
+    top: 10px;
+    right: 10px;
 }
 
 .read-more {
-    background-color: #aeb5c2;
-    color: #fff;
-    padding: 5px 7px;
+    color: #212431;
+    padding: 5px;
     transition: .5s ease-in-out;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 12px;
+    border: 2px solid #5fc69a;
+    border-radius: 12px;
 }
 
 .read-more:hover {
-    background-color: #d639e1;
+    color: rgb(81, 68, 86);
 }
 
 .overdue__item {

@@ -70,7 +70,7 @@ function App() {
         />
         <div className="content-container">
           <Routes>
-            <Route path="/" element={<Homepage 
+            <Route path="/dashboard" element={<Homepage 
             devices={devices} 
             todos={todos}
             />}></Route>
