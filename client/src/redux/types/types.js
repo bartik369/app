@@ -1,0 +1,3 @@
+export const ADD_DEVICE  = "ADD_DEIVICE";
+export const DELETE_DEVICE  = "DELETE_DEIVICE";
+export const UPDATE_DEVICE  = "UPDATE_DEIVICE";
