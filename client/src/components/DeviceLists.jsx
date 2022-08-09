@@ -1,7 +1,8 @@
 import React from "react";
+import {connect} from "react-redux";
 
-const DeviceLists = ({ devices, title, remove, update }) => {
 
+const DeviceLists = ({ devices, title, remove, update, syncDevices }) => {
 
   return (
     <div>
@@ -19,7 +20,7 @@ const DeviceLists = ({ devices, title, remove, update }) => {
                   </tr>
               </thead>
               <tbody>
-                  {devices.map((device, index) => (
+                  {syncDevices.map((device, index) => (
                       <tr key={index}>
                           <td>{device.type}</td>
                           <td>{device.name}</td>
@@ -40,4 +41,10 @@ const DeviceLists = ({ devices, title, remove, update }) => {
   );
 };
 
-export default DeviceLists;
+const mapStateToProps = state => {
+  return {
+    syncDevices: state.devices
+  }
+}
+
+export default connect(mapStateToProps, null)(DeviceLists)
