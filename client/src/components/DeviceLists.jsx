@@ -1,8 +1,16 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const DeviceLists = ({ devices, title, remove, update, syncDevices }) => {
+const DeviceLists = ({ title, remove, update }) => {
+
+let dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(loadDevices())
+}, [])
+
+const {devices} = useSelector(state => state.devices)
 
   return (
     <div>
@@ -20,7 +28,7 @@ const DeviceLists = ({ devices, title, remove, update, syncDevices }) => {
                   </tr>
               </thead>
               <tbody>
-                  {syncDevices.map((device, index) => (
+                  {devices.map((device, index) => (
                       <tr key={index}>
                           <td>{device.type}</td>
                           <td>{device.name}</td>
@@ -41,10 +49,6 @@ const DeviceLists = ({ devices, title, remove, update, syncDevices }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    syncDevices: state.devices
-  }
-}
 
-export default connect(mapStateToProps, null)(DeviceLists)
+
+export default DeviceLists;

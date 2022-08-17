@@ -7,34 +7,32 @@ import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
+import { useDispatch, useSelector } from "react-redux";
+import { loadDevices } from "../../store/actions/devicesActions";
 
 const DeviceSearch = ({
   searchQuery, 
-  setPageName, 
-  devices, 
+  setPageName,
   setDevices, 
   modalActive, 
   setModalActive}) => {
+
+  let dispatch = useDispatch();
+  const {devices} = useSelector(state => state.devices)
 
   const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
 
-  const fetchDevices = async () => {
-    await Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
-      setDevices(response.data);
-    });
-  };
 
   useEffect(() => {
-    fetchDevices();
+    dispatch(loadDevices())
   }, [setPageName]);
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
 
-  const filterData = devices
-    .filter((item) => {
+  const filterData = devices.filter((item) => {
       return Object.keys(item).some((key) =>
         String(item[key]).toLowerCase().includes(searchQuery.toLowerCase())
       );
@@ -93,7 +91,6 @@ const DeviceSearch = ({
           modal={setModalActive}
           devices={devices}
           setDevices={setDevices}
-          fetchDevices={fetchDevices}
         />
       </Modal>
       <div className="devices-list">
