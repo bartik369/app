@@ -1,16 +1,6 @@
 import React, {useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-
-const DeviceLists = ({ title, remove, update }) => {
-
-let dispatch = useDispatch();
-
-useEffect(() => {
-  dispatch(loadDevices())
-}, [])
-
-const {devices} = useSelector(state => state.devices)
+const DeviceLists = ({devices, title, remove, update }) => {
 
   return (
     <div>

@@ -80,7 +80,7 @@ function App() {
                 <DeviceSearch
                   searchQuery={searchQuery}
                   setPageName={setPageName}
-                  devices={devices}
+                  // devices={devices}
                   setDevices={setDevices}
                   setModalActive={setModalActive}
                   modalActive={modalActive}

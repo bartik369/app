@@ -1,7 +1,12 @@
 import React from "react";
 import './pagination.css'
 
-const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => {
+const Pagination = ({ 
+  devicesPerPage, 
+  totalDevices, 
+  paginate, 
+  currentPage }) => {
+  
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalDevices / devicesPerPage); i++) {
@@ -14,7 +19,9 @@ const Pagination = ({ devicesPerPage, totalDevices, paginate, currentPage }) => 
           <li key={number}>
             <a onClick={() => paginate(number)} 
             href="#!" 
-            className={`page-switcher__link ${number == currentPage ? "active" : ""}`}>
+            className={`page-switcher__link ${number === currentPage 
+            ? "active" 
+            : ""}`}>
               {number}
             </a>
           </li>

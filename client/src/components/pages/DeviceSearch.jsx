@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import DeviceLists from "../DeviceLists";
 import Modal from "../UI/modal/Modal";
 import ENV from "../../env.config";
@@ -24,10 +24,10 @@ const DeviceSearch = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
 
-
   useEffect(() => {
     dispatch(loadDevices())
-  }, [setPageName]);
+  }, [setPageName])
+
 
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
@@ -47,7 +47,7 @@ const DeviceSearch = ({
   // Delete device
 
   function removeDevice(id) {
-    Axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+    axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
       const indexOfDelitedItem = devices.filter(
         (item) => item._id !== response.data.id
       );
@@ -58,7 +58,7 @@ const DeviceSearch = ({
   // Update device
 
   function getUpdateDeviceInfo(id) {
-    Axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+    axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
       setUpdateDeviceId(response.data[0]);
     });
   }
@@ -71,7 +71,7 @@ const DeviceSearch = ({
   function createNewDevice(newDevice) {
     const {type, name, number, user, addTime} = newDevice
 
-    Axios.post('http://localhost:5001/insert', {
+    axios.post(`${ENV.HOSTNAME}insert`, {
       type: type,
       name: name,
       number: number,
