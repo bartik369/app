@@ -8,7 +8,7 @@ import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDevices } from "../../store/actions/devicesActions";
+import { deleteDevice, loadDevices } from "../../store/actions/devicesActions";
 
 const DeviceSearch = ({
   searchQuery, 
@@ -47,12 +47,7 @@ const DeviceSearch = ({
   // Delete device
 
   function removeDevice(id) {
-    axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
-      const indexOfDelitedItem = devices.filter(
-        (item) => item._id !== response.data.id
-      );
-      setDevices(indexOfDelitedItem);
-    });
+    dispatch(deleteDevice(id))
   }
 
   // Update device

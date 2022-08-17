@@ -9,14 +9,33 @@ const getDevices = (devices) => ({
     loading: true
 });
 
+
+const deviceDeleted = () => ({
+    type: DELETE_DEVICES,
+})
+
 export const loadDevices = () => {
     return async function(dispatch) {
         try {
             await axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
-                console.log(response)
                 dispatch(getDevices(response.data))
             })
         } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const deleteDevice = (id) => {
+    console.log(id)
+    return async function(dispatch) {
+        try {
+            await axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+                dispatch(deviceDeleted(response.data))
+                dispatch(loadDevices())
+            })
+        }
+        catch (error) {
             console.log(error)
         }
     }

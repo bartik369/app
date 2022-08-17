@@ -1,9 +1,14 @@
 import React from "react";
 import "../widgets/widgets.css";
+import { useDispatch, useSelector } from "react-redux";
 
-const LastDevices = ({devices}) => {
+
+const LastDevices = () => {
+
+    const {devices} = useSelector(state => state.devices)
     const arrayDevices = [...devices];
     const reverseArrayDevices = arrayDevices.reverse().slice(0, 6);
+    
     return (
         <div className="widget-item">
           <div className="wrapper-title">

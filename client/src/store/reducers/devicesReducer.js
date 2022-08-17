@@ -18,6 +18,11 @@ const devicesReducer = (state = initialState, action) => {
                 devices: action.payload,
                 loading: false,
             }
+        case DELETE_DEVICES:
+            return {
+                ...state,
+                loading: false,
+            }
         default:
             return state
     }

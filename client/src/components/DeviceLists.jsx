@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 const DeviceLists = ({devices, title, remove, update }) => {
 
@@ -25,12 +25,22 @@ const DeviceLists = ({devices, title, remove, update }) => {
                           <td>{device.number}</td>
                           <td>{device.user}</td>
                           <td>{device.addTime}</td>
-                          <td><button className="delete-btn" title="Удалить" onClick={() => remove(device._id)}>
-        <i className="bi bi-trash3"></i>
-      </button></td>
-                          <td><button className="update-btn" title="Обновить" onClick={() => update(device._id)}>
-      <i className="bi bi-arrow-repeat"></i>
-      </button></td>
+                          <td>
+                            <button 
+                            className="delete-btn" 
+                            title="Удалить" 
+                            onClick={() => remove(device._id)}>
+                            <i className="bi bi-trash3"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <button 
+                            className="update-btn" 
+                            title="Обновить" 
+                            onClick={() => update(device._id)}>
+                            <i className="bi bi-arrow-repeat"></i>
+                            </button>
+                          </td>
                       </tr>
                   ))}
               </tbody>

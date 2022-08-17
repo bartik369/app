@@ -28,9 +28,9 @@ function App() {
   const [pageName, setPageName] = useState("");
 
   useEffect(() => {
-    Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
-      setDevices(response.data);
-    });
+    // Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
+    //   setDevices(response.data);
+    // });
     Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
       setTodos(response.data);
     })
