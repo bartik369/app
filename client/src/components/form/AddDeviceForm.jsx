@@ -41,6 +41,7 @@ const AddDeviceForm = ({ create }) => {
     }
   }, [device.type, device.name, device.number, device.user]);
 
+
   // Add new device
 
   const handleAddDevice = (e) => {

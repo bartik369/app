@@ -8,7 +8,7 @@ import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDevice, loadDevices } from "../../store/actions/devicesActions";
+import { addDevice, deleteDevice, loadDevices } from "../../store/actions/devicesActions";
 
 const DeviceSearch = ({
   searchQuery, 
@@ -65,17 +65,18 @@ const DeviceSearch = ({
 
   function createNewDevice(newDevice) {
     const {type, name, number, user, addTime} = newDevice
+    dispatch(addDevice(newDevice))
 
-    axios.post(`${ENV.HOSTNAME}insert`, {
-      type: type,
-      name: name,
-      number: number,
-      user: user,
-      addTime: addTime,
-    }).
-    then((response) => {
-      setDevices([...devices, response.data]);
-    })
+    // axios.post(`${ENV.HOSTNAME}insert`, {
+    //   type: type,
+    //   name: name,
+    //   number: number,
+    //   user: user,
+    //   addTime: addTime,
+    // }).
+    // then((response) => {
+    //   setDevices([...devices, response.data]);
+    // })
   }
 
   return (

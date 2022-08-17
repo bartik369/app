@@ -7,6 +7,7 @@ import {
 
 const initialState = {
     devices: [],
+    device: {},
     loading: true, 
 }
 
@@ -19,6 +20,7 @@ const devicesReducer = (state = initialState, action) => {
                 loading: false,
             }
         case DELETE_DEVICES:
+        case ADD_DEVICES:
             return {
                 ...state,
                 loading: false,

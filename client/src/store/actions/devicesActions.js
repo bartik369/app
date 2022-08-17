@@ -14,6 +14,10 @@ const deviceDeleted = () => ({
     type: DELETE_DEVICES,
 })
 
+const deviceAdd = () => ({
+    type: ADD_DEVICES,
+})
+
 export const loadDevices = () => {
     return async function(dispatch) {
         try {
@@ -39,4 +43,18 @@ export const deleteDevice = (id) => {
             console.log(error)
         }
     }
+}
+
+export const addDevice = (device) => {
+    return async function(dispatch) {
+        try {
+            await axios.post(`${ENV.HOSTNAME}insert`).then((response) => {
+                dispatch(deviceAdd);
+            })
+        } 
+        catch (error) {
+            
+        }
+    }
+    
 }
