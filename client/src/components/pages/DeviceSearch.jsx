@@ -29,8 +29,12 @@ const DeviceSearch = ({
   }, [setPageName])
 
 
+  // Pagination
+
   const indexOfLastDevice = currentPage * devicesPerPage;
   const indefOfFirstDevice = indexOfLastDevice - devicesPerPage;
+
+  // Search device
 
   const filterData = devices.filter((item) => {
       return Object.keys(item).some((key) =>
@@ -51,17 +55,19 @@ const DeviceSearch = ({
   }
 
   // Update device
+  
+  const handleUpdateDeviceInfo = (id) => {
+    setModalActive(true);
+    getUpdateDeviceInfo(id);
+  };
 
   function getUpdateDeviceInfo(id) {
     axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
       setUpdateDeviceId(response.data[0]);
     });
   }
-
-  const handleUpdateDeviceInfo = (id) => {
-    setModalActive(true);
-    getUpdateDeviceInfo(id);
-  };
+ 
+  // Create device
 
   function createNewDevice(newDevice) {
     dispatch(addDevice(newDevice))
@@ -73,7 +79,6 @@ const DeviceSearch = ({
         <UpdateDeviceForm
           updateInfo={updateDeviceId}
           modal={setModalActive}
-          devices={devices}
           setDevices={setDevices}
         />
       </Modal>

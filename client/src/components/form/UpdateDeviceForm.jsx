@@ -2,8 +2,10 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import ENV from '../../env.config';
+import { useDispatch, useSelector } from "react-redux";
+import { loadDevices } from "../../store/actions/devicesActions";
 
-const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices }) => {
+const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
   const [editDevice, setEditDevice] = useState({
     id: "",
     type: "",
@@ -15,6 +17,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
 
   useEffect(() => {
     setEditDevice(updateInfo);
+    dispatch(loadDevices());
   }, [updateInfo]);
 
   useEffect(() => {
@@ -38,6 +41,11 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
   );
   const [validForm, setValidForm] = useState(false);
 
+  let dispatch = useDispatch();
+  const {devices} = useSelector(state => state.devices)
+
+
+
   const handleUpdateDevice = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -57,6 +65,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, devices, setDevices, fetchDevices
     }
     setTimeout(popOut, 1000);
   };
+
 
   function updateDevice(updateDeviceData) {
     const {id,  type, name, number, user, addTime } = updateDeviceData;

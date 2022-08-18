@@ -40,7 +40,7 @@ export const deleteDevice = (id) => {
             })
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -53,7 +53,7 @@ export const addDevice = (device) => {
             })
         } 
         catch (error) {
-            
+            console.log(error);
         }
     }
     
