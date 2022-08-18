@@ -64,19 +64,7 @@ const DeviceSearch = ({
   };
 
   function createNewDevice(newDevice) {
-    const {type, name, number, user, addTime} = newDevice
     dispatch(addDevice(newDevice))
-
-    // axios.post(`${ENV.HOSTNAME}insert`, {
-    //   type: type,
-    //   name: name,
-    //   number: number,
-    //   user: user,
-    //   addTime: addTime,
-    // }).
-    // then((response) => {
-    //   setDevices([...devices, response.data]);
-    // })
   }
 
   return (

@@ -30,6 +30,8 @@ const AddDeviceForm = ({ create }) => {
     {name: 'Аксессуары', value: 'accessories'},
   ];
 
+
+
   useEffect(() => {
     if (device.type !== "" 
     && device.name !== "" 
