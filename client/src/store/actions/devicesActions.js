@@ -1,6 +1,6 @@
 import axios from "axios";
 import ENV from "../../env.config";
-import { GET_DEVICES, ADD_DEVICES, DELETE_DEVICES, UPDATE_DEVICES, ERROR_DEVICES } from "../types/typesDevices";
+import { GET_DEVICES, GET_DEVICE, ADD_DEVICES, DELETE_DEVICES, UPDATE_DEVICES, ERROR_DEVICES } from "../types/typesDevices";
 
 
 const getDevices = (devices) => ({
@@ -8,6 +8,11 @@ const getDevices = (devices) => ({
     payload: devices,
     loading: true
 });
+
+const getDevice = (device) => ({
+    type: GET_DEVICE,
+    payload: device,
+})
 
 
 const deviceDeleted = () => ({
@@ -21,7 +26,8 @@ const deviceAdd = () => ({
 export const loadDevices = () => {
     return async function(dispatch) {
         try {
-            await axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
+            await axios.get(`${ENV.HOSTNAME}devices`)
+            .then((response) => {
                 dispatch(getDevices(response.data))
             })
         } catch (error) {
@@ -34,7 +40,9 @@ export const deleteDevice = (id) => {
     console.log(id)
     return async function(dispatch) {
         try {
-            await axios.delete(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+            await axios.delete(`${ENV.HOSTNAME}device/${id}`)
+            .then((response) => {
+                console.log(response.data)
                 dispatch(deviceDeleted(response.data))
                 dispatch(loadDevices())
             })
@@ -48,7 +56,8 @@ export const deleteDevice = (id) => {
 export const addDevice = (device) => {
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}insert`, device).then((response) => {
+            await axios.post(`${ENV.HOSTNAME}insert`, device)
+            .then((response) => {
                 dispatch(deviceAdd());
             })
         } 
@@ -57,4 +66,18 @@ export const addDevice = (device) => {
         }
     }
     
+}
+
+export const getsingleDevice = (id) => {
+    return async function(dispatch) {
+        try {
+            await axios.get(`${ENV.HOSTNAME}device/${id}`)
+            .then((response) => {
+                dispatch(getDevice(response.data))
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
 }

@@ -8,7 +8,7 @@ import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
-import { addDevice, deleteDevice, loadDevices } from "../../store/actions/devicesActions";
+import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../store/actions/devicesActions";
 
 const DeviceSearch = ({
   searchQuery, 
@@ -58,14 +58,20 @@ const DeviceSearch = ({
   
   const handleUpdateDeviceInfo = (id) => {
     setModalActive(true);
-    getUpdateDeviceInfo(id);
+    // getUpdateDeviceInfo(id);
+    // axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+    //   // setUpdateDeviceId(response.data[0]);
+    //   dispatch(getsingleDevice(response.data[0]))
+    // });
+    dispatch(getsingleDevice(id))
   };
 
-  function getUpdateDeviceInfo(id) {
-    axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
-      setUpdateDeviceId(response.data[0]);
-    });
-  }
+  // function getUpdateDeviceInfo(id) {
+  //   axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
+  //     // setUpdateDeviceId(response.data[0]);
+  //     dispatch(getsingleDevice(response.data[0]))
+  //   });
+  // }
  
   // Create device
 

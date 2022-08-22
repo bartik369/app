@@ -1,6 +1,7 @@
 import { 
     GET_DEVICES, 
     ADD_DEVICES, 
+    GET_DEVICE,
     DELETE_DEVICES, 
     UPDATE_DEVICES, 
     ERROR_DEVICES } from "../types/typesDevices";
@@ -25,6 +26,13 @@ const devicesReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
             }
+        case GET_DEVICE:
+            return {
+                ...state,
+                device: action.payload,
+                loading: false,
+            }
+        
         default:
             return state
     }

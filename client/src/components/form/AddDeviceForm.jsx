@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import FormInput from "./FormInput";
+import { useSelector, useDispatch } from "react-redux";
 
 const AddDeviceForm = ({ create }) => {
   const [device, setDevice] = useState({
@@ -30,7 +31,8 @@ const AddDeviceForm = ({ create }) => {
     {name: 'Аксессуары', value: 'accessories'},
   ];
 
-
+  let dispatch = useDispatch();
+  
 
   useEffect(() => {
     if (device.type !== "" 
@@ -121,7 +123,7 @@ const AddDeviceForm = ({ create }) => {
         placeholder="Название устройства"
         name="name"
         type="text"
-        value={device.name}
+        value={device.name || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.number && <div className="form-error">{errors.number}</div>}
@@ -129,7 +131,7 @@ const AddDeviceForm = ({ create }) => {
         placeholder="Номер устройства"
         name="number"
         type="text"
-        value={device.number}
+        value={device.number || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.user && <div className="form-error">{errors.user}</div>}
@@ -137,7 +139,7 @@ const AddDeviceForm = ({ create }) => {
         placeholder="Имя пользователя"
         name="user"
         type="text"
-        value={device.user}
+        value={device.user || ""}
         onChange={(e) => handleChange(e)}
       />
       <button disabled={!validForm} type="submit" className="add-btn" onClick={(e) => handleAddDevice(e)}>

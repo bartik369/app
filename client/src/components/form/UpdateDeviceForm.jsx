@@ -16,7 +16,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
   });
 
   useEffect(() => {
-    setEditDevice(updateInfo);
+    // setEditDevice(updateInfo);
     dispatch(loadDevices());
   }, [updateInfo]);
 
@@ -42,8 +42,13 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
   const [validForm, setValidForm] = useState(false);
 
   let dispatch = useDispatch();
-  const {devices} = useSelector(state => state.devices)
+  const {devices} = useSelector(state => state.devices);
+  const {device} = useSelector(state => state.devices);
 
+  console.log(device)
+
+  // const {type, name, number, user, addTime} = editDevice
+  
 
 
   const handleUpdateDevice = (e) => {
@@ -128,7 +133,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
   const handleChange = (e) => {
     const {name, value} = e.target;
     validate(name, value)
-    setEditDevice({...editDevice, [name]: value});
+    setEditDevice({...device, [name]: value});
   }
 
   return (
@@ -137,7 +142,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
        <select
       name="type" 
       id="typeDevice"
-      value={editDevice.type}
+      value={device.type || ""} 
       onChange={(e) => handleChange(e)}
       >
         <option value="" disabled="disabled">Тип устройства</option>
@@ -150,7 +155,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Название устройства"
         name="name"
         type="text"
-        value={editDevice.name}
+        value={device.name || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.number && <div className="form-error">{errors.number}</div>}
@@ -158,7 +163,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Номер устройства"
         name="number"
         type="text"
-        value={editDevice.number}
+        value={device.number || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.user && <div className="form-error">{errors.user}</div>}
@@ -166,7 +171,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Имя пользователя"
         name="user"
         type="text"
-        value={editDevice.user}
+        value={device.user || ""}
         onChange={(e) => handleChange(e)}
       />
       <button disabled={!validForm} type="submit" className="add-btn" onClick={(e) => handleUpdateDevice(e)}>
