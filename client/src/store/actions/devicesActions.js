@@ -74,7 +74,19 @@ export const getsingleDevice = (id) => {
             await axios.get(`${ENV.HOSTNAME}device/${id}`)
             .then((response) => {
                 dispatch(getDevice(response.data))
+                //  dispatch(getDevice({...response.data}))
             })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const updateDevice = (id) => {
+    return async function(dispatch) {
+        try {
+            
         } 
         catch (error) {
             console.log(error)

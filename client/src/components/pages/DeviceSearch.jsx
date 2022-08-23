@@ -58,21 +58,9 @@ const DeviceSearch = ({
   
   const handleUpdateDeviceInfo = (id) => {
     setModalActive(true);
-    // getUpdateDeviceInfo(id);
-    // axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
-    //   // setUpdateDeviceId(response.data[0]);
-    //   dispatch(getsingleDevice(response.data[0]))
-    // });
     dispatch(getsingleDevice(id))
   };
 
-  // function getUpdateDeviceInfo(id) {
-  //   axios.get(`${ENV.HOSTNAME}device/${id}`).then((response) => {
-  //     // setUpdateDeviceId(response.data[0]);
-  //     dispatch(getsingleDevice(response.data[0]))
-  //   });
-  // }
- 
   // Create device
 
   function createNewDevice(newDevice) {
@@ -83,7 +71,6 @@ const DeviceSearch = ({
     <div className="content-container__inner">
       <Modal visible={modalActive} setVisible={setModalActive}>
         <UpdateDeviceForm
-          updateInfo={updateDeviceId}
           modal={setModalActive}
           setDevices={setDevices}
         />

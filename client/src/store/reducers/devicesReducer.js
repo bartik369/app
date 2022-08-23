@@ -32,6 +32,11 @@ const devicesReducer = (state = initialState, action) => {
                 device: action.payload,
                 loading: false,
             }
+        case UPDATE_DEVICES:
+            return {
+                ...state,
+                loading: false,
+            }
         
         default:
             return state

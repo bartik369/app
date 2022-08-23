@@ -5,32 +5,8 @@ import ENV from '../../env.config';
 import { useDispatch, useSelector } from "react-redux";
 import { loadDevices } from "../../store/actions/devicesActions";
 
-const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
-  const [editDevice, setEditDevice] = useState({
-    id: "",
-    type: "",
-    name: "",
-    number: "",
-    user: "",
-    addTime: "",
-  });
-
-  useEffect(() => {
-    // setEditDevice(updateInfo);
-    dispatch(loadDevices());
-  }, [updateInfo]);
-
-  useEffect(() => {
-    if (editDevice.type !== "" 
-    && editDevice.name !== "" 
-    && editDevice.number !== "" 
-    && editDevice.user !== "") {
-      setValidForm(true)
-    } else {
-      setValidForm(false)
-    }
-  }, [editDevice.type, editDevice.name, editDevice.number, editDevice.user]);
-
+const UpdateDeviceForm = ({ modal }) => {
+  const [editDevice, setEditDevice] = useState("");
   const [errors, setErrors] = useState(
     {
       type: "",
@@ -43,13 +19,33 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices);
-  const {device} = useSelector(state => state.devices);
+  const {device} = useSelector(state => state.device);
+  const arrayDevice = device[0];
 
-  console.log(device)
 
-  // const {type, name, number, user, addTime} = editDevice
-  
+  const addValue = () => {
+    setEditDevice({...arrayDevice})
+  }
 
+  useEffect(() => {
+    dispatch(loadDevices());
+  }, []);
+
+  useEffect(() => {
+    addValue();
+  }, [device]);
+
+
+  useEffect(() => {
+    if (editDevice.type !== "" 
+    && editDevice.name !== "" 
+    && editDevice.number !== "" 
+    && editDevice.user !== "") {
+      setValidForm(true)
+    } else {
+      setValidForm(false)
+    }
+  }, [editDevice.type, editDevice.name, editDevice.number, editDevice.user]);
 
   const handleUpdateDevice = (e) => {
     e.preventDefault();
@@ -88,8 +84,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
       );
       const newArray = [...devices];
       newArray[indexOfChangedItem] = response.data;
-      setDevices(newArray);
-      fetchDevices();
+      dispatch(loadDevices());
     })
   }
 
@@ -133,7 +128,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
   const handleChange = (e) => {
     const {name, value} = e.target;
     validate(name, value)
-    setEditDevice({...device, [name]: value});
+    setEditDevice({...editDevice, [name]: value});
   }
 
   return (
@@ -142,7 +137,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
        <select
       name="type" 
       id="typeDevice"
-      value={device.type || ""} 
+      value={editDevice.type || ""} 
       onChange={(e) => handleChange(e)}
       >
         <option value="" disabled="disabled">Тип устройства</option>
@@ -155,7 +150,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Название устройства"
         name="name"
         type="text"
-        value={device.name || ""}
+        value={editDevice.name || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.number && <div className="form-error">{errors.number}</div>}
@@ -163,7 +158,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Номер устройства"
         name="number"
         type="text"
-        value={device.number || ""}
+        value={editDevice.number || ""}
         onChange={(e) => handleChange(e)}
       />
       {errors.user && <div className="form-error">{errors.user}</div>}
@@ -171,7 +166,7 @@ const UpdateDeviceForm = ({ updateInfo, modal, setDevices, fetchDevices }) => {
         placeholder="Имя пользователя"
         name="user"
         type="text"
-        value={device.user || ""}
+        value={editDevice.user || ""}
         onChange={(e) => handleChange(e)}
       />
       <button disabled={!validForm} type="submit" className="add-btn" onClick={(e) => handleUpdateDevice(e)}>
