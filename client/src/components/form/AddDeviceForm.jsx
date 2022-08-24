@@ -31,9 +31,6 @@ const AddDeviceForm = ({ create }) => {
     {name: 'Аксессуары', value: 'accessories'},
   ];
 
-  let dispatch = useDispatch();
-  
-
   useEffect(() => {
     if (device.type !== "" 
     && device.name !== "" 

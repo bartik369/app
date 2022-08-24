@@ -1,6 +1,12 @@
 import axios from "axios";
 import ENV from "../../env.config";
-import { GET_DEVICES, GET_DEVICE, ADD_DEVICES, DELETE_DEVICES, UPDATE_DEVICES, ERROR_DEVICES } from "../types/typesDevices";
+import { 
+    GET_DEVICES, 
+    GET_DEVICE, 
+    ADD_DEVICES, 
+    DELETE_DEVICES, 
+    UPDATE_DEVICES, 
+    ERROR_DEVICES } from "../types/typesDevices";
 
 
 const getDevices = (devices) => ({
@@ -87,8 +93,6 @@ export const getsingleDevice = (id) => {
 }
 
 export const updateDevice = (device, id) => {
-    console.log(device)
-    console.log(id)
     return async function(dispatch) {
         try {
          await axios.put(`${ENV.HOSTNAME}device/${id}`, device)

@@ -8,9 +8,10 @@ import Modal from "../UI/modal/Modal";
 import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
+import { useSelector, useDispatch } from "react-redux";
+import { loadTodos } from "../../store/actions/todosActions";
 
 const Todos = ({
-  todos,
   setTodos,
   newTodoHandler,
   modalActive,
@@ -22,6 +23,9 @@ const Todos = ({
   const [updateTodoId, setUpdateTodoId] = useState("");
   const [deleteId, setDeleteId] = useState();
 
+  let dispatch = useDispatch()
+  const {todos} = useSelector(state => state.todos)
+
   const getTodos = () => {
     Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
       setTodos(response.data);
@@ -30,6 +34,7 @@ const Todos = ({
 
   useEffect(() => {
     getTodos();
+    dispatch(loadTodos())
   }, [setTodos]);
 
   const createToDo = (todoData) => {
@@ -236,13 +241,3 @@ const Todos = ({
 };
 
 export default Todos;
-
-
-// const startDate = (startTime.toLocaleString('ru-RU', {
-//   hour12: false,
-//   hour: '2-digit',
-//   minute: '2-digit',
-//   year: 'numeric',
-//   month: 'numeric',
-//   day: 'numeric',
-// }));
