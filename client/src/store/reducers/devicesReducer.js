@@ -10,7 +10,7 @@ const initialState = {
     devices: [],
     device: {},
     loading: true, 
-}
+};
 
 const devicesReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -22,6 +22,7 @@ const devicesReducer = (state = initialState, action) => {
             }
         case DELETE_DEVICES:
         case ADD_DEVICES:
+        case UPDATE_DEVICES:
             return {
                 ...state,
                 loading: false,
@@ -32,12 +33,6 @@ const devicesReducer = (state = initialState, action) => {
                 device: action.payload,
                 loading: false,
             }
-        case UPDATE_DEVICES:
-            return {
-                ...state,
-                loading: false,
-            }
-        
         default:
             return state
     }

@@ -44,8 +44,7 @@ const UpdateDeviceForm = ({ modal }) => {
   }, [editDevice.type, editDevice.name, editDevice.number, editDevice.user]);
 
 
-  const handleUpdateDevice = (e, id) => {
-    console.log(id)
+  const handleUpdateDevice = (e) => {
     e.preventDefault();
     const date = new Date();
     const deviceTime =
@@ -64,8 +63,6 @@ const UpdateDeviceForm = ({ modal }) => {
     }
     setTimeout(popOut, 1000);
   };
-
-
 
   const deviceTypeArray = [
     {name: 'Компьютеры', value: 'pc'},
