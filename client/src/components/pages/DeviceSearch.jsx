@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import DeviceLists from "../DeviceLists";
 import Modal from "../UI/modal/Modal";
-import ENV from "../../env.config";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
@@ -13,21 +11,23 @@ import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../sto
 const DeviceSearch = ({
   searchQuery, 
   setPageName,
-  setDevices, 
   modalActive, 
   setModalActive}) => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices)
 
-  const [updateDeviceId, setUpdateDeviceId] = useState("");
+  // const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
 
   useEffect(() => {
-    dispatch(loadDevices())
+    dispatch(loadDevices());
   }, [setPageName])
 
+  const refreshState = () => {
+    dispatch(loadDevices());
+  }
 
   // Pagination
 
@@ -61,10 +61,12 @@ const DeviceSearch = ({
     dispatch(getsingleDevice(id))
   };
 
+
   // Create device
 
   function createNewDevice(newDevice) {
-    dispatch(addDevice(newDevice))
+    dispatch(addDevice(newDevice));
+    refreshState()
   }
 
   return (
@@ -72,7 +74,6 @@ const DeviceSearch = ({
       <Modal visible={modalActive} setVisible={setModalActive}>
         <UpdateDeviceForm
           modal={setModalActive}
-          setDevices={setDevices}
         />
       </Modal>
       <div className="devices-list">

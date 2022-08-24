@@ -11,14 +11,14 @@ const Homepage = ({ devices, todos }) => {
     <div>
       <div className="wrapper">
         <div className="row">
-        <div className="col-m"><LastDevices devices={devices}/></div>
+        <div className="col-m"><LastDevices /></div>
         <div className="col-s"><OverdueTodo todos={todos}/></div>
         <div className="col-s"></div>
         <div className="col-s"></div>
         </div>
         <div className="row">
-          <div className="col-m"><Chart devices={devices}/></div>
-          <div className="col-m"><DeviceHistory devices={devices}/></div>
+          <div className="col-m"><Chart /></div>
+          <div className="col-m"><DeviceHistory /></div>
           <div className="col-m">fdf</div>
         </div>
       </div>

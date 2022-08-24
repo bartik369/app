@@ -1,6 +1,6 @@
 import React from "react";
 import "../widgets/widgets.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 const LastDevices = () => {

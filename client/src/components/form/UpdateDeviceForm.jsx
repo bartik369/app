@@ -1,12 +1,17 @@
-import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
-import ENV from '../../env.config';
 import { useDispatch, useSelector } from "react-redux";
-import { loadDevices } from "../../store/actions/devicesActions";
+import { loadDevices, updateDevice } from "../../store/actions/devicesActions";
 
 const UpdateDeviceForm = ({ modal }) => {
-  const [editDevice, setEditDevice] = useState("");
+  const [editDevice, setEditDevice] = useState({
+    id: "",
+    type: "",
+    name: "",
+    number: "",
+    user: "",
+    addTime: "",
+  });
   const [errors, setErrors] = useState(
     {
       type: "",
@@ -18,21 +23,12 @@ const UpdateDeviceForm = ({ modal }) => {
   const [validForm, setValidForm] = useState(false);
 
   let dispatch = useDispatch();
-  const {devices} = useSelector(state => state.devices);
   const {device} = useSelector(state => state.device);
-  const arrayDevice = device[0];
 
-
-  const addValue = () => {
-    setEditDevice({...arrayDevice})
-  }
 
   useEffect(() => {
     dispatch(loadDevices());
-  }, []);
-
-  useEffect(() => {
-    addValue();
+    setEditDevice({...device})
   }, [device]);
 
 
@@ -47,7 +43,9 @@ const UpdateDeviceForm = ({ modal }) => {
     }
   }, [editDevice.type, editDevice.name, editDevice.number, editDevice.user]);
 
-  const handleUpdateDevice = (e) => {
+
+  const handleUpdateDevice = (e, id) => {
+    console.log(id)
     e.preventDefault();
     const date = new Date();
     const deviceTime =
@@ -60,7 +58,7 @@ const UpdateDeviceForm = ({ modal }) => {
       user: editDevice.user,
       addTime: deviceTime,
     };
-    updateDevice(updateDeviceData);
+    dispatch(updateDevice(updateDeviceData, updateDeviceData.id))
     const popOut = () => {
       modal(false)
     }
@@ -68,25 +66,6 @@ const UpdateDeviceForm = ({ modal }) => {
   };
 
 
-  function updateDevice(updateDeviceData) {
-    const {id,  type, name, number, user, addTime } = updateDeviceData;
-    Axios.put(`${ENV.HOSTNAME}device/${id}`, {
-      id: id,
-      type: type,
-      name: name,
-      number: number,
-      user: user,
-      addTime: addTime,
-    }).then((response) => {
-      
-      const indexOfChangedItem = devices.findIndex((item) => 
-      item._id === response.data.id
-      );
-      const newArray = [...devices];
-      newArray[indexOfChangedItem] = response.data;
-      dispatch(loadDevices());
-    })
-  }
 
   const deviceTypeArray = [
     {name: 'Компьютеры', value: 'pc'},

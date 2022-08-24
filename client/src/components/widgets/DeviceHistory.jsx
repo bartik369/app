@@ -1,9 +1,11 @@
 import React from "react";
 import "../widgets/widgets.css";
-import CanvasJSReact from "../../lib/canvas/canvasjs.react"
+import CanvasJSReact from "../../lib/canvas/canvasjs.react";
+import { useSelector } from "react-redux";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const DeviceHistory = ({devices}) => {
+const DeviceHistory = () => {
+    const {devices} = useSelector(state => state.devices)
     const nameArray = [];
     let newArray = []
     let count = []

@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { loadDevices } from "../../store/actions/devicesActions";
+import { useDispatch, useSelector } from "react-redux";
 import "../widgets/widgets.css";
 import CanvasJSReact from "../../lib/canvas/canvasjs.react"
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const Chart = ({devices}) => {
+const Chart = () => {
+
+    useEffect(() => {
+        dispatch(loadDevices());
+    }, [])
+
+
+    let dispatch = useDispatch();
+    const {devices} = useSelector(state => state.devices)
     const nameArray = [];
     let newArray = []
     let count = []

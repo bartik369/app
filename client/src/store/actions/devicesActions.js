@@ -23,6 +23,10 @@ const deviceAdd = () => ({
     type: ADD_DEVICES,
 })
 
+const deviceUpdate = () => ({
+    type: UPDATE_DEVICES,
+})
+
 export const loadDevices = () => {
     return async function(dispatch) {
         try {
@@ -73,8 +77,7 @@ export const getsingleDevice = (id) => {
         try {
             await axios.get(`${ENV.HOSTNAME}device/${id}`)
             .then((response) => {
-                dispatch(getDevice(response.data))
-                //  dispatch(getDevice({...response.data}))
+                dispatch(getDevice(response.data[0]))
             })
         } 
         catch (error) {
@@ -83,10 +86,15 @@ export const getsingleDevice = (id) => {
     }
 }
 
-export const updateDevice = (id) => {
+export const updateDevice = (device, id) => {
+    console.log(device)
+    console.log(id)
     return async function(dispatch) {
         try {
-            
+         await axios.put(`${ENV.HOSTNAME}device/${id}`, device)
+         .then((response) => {
+            dispatch(deviceUpdate(response.data))
+         })
         } 
         catch (error) {
             console.log(error)
