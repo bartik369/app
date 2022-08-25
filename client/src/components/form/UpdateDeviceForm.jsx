@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDevices, updateDevice } from "../../store/actions/devicesActions";
 
-const UpdateDeviceForm = ({ modal }) => {
+const UpdateDeviceForm = ({ modal, update }) => {
   const [editDevice, setEditDevice] = useState({
     id: "",
     type: "",

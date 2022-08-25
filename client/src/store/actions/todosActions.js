@@ -18,10 +18,19 @@ const getTodos = (todos) => ({
 
 const todoAdded = () => ({
     type:ADD_TODOS,
-})
+});
 
 const todoDelete = () => ({
     type: DELETE_TODOS,
+});
+
+const getTodo = (todo) => ({
+    type: GET_TODO,
+    payload: todo,
+});
+
+const todoUpdate = () => ({
+    type: UPDATE_TODOS,
 })
 
 export const loadTodos = () => {
@@ -64,6 +73,37 @@ export const deleteTodo = (id) => {
         } 
         catch (error) {
            console.log(error)
+        }
+    }
+}
+
+export const getSingleTodo = (id) => {
+
+    return async function(dispatch) {
+        try {
+            await axios.get(`${ENV.HOSTNAME}todo/${id}`)
+            .then((response) => {
+                dispatch(getTodo(response.data[0]))
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const updateTodo = (todo, id) => {
+    console.log(todo)
+    console.log(id)
+    return async function(dispatch) {
+        try {
+            await axios.put(`${ENV.HOSTNAME}todo/${id}`, todo)
+            .then((response) => {
+                dispatch(todoUpdate(response.data))
+            })
+        } 
+        catch (error) {
+            console.log(error)
         }
     }
 }

@@ -9,7 +9,7 @@ import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, loadTodos } from "../../store/actions/todosActions";
+import { deleteTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
 
 const Todos = ({
   setTodos,
@@ -44,36 +44,12 @@ const Todos = ({
 
   const handleTodoUpdate = (id) => {
     !updateModalActive ? setUpdateModalActive(true) : setUpdateModalActive(false);
-    
-    Axios.get(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
-      setUpdateTodoId(response.data[0]);
-    });
+    dispatch(getSingleTodo(id))
   };
 
-  const updateTodo = (updatedData) => {
-    console.log(updatedData)
-    const { id, title, description, status, startTime, endTime } = updatedData;
-
-    const startDate = startTime;
-    const endDate = endTime;
-
-    Axios.put(`${ENV.HOSTNAME}todo/${id}`, {
-      id: id,
-      title: title,
-      description: description,
-      status: status,
-      startTime: startDate,
-      endTime: endDate,
-    }).then((response) => {
-      let indexOfChangedItem = todos.findIndex(
-        (item) => item._id === response.data.id
-      );
-      const newArray = [...todos];
-      newArray[indexOfChangedItem] = response.data;
-      setTodos(newArray);
-      setUpdateModalActive(false);
-      getTodos()
-    });
+  const updateTodoData = (updatedData) => {
+    dispatch(updateTodo(updatedData, updatedData.id))
+    setUpdateModalActive(false);
   };
 
   const handleTodoComplete = (id) => {
@@ -92,6 +68,7 @@ const Todos = ({
       newArray[indexOfDoneItem] = response.data;
       setTodos(newArray);
     });
+    dispatch(getSingleTodo(id));
   };
 
   const handleTodoReopen = (id) => {
@@ -131,7 +108,7 @@ const Todos = ({
         <AddTodoForm  modal={modal} />
       </Modal>
       <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
-        <UpdateTodoForm updateTodoId={updateTodoId} updateTodo={updateTodo} />
+        <UpdateTodoForm updateTodoId={updateTodoId} update={updateTodoData} />
       </Modal>
       <div className="add-todo">
         <button className="add-todo-btn" onClick={() => newTodoHandler()}>

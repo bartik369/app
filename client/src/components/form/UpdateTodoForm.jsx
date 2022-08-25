@@ -4,8 +4,10 @@ import '../pages/Todos.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTodo, loadTodos } from '../../store/actions/todosActions';
 
-const UpdateTodoForm = ({updateTodoId, updateTodo}) => {
+const UpdateTodoForm = ({update}) => {
 
 const [updatedTodo, setUpdatedTodo] = useState(
   {
@@ -28,9 +30,13 @@ const [errors, setErrors] = useState(
 );
 const [validForm, setValidForm] = useState(false);
 
+let dispatch = useDispatch();
+const {todo} = useSelector(state => state.todo);
+
 useEffect(() => {
-  setUpdatedTodo(updateTodoId)
-}, [updateTodoId]);
+  dispatch(loadTodos())
+  setUpdatedTodo({...todo})
+}, [todo]);
 
 useEffect(() => {
   if (updatedTodo.title !== "" 
@@ -70,7 +76,7 @@ const handleTodoUpdate = () => {
     startTime: updatedTodo.startTime,
     endTime: updatedTodo.endTime,
   }
-  updateTodo(updateTodoData)
+  update(updateTodoData);
 }
 
 const handleChange = (e) => {
