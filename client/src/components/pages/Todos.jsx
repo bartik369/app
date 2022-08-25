@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
 
 const Todos = ({
-  setTodos,
   newTodoHandler,
   modalActive,
   setModalActive,
@@ -20,22 +19,21 @@ const Todos = ({
   setUpdateModalActive,
   modal,
 }) => {
-  const [updateTodoId, setUpdateTodoId] = useState("");
+
   const [deleteId, setDeleteId] = useState();
 
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos)
 
-  const getTodos = () => {
-    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-      setTodos(response.data);
-    });
-  };
+  // const getTodos = () => {
+  //   Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
+  //     setTodos(response.data);
+  //   });
+  // };
 
   useEffect(() => {
-    getTodos();
     dispatch(loadTodos())
-  }, [setTodos]);
+  }, []);
 
   const handleTodoDelete = (id) => {
     dispatch(deleteTodo(id));
@@ -66,9 +64,9 @@ const Todos = ({
     }).then((response) => {
       const newArray = [...todos];
       newArray[indexOfDoneItem] = response.data;
-      setTodos(newArray);
+      dispatch(updateTodo())
+      // setTodos(newArray);
     });
-    dispatch(getSingleTodo(id));
   };
 
   const handleTodoReopen = (id) => {
@@ -85,7 +83,7 @@ const Todos = ({
     }).then((response) => {
       const newArray = [...todos];
       newArray[indexOfReopenItem] = response.data;
-      setTodos(newArray);
+      // setTodos(newArray);
     });
   }
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
@@ -108,7 +106,7 @@ const Todos = ({
         <AddTodoForm  modal={modal} />
       </Modal>
       <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
-        <UpdateTodoForm updateTodoId={updateTodoId} update={updateTodoData} />
+        <UpdateTodoForm  update={updateTodoData} />
       </Modal>
       <div className="add-todo">
         <button className="add-todo-btn" onClick={() => newTodoHandler()}>

@@ -6,6 +6,8 @@ import {
     ADD_TODOS,
     DELETE_TODOS,
     UPDATE_TODOS,
+    REOPEN_TODOS,
+    DONE_TODOS,
     ERROR_TODOS,
 } from "../types/typesTodos.js";
 
@@ -31,6 +33,14 @@ const getTodo = (todo) => ({
 
 const todoUpdate = () => ({
     type: UPDATE_TODOS,
+})
+
+const todoDone = () => ({
+    type: DONE_TODOS,
+});
+
+const todoReopen = () => ({
+    type: REOPEN_TODOS,
 })
 
 export const loadTodos = () => {
@@ -93,8 +103,7 @@ export const getSingleTodo = (id) => {
 }
 
 export const updateTodo = (todo, id) => {
-    console.log(todo)
-    console.log(id)
+    
     return async function(dispatch) {
         try {
             await axios.put(`${ENV.HOSTNAME}todo/${id}`, todo)
@@ -104,6 +113,34 @@ export const updateTodo = (todo, id) => {
         } 
         catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export const finishTodo = (todo, id) => {
+    return async function(dispatch) {
+        try {
+            await axios.put(`${ENV.HOSTNAME}todo/${id}`, todo)
+            .then((response) => {
+                dispatch(todoDone(response.data));
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const reopenTodo = (todo, id) => {
+    return async function(dispatch) {
+        try {
+            await axios.put(`${ENV.HOSTNAME}todo/${id}`, todo)
+            .then((response) => {
+                dispatch(todoReopen(response.data));
+            })
+        }
+        catch (error) {
+            console.log(error)    
         }
     }
 }
