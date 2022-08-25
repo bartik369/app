@@ -20,12 +20,15 @@ const todoAdded = () => ({
     type:ADD_TODOS,
 })
 
+const todoDelete = () => ({
+    type: DELETE_TODOS,
+})
+
 export const loadTodos = () => {
     return async function(dispatch) {
         try {
             await axios.get(`${ENV.HOSTNAME}todos`)
             .then((response) => {
-                console.log(response.data)
                 dispatch(getTodos(response.data))
             })
         } 
@@ -39,13 +42,28 @@ export const loadTodos = () => {
 export const addTodo = (todo) => {
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}newtodo`)
+            await axios.post(`${ENV.HOSTNAME}newtodo`, todo)
             .then((response) => {
                 dispatch(todoAdded(response.data))
             })
         } 
         catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export const deleteTodo = (id) => {
+    return async function(dispatch) {
+        try {
+            await axios.delete(`${ENV.HOSTNAME}todo/${id}`)
+            .then((response) => {
+                dispatch(todoDelete(response.data))
+                dispatch(loadTodos())
+            })
+        } 
+        catch (error) {
+           console.log(error)
         }
     }
 }

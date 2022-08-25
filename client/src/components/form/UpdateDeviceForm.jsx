@@ -25,7 +25,6 @@ const UpdateDeviceForm = ({ modal }) => {
   let dispatch = useDispatch();
   const {device} = useSelector(state => state.device);
 
-
   useEffect(() => {
     dispatch(loadDevices());
     setEditDevice({...device})

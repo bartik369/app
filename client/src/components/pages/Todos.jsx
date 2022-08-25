@@ -9,7 +9,7 @@ import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { loadTodos } from "../../store/actions/todosActions";
+import { deleteTodo, loadTodos } from "../../store/actions/todosActions";
 
 const Todos = ({
   setTodos,
@@ -37,37 +37,9 @@ const Todos = ({
     dispatch(loadTodos())
   }, [setTodos]);
 
-  const createToDo = (todoData) => {
-    const { id, title, description, status, startTime, endTime  } = todoData;
-    const startDate = startTime;
-    const endDate = endTime;
-
-    Axios.post(`${ENV.HOSTNAME}newtodo`, {
-      id: id,
-      title: title,
-      description: description,
-      status: status,
-      startTime: startDate,
-      endTime: endDate,
-    })
-    .then((response) => {
-     setTodos([...todos, response.data])
-    })
-  };
-
-
   const handleTodoDelete = (id) => {
-    Axios.delete(`${ENV.HOSTNAME}todo/${id}`).then((response) => {
-      const indexOfDelitedItem = todos.filter(
-        (item) => item._id !== response.data.id
-      );
-      const deleteById = () => {
-        setTodos(indexOfDelitedItem);
-      }
-      setTimeout(deleteById, 700)
-      const findItemId = todos.find((itemId) => itemId._id === response.data.id);
-      setDeleteId(findItemId._id)
-    });
+    dispatch(deleteTodo(id));
+    setDeleteId(id)
   };
 
   const handleTodoUpdate = (id) => {
@@ -156,7 +128,7 @@ const Todos = ({
   return (
     <div className="todos">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <AddTodoForm create={createToDo} modal={modal} />
+        <AddTodoForm  modal={modal} />
       </Modal>
       <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
         <UpdateTodoForm updateTodoId={updateTodoId} updateTodo={updateTodo} />

@@ -3,8 +3,10 @@ import FormInput from "./FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo } from "../../store/actions/todosActions";
 
-const AddTodoForm = ({ create, modal }) => {
+const AddTodoForm = ({ modal }) => {
   const [todo, setTodo] = useState(
     {
       id: "",
@@ -24,6 +26,7 @@ const AddTodoForm = ({ create, modal }) => {
     }
   );
   const [validForm, setValidForm] = useState(false);
+  let dispatch = useDispatch()
 
   useEffect(() => {
     if (todo.title !== "" 
@@ -76,7 +79,8 @@ const AddTodoForm = ({ create, modal }) => {
       startTime: todo.startTime,
       endTime: todo.endTime,
     };
-    create(newTodo);
+    dispatch(addTodo(newTodo))
+    // create(newTodo);
     setTodo({
       id: "",
       title: "",

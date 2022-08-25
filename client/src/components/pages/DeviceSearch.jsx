@@ -58,15 +58,14 @@ const DeviceSearch = ({
   
   const handleUpdateDeviceInfo = (id) => {
     setModalActive(true);
-    dispatch(getsingleDevice(id))
+    dispatch(getsingleDevice(id));
   };
-
 
   // Create device
 
   function createNewDevice(newDevice) {
     dispatch(addDevice(newDevice));
-    refreshState()
+    refreshState();
   }
 
   return (
