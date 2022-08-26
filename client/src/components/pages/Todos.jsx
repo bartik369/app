@@ -9,7 +9,7 @@ import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
+import { deleteTodo, finishTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
 
 const Todos = ({
   newTodoHandler,
@@ -25,11 +25,6 @@ const Todos = ({
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos)
 
-  // const getTodos = () => {
-  //   Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-  //     setTodos(response.data);
-  //   });
-  // };
 
   useEffect(() => {
     dispatch(loadTodos())
@@ -53,38 +48,14 @@ const Todos = ({
   const handleTodoComplete = (id) => {
     const indexOfDoneItem = todos.find((item) => item._id === id);
     indexOfDoneItem.status = "done";
-    const { _id, title, description, status, startTime, endTime} = indexOfDoneItem;
-    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
-      id: _id,
-      title: title,
-      description: description,
-      status: status,
-      startTime: startTime,
-      endTime: endTime,
-    }).then((response) => {
-      const newArray = [...todos];
-      newArray[indexOfDoneItem] = response.data;
-      dispatch(updateTodo())
-      // setTodos(newArray);
-    });
+    dispatch(updateTodo(indexOfDoneItem, indexOfDoneItem._id));
   };
 
   const handleTodoReopen = (id) => {
     const indexOfReopenItem = todos.find((item) => item._id === id);
     indexOfReopenItem.status = "inprocess";
-    const {_id, title, description, status, startTime, endTime } = indexOfReopenItem;
-    Axios.put(`${ENV.HOSTNAME}todo/${_id}`, {
-      id: _id,
-      title: title,
-      description: description,
-      status: status,
-      startTime: startTime,
-      endTime: endTime,
-    }).then((response) => {
-      const newArray = [...todos];
-      newArray[indexOfReopenItem] = response.data;
-      // setTodos(newArray);
-    });
+    dispatch(updateTodo(indexOfReopenItem, indexOfReopenItem._id));
+
   }
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const breakpoints = {

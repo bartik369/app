@@ -4,8 +4,6 @@ import {
     ADD_TODOS,
     DELETE_TODOS,
     UPDATE_TODOS,
-    DONE_TODOS, 
-    REOPEN_TODOS,
     ERROR_TODOS } from "../types/typesTodos";
 
 const initialState = {
@@ -24,9 +22,7 @@ const todosReducer = (state = initialState, action) => {
             }
         case DELETE_TODOS:
         case ADD_TODOS:
-        case UPDATE_TODOS:
-        case REOPEN_TODOS:
-        case DONE_TODOS:    
+        case UPDATE_TODOS: 
             return {
                 ...state,
                 loading: false,
