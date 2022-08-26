@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AddTodoForm from "../form/AddTodoForm";
-import Axios from "axios";
-import ENV from "../../env.config";
 import "./Todos.css";
 import "../../styles/App.css"
 import Modal from "../UI/modal/Modal";
@@ -9,7 +7,7 @@ import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, finishTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
+import { deleteTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
 
 const Todos = ({
   newTodoHandler,
@@ -23,12 +21,14 @@ const Todos = ({
   const [deleteId, setDeleteId] = useState();
 
   let dispatch = useDispatch()
-  const {todos} = useSelector(state => state.todos)
+  const {todos} = useSelector(state => state.todos);
 
+  console.log(todos)
 
   useEffect(() => {
-    dispatch(loadTodos())
+    dispatch(loadTodos());
   }, []);
+
 
   const handleTodoDelete = (id) => {
     dispatch(deleteTodo(id));

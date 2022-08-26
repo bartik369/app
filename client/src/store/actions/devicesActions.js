@@ -47,14 +47,11 @@ export const loadDevices = () => {
 }
 
 export const deleteDevice = (id) => {
-    console.log(id)
     return async function(dispatch) {
         try {
             await axios.delete(`${ENV.HOSTNAME}device/${id}`)
             .then((response) => {
-                console.log(response.data)
                 dispatch(deviceDeleted(response.data))
-                dispatch(loadDevices())
             })
         }
         catch (error) {

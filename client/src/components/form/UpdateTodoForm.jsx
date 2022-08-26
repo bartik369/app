@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateTodo, loadTodos } from '../../store/actions/todosActions';
+import { loadTodos } from '../../store/actions/todosActions';
 
 const UpdateTodoForm = ({update}) => {
 
@@ -32,6 +32,7 @@ const [validForm, setValidForm] = useState(false);
 
 let dispatch = useDispatch();
 const {todo} = useSelector(state => state.todo);
+
 
 useEffect(() => {
   dispatch(loadTodos())
@@ -77,6 +78,7 @@ const handleTodoUpdate = () => {
     endTime: updatedTodo.endTime,
   }
   update(updateTodoData);
+  
 }
 
 const handleChange = (e) => {

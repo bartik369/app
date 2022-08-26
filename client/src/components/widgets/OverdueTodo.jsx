@@ -1,14 +1,22 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../widgets/widgets.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import emtyImageDanger from "../../assets/portal/empty-danger.jpg";
 import emtyImageAttention from "../../assets/portal/empty-attention.jpg";
 import CountdownTimer from "../../components/timer/CountdownTimer";
-import "../timer/timer.css"
+import "../timer/timer.css";
+import { loadTodos } from "../../store/actions/todosActions";
+import { useDispatch, useSelector } from "react-redux";
 
-const OverdueTodo = ({ todos }) => {
+const OverdueTodo = () => {
 
+  useEffect(() => {
+    dispatch(loadTodos());
+  }, []);
+
+  const {todos} = useSelector(state => state.todos);
+  let dispatch = useDispatch();
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
   const attentionTodos = [];
@@ -21,7 +29,6 @@ const OverdueTodo = ({ todos }) => {
     const passedTime = diffDate - (endD - new Date());
     const eighty = (diffDate / 100) * 80;
     const ninetyNine = (diffDate / 100) * 99.9;
-
     endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
     if (
@@ -34,6 +41,7 @@ const OverdueTodo = ({ todos }) => {
 
     if (endTodoDate <= dateNow && todo.status !== "done") {
       overdueTodos.push(todo);
+      console.log(overdueTodos)
     }
   });
 

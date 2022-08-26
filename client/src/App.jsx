@@ -18,8 +18,6 @@ import Settings from "./components/pages/Settings";
 import Header from "./components/header/Header";
 
 function App() {
-  const [devices, setDevices] = useState([]);
-  const [todos, setTodos] = useState([]);
 
   const [modalActive, setModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);
@@ -27,14 +25,6 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
 
-  useEffect(() => {
-    // Axios.get(`${ENV.HOSTNAME}devices`).then((response) => {
-    //   setDevices(response.data);
-    // });
-    Axios.get(`${ENV.HOSTNAME}todos`).then((response) => {
-      setTodos(response.data);
-    })
-  }, []);
 
   // console.log(devices)
   // console.log(todos)
@@ -70,18 +60,13 @@ function App() {
         />
         <div className="content-container">
           <Routes>
-            <Route path="/dashboard" element={<Homepage 
-            devices={devices} 
-            todos={todos}
-            />}></Route>
+            <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search"
               element={
                 <DeviceSearch
                   searchQuery={searchQuery}
                   setPageName={setPageName}
-                  // devices={devices}
-                  setDevices={setDevices}
                   setModalActive={setModalActive}
                   modalActive={modalActive}
                 />
@@ -90,8 +75,6 @@ function App() {
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
             <Route path="/todos" element={<Todos 
-            todos={todos}
-            setTodos={setTodos}
             newTodoHandler={addVisibleModal}
             modalActive={modalActive} 
             setModalActive={setModalActive}

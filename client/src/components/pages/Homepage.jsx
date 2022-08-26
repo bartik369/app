@@ -5,14 +5,14 @@ import OverdueTodo from "../widgets/OverdueTodo";
 import "../../styles/App.css"
 import DeviceHistory from "../widgets/DeviceHistory";
 
-const Homepage = ({ devices, todos }) => {
+const Homepage = () => {
 
   return (
     <div>
       <div className="wrapper">
         <div className="row">
         <div className="col-m"><LastDevices /></div>
-        <div className="col-s"><OverdueTodo todos={todos}/></div>
+        <div className="col-s"><OverdueTodo /></div>
         <div className="col-s"></div>
         <div className="col-s"></div>
         </div>
