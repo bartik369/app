@@ -23,11 +23,12 @@ const Todos = ({
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
 
-  console.log(todos)
 
   useEffect(() => {
     dispatch(loadTodos());
   }, []);
+
+  console.log(todos)
 
 
   const handleTodoDelete = (id) => {

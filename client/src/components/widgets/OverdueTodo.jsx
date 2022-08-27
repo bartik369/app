@@ -11,16 +11,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 const OverdueTodo = () => {
 
-  useEffect(() => {
-    dispatch(loadTodos());
-  }, []);
-
   const {todos} = useSelector(state => state.todos);
   let dispatch = useDispatch();
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
   const attentionTodos = [];
   let endTodoDate;
+
+  useEffect(() => {
+    dispatch(loadTodos());
+  }, []);
 
   todos.map((todo) => {
     const startD = moment(todo.startTime);
@@ -41,7 +41,6 @@ const OverdueTodo = () => {
 
     if (endTodoDate <= dateNow && todo.status !== "done") {
       overdueTodos.push(todo);
-      console.log(overdueTodos)
     }
   });
 
@@ -81,11 +80,9 @@ const OverdueTodo = () => {
         </div>
         <div className="widget-item__title">Просроченные задачи</div>
       </div>
-      {overdueTodos.length > 0 ? 
+      {overdueTodos.length > 0 ? (
         <div className="todos_info">
-          {overdueTodos.slice(0, 3).map((todo, index) =>
-            endTodoDate <= dateNow 
-            ? 
+          {overdueTodos.slice(0, 3).map((todo, index) =>  
               <div className="overdue__item" key={index}>
                 <Link to="/todos">
                 <div className="todos_info__title">{todo.title}</div>
@@ -95,11 +92,9 @@ const OverdueTodo = () => {
                   {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
                 </div>
               </div>
-             : 
-              ""
           )}
         </div>
-       : (
+       ) : (
         <div className="overdue__item-empty">
           <img src={emtyImageDanger} />
           <div className="todo-info">Просроченных задач нет</div>
