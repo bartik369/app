@@ -4,8 +4,17 @@ import LastDevices from "../widgets/LastDevices";
 import OverdueTodo from "../widgets/OverdueTodo";
 import "../../styles/App.css"
 import DeviceHistory from "../widgets/DeviceHistory";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loadTodos } from "../../store/actions/todosActions";
 
 const Homepage = () => {
+
+  let dispatch = useDispatch(state => state.todos)
+
+  useEffect(() => {
+    dispatch(loadTodos())
+  })
 
   return (
     <div>
