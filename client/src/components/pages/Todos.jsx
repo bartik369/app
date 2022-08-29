@@ -23,8 +23,6 @@ const Todos = ({
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
 
-  console.log(todos)
-
   useEffect(() => {
     dispatch(loadTodos());
   }, []);
@@ -57,7 +55,7 @@ const Todos = ({
     dispatch(updateTodo(indexOfReopenItem, indexOfReopenItem._id));
 
   }
-  const dateNow = moment().format("DD.MM.YYYY HH:mm");
+  const dateNow = Date.now();
   const breakpoints = {
     2560: 8,
     1920: 6,
@@ -90,7 +88,7 @@ const Todos = ({
       columnClassName="my-masonry-grid_column">
         {todos.map((todo, index) => {
           const startTodoDate = moment(todo.startTime).format("DD.MM.YYYY HH:mm");
-          const endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
+          const endTodoDate = Date.parse(todo.endTime);
 
           return (
             <div
@@ -110,7 +108,7 @@ const Todos = ({
               <span className="time-text">Начать с:</span>
               <span className="start-time">{startTodoDate}</span>
               <span className="time-text">Закончить до:</span>
-              <span className="end-time">{endTodoDate}</span>
+              <span className="end-time">{moment(endTodoDate).format("DD.MM.YYYY HH:mm")}</span>
             </div>
             <div className="todo-item__bottom">
             <div className="todo-btns">

@@ -11,16 +11,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 const OverdueTodo = () => {
 
-  useEffect(() => {
-    dispatch(loadTodos());
-  }, []);
-
   const {todos} = useSelector(state => state.todos);
   let dispatch = useDispatch();
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
   const attentionTodos = [];
   let endTodoDate;
+
+  useEffect(() => {
+    dispatch(loadTodos());
+  }, []);
 
   todos.map((todo) => {
     const startD = moment(todo.startTime);
@@ -41,7 +41,6 @@ const OverdueTodo = () => {
 
     if (endTodoDate <= dateNow && todo.status !== "done") {
       overdueTodos.push(todo);
-      console.log(overdueTodos)
     }
   });
 
