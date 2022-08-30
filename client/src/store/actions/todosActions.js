@@ -40,7 +40,8 @@ export const loadTodos = () => {
             await axios.get(`${ENV.HOSTNAME}todos`)
             .then((response) => {
                 dispatch(getTodos(response.data))
-            })
+            });
+            console.log("load data")
         } 
         catch (error) {
             console.log(error);
@@ -68,8 +69,7 @@ export const deleteTodo = (id) => {
         try {
             await axios.delete(`${ENV.HOSTNAME}todo/${id}`)
             .then((response) => {
-                dispatch(todoDelete(response.data))
-                dispatch(loadTodos())
+                dispatch(todoDelete(response.data));
             })
         } 
         catch (error) {

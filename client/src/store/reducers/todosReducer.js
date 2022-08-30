@@ -3,8 +3,7 @@ import {
     GET_TODOS,
     ADD_TODOS,
     DELETE_TODOS,
-    UPDATE_TODOS,
-    ERROR_TODOS } from "../types/typesTodos";
+    UPDATE_TODOS,} from "../types/typesTodos";
 
 const initialState = {
     todos: [],

@@ -24,8 +24,12 @@ const Todos = ({
   const {todos} = useSelector(state => state.todos);
 
   useEffect(() => {
-    dispatch(loadTodos());
+    dispatch(loadTodos())
   }, []);
+
+  const refreshState = () => {
+    dispatch(loadTodos());
+  }
 
 
   const handleTodoDelete = (id) => {
@@ -41,6 +45,7 @@ const Todos = ({
   const updateTodoData = (updatedData) => {
     dispatch(updateTodo(updatedData, updatedData.id))
     setUpdateModalActive(false);
+    refreshState();
   };
 
   const handleTodoComplete = (id) => {

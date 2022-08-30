@@ -16,7 +16,7 @@ const OverdueTodo = () => {
   const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
   const attentionTodos = [];
-  let endTodoDate;
+  // let endTodoDate;
 
   useEffect(() => {
     dispatch(loadTodos());
@@ -29,7 +29,7 @@ const OverdueTodo = () => {
     const passedTime = diffDate - (endD - new Date());
     const eighty = (diffDate / 100) * 80;
     const ninetyNine = (diffDate / 100) * 99.9;
-    endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
+    // endTodoDate = moment(todo.endTime).format("DD.MM.YYYY HH:mm");
 
     if (
       passedTime >= eighty &&
@@ -39,7 +39,7 @@ const OverdueTodo = () => {
       attentionTodos.push(todo);
     }
 
-    if (endTodoDate <= dateNow && todo.status !== "done") {
+    if (Date.parse(todo.endTime) <= Date.now() && todo.status !== "done") {
       overdueTodos.push(todo);
     }
   });

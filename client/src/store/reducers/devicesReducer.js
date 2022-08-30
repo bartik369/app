@@ -3,8 +3,7 @@ import {
     ADD_DEVICES, 
     GET_DEVICE,
     DELETE_DEVICES, 
-    UPDATE_DEVICES, 
-    ERROR_DEVICES } from "../types/typesDevices";
+    UPDATE_DEVICES,} from "../types/typesDevices";
 
 const initialState = {
     devices: [],
