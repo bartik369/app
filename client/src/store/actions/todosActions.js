@@ -6,7 +6,6 @@ import {
     ADD_TODOS,
     DELETE_TODOS,
     UPDATE_TODOS,
-    ERROR_TODOS,
 } from "../types/typesTodos.js";
 
 
@@ -55,7 +54,7 @@ export const addTodo = (todo) => {
         try {
             await axios.post(`${ENV.HOSTNAME}newtodo`, todo)
             .then((response) => {
-                dispatch(todoAdded(response.data))
+                dispatch(todoAdded(response.data));
             })
         } 
         catch (error) {

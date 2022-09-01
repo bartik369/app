@@ -7,7 +7,7 @@ import UpdateTodoForm from "../form/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, getSingleTodo, loadTodos, updateTodo } from "../../store/actions/todosActions";
+import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
 
 const Todos = ({
   newTodoHandler,
@@ -15,7 +15,6 @@ const Todos = ({
   setModalActive,
   updateModalActive,
   setUpdateModalActive,
-  modal,
 }) => {
 
   const [deleteId, setDeleteId] = useState();
@@ -27,9 +26,16 @@ const Todos = ({
     dispatch(loadTodos())
   }, []);
 
+
+  const createTodo = (newTodo) => {
+    dispatch(addTodo(newTodo));
+    setModalActive(false);
+  }
+
+
   const handleTodoDelete = (id) => {
     dispatch(deleteTodo(id));
-    setDeleteId(id)
+    setDeleteId(id);
   };
 
   const handleTodoUpdate = (id) => {
@@ -75,7 +81,7 @@ const Todos = ({
   return (
     <div className="todos">
       <Modal visible={modalActive} setVisible={setModalActive}>
-        <AddTodoForm  modal={modal} />
+        <AddTodoForm create={createTodo}/>
       </Modal>
       <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
         <UpdateTodoForm  update={updateTodoData} />

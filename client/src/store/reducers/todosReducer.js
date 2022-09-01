@@ -12,6 +12,7 @@ const initialState = {
 };
 
 const todosReducer = (state = initialState, action) => {
+
     switch(action.type) {
         case GET_TODOS:
             return {
@@ -23,13 +24,12 @@ const todosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todo: action.payload,
-                refreshing: true,
             }
         case ADD_TODOS: 
             return {
                 ...state,
                 todo: action.payload,
-                refreshing: true,
+              
             }
         case GET_TODO:
             return {
@@ -41,7 +41,6 @@ const todosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todo: action.payload,
-                refreshing: true,
             }
         default:
             return state

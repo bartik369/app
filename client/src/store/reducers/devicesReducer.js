@@ -12,6 +12,7 @@ const initialState = {
 };
 
 const devicesReducer = (state = initialState, action) => {
+
     switch(action.type) {
         case GET_DEVICES:
             return {
@@ -23,25 +24,21 @@ const devicesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 device: action.payload,
-                refreshing: true,
             }
         case ADD_DEVICES:
             return {
                 ...state,
                 device: action.payload,
-                refreshing: true,
             }
         case UPDATE_DEVICES:
                 return {
                     ...state,
                     device: action.payload,
-                    refreshing: true,
                 }
         case GET_DEVICE:
             return {
                 ...state,
                 device: action.payload,
-                loading: false,
             }
         default:
             return state

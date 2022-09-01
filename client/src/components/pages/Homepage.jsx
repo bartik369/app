@@ -12,9 +12,9 @@ const Homepage = () => {
 
   let dispatch = useDispatch(state => state.todos)
 
-  useEffect(() => {
-    dispatch(loadTodos())
-  })
+  // useEffect(() => {
+  //   dispatch(loadTodos())
+  // })
 
   return (
     <div>

@@ -78,7 +78,6 @@ function App() {
             newTodoHandler={addVisibleModal}
             modalActive={modalActive} 
             setModalActive={setModalActive}
-            modal={setModalActive}
             updateModalActive={updateModalActive}
             setUpdateModalActive={setUpdateModalActive}
             />}></Route>

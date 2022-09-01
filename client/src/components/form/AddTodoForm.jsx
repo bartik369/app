@@ -3,10 +3,9 @@ import FormInput from "./FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
-import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../../store/actions/todosActions";
 
-const AddTodoForm = ({ modal }) => {
+
+const AddTodoForm = ({ create }) => {
   const [todo, setTodo] = useState(
     {
       id: "",
@@ -26,7 +25,6 @@ const AddTodoForm = ({ modal }) => {
     }
   );
   const [validForm, setValidForm] = useState(false);
-  let dispatch = useDispatch()
 
   useEffect(() => {
     if (todo.title !== "" 
@@ -38,6 +36,8 @@ const AddTodoForm = ({ modal }) => {
       setValidForm(false)
     }
   }, [todo.title, todo.description, todo.startTime, todo.endTime]);
+
+
 
   const validate = (name, value) => {
     const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
@@ -79,8 +79,7 @@ const AddTodoForm = ({ modal }) => {
       startTime: todo.startTime,
       endTime: todo.endTime,
     };
-    dispatch(addTodo(newTodo))
-    // create(newTodo);
+    create(newTodo);
     setTodo({
       id: "",
       title: "",
@@ -89,10 +88,10 @@ const AddTodoForm = ({ modal }) => {
       startTime: "",
       endTime: "",
     })
-    const popOut = () => {
-      modal(false)
-    }
-    setTimeout(popOut, 1000);
+    // const popOut = () => {
+    //   modal(false)
+    // }
+    // setTimeout(popOut, 1000);
   };
 
   return (
