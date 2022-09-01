@@ -1,9 +1,10 @@
-import { 
+import {
     GET_TODO,
     GET_TODOS,
     ADD_TODOS,
     DELETE_TODOS,
-    UPDATE_TODOS,} from "../types/typesTodos";
+    UPDATE_TODOS,
+} from "../types/typesTodos";
 
 const initialState = {
     todos: [],
@@ -13,7 +14,7 @@ const initialState = {
 
 const todosReducer = (state = initialState, action) => {
 
-    switch(action.type) {
+    switch (action.type) {
         case GET_TODOS:
             return {
                 ...state,
@@ -23,24 +24,20 @@ const todosReducer = (state = initialState, action) => {
         case DELETE_TODOS:
             return {
                 ...state,
-                todo: action.payload,
             }
-        case ADD_TODOS: 
+        case ADD_TODOS:
             return {
                 ...state,
                 todo: action.payload,
-              
             }
         case GET_TODO:
             return {
                 ...state,
                 todo: action.payload,
-                loading: false,
             }
-        case UPDATE_TODOS: 
+        case UPDATE_TODOS:
             return {
                 ...state,
-                todo: action.payload,
             }
         default:
             return state
