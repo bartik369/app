@@ -20,17 +20,28 @@ const todosReducer = (state = initialState, action) => {
                 loading: false,
             }
         case DELETE_TODOS:
-        case ADD_TODOS:
-        case UPDATE_TODOS: 
             return {
                 ...state,
-                loading: false,
+                todo: action.payload,
+                refreshing: true,
+            }
+        case ADD_TODOS: 
+            return {
+                ...state,
+                todo: action.payload,
+                refreshing: true,
             }
         case GET_TODO:
             return {
                 ...state,
                 todo: action.payload,
                 loading: false,
+            }
+        case UPDATE_TODOS: 
+            return {
+                ...state,
+                todo: action.payload,
+                refreshing: true,
             }
         default:
             return state

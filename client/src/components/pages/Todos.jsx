@@ -27,11 +27,6 @@ const Todos = ({
     dispatch(loadTodos())
   }, []);
 
-  const refreshState = () => {
-    dispatch(loadTodos());
-  }
-
-
   const handleTodoDelete = (id) => {
     dispatch(deleteTodo(id));
     setDeleteId(id)
@@ -45,7 +40,6 @@ const Todos = ({
   const updateTodoData = (updatedData) => {
     dispatch(updateTodo(updatedData, updatedData.id))
     setUpdateModalActive(false);
-    refreshState();
   };
 
   const handleTodoComplete = (id) => {
@@ -73,6 +67,10 @@ const Todos = ({
     700: 2,
     500: 1
   };
+
+
+  console.log("dsdfdsa")
+  console.log(todos)
 
   return (
     <div className="todos">

@@ -17,15 +17,26 @@ const devicesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 devices: action.payload,
-                loading: false,
+                loading: true,
             }
         case DELETE_DEVICES:
-        case ADD_DEVICES:
-        case UPDATE_DEVICES:
             return {
                 ...state,
-                loading: false,
+                device: action.payload,
+                refreshing: true,
             }
+        case ADD_DEVICES:
+            return {
+                ...state,
+                device: action.payload,
+                refreshing: true,
+            }
+        case UPDATE_DEVICES:
+                return {
+                    ...state,
+                    device: action.payload,
+                    refreshing: true,
+                }
         case GET_DEVICE:
             return {
                 ...state,

@@ -6,13 +6,13 @@ import {
     ADD_DEVICES, 
     DELETE_DEVICES, 
     UPDATE_DEVICES, 
-    ERROR_DEVICES } from "../types/typesDevices";
+    } from "../types/typesDevices";
 
 
 const getDevices = (devices) => ({
     type: GET_DEVICES,
     payload: devices,
-    loading: true
+    loading: true,
 });
 
 const getDevice = (device) => ({

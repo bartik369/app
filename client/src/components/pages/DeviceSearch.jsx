@@ -25,10 +25,6 @@ const DeviceSearch = ({
     dispatch(loadDevices());
   }, [setPageName])
 
-  const refreshState = () => {
-    dispatch(loadDevices());
-  }
-
   // Pagination
 
   const indexOfLastDevice = currentPage * devicesPerPage;
@@ -51,7 +47,7 @@ const DeviceSearch = ({
   // Delete device
 
   function removeDevice(id) {
-    dispatch(deleteDevice(id))
+    dispatch(deleteDevice(id));
   }
 
   // Update device
@@ -65,7 +61,6 @@ const DeviceSearch = ({
 
   function createNewDevice(newDevice) {
     dispatch(addDevice(newDevice));
-    refreshState();
   }
 
   return (
