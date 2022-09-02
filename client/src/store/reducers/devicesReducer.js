@@ -23,7 +23,6 @@ const devicesReducer = (state = initialState, action) => {
         case DELETE_DEVICES:
             return {
                 ...state,
-                device: action.payload,
             }
         case ADD_DEVICES:
             return {
@@ -33,7 +32,6 @@ const devicesReducer = (state = initialState, action) => {
         case UPDATE_DEVICES:
                 return {
                     ...state,
-                    device: action.payload,
                 }
         case GET_DEVICE:
             return {

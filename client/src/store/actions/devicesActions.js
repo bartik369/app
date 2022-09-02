@@ -51,7 +51,8 @@ export const deleteDevice = (id) => {
         try {
             await axios.delete(`${ENV.HOSTNAME}device/${id}`)
             .then((response) => {
-                dispatch(deviceDeleted(response.data))
+                dispatch(deviceDeleted(response.data));
+                dispatch(loadDevices());
             })
         }
         catch (error) {
@@ -66,6 +67,7 @@ export const addDevice = (device) => {
             await axios.post(`${ENV.HOSTNAME}insert`, device)
             .then((response) => {
                 dispatch(deviceAdd());
+                dispatch(loadDevices());
             })
         } 
         catch (error) {
@@ -94,7 +96,8 @@ export const updateDevice = (device, id) => {
         try {
          await axios.put(`${ENV.HOSTNAME}device/${id}`, device)
          .then((response) => {
-            dispatch(deviceUpdate(response.data))
+            dispatch(deviceUpdate(response.data));
+            dispatch(loadDevices());
          })
         } 
         catch (error) {
