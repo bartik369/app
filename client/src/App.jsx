@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./styles/App.css";
 import SideBar from "./components/sidebar/SideBar";
-import Axios from "axios";
-import ENV from "./env.config";
-
-
 import { Routes, Route } from "react-router-dom";
-
 import Homepage from "./components/pages/Homepage";
 import EditDevice from "./components/pages/EditDevice";
 import DeviceSearch from "./components/pages/DeviceSearch";
@@ -24,10 +19,6 @@ function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
-
-
-  // console.log(devices)
-  // console.log(todos)
 
   const delSearchQuery = () => {
     setSearchQuery("");
