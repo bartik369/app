@@ -1,14 +1,17 @@
-import { 
-    OPEN_MODAL, 
-    CLOSE_MODAL, 
-    GET_MODAL_STATUS } from "../types/typesModal";
+import {
+    OPEN_MODAL,
+    CLOSE_MODAL,
+    GET_MODAL_STATUS
+} from "../types/typesModal";
 
-const modalActive = () => ({
+const modalActive = (active) => ({
     type: OPEN_MODAL,
+    payload: active
 });
 
-const modalInactive = () => ({
+const modalInactive = (inactive) => ({
     type: CLOSE_MODAL,
+    payload: inactive,
 });
 
 const getStatusModal = () => ({
@@ -21,13 +24,13 @@ export const loadModalStatus = () => {
     }
 };
 
-export const openModal = (modalStatus) => {
-    let status;
-    return function(dispatch)  {
-        if (modalStatus === !true) {
-            status = "12345"
-            dispatch(modalActive(status));
-            dispatch(getStatusModal())
-        }
+export const openModal = (active) => {
+    return function(dispatch) {
+        dispatch(modalActive(active));
     }
-}
+};
+export const closeModal = (inactive) => {
+    return function(dispatch) {
+        dispatch(modalInactive(inactive));
+    }
+};
