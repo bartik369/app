@@ -2,25 +2,32 @@ import React from "react";
 import "../modal/modal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const Modal = ({ children, visible, setVisible }) => {
+const Modal = ({ children, visible }) => {
 
- 
+  useEffect(() => {
+    setOpenModal(visible)
+  })
 
+  const [openModal, setOpenModal] = useState("");
   const mainModalVisibleClass = ["modal"];
 
-  if (visible) {
+  if (openModal) {
     mainModalVisibleClass.push("active");
+  } else {
+    mainModalVisibleClass.push("modal");
   }
 
   return (
     <div
       className={[mainModalVisibleClass.join(" ")]}
-      onClick={() => setVisible(false)}
+      onClick={() => setOpenModal(false)}
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
-        <div className="close-modal" onClick={() => setVisible(false)}>
+        <div className="close-modal" onClick={() => setOpenModal(false)}>
         <FontAwesomeIcon icon={faXmark} />
         </div>
       </div>

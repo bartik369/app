@@ -15,7 +15,6 @@ import Header from "./components/header/Header";
 function App() {
 
   const [modalActive, setModalActive] = useState(false);
-  const [updateModalActive, setUpdateModalActive] = useState(false);
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
@@ -24,10 +23,6 @@ function App() {
     setSearchQuery("");
   };
   const searchQueryLength = searchQuery.length;
-
-  const addVisibleModal = () => {
-    setModalActive(true);
-  }
 
   return (
     <div className="App">
@@ -65,13 +60,7 @@ function App() {
             ></Route>
             <Route path="/statistic" element={<Statistic />}></Route>
             <Route path="/users" element={<Users />}></Route>
-            <Route path="/todos" element={<Todos 
-            newTodoHandler={addVisibleModal}
-            modalActive={modalActive} 
-            setModalActive={setModalActive}
-            updateModalActive={updateModalActive}
-            setUpdateModalActive={setUpdateModalActive}
-            />}></Route>
+            <Route path="/todos" element={<Todos />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>

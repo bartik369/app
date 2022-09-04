@@ -9,15 +9,10 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
 
-const Todos = ({
-  newTodoHandler,
-  modalActive,
-  setModalActive,
-  updateModalActive,
-  setUpdateModalActive,
-}) => {
+const Todos = () => {
 
   const [deleteId, setDeleteId] = useState();
+  const [visibleModal, setVisibleModal] = useState(false)
 
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
@@ -26,10 +21,13 @@ const Todos = ({
     dispatch(loadTodos())
   }, []);
 
+  const newTodoHandler = () => {
+    setVisibleModal(true)
+  }
+
 
   const createTodo = (newTodo) => {
     dispatch(addTodo(newTodo));
-    setModalActive(false);
   }
 
 
@@ -39,13 +37,11 @@ const Todos = ({
   };
 
   const handleTodoUpdate = (id) => {
-    !updateModalActive ? setUpdateModalActive(true) : setUpdateModalActive(false);
     dispatch(getSingleTodo(id))
   };
 
   const updateTodoData = (updatedData) => {
     dispatch(updateTodo(updatedData, updatedData.id))
-    setUpdateModalActive(false);
   };
 
   const handleTodoComplete = (id) => {
@@ -80,10 +76,10 @@ const Todos = ({
 
   return (
     <div className="todos">
-      <Modal visible={modalActive} setVisible={setModalActive}>
+      <Modal visible={visibleModal}>
         <AddTodoForm create={createTodo}/>
       </Modal>
-      <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
+      <Modal>
         <UpdateTodoForm  update={updateTodoData} />
       </Modal>
       <div className="add-todo">
