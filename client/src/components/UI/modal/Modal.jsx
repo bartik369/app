@@ -32,7 +32,7 @@ const Modal = ({ children, active}) => {
   return (
     <div
       className={[mainModalVisibleClass.join(" ")]}
-      onClick={() => setVisible(false)}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
