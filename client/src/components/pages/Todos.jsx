@@ -13,6 +13,7 @@ import { addModal, loadModalStatus, updateModal } from "../../store/actions/moda
 const Todos = () => {
 
   const [deleteId, setDeleteId] = useState();
+  const [visibleModal, setVisibleModal] = useState(false)
 
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
@@ -26,6 +27,10 @@ const Todos = () => {
     dispatch(loadTodos());
     dispatch(loadModalStatus())
   }, []);
+
+  const newTodoHandler = () => {
+    setVisibleModal(true)
+  }
 
 
   const createTodo = (newTodo) => {
