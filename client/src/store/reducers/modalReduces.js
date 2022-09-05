@@ -1,26 +1,27 @@
-import { OPEN_MODAL, CLOSE_MODAL, GET_MODAL_STATUS } from "../types/typesModal";
+import {MODAL_ADD, MODAL_UPDATE, MODALS_GET } from "../types/typesModal";
 
 const initialState = {
-    modal: false,
+    update: false,
+    add: false,
 };
 
 const modalReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_MODAL_STATUS:
+        case MODALS_GET:
             return {
                 ...state,
                 modal: action.payload,
                 loading: true,
             }
-        case OPEN_MODAL:
+        case MODAL_ADD:
             return {
                 ...state,
-                modal: action.payload,
+               add: action.payload,
             }
-        case CLOSE_MODAL:
+        case MODAL_UPDATE:
             return {
                 ...state,
-                modal: action.payload,
+                update: action.payload,
             }
         default:
             return {

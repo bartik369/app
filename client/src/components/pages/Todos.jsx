@@ -8,30 +8,33 @@ import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
+import { addModal, loadModalStatus, updateModal } from "../../store/actions/modalActions";
 
-const Todos = ({
-  newTodoHandler,
-  modalActive,
-  setModalActive,
-  updateModalActive,
-  setUpdateModalActive,
-}) => {
+const Todos = () => {
 
   const [deleteId, setDeleteId] = useState();
 
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
+  const modal = useSelector(state => state.modal);
+
+
+  console.log("add modal", modal.addTodo);
+  console.log("update modal", modal.updateTodo);
 
   useEffect(() => {
-    dispatch(loadTodos())
+    dispatch(loadTodos());
+    dispatch(loadModalStatus())
   }, []);
 
 
   const createTodo = (newTodo) => {
     dispatch(addTodo(newTodo));
-    setModalActive(false);
   }
 
+  const newTodoHandler = () => {
+    dispatch(addModal(true));
+  }
 
   const handleTodoDelete = (id) => {
     dispatch(deleteTodo(id));
@@ -39,13 +42,13 @@ const Todos = ({
   };
 
   const handleTodoUpdate = (id) => {
-    !updateModalActive ? setUpdateModalActive(true) : setUpdateModalActive(false);
+    dispatch(updateModal(true));
     dispatch(getSingleTodo(id))
   };
 
   const updateTodoData = (updatedData) => {
-    dispatch(updateTodo(updatedData, updatedData.id))
-    setUpdateModalActive(false);
+    dispatch(updateTodo(updatedData, updatedData.id));
+    dispatch(updateModal(false));
   };
 
   const handleTodoComplete = (id) => {
@@ -74,16 +77,12 @@ const Todos = ({
     500: 1
   };
 
-
-  console.log("dsdfdsa")
-  console.log(todos)
-
   return (
     <div className="todos">
-      <Modal visible={modalActive} setVisible={setModalActive}>
-        <AddTodoForm create={createTodo}/>
+      <Modal active={modal.add}>
+        <AddTodoForm create={createTodo} />
       </Modal>
-      <Modal visible={updateModalActive} setVisible={setUpdateModalActive}>
+      <Modal active={modal.update}>
         <UpdateTodoForm  update={updateTodoData} />
       </Modal>
       <div className="add-todo">

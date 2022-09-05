@@ -7,6 +7,7 @@ import '../../styles/App.css'
 import AddDeviceForm from "../form/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../store/actions/devicesActions";
+import { updateModal } from "../../store/actions/modalActions";
 
 const DeviceSearch = ({
   searchQuery, 
@@ -15,7 +16,8 @@ const DeviceSearch = ({
   setModalActive}) => {
 
   let dispatch = useDispatch();
-  const {devices} = useSelector(state => state.devices)
+  const {devices} = useSelector(state => state.devices);
+  const modal = useSelector(state => state.modal);
 
   // const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +55,7 @@ const DeviceSearch = ({
   // Update device
   
   const handleUpdateDeviceInfo = (id) => {
-    setModalActive(true);
+    dispatch(updateModal(true))
     dispatch(getsingleDevice(id));
   };
 
@@ -65,7 +67,7 @@ const DeviceSearch = ({
 
   return (
     <div className="content-container__inner">
-      <Modal visible={modalActive} setVisible={setModalActive}>
+      <Modal active={modal.update}>
         <UpdateDeviceForm
           modal={setModalActive}
         />

@@ -1,33 +1,52 @@
-import { 
-    OPEN_MODAL, 
-    CLOSE_MODAL, 
-    GET_MODAL_STATUS } from "../types/typesModal";
+import { MODAL_ADD, MODAL_UPDATE, MODALS_GET } from "../types/typesModal";
 
-const modalActive = () => ({
-    type: OPEN_MODAL,
+const modalsGet = () => ({
+    type: MODALS_GET,
+    loading: true,
 });
 
-const modalInactive = () => ({
-    type: CLOSE_MODAL,
+const modalAdding = (status) => ({
+    type: MODAL_ADD,
+    payload: status,
 });
 
-const getStatusModal = () => ({
-    type: GET_MODAL_STATUS,
+
+const modalUpdating = (status) => ({
+    type: MODAL_UPDATE,
+    payload: status,
 });
+
 
 export const loadModalStatus = () => {
     return function(dispatch) {
-
+        try {
+            dispatch(modalsGet());
+        } 
+        catch (error) {
+            console.log(error)
+        }
     }
 };
 
-export const openModal = (modalStatus) => {
-    let status;
-    return function(dispatch)  {
-        if (modalStatus === !true) {
-            status = "12345"
-            dispatch(modalActive(status));
-            dispatch(getStatusModal())
+export const addModal = (status) => {
+    return function(dispatch) {
+        try {
+            dispatch(modalAdding(status));
+            dispatch(modalsGet());        } 
+        catch (error) {
+            console.log(error)
         }
+    }
+}
+
+export const updateModal = (status) => {
+    return function(dispatch)  {
+       try {
+        dispatch(modalUpdating(status));
+        dispatch(modalsGet());
+       } 
+       catch (error) {
+        
+       }
     }
 }

@@ -2,10 +2,24 @@ import React from "react";
 import "../modal/modal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addModal, updateModal } from "../../../store/actions/modalActions";
 
-const Modal = ({ children, visible, setVisible }) => {
+const Modal = ({ children, active}) => {
 
- 
+  const [visible, setVisible] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setVisible(active)
+  }, [active]);
+
+  const refreshModalState = () => {
+    dispatch(addModal(false));
+    dispatch(updateModal(false));
+  }
 
   const mainModalVisibleClass = ["modal"];
 
@@ -20,7 +34,7 @@ const Modal = ({ children, visible, setVisible }) => {
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
-        <div className="close-modal" onClick={() => setVisible(false)}>
+        <div className="close-modal" onClick={() => refreshModalState()}>
         <FontAwesomeIcon icon={faXmark} />
         </div>
       </div>

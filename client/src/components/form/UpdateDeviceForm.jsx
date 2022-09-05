@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDevices, updateDevice } from "../../store/actions/devicesActions";
+import { updateModal } from "../../store/actions/modalActions";
 
 const UpdateDeviceForm = ({ modal, update }) => {
   const [editDevice, setEditDevice] = useState({
@@ -56,11 +57,8 @@ const UpdateDeviceForm = ({ modal, update }) => {
       user: editDevice.user,
       addTime: deviceTime,
     };
-    dispatch(updateDevice(updateDeviceData, updateDeviceData.id))
-    const popOut = () => {
-      modal(false)
-    }
-    setTimeout(popOut, 1000);
+    dispatch(updateDevice(updateDeviceData, updateDeviceData.id));
+    dispatch(updateModal(false));
   };
 
   const deviceTypeArray = [
