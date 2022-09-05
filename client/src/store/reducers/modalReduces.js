@@ -1,18 +1,17 @@
 import {MODAL_ADD, MODAL_UPDATE, MODALS_GET } from "../types/typesModal";
 
 const initialState = {
-    update: false,
-    add: false,
+    modal: 
+        { 
+         update: false,
+         add: false,
+        }
+
 };
 
 const modalReducer = (state = initialState, action) => {
-<<<<<<< HEAD
     switch(action.type) {
         case MODALS_GET:
-=======
-    switch (action.type) {
-        case GET_MODAL_STATUS:
->>>>>>> c19a6ae3e30fc9b39b27d66a19c80fcf4a6e73fe
             return {
                 ...state,
                 modal: action.payload,

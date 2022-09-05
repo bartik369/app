@@ -8,30 +8,20 @@ import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
-import { addModal, loadModalStatus, updateModal } from "../../store/actions/modalActions";
+import { addModal, updateModal } from "../../store/actions/modalActions";
 
 const Todos = () => {
 
   const [deleteId, setDeleteId] = useState();
-  const [visibleModal, setVisibleModal] = useState(false)
 
   let dispatch = useDispatch()
   const {todos} = useSelector(state => state.todos);
   const modal = useSelector(state => state.modal);
 
 
-  console.log("add modal", modal.addTodo);
-  console.log("update modal", modal.updateTodo);
-
   useEffect(() => {
     dispatch(loadTodos());
-    dispatch(loadModalStatus())
   }, []);
-
-  const newTodoHandler = () => {
-    setVisibleModal(true)
-  }
-
 
   const createTodo = (newTodo) => {
     dispatch(addTodo(newTodo));
@@ -84,10 +74,10 @@ const Todos = () => {
 
   return (
     <div className="todos">
-      <Modal active={modal.add}>
+      <Modal active={modal.add} >
         <AddTodoForm create={createTodo} />
       </Modal>
-      <Modal active={modal.update}>
+      <Modal active={modal.update} >
         <UpdateTodoForm  update={updateTodoData} />
       </Modal>
       <div className="add-todo">
