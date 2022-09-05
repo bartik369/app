@@ -25,6 +25,7 @@ const Todos = () => {
 
   const createTodo = (newTodo) => {
     dispatch(addTodo(newTodo));
+    dispatch(addModal(false));
   }
 
   const newTodoHandler = () => {

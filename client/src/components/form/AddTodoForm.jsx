@@ -37,8 +37,6 @@ const AddTodoForm = ({ create }) => {
     }
   }, [todo.title, todo.description, todo.startTime, todo.endTime]);
 
-
-
   const validate = (name, value) => {
     const checkRegExp = new RegExp(/^[a-zа-яё]+$|\s/i).test(value);
     switch (name) {
