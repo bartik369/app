@@ -10,9 +10,7 @@ import { updateModal } from "../../store/actions/modalActions";
 
 const DeviceSearch = ({
   searchQuery, 
-  setPageName,
-  modalActive, 
-  setModalActive}) => {
+  setPageName }) => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices);
@@ -67,9 +65,7 @@ const DeviceSearch = ({
   return (
     <div className="content-container__inner">
       <Modal active={modal.update}>
-        <UpdateDeviceForm
-          modal={setModalActive}
-        />
+        <UpdateDeviceForm />
       </Modal>
       <div className="devices-list">
       <div className="title">Список устройств</div>
