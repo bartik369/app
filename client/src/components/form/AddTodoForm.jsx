@@ -86,10 +86,6 @@ const AddTodoForm = ({ create }) => {
       startTime: "",
       endTime: "",
     })
-    // const popOut = () => {
-    //   modal(false)
-    // }
-    // setTimeout(popOut, 1000);
   };
 
   return (

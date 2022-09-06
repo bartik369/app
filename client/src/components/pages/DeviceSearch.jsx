@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DeviceLists from "../DeviceLists";
 import Modal from "../UI/modal/Modal";
 import UpdateDeviceForm from "../form/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
@@ -73,12 +72,53 @@ const DeviceSearch = ({
         />
       </Modal>
       <div className="devices-list">
-      <DeviceLists
+      <div className="title">Список устройств</div>
+      <table className="devices-table">
+              <thead>
+                  <tr>
+                      <th>Тип устройства</th>
+                      <th>Название</th>
+                      <th>Серийный номер</th>
+                      <th>Пользователь</th>
+                      <th>Дата добавления</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {filterData.map((device, index) => (
+                      <tr key={index}>
+                          <td>{device.type}</td>
+                          <td>{device.name}</td>
+                          <td>{device.number}</td>
+                          <td>{device.user}</td>
+                          <td>{device.addTime}</td>
+                          <td>
+                            <button 
+                            className="delete-btn" 
+                            title="Удалить" 
+                            onClick={() => removeDevice(device._id)}>
+                            <i className="bi bi-trash3"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <button 
+                            className="update-btn" 
+                            title="Обновить" 
+                            onClick={() => handleUpdateDeviceInfo(device._id)}>
+                            <i className="bi bi-arrow-repeat"></i>
+                            </button>
+                          </td>
+                      </tr>
+                  ))}
+              </tbody>
+          </table>
+      {/* <DeviceLists
         update={handleUpdateDeviceInfo}
         remove={removeDevice}
         title="Список устройств"
         devices={filterData}
-      />
+      /> */}
        <Pagination
         devicesPerPage={devicesPerPage}
         totalDevices={devices.length}
