@@ -130,10 +130,10 @@ const Todos = () => {
                     onClick={() => handleTodoUpdate(todo._id)}
                     className="todoupdate-btn" 
                   >
-                    <i className="bi bi-arrow-clockwise"></i>
+                    <i className="bi bi-arrow-clockwise" title="Обновить"></i>
                   </button>
                 </li>
-                <li className="todo-btns__item" title="Обновить">
+                <li className="todo-btns__item">
                   <button
                     onClick={() => handleTodoDelete(todo._id)}
                     className="tododel-btn"
