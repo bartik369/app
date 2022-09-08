@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const TokenScheme = new mongoose.Schema({
+const TokenScheme = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

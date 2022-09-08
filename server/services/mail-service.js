@@ -1,6 +1,19 @@
-class MailService {
-    async sendActivationMail(to, link) {
+import nodemailer from "nodemailer";
 
+class MailService {
+    constructor() {
+
+    }
+
+    async sendActivationMail(to, link) {
+        this.transporter = nodemailer.createTransport({
+            host: "",
+            port: "",
+            secure: false,
+            auth: {
+
+            },
+        })
     }
 
 };
