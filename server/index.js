@@ -13,7 +13,7 @@ import { updateTodo } from './controllers/todos.js';
 
 const app = express();
 dotenv.config();
-const PORT= process.env.PORT || 5001
+const PORT = process.env.PORT || 5001
 
 app.use(express.json());
 app.use(cookieParser());
@@ -41,7 +41,7 @@ app.delete('/todo/:id', todoRoutes)
 app.put('/device/:id', updateDevice);
 app.put('/todo/:id', updateTodo)
 
-const start = async () => {
+const start = async() => {
     try {
         await mongoose.connect(process.env.DB_URL, {
             useNewUrlParser: true,
