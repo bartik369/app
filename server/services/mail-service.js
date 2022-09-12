@@ -1,14 +1,18 @@
 import nodemailer from "nodemailer";
+import dotenv from 'dotenv';
+
 
 class MailService {
     constructor() {
+        dotenv.config();
         this.transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: process.env.SMTP_PORT,
-            secure: false,
+            service: process.env.SMTP_SERVICE,
+            secure: true,
             auth: {
                 user: process.env.SMTP_USER,
-                password: process.env.SMTP_PASSWORD,
+                pass: process.env.SMTP_PASSWORD,
             },
         });
     }
@@ -21,7 +25,7 @@ class MailService {
             text: "",
             html: `
             <div>
-                <h1>Для активации аккаунта перейдите по сслылке</h1>
+                <h1>Activate your account, please</h1>
                 <a href="${link}">${link} </a>
             </div>
             `
