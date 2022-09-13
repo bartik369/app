@@ -20,7 +20,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', authRoutes, deviceRoutes, todoRoutes)
+app.use('/api', authRoutes, deviceRoutes, todoRoutes);
+app.use(errorMiddleware);
 
 
 // Get
@@ -42,7 +43,6 @@ app.delete('/todo/:id', todoRoutes)
 app.put('/device/:id', updateDevice);
 app.put('/todo/:id', updateTodo)
 
-app.use(errorMiddleware);
 
 const start = async() => {
     try {

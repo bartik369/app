@@ -25,7 +25,7 @@ class UserService {
         return {
             ...tokens,
             user: userDto,
-        };
+        }
     };
 
     async activate(activationLink) {
