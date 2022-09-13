@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react";
 import FormInput from "./FormInput";
-import { useSelector, useDispatch } from "react-redux";
 
 const AddDeviceForm = ({ create }) => {
   const [device, setDevice] = useState({

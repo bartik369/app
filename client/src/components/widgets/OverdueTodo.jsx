@@ -13,14 +13,13 @@ const OverdueTodo = () => {
 
   const {todos} = useSelector(state => state.todos);
   let dispatch = useDispatch();
-  const dateNow = moment().format("DD.MM.YYYY HH:mm");
   const overdueTodos = [];
   const attentionTodos = [];
   // let endTodoDate;
 
   useEffect(() => {
     dispatch(loadTodos());
-  }, []);
+  }, [dispatch]);
 
   todos.map((todo) => {
     const startD = moment(todo.startTime);

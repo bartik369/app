@@ -21,7 +21,7 @@ const Todos = () => {
 
   useEffect(() => {
     dispatch(loadTodos());
-  }, []);
+  }, [dispatch]);
 
   const createTodo = (newTodo) => {
     dispatch(addTodo(newTodo));
@@ -72,6 +72,8 @@ const Todos = () => {
     700: 2,
     500: 1
   };
+
+
 
   return (
     <div className="todos">

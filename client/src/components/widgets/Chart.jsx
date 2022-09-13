@@ -57,7 +57,7 @@ const Chart = () => {
                 dataPoints:[...newArray]
             }
         ]
-    }
+    };
 
     return (
         <div className="widget-item">

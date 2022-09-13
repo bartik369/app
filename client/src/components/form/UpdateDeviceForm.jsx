@@ -29,7 +29,7 @@ const UpdateDeviceForm = ({ modal, update }) => {
   useEffect(() => {
     dispatch(loadDevices());
     setEditDevice({...device})
-  }, [device]);
+  }, [device, dispatch]);
 
 
   useEffect(() => {
