@@ -9,6 +9,7 @@ import todoRoutes from './routes/todos.js';
 import authRoutes from './routes/authRouter.js';
 import { updateDevice } from './controllers/devices.js';
 import { updateTodo } from './controllers/todos.js';
+import errorMiddleware from './middlewares/error-middleware.js';
 
 
 const app = express();
@@ -40,6 +41,8 @@ app.delete('/todo/:id', todoRoutes)
 //Update
 app.put('/device/:id', updateDevice);
 app.put('/todo/:id', updateTodo)
+
+app.use(errorMiddleware);
 
 const start = async() => {
     try {
