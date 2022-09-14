@@ -12,7 +12,7 @@ class UserService {
         const candidate = await UserModel.findOne({ email })
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
-        };
+        };  
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuidv4();
         const user = await UserModel.create({ email, password: hashPassword, activationLink });
@@ -36,6 +36,26 @@ class UserService {
         };
         user.isActivated = true;
         await user.save();
+    };
+
+    async login(email, password) {
+        const user = await UserModel.findOne({email});
+        if (!user) {
+            throw ApiError.BadRequest('Пользователь с таким email не найден')
+        };
+
+        const isPasswordEquals = await bcrypt.compare(password, user.password);
+        if (!isPasswordEquals) {
+            throw ApiError.BadRequest('Неверный пароль')
+        }
+        const userDto = new UserDto(user);
+        const tokens = tokenService.generateTokens({...userDto });
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+        return {
+            ...tokens,
+            user: userDto,
+        }
     }
 }
 
