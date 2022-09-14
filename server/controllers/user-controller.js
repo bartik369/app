@@ -1,8 +1,14 @@
 import userService from "../services/user-service.js";
+import {validationResult} from "express-validator";
+import ApiError from "../exceptions/api-error.js";
 
 class UserController {
     async registration(req, res, next) {
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return next(ApiError.BadRequest('Ошибка валидации', errors.array()));
+            }
             const {email, password} = req.body;
             const userData = await userService.registration(email, password);
             res.cookie('refreshToken', userData.refreshToken, 
@@ -13,8 +19,8 @@ class UserController {
             });
             return res.json(userData);
         } 
-        catch (error) {
-            next(error);
+        catch (err) {
+            next(err);
         }
     };
 
@@ -22,8 +28,8 @@ class UserController {
         try {
             
         } 
-        catch (error) {   
-            next(error);
+        catch (err) {   
+            next(err);
         }
     };
 
@@ -31,8 +37,8 @@ class UserController {
         try {
             
         } 
-        catch (error) {
-            next(error);
+        catch (err) {
+             next(err);
         }
     };
 
@@ -42,8 +48,8 @@ class UserController {
              await userService.activate(activationLink);
              return res.redirect(process.env.CLIENT_URL);
         } 
-        catch (error) {
-            next(error);
+        catch (err) {
+            next(err);
         }
     };
 
@@ -51,17 +57,17 @@ class UserController {
         try {
             
         } 
-        catch (error) {
-            next(error);
+        catch (err) {
+            next(err);
         }
     };
 
     async getUsers(req, res, next) {
         try {
-           res.json(['3333', '555555']) ;
+          
         } 
-        catch (error) {
-            next(error);
+        catch (err) {
+            next(err);
         }
     };
 };
