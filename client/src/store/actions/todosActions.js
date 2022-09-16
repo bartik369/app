@@ -40,7 +40,6 @@ export const loadTodos = () => {
                 .then((response) => {
                     dispatch(getTodos(response.data))
                 });
-            console.log("load data")
         } catch (error) {
             console.log(error);
         }
