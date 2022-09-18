@@ -1,4 +1,4 @@
-import ToDoModel from '../models/Todo.js';
+import ToDoModel from '../models/todo-model.js';
 import { ObjectId } from 'mongodb';
 
 export const getTodos = async(req, res) => {

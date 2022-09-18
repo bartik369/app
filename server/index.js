@@ -7,8 +7,8 @@ import cookieParser from 'cookie-parser';
 import deviceRoutes from './routes/devices.js';
 import todoRoutes from './routes/todos.js';
 import authRoutes from './routes/authRouter.js';
-import { updateDevice } from './controllers/devices.js';
-import { updateTodo } from './controllers/todos.js';
+import { updateDevice } from './controllers/device-controller.js';
+import { updateTodo } from './controllers/todo-controller.js';
 import errorMiddleware from './middlewares/error-middleware.js';
 
 

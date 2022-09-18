@@ -1,4 +1,4 @@
-import DeviceModel from '../models/Device.js';
+import DeviceModel from '../models/device-model.js';
 import { ObjectId } from 'mongodb';
 
 export const getDevices = async(req, res) => {
