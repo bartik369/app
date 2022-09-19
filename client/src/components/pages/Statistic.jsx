@@ -1,11 +1,13 @@
 import React from "react";
-import Registration from "../form/Registration";
-
+import Login from "../form/Login";
+import Signup from "../form/Signup";
 
 const Statistics = () => {
     return (
         <div className="statistics">
-            <Registration />
+            <Signup />
+            <p>fdfdfdf</p>
+            <Login />
         </div>
     )
 }
