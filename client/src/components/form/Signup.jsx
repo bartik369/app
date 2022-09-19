@@ -39,11 +39,11 @@ export default function Signup() {
             placeholder='Ваш пароль'
             onChange={(e) => signupHandler(e)}
             />
-            <label for="confirm-password">Подтвердить пароль</label>
+            <label for="confirmPassword">Подтвердить пароль</label>
             <input 
             type="password" 
-            id='confirm-password'
-            name='confirm-password'
+            id='confirmPassword'
+            name='confirmPassword'
             placeholder='Повторите пароль'
             onChange={(e) => signupHandler(e)}
             />
