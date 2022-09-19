@@ -1,9 +1,11 @@
 import React from "react";
+import Registration from "../form/Registration";
+
 
 const Statistics = () => {
     return (
         <div className="statistics">
-            STATISTIC
+            <Registration />
         </div>
     )
 }
