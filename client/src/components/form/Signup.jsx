@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css"
 import useLogin from '../../hooks/useLogin';
+import validateAuth from '../validate/validateAuth.js'
 
 export default function Signup() {
 
-    const {signupHandler, signupData, handleSubmit} = useLogin();
+    const {signupHandler, signupData, handleSubmit, errors} = useLogin(validateAuth);
 
   return (
     <div className="login">
@@ -20,6 +21,9 @@ export default function Signup() {
             value={signupData.email || ""}
             onChange={signupHandler}
             />
+            <div className="form-error">
+                {errors.email && <p>{errors.email}</p>}
+            </div>
             <label for="password">Пароль</label>
             <input 
             type='password'
@@ -29,6 +33,9 @@ export default function Signup() {
             value={signupData.password || ""}
             onChange={signupHandler}
             />
+            <div className="form-error">
+                {errors.password && <p>{errors.password}</p>}
+            </div>
             <label for="confirmPassword">Подтвердить пароль</label>
             <input 
             type='password'
@@ -38,6 +45,9 @@ export default function Signup() {
             value={signupData.confirmPassword || ""}
             onChange={signupHandler}
             />
+            <div className="form-error">
+            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            </div>
             <button className="login-btn" type='submit'>Отправить</button>
             <span>Уже есть аккаунт? <Link to="#">Войти</Link> </span>
         </form>

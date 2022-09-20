@@ -1,36 +1,37 @@
 import React, { useState, useEffect } from 'react';
 
 
-const useLogin = () => {
+const useLogin = (validateAuth) => {
 
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",
     });
 
-    const [signupData, setSidnupData] = useState({
+    const [signupData, setSignupData] = useState({
         email: "",
         password: "",
         confirmPassword: "",
     });
 
+    const [errors, setErrors] = useState({})
+
     const loginHandler = (e) => {
         const {name, value} = e.target;
         setLoginData({...loginData, [name]: value});
-        console.log(loginData)
     };
 
     const signupHandler = (e) => {
         const {name, value} = e.target;
-        setSidnupData({...signupData, [name]: value});
-        console.log(signupData)
+        setSignupData({...signupData, [name]: value});
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErrors(validateAuth(signupData))
     }
 
-    return {loginHandler, signupHandler, loginData, signupData, handleSubmit};
+    return {loginHandler, signupHandler, loginData, signupData, handleSubmit, errors};
 
 }
 
