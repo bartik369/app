@@ -6,11 +6,11 @@ import validateAuth from '../validate/validateAuth.js'
 
 export default function Signup() {
 
-    const {signupHandler, signupData, handleSubmit, errors} = useLogin(validateAuth);
+    const {signupHandler, signupData, signup, errors} = useLogin();
 
   return (
     <div className="login">
-        <form className="form" action="" onSubmit={handleSubmit}>
+        <form className="form" action="" onSubmit={signup}>
         <div className="title">Регистрация</div>
             <label for='email'>Почта</label>
             <input 

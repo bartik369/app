@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const useLogin = (validateAuth) => {
+const useLogin = (validateAuth, validateLogin) => {
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -26,12 +26,18 @@ const useLogin = (validateAuth) => {
         setSignupData({...signupData, [name]: value});
     };
 
-    const handleSubmit = (e) => {
+    const login = (e) => {
+        e.preventDefault();
+        setErrors(validateLogin(loginData))
+    }
+
+    const signup = (e) => {
         e.preventDefault();
         setErrors(validateAuth(signupData))
     }
 
-    return {loginHandler, signupHandler, loginData, signupData, handleSubmit, errors};
+
+    return {loginHandler, signupHandler, loginData, signupData, login, signup, errors};
 
 }
 
