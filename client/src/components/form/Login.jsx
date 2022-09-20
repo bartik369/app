@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import "./Login.css"
+import "./Login.css";
+import useLogin from '../../hooks/useLogin';
 
 export default function Login() {
 
-    const [loginInfo, setLoginInfo] = useState({
-        email: "",
-        password: "",
-    });
-
-    const loginHandler = (e) => {
-        const {name, value} = e.target;
-        setLoginInfo({...loginInfo, [name]: value})
-    };
-
-    const login = (e) => {
-        e.preventDefault();
-    };
-
+    const {loginHandler, loginData, handleSubmit} = useLogin();
 
   return (
     <div className="login">
-        <div className="form" action="">
+        <form className="form" action="" onSubmit={handleSubmit}>
         <div className="title">Авторизация</div>
             <label for="email">Почта</label>
             <input 
@@ -29,7 +17,8 @@ export default function Login() {
             id="email" 
             name='email'
             placeholder='Укажите свою почту'
-            onChange={(e) => loginHandler(e)}
+            value={loginData.email || ""}
+            onChange={loginHandler}
             />
             <label for="password">Пароль</label>
             <input 
@@ -37,11 +26,12 @@ export default function Login() {
             id="password"
             name='password'
             placeholder='Ваш пароль'
-            onChange={(e) => loginHandler(e)}
+            value={loginData.password || ""}
+            onChange={loginHandler}
             />
-            <button className="login-btn" type='submit' onClick={(e) => login(e) }>Войти</button>
+            <button className="login-btn" type='submit'>Войти</button>
             <span>Нет аккаунта? <Link to="#">Зарегистрироваться</Link> </span>
-        </div>
+        </form>
     </div>
   )
 };

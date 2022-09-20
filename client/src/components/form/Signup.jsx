@@ -1,55 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css"
+import useLogin from '../../hooks/useLogin';
 
 export default function Signup() {
 
-    const [signupInfo, setSignupInfo] = useState({
-        email: "",
-        password: "",
-    });
-
-    const signupHandler = (e) => {
-        const {name, value} = e.target;
-        setSignupInfo({...signupInfo, [name]: value})
-    };
-
-    const signup = (e) => {
-        e.preventDefault();
-    };
-
+    const {signupHandler, signupData, handleSubmit} = useLogin();
 
   return (
     <div className="login">
-        <div className="form" action="">
+        <form className="form" action="" onSubmit={handleSubmit}>
         <div className="title">Регистрация</div>
-            <label for="email">Почта</label>
+            <label for='email'>Почта</label>
             <input 
-            type="text" 
-            id="email" 
+            type='text' 
+            id='email'
             name='email'
             placeholder='Укажите свою почту'
-            onChange={(e) => signupHandler(e)}
+            value={signupData.email || ""}
+            onChange={signupHandler}
             />
             <label for="password">Пароль</label>
             <input 
-            type="password" 
-            id="password"
+            type='password'
+            id='password'
             name='password'
             placeholder='Ваш пароль'
-            onChange={(e) => signupHandler(e)}
+            value={signupData.password || ""}
+            onChange={signupHandler}
             />
             <label for="confirmPassword">Подтвердить пароль</label>
             <input 
-            type="password" 
+            type='password'
             id='confirmPassword'
             name='confirmPassword'
             placeholder='Повторите пароль'
-            onChange={(e) => signupHandler(e)}
+            value={signupData.confirmPassword || ""}
+            onChange={signupHandler}
             />
-            <button className="login-btn" type='submit' onClick={(e) => signup(e) }>Отправить</button>
+            <button className="login-btn" type='submit'>Отправить</button>
             <span>Уже есть аккаунт? <Link to="#">Войти</Link> </span>
-        </div>
+        </form>
     </div>
   )
 };
