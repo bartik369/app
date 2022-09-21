@@ -1,4 +1,4 @@
-import useLogin from "../../hooks/useLogin.jsx"
+
 
 export default function validateInfo(signupData) {
 

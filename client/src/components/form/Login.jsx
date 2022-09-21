@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css";
 import useLogin from '../../hooks/useLogin';
-import validateAuth from '../validate/validateAuth.js'
+import validateLogin from '../validate/validateLogin.js';
 
 export default function Login() {
 
-  const {loginHandler, loginData, login, errors} = useLogin(validateAuth);
+  const {loginHandler, loginData, login, errors} = useLogin(validateLogin);
 
 
   return (

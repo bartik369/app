@@ -6,7 +6,7 @@ import validateAuth from '../validate/validateAuth.js'
 
 export default function Signup() {
 
-    const {signupHandler, signupData, signup, errors} = useLogin();
+    const {signupHandler, signupData, signup, errors} = useLogin(validateAuth);
 
   return (
     <div className="login">
@@ -20,6 +20,7 @@ export default function Signup() {
             placeholder='Укажите свою почту'
             value={signupData.email || ""}
             onChange={signupHandler}
+            onBlur={console.log("clear")}
             />
             <div className="form-error">
                 {errors.email && <p>{errors.email}</p>}

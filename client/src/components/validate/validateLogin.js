@@ -1,5 +1,5 @@
 
-export default function validateInfo(loginData, signupData) {
+export default function validateInfo(loginData) {
 
     let errors = {}
 
@@ -15,7 +15,7 @@ export default function validateInfo(loginData, signupData) {
         errors.password = 'Password needs to be 6 characters or more'
     }
 
-    
+
     return errors
 }
 
