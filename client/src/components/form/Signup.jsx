@@ -5,8 +5,10 @@ import useLogin from '../../hooks/useLogin';
 import validateAuth from '../validate/validateAuth.js'
 
 export default function Signup() {
-
+    
+    
     const {signupHandler, signupData, signup, errors} = useLogin(validateAuth);
+
 
   return (
     <div className="login">
@@ -20,7 +22,7 @@ export default function Signup() {
             placeholder='Укажите свою почту'
             value={signupData.email || ""}
             onChange={signupHandler}
-            onBlur={console.log("clear")}
+
             />
             <div className="form-error">
                 {errors.email && <p>{errors.email}</p>}
@@ -33,6 +35,7 @@ export default function Signup() {
             placeholder='Ваш пароль'
             value={signupData.password || ""}
             onChange={signupHandler}
+
             />
             <div className="form-error">
                 {errors.password && <p>{errors.password}</p>}
@@ -45,6 +48,7 @@ export default function Signup() {
             placeholder='Повторите пароль'
             value={signupData.confirmPassword || ""}
             onChange={signupHandler}
+         
             />
             <div className="form-error">
             {errors.confirmPassword && <p>{errors.confirmPassword}</p>}

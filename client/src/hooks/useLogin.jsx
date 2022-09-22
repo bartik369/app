@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 
 const useLogin = (validateAuth, validateLogin) => {
@@ -14,7 +14,12 @@ const useLogin = (validateAuth, validateLogin) => {
         confirmPassword: "",
     });
 
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        setErrors(validateAuth(signupData))
+    }, [signupData])
+
 
     const loginHandler = (e) => {
         const {name, value} = e.target;
@@ -37,7 +42,7 @@ const useLogin = (validateAuth, validateLogin) => {
     }
 
 
-    return {loginHandler, signupHandler, loginData, signupData, login, signup, errors};
+    return {loginHandler, signupHandler, loginData, signupData, login, signup, errors, setErrors};
 
 }
 
