@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import "./Login.css"
-import useLogin from '../../hooks/useLogin';
+import "./Login.css";
+import useSignup from '../../hooks/useSignup';
 import validateAuth from '../validate/validateAuth.js'
 
 export default function Signup() {
     
     
-    const {signupHandler, signupData, signup, errors} = useLogin(validateAuth);
+    const {signupHandler, signup, errors} = useSignup(validateAuth);
 
 
   return (
@@ -20,9 +20,7 @@ export default function Signup() {
             id='email'
             name='email'
             placeholder='Укажите свою почту'
-            value={signupData.email || ""}
             onChange={signupHandler}
-
             />
             <div className="form-error">
                 {errors.email && <p>{errors.email}</p>}
@@ -33,7 +31,6 @@ export default function Signup() {
             id='password'
             name='password'
             placeholder='Ваш пароль'
-            value={signupData.password || ""}
             onChange={signupHandler}
 
             />
@@ -46,7 +43,7 @@ export default function Signup() {
             id='confirmPassword'
             name='confirmPassword'
             placeholder='Повторите пароль'
-            value={signupData.confirmPassword || ""}
+            // value={signupData.confirmPassword || ""}
             onChange={signupHandler}
          
             />

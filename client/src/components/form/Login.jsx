@@ -6,7 +6,7 @@ import validateLogin from '../validate/validateLogin.js';
 
 export default function Login() {
 
-  const {loginHandler, loginData, login, errors} = useLogin(validateLogin);
+  const {loginHandler, login, errors} = useLogin(validateLogin);
 
 
   return (
@@ -19,7 +19,6 @@ export default function Login() {
             id="email" 
             name='email'
             placeholder='Укажите свою почту'
-            value={loginData.email || ""}
             onChange={loginHandler}
             />
              <div className="form-error">
@@ -31,7 +30,6 @@ export default function Login() {
             id="password"
             name='password'
             placeholder='Ваш пароль'
-            value={loginData.password || ""}
             onChange={loginHandler}
             />
              <div className="form-error">

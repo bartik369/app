@@ -1,13 +1,10 @@
-import { useEffect } from "react"
-
-
 export default function validateInfo(signupData) {
 
     let errors = {}
 
     if (!signupData.email) {
         errors.email = 'Email required'
-    } else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(signupData.email)) {
+    } else if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(signupData.email)) {
         errors.email = "Email address is invalid!"
     }
 
@@ -25,4 +22,3 @@ export default function validateInfo(signupData) {
 
     return errors
 }
-
