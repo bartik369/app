@@ -23,15 +23,21 @@
 
 .login .form input {
     background-color: rgb(137, 137, 187);
+    border: 1px solid #fff;
     padding: 5px 12px;
     margin-bottom: 5px;
     transition: all .5s;
 }
 
 .login .form input:hover {
-    background-color: rgb(174, 174, 226);
+    border: 1px solid #563321;
+    background-color: rgb(225, 225, 255);
     padding: 5px 12px;
     margin-bottom: 5px;
+}
+
+.login .validation-error {
+    border: 1px solid #b11919 !important;
 }
 
 .login .login-btn {

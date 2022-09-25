@@ -14,7 +14,7 @@ export default function Login() {
         <form className="form" action="" onSubmit={login}>
         <div className="title">Авторизация</div>
             <label for="email">Почта</label>
-            <input 
+            <input className={errors.email ? "validation-error" : ""}
             type="text" 
             id="email" 
             name='email'
@@ -25,7 +25,7 @@ export default function Login() {
                 {errors.email && <p>{errors.email}</p>}
             </div>
             <label for="password">Пароль</label>
-            <input 
+            <input className={errors.password ? "validation-error" : ""}
             type="password" 
             id="password"
             name='password'

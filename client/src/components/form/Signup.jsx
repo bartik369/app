@@ -15,7 +15,7 @@ export default function Signup() {
         <form className="form" action="" onSubmit={signup}>
         <div className="title">Регистрация</div>
             <label for='email'>Почта</label>
-            <input 
+            <input className={errors.email ? "validation-error" : ""}
             type='text' 
             id='email'
             name='email'
@@ -26,7 +26,7 @@ export default function Signup() {
                 {errors.email && <p>{errors.email}</p>}
             </div>
             <label for="password">Пароль</label>
-            <input 
+            <input className={errors.password ? "validation-error" : ""}
             type='password'
             id='password'
             name='password'
@@ -38,12 +38,11 @@ export default function Signup() {
                 {errors.password && <p>{errors.password}</p>}
             </div>
             <label for="confirmPassword">Подтвердить пароль</label>
-            <input 
+            <input className={errors.confirmPassword ? "validation-error" : ""}
             type='password'
             id='confirmPassword'
             name='confirmPassword'
             placeholder='Повторите пароль'
-            // value={signupData.confirmPassword || ""}
             onChange={signupHandler}
          
             />
