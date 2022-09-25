@@ -8,11 +8,11 @@
     display: flex;
 }
 
-.login .l {
+.login .login-sidebar {
     height: fit-content;
 }
 
-.login .l img {
+.login .login-sidebar img {
     width: 100%;
     max-height: 500px;
 }
@@ -25,10 +25,9 @@
     min-width: 400px;
 }
 
-.bi-envelope-open-fill,
-.bi-lock-fill {
+.input-icon {
     color: aliceblue;
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .login .form label {
@@ -40,10 +39,11 @@
 .login .form input {
     background-color: transparent;
     border-bottom: 1px solid #273141;
-    padding: 12px 16px;
+    padding: 12px;
     margin-bottom: 5px;
     transition: all .5s;
     font-size: 16px;
+    color: #fff;
 }
 
 .login .form input:hover {
