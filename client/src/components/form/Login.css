@@ -22,11 +22,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 400px;
+    min-width: 450px;
 }
 
 .input-icon {
-    color: aliceblue;
+    color: #90959e;
     font-size: 16px;
 }
 
@@ -40,34 +40,46 @@
     background-color: transparent;
     border-bottom: 1px solid #273141;
     padding: 12px;
-    margin-bottom: 5px;
     transition: all .5s;
     font-size: 16px;
     color: #fff;
+    width: 100%;
 }
 
 .login .form input:hover {
-    border-bottom: 1px solid #475adc;
+    border-bottom: 1px solid #4687e2;
+}
+
+.login .input__inner {
+    display: flex;
+    align-items: center;
 }
 
 .login .validation-error {
-    border: 1px solid #b11919 !important;
+    border-bottom: 1px solid #dc4760 !important;
 }
 
 .login .login-btn {
-    width: fit-content;
-    padding: 7px 11px;
-    background-color: chocolate;
+    padding: 14px 17px;
+    background-color: #4c4bb1;
     color: aliceblue;
     transition: all .5s;
 }
 
 .login .login-btn:hover {
-    background-color: rgb(30, 210, 75);
+    background-color: #d639e1;
+}
+
+.restore-password {
+    padding: 15px 0;
+}
+
+.restore-password a {
+    color: #4687e2;
 }
 
 .login .form-error {
-    color: rgb(251, 251, 251);
+    color: #dc4760;
     font-size: 11px;
     font-style: inherit;
     line-height: 12px;

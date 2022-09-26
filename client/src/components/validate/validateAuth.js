@@ -3,21 +3,21 @@ export default function validateInfo(signupData) {
     let errors = {}
 
     if (!signupData.email) {
-        errors.email = 'Email required'
+        errors.email = 'Email обязателен!'
     } else if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(signupData.email)) {
-        errors.email = "Email address is invalid!"
+        errors.email = "Недопустимый email!"
     }
 
     if (!signupData.password) {
-        errors.password = 'Password is required'
+        errors.password = 'Пароль обязателен!'
     } else if (signupData.password.length < 6) {
-        errors.password = 'Password needs to be 6 characters or more'
+        errors.password = 'Пароль должен быть не менее 6 симоволов!'
     }
 
     if (!signupData.confirmPassword) {
-        errors.confirmPassword = 'Password is required too'
+        errors.confirmPassword = 'Пароль обязателен!'
     } else if (signupData.confirmPassword !== signupData.password) {
-        errors.confirmPassword = 'Password does not match'
+        errors.confirmPassword = 'Пароли не совпадают!'
     }
 
     return errors

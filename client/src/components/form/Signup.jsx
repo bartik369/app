@@ -48,7 +48,7 @@ export default function Signup() {
                 <div className="form-error">
                     {errors.password && <p>{errors.password}</p>}
                 </div>
-                <label for="confirmPassword">Подтвердить пароль</label>
+                <label for="confirmPassword">Подтвердите пароль</label>
                 <div className="input__inner">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
                 <input className={errors.confirmPassword ? "validation-error" : ""}
@@ -62,6 +62,7 @@ export default function Signup() {
                 <div className="form-error">
                 {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 </div>
+                <div className="restore-password"><Link to="#">Забыли пароль?</Link></div>
                 <button className="login-btn" type='submit'>Отправить</button>
                 <span className="login">Уже есть аккаунт? <Link to="#">Войти</Link> </span>
             </form>
