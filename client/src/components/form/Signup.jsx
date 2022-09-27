@@ -18,11 +18,11 @@ export default function Signup() {
            
         </div>
             <form className="login-form" action="" onSubmit={signup}>
-            <div className="title">Регистрация</div>
+            <div className="login-form__title">Регистрация</div>
                 <label className="login-form__label" for='email'>Почта</label>
-                <div className="input__inner">
+                <div className="login-form__input">
                 <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-                <input className={errors.email ? "validation-error" : "login-form__input"}
+                <input className={errors.email ? "validation-error" : ""}
                 type='text' 
                 id='email'
                 name='email'
@@ -30,13 +30,13 @@ export default function Signup() {
                 onChange={signupHandler}
                 />
                 </div>
-                <div className="form-error">
+                <div className="login-form__error">
                     {errors.email && <p>{errors.email}</p>}
                 </div>
                 <label className="login-form__label" for="password">Пароль</label>
-                <div className="input__inner">
+                <div className="login-form__input">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
-                <input className={errors.password ? "validation-error" : "login-form__input"}
+                <input className={errors.password ? "validation-error" : ""}
                 type='password'
                 id='password'
                 name='password'
@@ -44,13 +44,13 @@ export default function Signup() {
                 onChange={signupHandler}
                 />
                 </div>
-                <div className="form-error">
+                <div className="login-form__error">
                     {errors.password && <p>{errors.password}</p>}
                 </div>
                 <label className="login-form__label" for="confirmPassword">Подтвердите пароль</label>
-                <div className="input__inner">
+                <div className="login-form__input">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
-                <input className={errors.confirmPassword ? "validation-error" : "login-form__input"}
+                <input className={errors.confirmPassword ? "validation-error" : ""}
                 type='password'
                 id='confirmPassword'
                 name='confirmPassword'
@@ -58,12 +58,12 @@ export default function Signup() {
                 onChange={signupHandler}
                 />
                 </div>
-                <div className="form-error">
+                <div className="login-form__error">
                 {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 </div>
                 <div className="restore-password"><Link to="#">Забыли пароль?</Link></div>
                 <button className="login-btn" type='submit'>Отправить</button>
-                <span className="login">Уже есть аккаунт? <Link to="#">Войти</Link> </span>
+                <div className="signin">Уже есть аккаунт? <Link to="#">Войти</Link></div>
             </form>
         </div>
     </div>
