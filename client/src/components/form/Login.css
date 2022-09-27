@@ -55,7 +55,7 @@
     border-bottom: 1px solid #4687e2;
 }
 
-.main .input__inner {
+.main .login-form__input {
     display: flex;
     align-items: center;
 }
@@ -69,6 +69,7 @@
     background-color: #4c4bb1;
     color: aliceblue;
     transition: all .5s;
+    margin-bottom: 20px;
 }
 
 .main .login-btn:hover {
@@ -83,11 +84,20 @@
     color: #4687e2;
 }
 
-.main .form-error {
+.main .login-form__error {
     color: #dc4760;
     font-size: 11px;
     font-style: inherit;
-    line-height: 12px;
+    padding: 6px 0;
+}
+
+.main .signin {
+    text-align: center;
+    color: #90959e;
+}
+
+.main .signin a {
+    color: #4687e2;
 }
 
 @media (max-width: 768px) {
