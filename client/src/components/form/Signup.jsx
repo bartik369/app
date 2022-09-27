@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import useSignup from '../../hooks/useSignup';
 import validateAuth from '../validate/validateAuth.js'
-import Auth from "../../assets/portal/auth.jpeg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,17 +12,17 @@ export default function Signup() {
 
 
   return (
-    <div className="login">
-        <div className="login-form">
+    <div className="main">
+        <div className="login">
         <div className="login-sidebar">
-            <img src={Auth} alt="" />
+           
         </div>
-            <form className="form" action="" onSubmit={signup}>
+            <form className="login-form" action="" onSubmit={signup}>
             <div className="title">Регистрация</div>
-                <label for='email'>Почта</label>
+                <label className="login-form__label" for='email'>Почта</label>
                 <div className="input__inner">
                 <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-                <input className={errors.email ? "validation-error" : ""}
+                <input className={errors.email ? "validation-error" : "login-form__input"}
                 type='text' 
                 id='email'
                 name='email'
@@ -34,10 +33,10 @@ export default function Signup() {
                 <div className="form-error">
                     {errors.email && <p>{errors.email}</p>}
                 </div>
-                <label for="password">Пароль</label>
+                <label className="login-form__label" for="password">Пароль</label>
                 <div className="input__inner">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
-                <input className={errors.password ? "validation-error" : ""}
+                <input className={errors.password ? "validation-error" : "login-form__input"}
                 type='password'
                 id='password'
                 name='password'
@@ -48,10 +47,10 @@ export default function Signup() {
                 <div className="form-error">
                     {errors.password && <p>{errors.password}</p>}
                 </div>
-                <label for="confirmPassword">Подтвердите пароль</label>
+                <label className="login-form__label" for="confirmPassword">Подтвердите пароль</label>
                 <div className="input__inner">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
-                <input className={errors.confirmPassword ? "validation-error" : ""}
+                <input className={errors.confirmPassword ? "validation-error" : "login-form__input"}
                 type='password'
                 id='confirmPassword'
                 name='confirmPassword'

@@ -1,23 +1,28 @@
-.login {
+.main {
     display: flex;
     justify-content: center;
 }
 
-.login .login-form {
+.main .login {
     background: #252339;
     display: flex;
 }
 
-.login .login-sidebar {
-    height: fit-content;
+.main .login-sidebar {
+    background-image: url("../../assets/portal/auth.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 450px;
+    width: 100%;
 }
 
-.login .login-sidebar img {
+.main .login-sidebar img {
     width: 100%;
     max-height: 500px;
 }
 
-.login .form {
+.main .login-form {
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -30,43 +35,43 @@
     font-size: 16px;
 }
 
-.login .form label {
+.main .login-form label {
     padding: 5px 0;
     color: #90959e;
     font-size: 13px;
 }
 
-.login .form input {
+.main .login-form input {
     background-color: transparent;
     border-bottom: 1px solid #273141;
     padding: 12px;
     transition: all .5s;
-    font-size: 16px;
+    font-size: 15px;
     color: #fff;
     width: 100%;
 }
 
-.login .form input:hover {
+.main .login-form input:hover {
     border-bottom: 1px solid #4687e2;
 }
 
-.login .input__inner {
+.main .input__inner {
     display: flex;
     align-items: center;
 }
 
-.login .validation-error {
+.main .validation-error {
     border-bottom: 1px solid #dc4760 !important;
 }
 
-.login .login-btn {
+.main .login-btn {
     padding: 14px 17px;
     background-color: #4c4bb1;
     color: aliceblue;
     transition: all .5s;
 }
 
-.login .login-btn:hover {
+.main .login-btn:hover {
     background-color: #d639e1;
 }
 
@@ -78,9 +83,15 @@
     color: #4687e2;
 }
 
-.login .form-error {
+.main .form-error {
     color: #dc4760;
     font-size: 11px;
     font-style: inherit;
     line-height: 12px;
+}
+
+@media (max-width: 768px) {
+    .main .login-sidebar {
+        display: none;
+    }
 }
