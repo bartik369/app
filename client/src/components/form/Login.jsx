@@ -19,6 +19,7 @@ export default function Login() {
         <div className="login-form__title">Авторизация</div>
             <label className="login-form__label" for="email">Почта</label>
             <div className="login-form__input">
+            <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
             <input className={errors.email ? "validation-error" : ""}
             type="text" 
             id="email" 

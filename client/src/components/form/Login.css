@@ -86,6 +86,7 @@
     color: aliceblue;
     transition: all .5s;
     margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .main .login-btn:hover {

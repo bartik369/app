@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 
 const useLogin = (validateLogin) => {
@@ -10,6 +10,7 @@ const useLogin = (validateLogin) => {
 
     const [errors, setErrors] = useState({});
 
+
     const loginHandler = (e) => {
         const {name, value} = e.target;
         setLoginData({...loginData, [name]: value});
@@ -17,7 +18,8 @@ const useLogin = (validateLogin) => {
 
     const login = (e) => {
         e.preventDefault();
-        setErrors(validateLogin(loginData))
+        setErrors(validateLogin(loginData));
+        console.log(errors)
     }
 
     return {loginHandler, loginData, login, errors};
