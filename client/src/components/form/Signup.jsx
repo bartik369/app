@@ -14,9 +14,7 @@ export default function Signup() {
   return (
     <div className="main">
         <div className="login">
-        <div className="login-sidebar">
-           
-        </div>
+        <div className="signup-sidebar"></div>
             <form className="login-form" action="" onSubmit={signup}>
             <div className="login-form__title">Регистрация</div>
                 <label className="login-form__label" for='email'>Почта</label>
@@ -63,7 +61,7 @@ export default function Signup() {
                 </div>
                 <div className="restore-password"><Link to="#">Забыли пароль?</Link></div>
                 <button className="login-btn" type='submit'>Отправить</button>
-                <div className="signin">Уже есть аккаунт? <Link to="#">Войти</Link></div>
+                <div className="form-link ">Уже есть аккаунт? <Link to="#">Войти</Link></div>
             </form>
         </div>
     </div>

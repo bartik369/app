@@ -24,6 +24,15 @@
     width: 100%;
 }
 
+.main .signup-sidebar {
+    background-image: url("../../assets/portal/auth.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 450px;
+    width: 100%;
+}
+
 .main .login-sidebar img {
     width: 100%;
     max-height: 500px;
@@ -51,7 +60,7 @@
 .main .login-form input {
     background-color: transparent;
     border-bottom: 1px solid #273141;
-    padding: 12px;
+    padding: 12px 8px;
     transition: all .5s;
     font-size: 15px;
     color: #fff;
@@ -103,14 +112,16 @@
     padding: 6px 0;
 }
 
-.main .signin {
+.main .form-link {
     text-align: center;
     color: #90959e;
+    font-size: 14px;
 }
 
-.main .signin a {
+.main .form-link a {
     color: #4687e2;
     transition: all .8s;
+    padding-left: 3px;
 }
 
 .main .signin a:hover {
@@ -118,7 +129,7 @@
 }
 
 @media (max-width: 768px) {
-    .main .login-sidebar {
+    .main .login-sidebar, .signup-sidebar {
         display: none;
     }
 }
