@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css";
 import useSignup from '../../hooks/useSignup';
@@ -8,7 +8,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 export default function Signup() {
     
-    const {signupHandler, signup, errors} = useSignup(validateAuth);
+    const {signupHandler, signup, errors, signupData} = useSignup(validateAuth);
 
 
   return (
@@ -26,6 +26,7 @@ export default function Signup() {
                 name='email'
                 placeholder='Укажите свою почту'
                 onChange={signupHandler}
+                value={signupData.email}
                 />
                 </div>
                 <div className="login-form__error">
@@ -40,6 +41,7 @@ export default function Signup() {
                 name='password'
                 placeholder='Ваш пароль'
                 onChange={signupHandler}
+                value={signupData.password}
                 />
                 </div>
                 <div className="login-form__error">
@@ -54,6 +56,7 @@ export default function Signup() {
                 name='confirmPassword'
                 placeholder='Повторите пароль'
                 onChange={signupHandler}
+                value={signupData.confirmPassword}
                 />
                 </div>
                 <div className="login-form__error">

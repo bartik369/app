@@ -1,4 +1,4 @@
-export default function validateInfo(signupData) {
+export default function validateAuth(signupData) {
 
     let errors = {}
 

@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css";
-import useLogin from '../../hooks/useLogin';
-import validateLogin from '../validate/validateLogin.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import useSignup from '../../hooks/useSignup'
+import validateAuth from '../validate/validateAuth.js'
 
 export default function Login() {
 
-  const {loginHandler, login, errors} = useLogin(validateLogin);
+  const {signupHandler, signup, errors} = useSignup(validateAuth);
 
 
   return (
     <div className="main">
       <div className="login">
        <div className="login-sidebar"></div>
-        <form className="login-form" action="" onSubmit={login}>
+        <form className="login-form" action="" onSubmit={signup}>
         <div className="login-form__title">Авторизация</div>
             <label className="login-form__label" for="email">Почта</label>
             <div className="login-form__input">
@@ -25,7 +25,7 @@ export default function Login() {
             id="email" 
             name='email'
             placeholder='Укажите свою почту'
-            onChange={loginHandler}
+            onChange={signupHandler}
             />
             </div>
              <div className="form-error">
@@ -39,7 +39,7 @@ export default function Login() {
             id="password"
             name='password'
             placeholder='Ваш пароль'
-            onChange={loginHandler}
+            onChange={signupHandler}
             />
             </div>
              <div className="form-error">

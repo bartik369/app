@@ -6,6 +6,7 @@
 .main .login {
     background: #252339;
     display: flex;
+    min-height: 600px;
 }
 
 .login-form__title {
@@ -16,26 +17,26 @@
 }
 
 .main .login-sidebar {
-    background-image: url("../../assets/portal/auth.jpeg");
+    background-image: url("../../assets/portal/login.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-width: 450px;
+    min-width: 500px;
     width: 100%;
 }
 
 .main .signup-sidebar {
-    background-image: url("../../assets/portal/auth.jpeg");
+    background-image: url("../../assets/portal/login.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-width: 450px;
+    min-width: 500px;
     width: 100%;
 }
 
 .main .login-sidebar img {
     width: 100%;
-    max-height: 500px;
+    height: 100%;
 }
 
 .main .login-form {
@@ -129,8 +130,16 @@
     color: #dc4760;
 }
 
+@media (max-width: 1100px) {
+    .main .login-sidebar,
+    .signup-sidebar {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
-    .main .login-sidebar, .signup-sidebar {
+    .main .login-sidebar,
+    .signup-sidebar {
         display: none;
     }
 }
