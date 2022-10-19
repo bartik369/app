@@ -32,12 +32,12 @@ export default function Signup() {
               <input
                 placeholder="Почта"
                 {...register("email", {
-                  required: "Please, add your email",
+                  required: "Укажите, пожалуйста, email",
                 })}
               />
             </div>
             <div className="form-error">
-              {errors?.email && <p>{errors?.email?.message || "Error"}</p>}
+              {errors.email && <p>{errors.email.message || "Error"}</p>}
             </div>
           </div>
 
@@ -53,8 +53,8 @@ export default function Signup() {
               />
             </div>
             <div className="form-error">
-                {errors?.password && (
-                  <p>{errors?.password?.message || "Error"}</p>
+                {errors.password && (
+                  <p>{errors.password.message || "Error"}</p>
                 )}
               </div>
           </div>
@@ -73,8 +73,8 @@ export default function Signup() {
               />
             </div>
             <div className="form-error">
-                {errors?.confirmPassword && (
-                  <p>{errors?.confirmPassword?.message || "Error"}</p>
+                {errors.confirmPassword && (
+                  <p>{errors.confirmPassword.message || "Error"}</p>
                 )}
               </div>
           </div>
