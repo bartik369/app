@@ -14,11 +14,14 @@ export default function Signup() {
     mode: "onBlur",
   });
 
+  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+  const isValidPassword = /[A-Za-z0-9]/;
+
+  
   const password = useRef({});
   password.current = watch("password", "");
 
-  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-    
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -29,7 +32,6 @@ export default function Signup() {
         <div className="signup-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-form__title">Регистрация</div>
-
           <div className="test-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
@@ -60,11 +62,16 @@ export default function Signup() {
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
                   minLength: {
-                    value: 4,
-                    message: "Пароль должен быть минимум 8 символов",
+                    value: 7,
+                    message: "Пароль должен быть минимум 7 символов",
+                  },
+                  pattern: {
+                    value: isValidPassword,
+                    message: "Только латинские буквы",
                   }
                 })}
               />
+              <i className="bi bi-eye"></i>
             </div>
             <div className="form-error">
                 {errors.password && (
@@ -85,6 +92,7 @@ export default function Signup() {
                     value === password.current || "Пароли не совпадают",
                 })}
               />
+              <i className="bi bi-eye"></i>
             </div>
             <div className="form-error">
                 {errors.confirmPassword && (

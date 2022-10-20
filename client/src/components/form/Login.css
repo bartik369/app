@@ -58,10 +58,21 @@
     font-size: 13px;
 }
 
+.bi-eye {
+    color: #90959e;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+}
+.test-layer {
+    margin: 5px 0;
+    position: relative;
+}
+
 .main .login-form input {
     background-color: transparent;
     border-bottom: 1px solid #273141;
-    padding: 12px 8px;
+    padding: 12px 40px 12px 8px;
     transition: all .5s;
     font-size: 15px;
     color: #fff;
