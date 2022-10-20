@@ -10,11 +10,15 @@ export default function Signup() {
     formState: { errors },
     handleSubmit,
     watch,
-  } = useForm();
+  } = useForm({
+    mode: "onBlur",
+  });
 
   const password = useRef({});
   password.current = watch("password", "");
 
+  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+    
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -31,8 +35,14 @@ export default function Signup() {
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 placeholder="Почта"
+                type="text"
+                name="email"
                 {...register("email", {
                   required: "Укажите, пожалуйста, email",
+                  pattern: {
+                    value: isValidEmail,
+                    message: "Неправильный формат почты"
+                  }
                 })}
               />
             </div>
@@ -49,6 +59,10 @@ export default function Signup() {
                 type="password"
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
+                  minLength: {
+                    value: 4,
+                    message: "Пароль должен быть минимум 8 символов",
+                  }
                 })}
               />
             </div>
@@ -85,54 +99,5 @@ export default function Signup() {
         </form>
       </div>
     </div>
-
-    // <div className="main">
-    // <div className="login">
-    // <div className="signup-sidebar"></div>
-    //     <form className="login-form" action="">
-    //     <div className="login-form__title">Регистрация</div>
-    //         <label className="login-form__label" for='email'>Почта</label>
-    //         <div className="login-form__input">
-    //         <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-    //         <input
-    //         type='text'
-    //         id='email'
-    //         name='email'
-    //         placeholder='Укажите свою почту'
-    //         />
-    //         </div>
-    //         <div className="login-form__error">
-    //         </div>
-    //         <label className="login-form__label" for="password">Пароль</label>
-    //         <div className="login-form__input">
-    //         <FontAwesomeIcon icon={faLock} className="input-icon" />
-    //         <input
-    //         type='password'
-    //         id='password'
-    //         name='password'
-    //         placeholder='Ваш пароль'
-    //         />
-    //         </div>
-    //         <div className="login-form__error">
-
-    //         </div>
-    //         <label className="login-form__label" for="confirmPassword">Подтвердите пароль</label>
-    //         <div className="login-form__input">
-    //         <FontAwesomeIcon icon={faLock} className="input-icon" />
-    //         <input
-    //         type='password'
-    //         id='confirmPassword'
-    //         name='confirmPassword'
-    //         placeholder='Повторите пароль'
-    //         />
-    //         </div>
-    //         <div className="login-form__error">
-    //         </div>
-    //         <div className="restore-password"><Link to="#">Забыли пароль?</Link></div>
-    //         <button className="login-btn" type='submit'>Отправить</button>
-    //         <div className="form-link ">Уже есть аккаунт? <Link to="#">Войти</Link></div>
-    //     </form>
-    // </div>
-    // </div>
   );
 }
