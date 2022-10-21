@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
-import "./Login.css";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import "./Login.css";
 
 export default function Signup() {
 
@@ -40,13 +39,16 @@ export default function Signup() {
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
 
+
+  console.log("dfsfsfsfs")
+
   return (
     <div className="main">
       <div className="login">
         <div className="signup-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-form__title">Регистрация</div>
-          <div className="test-layer">
+          <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
@@ -67,7 +69,7 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className="test-layer">
+          <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
@@ -98,7 +100,7 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className="test-layer">
+          <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
