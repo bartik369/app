@@ -3,8 +3,13 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export default function Signup() {
+
+  const [passwordType, setPasswordType] = useState(false);
+  const [repeatPasswordType, setRepeatPasswordType] = useState(false);
+
   const {
     register,
     formState: { errors },
@@ -26,6 +31,15 @@ export default function Signup() {
     console.log(data);
   };
 
+  const showPassword = (e) => {
+    e.preventDefault();
+    setPasswordType(passwordType ? false : true)
+  }
+  const showConfirmPassword = (e) => {
+    e.preventDefault();
+    setRepeatPasswordType(repeatPasswordType ? false : true)
+  }
+
   return (
     <div className="main">
       <div className="login">
@@ -43,8 +57,8 @@ export default function Signup() {
                   required: "Укажите, пожалуйста, email",
                   pattern: {
                     value: isValidEmail,
-                    message: "Неправильный формат почты"
-                  }
+                    message: "Неправильный формат почты",
+                  },
                 })}
               />
             </div>
@@ -58,7 +72,7 @@ export default function Signup() {
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
                 placeholder="Пароль"
-                type="password"
+                type={passwordType ? "text" : "password"}
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
                   minLength: {
@@ -68,16 +82,20 @@ export default function Signup() {
                   pattern: {
                     value: isValidPassword,
                     message: "Только латинские буквы",
-                  }
+                  },
                 })}
               />
-              <i className="bi bi-eye"></i>
+              <button className="show-password" onClick={showPassword}>
+                {passwordType ? (
+                  <i className="bi bi-eye-slash" title="Скрыть пароль"></i>
+                ) : (
+                  <i className="bi bi-eye" title="Показать пароль"></i>
+                )}
+              </button>
             </div>
             <div className="form-error">
-                {errors.password && (
-                  <p>{errors.password.message || "Error"}</p>
-                )}
-              </div>
+              {errors.password && <p>{errors.password.message || "Error"}</p>}
+            </div>
           </div>
 
           <div className="test-layer">
@@ -85,20 +103,26 @@ export default function Signup() {
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
                 placeholder="Повторите пароль"
-                type="password"
+                type={repeatPasswordType ? "text" : "password"}
                 {...register("confirmPassword", {
                   required: "Укажите, пожалуйста, пароль",
                   validate: (value) =>
                     value === password.current || "Пароли не совпадают",
                 })}
               />
-              <i className="bi bi-eye"></i>
+              <button className="show-password" onClick={showConfirmPassword}>
+                {repeatPasswordType ? (
+                  <i className="bi bi-eye-slash"></i>
+                ) : (
+                  <i className="bi bi-eye"></i>
+                )}
+              </button>
             </div>
             <div className="form-error">
-                {errors.confirmPassword && (
-                  <p>{errors.confirmPassword.message || "Error"}</p>
-                )}
-              </div>
+              {errors.confirmPassword && (
+                <p>{errors.confirmPassword.message || "Error"}</p>
+              )}
+            </div>
           </div>
 
           <button className="login-btn" type="submit">

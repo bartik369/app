@@ -57,12 +57,16 @@
     color: #90959e;
     font-size: 13px;
 }
-
-.bi-eye {
-    color: #90959e;
-    font-size: 20px;
+.show-password {
     position: absolute;
     right: 10px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.bi-eye, .bi-eye-slash {
+    color: #90959e;
+    font-size: 20px;
 }
 .test-layer {
     margin: 5px 0;
