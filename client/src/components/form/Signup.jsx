@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
+import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import "./Login.css";
 
@@ -20,6 +21,7 @@ export default function Signup() {
 
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   const isValidPassword = /[A-Za-z0-9]/;
+  const isValidDisplayName = /[A-Za-z0-9]/;
 
   
   const password = useRef({});
@@ -48,6 +50,30 @@ export default function Signup() {
         <div className="signup-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-form__title">Регистрация</div>
+
+          <div className="input-layer">
+            <div className="login-form__input">
+              <FontAwesomeIcon icon={faUser} className="input-icon" />
+              <input
+                placeholder="Ваше имя"
+                type="text"
+                name="displayname"
+                {...register("displayname", {
+                  required: "Укажите, пожалуйста, Ваше имя",
+                  pattern: {
+                    value: isValidDisplayName,
+                    message: "Неправильный формат имени",
+                  },
+                })}
+              />
+            </div>
+            <div className="form-error">
+              {errors.displayname && (
+                <p>{errors.displayname.message || "Error"}</p>
+              )}
+            </div>
+          </div>
+
           <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
@@ -126,10 +152,15 @@ export default function Signup() {
               )}
             </div>
           </div>
-
+          <div className="restore-password">
+            <Link to="#">Забыли пароль?</Link>
+          </div>
           <button className="login-btn" type="submit">
-            Войти
+            Отправить
           </button>
+          <div className="signin">
+            Уже есть аккаунт? <Link to="#">Войти</Link>
+          </div>
         </form>
       </div>
     </div>

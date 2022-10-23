@@ -1,71 +1,108 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import {Link} from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useForm } from "react-hook-form";
 import "./Login.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import {useForm} from 'react-hook-form';
 
-export default function Login() {
+export default function Signup() {
+
+  const [passwordType, setPasswordType] = useState(false);
 
   const {
     register,
-    formState: {errors},
+    formState: { errors },
     handleSubmit,
-  } = useForm();
+    watch,
+  } = useForm({
+    mode: "onBlur",
+  });
+
+  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+  const isValidPassword = /[A-Za-z0-9]/;
+
+  
+  const password = useRef({});
+  password.current = watch("password", "");
+
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
+  };
+
+  const showPassword = (e) => {
+    e.preventDefault();
+    setPasswordType(passwordType ? false : true)
   }
+
+  console.log("dfsfsfsfs")
 
   return (
     <div className="main">
       <div className="login">
-       <div className="login-sidebar"></div>
+        <div className="login-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <label className="login-form__label" for="email">Почта</label>
-          <button className="login-btn" type='submit'>Войти</button>
+          <div className="login-form__title">Войти в систему</div>
+
+          <div className="input-layer">
+            <div className="login-form__input">
+              <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+              <input
+                placeholder="Почта"
+                type="text"
+                name="email"
+                {...register("email", {
+                  required: "Укажите, пожалуйста, email",
+                  pattern: {
+                    value: isValidEmail,
+                    message: "Неправильный формат почты",
+                  },
+                })}
+              />
+            </div>
+            <div className="form-error">
+              {errors.email && <p>{errors.email.message || "Error"}</p>}
+            </div>
+          </div>
+
+          <div className="input-layer">
+            <div className="login-form__input">
+              <FontAwesomeIcon icon={faLock} className="input-icon" />
+              <input
+                placeholder="Пароль"
+                type={passwordType ? "text" : "password"}
+                {...register("password", {
+                  required: "Укажите, пожалуйста, пароль",
+                  pattern: {
+                    value: isValidPassword,
+                    message: "Только латинские буквы",
+                  },
+                })}
+              />
+              <button className="show-password" onClick={showPassword}>
+                {passwordType ? (
+                  <i className="bi bi-eye-slash" title="Скрыть пароль"></i>
+                ) : (
+                  <i className="bi bi-eye" title="Показать пароль"></i>
+                )}
+              </button>
+            </div>
+            <div className="form-error">
+              {errors.password && <p>{errors.password.message || "Error"}</p>}
+            </div>
+          </div>
+
+          <div className="restore-password">
+            <Link to="#">Забыли пароль?</Link>
+          </div>
+          <button className="login-btn" type="submit">
+            Отправить
+          </button>
+          <div className="signin">
+            Нет аккаунта? <Link to="#">Зарегистрироваться</Link>
+          </div>
         </form>
-        </div>
+      </div>
     </div>
-
-
-
-
-// <div className="main">
-// <div className="login">
-//  <div className="login-sidebar"></div>
-//   <form className="login-form" action="">
-//   <div className="login-form__title">Авторизация</div>
-//       <label className="login-form__label" for="email">Почта</label>
-//       <div className="login-form__input">
-//       <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-//       <input
-//       type="text" 
-//       id="email" 
-//       name='email'
-//       placeholder='Укажите свою почту'
-//       />
-//       </div>
-//        <div className="form-error">
-        
-//       </div>
-//       <label className="login-form__label" for="password">Пароль</label>
-//       <div className="login-form__input">
-//       <FontAwesomeIcon icon={faLock} className="input-icon" />
-//       <input
-//       type="password" 
-//       id="password"
-//       name='password'
-//       placeholder='Ваш пароль'
-//       />
-//       </div>
-//        <div className="form-error">
-          
-//       </div>
-//       <button className="login-btn" type='submit'>Войти</button>
-//       <div className="form-link">Нет аккаунта? <Link to="#">Зарегистрироваться</Link></div>
-//   </form>
-//   </div>
-// </div>
-  )
-};
+  );
+}
