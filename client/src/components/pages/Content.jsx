@@ -1,41 +1,35 @@
 import React, { useState} from "react";
-import "./styles/App.css";
-import SideBar from "./components/sidebar/SideBar";
+import "../../styles/App.css";
+import SideBar from "../sidebar/SideBar";
 import { Routes, Route } from "react-router-dom";
-import Homepage from "./components/pages/Homepage";
-import EditDevice from "./components/pages/EditDevice";
-import DeviceSearch from "./components/pages/DeviceSearch";
-import Statistic from "./components/pages/Statistic";
-import Users from "./components/pages/Users";
-import Todos from "./components/pages/Todos";
-import Calendar from "./components/pages/Calendar";
-import Settings from "./components/pages/Settings";
-import Header from "./components/header/Header";
-import LoginForm from "./components/form/Login";
-import SignupForm from "./components/form/Signup";
-import Content from "./components/pages/Content";
+import Homepage from "./Homepage";
+import EditDevice from "./EditDevice";
+import DeviceSearch from "./DeviceSearch";
+import Statistic from "./Statistic";
+import Users from "./Users";
+import Todos from "./Todos";
+import Calendar from "./Calendar";
+import Settings from "./Settings";
+import Header from "../header/Header";
 
-function App() {
+export default function Content() {
 
-  // const [modalActive, setModalActive] = useState(false);
-  // const [slideStateContainer, setSlideStateContainer] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState("");
-  // const [pageName, setPageName] = useState("");
-
-
-  const [isLogin, setIslogin] = useState(false)
-  const [registered, setRegister] = useState(false)
-
-  // const delSearchQuery = () => {
-  //   setSearchQuery("");
-  // };
-  // const searchQueryLength = searchQuery.length;
-
+    const [modalActive, setModalActive] = useState(false);
+    const [slideStateContainer, setSlideStateContainer] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [pageName, setPageName] = useState("");
+  
+  
+    // const [isLogin, setIslogin] = useState(false)
+    // const [registered, setRegister] = useState(false)
+  
+    const delSearchQuery = () => {
+      setSearchQuery("");
+    };
+    const searchQueryLength = searchQuery.length;
   return (
-    <div className={isLogin ? "App" : "App-out"}>
-      {isLogin ? <Content /> : ""}
-      <div>{registered ? <LoginForm /> : <SignupForm />}</div>
-      {/* <div className="menu-container">
+    <div className="afterlogin">
+    <div className="menu-container">
         <SideBar
           slideContentContainer={setSlideStateContainer}
           getLinkName={setPageName}
@@ -74,9 +68,7 @@ function App() {
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>
         </div>
-      </div> */}
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
