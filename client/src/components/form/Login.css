@@ -7,7 +7,7 @@
     background: #252339;
     display: flex;
     min-height: 600px;
-    box-shadow: 0 4px 4px 0 rgba(18, 17, 27, .7), 0 8px 8px 0 rgba(18, 17, 27, .7), 0 16px 16px 0 rgba(18, 17, 27, .7), 0 32px 32px 0 rgba(18, 17, 27, .7), 0 64px 64px 0 rgba(18, 17, 27, .7), 0 128px 128px 0 rgba(18, 17, 27, .7);
+    box-shadow: 0 3px 3px 0 rgba(18, 17, 27, .65), 0 6px 6px 0 rgba(18, 17, 27, .65), 0 12px 12px 0 rgba(18, 17, 27, .65), 0 24px 24px 0 rgba(18, 17, 27, .65), 0 48px 48px 0 rgba(18, 17, 27, .65), 0 96px 96px 0 rgba(18, 17, 27, .65);
 }
 
 .login-form__title {
