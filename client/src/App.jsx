@@ -10,6 +10,8 @@ function App() {
   const [isLogin, setIslogin] = useState(false)
   const [registered, setRegister] = useState(false)
 
+
+
   const selectSignupHandler = () => {
    setRegister(true)
   }
@@ -20,18 +22,17 @@ function App() {
 
   return (
     <div className={isLogin ? "App" : "App-out"}>
-      {isLogin ? <Content /> : ""}
-      <div>
-        {registered 
-        ? 
+      {isLogin ? (
+        <Content />
+      ) : registered ? (
         <LoginForm selectSignupForm={loginFormHandler} />
-        : 
+      ) : (
         <SignupForm
-           selectSignupForm={selectSignupHandler}
+          selectSignupForm={selectSignupHandler}
           selectLoginForm={selectSignupHandler}
         />
-        }
-      </div>
+      )}
+      <div></div>
     </div>
   );
 }
