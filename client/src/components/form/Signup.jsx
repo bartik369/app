@@ -115,7 +115,7 @@ export default function Signup({selectLoginForm}) {
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
                   minLength: {
-                    value: 7,
+                    value: 4,
                     message: "Пароль должен быть минимум 7 символов",
                   },
                   pattern: {
