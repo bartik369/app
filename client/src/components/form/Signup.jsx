@@ -5,7 +5,7 @@ import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import "./Login.css";
 
-export default function Signup() {
+export default function Signup({selectLoginForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
@@ -30,6 +30,8 @@ export default function Signup() {
 
   const onSubmit = (data) => {
     console.log(data);
+    selectLoginForm()
+
   };
 
   const showPassword = (e) => {
@@ -39,6 +41,10 @@ export default function Signup() {
   const showConfirmPassword = (e) => {
     e.preventDefault();
     setRepeatPasswordType(repeatPasswordType ? false : true)
+  }
+
+  const loginHandler = () => {
+    console.log("register")
   }
 
 
@@ -159,7 +165,7 @@ export default function Signup() {
             Отправить
           </button>
           <div className="signin">
-            Уже есть аккаунт? <Link to="#">Войти</Link>
+            Уже есть аккаунт? <Link to="#" onClick={selectLoginForm}>Войти</Link>
           </div>
         </form>
       </div>

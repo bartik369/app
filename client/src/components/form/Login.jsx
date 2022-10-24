@@ -5,7 +5,7 @@ import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import "./Login.css";
 
-export default function Signup() {
+export default function Signup({selectSignupForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
 
@@ -99,7 +99,7 @@ export default function Signup() {
             Отправить
           </button>
           <div className="signin">
-            Нет аккаунта? <Link to="#">Зарегистрироваться</Link>
+            Нет аккаунта? <Link to="#" onClick={selectSignupForm}>Зарегистрироваться</Link>
           </div>
         </form>
       </div>

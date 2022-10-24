@@ -209,7 +209,7 @@ h6 {
 .App-out {
     width: 100%;
     background: #252339;
-    /* background-image: url("../assets/portal/bg-login.jpg"); */
+    background-image: url("../assets/portal/bg-login.jpg");
     height: 100vh;
     display: flex;
     justify-content: center;
