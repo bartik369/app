@@ -20,9 +20,6 @@
 .search-box {
     position: relative;
     display: flex;
-    top: 16px;
-    width: fit-content;
-    height: fit-content;
     align-items: center;
 }
 

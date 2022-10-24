@@ -3,7 +3,47 @@
     height: 65px;
     width: 100%;
     box-shadow: 0 4px 4px -5px rgba(0, 0, 0, .5);
-    padding-left: 60px;
     z-index: 3;
     position: fixed;
+    top: 0;
+    display: flex;
+    left: 0;
+}
+
+.header__inner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 140px;
+    position: relative;
+    transition: .5s ease-in-out;
+    
+}
+
+.slided-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 260px;
+    position: relative;
+    transition: .5s ease-in-out;
+    
+}
+
+.header .search {
+    position: relative;
+}
+.header-menu {
+    background-color: aquamarine;
+    position: relative;
+}
+.header-menu ul{
+    display: flex;
+    align-items: center;
+}
+.user-info {
+    background-color: coral;
+    position: relative;
 }

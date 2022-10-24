@@ -12,7 +12,7 @@ import Calendar from "./Calendar";
 import Settings from "./Settings";
 import Header from "../header/Header";
 
-export default function Content() {
+export default function Content({logout}) {
 
     const [modalActive, setModalActive] = useState(false);
     const [slideStateContainer, setSlideStateContainer] = useState(false);
@@ -46,6 +46,8 @@ export default function Content() {
           value={searchQuery}
           searchQueryLength={searchQueryLength}
           pageName={pageName}
+          logout={logout}
+          moveHeader={slideStateContainer}
         />
         <div className="content-container">
           <Routes>

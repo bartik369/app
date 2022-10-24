@@ -16,6 +16,7 @@ const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
     });
 
     return (
+        <div>
         <div className="search-box" onClick={(e) => e.stopPropagation()}>
             <button className="btn-search" onClick={setStatusSearch}>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
@@ -27,6 +28,7 @@ const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
             icon={faXmark} 
             className={`delete-searchquery ${searchQueryLength <= 0 ? "" : "active"}`} 
             onClick={delSearchQuery}/>
+        </div>
         </div>
     )
 }

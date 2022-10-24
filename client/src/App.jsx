@@ -7,7 +7,7 @@ import Content from "./components/pages/Content";
 function App() {
 
 
-  const [isLogin, setIslogin] = useState(false)
+  const [isLogin, setIslogin] = useState(true)
   const [registered, setRegister] = useState(false)
 
 
@@ -18,14 +18,22 @@ function App() {
   const loginFormHandler = () => {
     setRegister(false)
   }
+
+  const hideForm = () => {
+    setIslogin(true)
+  }
+
+  const logoutHandler = () => {
+    setIslogin(false)
+  }
   console.log("fdsfsfsdfs")
 
   return (
     <div className={isLogin ? "App" : "App-out"}>
       {isLogin ? (
-        <Content />
+        <Content logout={logoutHandler} />
       ) : registered ? (
-        <LoginForm selectSignupForm={loginFormHandler} />
+        <LoginForm selectSignupForm={loginFormHandler} loginHandler={hideForm} />
       ) : (
         <SignupForm
           selectSignupForm={selectSignupHandler}
