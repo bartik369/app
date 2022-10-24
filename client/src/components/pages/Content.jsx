@@ -20,13 +20,12 @@ export default function Content({logout}) {
     const [pageName, setPageName] = useState("");
   
   
-    // const [isLogin, setIslogin] = useState(false)
-    // const [registered, setRegister] = useState(false)
-  
     const delSearchQuery = () => {
       setSearchQuery("");
     };
+    
     const searchQueryLength = searchQuery.length;
+
   return (
     <div className="afterlogin">
     <div className="menu-container">

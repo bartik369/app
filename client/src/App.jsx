@@ -13,10 +13,10 @@ function App() {
 
 
   const selectSignupHandler = () => {
-   setRegister(true)
+   setRegister(false)
   }
   const loginFormHandler = () => {
-    setRegister(false)
+    setRegister(true)
   }
 
   const hideForm = () => {
@@ -26,19 +26,19 @@ function App() {
   const logoutHandler = () => {
     setIslogin(false)
   }
-  console.log("fdsfsfsdfs")
+
 
   return (
     <div className={isLogin ? "App" : "App-out"}>
       {isLogin ? (
         <Content logout={logoutHandler} />
       ) : registered ? (
-        <LoginForm selectSignupForm={loginFormHandler} loginHandler={hideForm} />
-      ) : (
         <SignupForm
           selectSignupForm={selectSignupHandler}
           selectLoginForm={selectSignupHandler}
         />
+      ) : (
+        <LoginForm selectSignupForm={loginFormHandler} loginHandler={hideForm} />
       )}
       <div></div>
     </div>

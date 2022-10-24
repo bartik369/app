@@ -223,7 +223,9 @@ h6 {
     display: flex;
 }
 
-.menu-container {}
+.menu-container {
+    
+}
 
 .content-wrapper {
     width: 100%;

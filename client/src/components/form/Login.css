@@ -35,6 +35,44 @@
     width: 100%;
 }
 
+
+.main .signup-sidebar__info {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(76, 75, 177, .8);
+    padding: 25px;
+    display: none;
+}
+
+.main .signup-sidebar__info > span {
+    color: #fff;
+    font-size: 17px;
+}
+
+.register-message {
+    display: block;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(76, 75, 177, .85);
+    padding: 25px;
+}
+.register-message > span {
+    color: #fff;
+    font-size: 17px;
+}
+
+.bi-envelope-check {
+    color: aliceblue;
+    font-size: 25px;
+}
+
+
 .main .login-sidebar img {
     width: 100%;
     height: 100%;

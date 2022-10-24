@@ -9,6 +9,7 @@ export default function Signup({selectLoginForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
+  const [registerMessage, setRegisterMessage] = useState(false)
 
   const {
     register,
@@ -30,8 +31,7 @@ export default function Signup({selectLoginForm}) {
 
   const onSubmit = (data) => {
     console.log(data);
-    selectLoginForm()
-
+    setRegisterMessage(true);
   };
 
   const showPassword = (e) => {
@@ -43,9 +43,9 @@ export default function Signup({selectLoginForm}) {
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
 
-  const loginHandler = () => {
-    console.log("register")
-  }
+  // const loginHandler = () => {
+  //   console.log("register")
+  // }
 
 
   console.log("dfsfsfsfs")
@@ -53,7 +53,12 @@ export default function Signup({selectLoginForm}) {
   return (
     <div className="main">
       <div className="login">
-        <div className="signup-sidebar"></div>
+        <div className="signup-sidebar">
+          <div className={registerMessage ? "register-message" : "signup-sidebar__info"}>
+          <div className="mail-icon"><i className="bi bi-envelope-check"></i></div>
+          <span>На вашу почту было отправлено письмо с ссылкой на активацию аккаунта</span>
+          </div>
+        </div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-form__title">Регистрация</div>
 
@@ -157,9 +162,6 @@ export default function Signup({selectLoginForm}) {
                 <p>{errors.confirmPassword.message || "Error"}</p>
               )}
             </div>
-          </div>
-          <div className="restore-password">
-            <Link to="#">Забыли пароль?</Link>
           </div>
           <button className="login-btn" type="submit">
             Отправить
