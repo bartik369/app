@@ -67,7 +67,7 @@ export default function Signup({selectLoginForm}) {
               classNames="my-node"
               >
               <div className="envelope">
-                <img src={envelope} alt="" />
+              <img src={envelope} alt="" />
               </div>
               </CSSTransition>
               <span>

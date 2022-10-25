@@ -1,6 +1,7 @@
-*{
+* {
     font-family: 'Roboto Condensed', sans-serif;
 }
+
 .main {
     display: flex;
     justify-content: center;
@@ -40,7 +41,6 @@
     width: 100%;
 }
 
-
 .main .signup-sidebar__info {
     display: flex;
     width: 100%;
@@ -61,17 +61,30 @@
     overflow: hidden;
 }
 
+.login__notification .envelope {
+    width: 260px;
+    height: 277px;
+}
+
+.login__notification .envelope img {
+    width: 100%;
+    height: 100%;
+}
+
 .my-node-enter {
     transition: all 600ms;
     position: absolute;
     right: 300px;
-  }
-  .my-node-enter-active {
+}
+
+.my-node-enter-active {
     transition: all 600ms;
     position: absolute;
     right: -100px;
-  }
-  /* .my-node-exit {
+}
+
+
+/* .my-node-exit {
     opacity: 1;
   }
   .my-node-exit-active {
@@ -80,11 +93,6 @@
     transition: all 7000ms;
   } */
 
-.login__notification img {
-    max-width: 160px;
-    margin: 20px 0;
-}
-
 .login__notification--title {
     color: #fff;
     text-transform: uppercase;
@@ -92,11 +100,10 @@
     font-size: 24px;
 }
 
-.login__notification  > span {
+.login__notification>span {
     color: #fff;
     font-size: 14px;
     font-weight: 300;
-
 }
 
 .register-notification {
@@ -106,7 +113,7 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgba(69, 68, 160, 0.9);
+    /* background-color: rgba(69, 68, 160, 0.9); */
     padding: 25px;
 }
 
@@ -115,7 +122,6 @@
     font-size: 95px;
     margin-bottom: 20px;
 }
-
 
 .main .login-sidebar img {
     width: 100%;
@@ -256,4 +262,3 @@
         display: none;
     }
 }
-
