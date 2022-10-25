@@ -58,16 +58,27 @@
     align-items: center;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
-/* .login__notification .envelope {
-    background-color: #d639e1;
-}
-.envelope-move {
-    background-color: darkolivegreen;
+.my-node-enter {
+    transition: all 600ms;
     position: absolute;
-    transition: all 4s;
-} */
+    right: 300px;
+  }
+  .my-node-enter-active {
+    transition: all 600ms;
+    position: absolute;
+    right: -100px;
+  }
+  /* .my-node-exit {
+    opacity: 1;
+  }
+  .my-node-exit-active {
+    opacity: 0;
+    top: 200px;
+    transition: all 7000ms;
+  } */
 
 .login__notification img {
     max-width: 160px;
@@ -246,22 +257,3 @@
     }
 }
 
-
-
-.my-node-enter {
-    transition: all 1000ms;
-    position: absolute;
-    right: 0;
-  }
-  .my-node-enter-active {
-    transition: all 1000ms;
-    position: absolute;
-  }
-  /* .my-node-exit {
-    opacity: 1;
-  }
-  .my-node-exit-active {
-    opacity: 0;
-    top: 200px;
-    transition: all 7000ms;
-  } */
