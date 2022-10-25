@@ -3,16 +3,20 @@ import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
+import { CSSTransition } from 'react-transition-group';
 import "./Login.css";
+import envelope from "../../assets/portal/envelope.png"
 
 export default function Signup({selectLoginForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [registerMessage, setRegisterMessage] = useState(false)
+  const [animationEnvelope, setAnimationEnvelope] = useState(false);
 
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
     watch,
@@ -28,10 +32,11 @@ export default function Signup({selectLoginForm}) {
   const password = useRef({});
   password.current = watch("password", "");
 
-
   const onSubmit = (data) => {
     console.log(data);
     setRegisterMessage(true);
+    setAnimationEnvelope(true)
+    reset();
   };
 
   const showPassword = (e) => {
@@ -43,20 +48,33 @@ export default function Signup({selectLoginForm}) {
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
 
-  // const loginHandler = () => {
-  //   console.log("register")
-  // }
-
-
   console.log("dfsfsfsfs")
 
   return (
     <div className="main">
       <div className="login">
         <div className="signup-sidebar">
-          <div className={registerMessage ? "register-message" : "signup-sidebar__info"}>
-          <div className="mail-icon"><i className="bi bi-envelope-check"></i></div>
-          <span>На вашу почту было отправлено письмо с ссылкой на активацию аккаунта</span>
+          <div
+            className={
+              registerMessage ? "register-notification" : "signup-sidebar__info"
+            }
+          >
+            <div className="login__notification">
+              <div className="login__notification--title">Подтвердите регистрацию</div>
+              <CSSTransition
+              in={animationEnvelope}
+              timeout={1000}
+              classNames="my-node"
+              >
+              <div className="envelope">
+                <img src={envelope} alt="" />
+              </div>
+              </CSSTransition>
+              <span>
+              На вашу почту было отправлено письмо с ссылкой на активацию
+              аккаунта
+            </span>
+            </div>
           </div>
         </div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -167,7 +185,10 @@ export default function Signup({selectLoginForm}) {
             Отправить
           </button>
           <div className="signin">
-            Уже есть аккаунт? <Link to="#" onClick={selectLoginForm}>Войти</Link>
+            Уже есть аккаунт?{" "}
+            <Link to="#" onClick={selectLoginForm}>
+              Войти
+            </Link>
           </div>
         </form>
       </div>
