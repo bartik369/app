@@ -54,26 +54,18 @@ export default function Signup({selectLoginForm}) {
     <div className="main">
       <div className="login">
         <div className="signup-sidebar">
-          <div
-            className={
-              registerMessage ? "register-notification" : "signup-sidebar__info"
-            }
-          >
+          <div className="signup-sidebar__info">
             <div className="login__notification">
-              <div className="login__notification--title">Подтвердите регистрацию</div>
               <CSSTransition
               in={animationEnvelope}
               timeout={1000}
-              classNames="my-node"
+              classNames="envelope-animation"
               >
               <div className="envelope">
-              <img src={envelope} alt="" />
+                <img src={envelope} alt="" />
               </div>
               </CSSTransition>
-              <span>
-              На вашу почту было отправлено письмо с ссылкой на активацию
-              аккаунта
-            </span>
+              <div className={animationEnvelope ? "back-notification" : ""}></div>
             </div>
           </div>
         </div>

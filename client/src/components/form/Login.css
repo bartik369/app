@@ -47,51 +47,41 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgb(76, 75, 177, .8);
-    padding: 25px;
-    display: none;
 }
 
 .login__notification {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
+    height: 100%;
     position: relative;
     overflow: hidden;
 }
 
 .login__notification .envelope {
-    width: 260px;
-    height: 277px;
+    width: 130px;
+    position: absolute;
+    left: 20px;
+    bottom: 0px;
+    z-index: 1;
 }
 
 .login__notification .envelope img {
-    width: 100%;
-    height: 100%;
+    width: 100%
 }
 
-.my-node-enter {
-    transition: all 600ms;
+
+.envelope-animation-enter {
+ position: absolute;
+}
+
+.envelope-animation-enter-active {
+    transition: all 2000ms ease-in-out;
     position: absolute;
-    right: 300px;
+    transform: translate(2000px, -2000px);
+    -webkit-transform: translate(2000px, -2000px);
+    -o-transform: translate(2000px, -2000px);
+    -moz-transform: translate(2000px, -2000px);
 }
 
-.my-node-enter-active {
-    transition: all 600ms;
-    position: absolute;
-    right: -100px;
-}
-
-
-/* .my-node-exit {
-    opacity: 1;
-  }
-  .my-node-exit-active {
-    opacity: 0;
-    top: 200px;
-    transition: all 7000ms;
-  } */
 
 .login__notification--title {
     color: #fff;
@@ -113,7 +103,6 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(69, 68, 160, 0.9); */
     padding: 25px;
 }
 
@@ -250,6 +239,7 @@
 }
 
 @media (max-width: 1100px) {
+
     .main .login-sidebar,
     .signup-sidebar {
         display: none;
@@ -257,8 +247,33 @@
 }
 
 @media (max-width: 768px) {
+
     .main .login-sidebar,
     .signup-sidebar {
         display: none;
     }
 }
+
+
+
+.back-notification {
+    animation:fill 1s ease-in-out;  
+    bottom:0;
+    left:0;
+    position:absolute;
+    right:0;
+    top:0;
+    background-color: #7939e1;
+    z-index: 3;
+  }
+  
+  @keyframes fill {
+    0% {
+      border-radius:50%;
+      transform:translateY(150%) translateX(-150%) scale(2);
+    }
+    100% {
+      border-radius:50%;
+      transform:scale(2);
+    }
+  }
