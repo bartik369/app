@@ -5,14 +5,14 @@ import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from 'react-transition-group';
 import "./Login.css";
-import envelope from "../../assets/portal/envelope.png"
+import paperAirplane from "../../assets/portal/paper_airplane.png"
 
 export default function Signup({selectLoginForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [registerMessage, setRegisterMessage] = useState(false)
-  const [animationEnvelope, setAnimationEnvelope] = useState(false);
+  const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
 
   const {
     register,
@@ -35,7 +35,7 @@ export default function Signup({selectLoginForm}) {
   const onSubmit = (data) => {
     console.log(data);
     setRegisterMessage(true);
-    setAnimationEnvelope(true)
+    setAnimationPaperAirplane(true)
     reset();
   };
 
@@ -57,15 +57,15 @@ export default function Signup({selectLoginForm}) {
           <div className="signup-sidebar__info">
             <div className="login__notification">
               <CSSTransition
-              in={animationEnvelope}
+              in={animationPaperAirplane}
               timeout={1000}
-              classNames="envelope-animation"
+              classNames="paperAirplane-animation"
               >
-              <div className="envelope">
-                <img src={envelope} alt="" />
+              <div className="paperAirplane">
+                <img src={paperAirplane} alt="" />
               </div>
               </CSSTransition>
-              <div className={animationEnvelope ? "back-notification" : ""}></div>
+              <div className={animationPaperAirplane ? "back-notification" : ""}></div>
             </div>
           </div>
         </div>
