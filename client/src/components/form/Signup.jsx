@@ -11,8 +11,8 @@ export default function Signup({selectLoginForm}) {
 
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
-  const [registerMessage, setRegisterMessage] = useState(false)
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const {
     register,
@@ -34,9 +34,9 @@ export default function Signup({selectLoginForm}) {
 
   const onSubmit = (data) => {
     console.log(data);
-    setRegisterMessage(true);
     setAnimationPaperAirplane(true)
     reset();
+    setTimeout(() => setShowInfo(true), 100)
   };
 
   const showPassword = (e) => {
@@ -57,15 +57,25 @@ export default function Signup({selectLoginForm}) {
           <div className="signup-sidebar__info">
             <div className="login__notification">
               <CSSTransition
-              in={animationPaperAirplane}
-              timeout={1000}
-              classNames="paperAirplane-animation"
+                in={animationPaperAirplane}
+                timeout={1000}
+                classNames="paperAirplane-animation"
               >
-              <div className="paperAirplane">
-                <img src={paperAirplane} alt="" />
-              </div>
+                <div className="paperAirplane">
+                  <img src={paperAirplane} alt="" />
+                </div>
               </CSSTransition>
-              <div className={animationPaperAirplane ? "back-notification" : ""}></div>
+              <div
+                className={animationPaperAirplane ? "back-notification" : ""}
+              >
+                <div className={showInfo ? "completed" : "completion-registration"}>
+                <div className="title">Подтверждние регистрации</div>
+                <span>
+                  На Вашу почту было отправлено письмо с ссылкой для активации
+                  аккаунта.
+                </span>
+              </div>
+              </div>
             </div>
           </div>
         </div>
