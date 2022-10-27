@@ -7,7 +7,7 @@ import Content from "./components/pages/Content";
 function App() {
 
 
-  const [isLogin, setIslogin] = useState(false)
+  const [isLogin, setIslogin] = useState(true)
   const [registered, setRegister] = useState(false)
 
 

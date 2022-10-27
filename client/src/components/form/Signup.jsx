@@ -36,7 +36,8 @@ export default function Signup({selectLoginForm}) {
     console.log(data);
     setAnimationPaperAirplane(true)
     reset();
-    setTimeout(() => setShowInfo(true), 100)
+    setShowInfo(true);
+    setTimeout(() => selectLoginForm(true), 9000)
   };
 
   const showPassword = (e) => {
@@ -73,6 +74,9 @@ export default function Signup({selectLoginForm}) {
                 <span>
                   На Вашу почту было отправлено письмо с ссылкой для активации
                   аккаунта.
+                </span>
+                <span>
+                Если вы не обнаружите это письмо в своём почтовом ящике по прошествии 15 минут, проверьте, нет ли его в папке «спам». Если он там, то, пожалуйста, пометьте его как «не спам».
                 </span>
               </div>
               </div>
