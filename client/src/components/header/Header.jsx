@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SearchData from '../UI/search/SearchData';
+import UserMenu from '../user-menu/UserMenu';
 import './header.css';
 
 const Header = ({
@@ -12,6 +13,9 @@ const Header = ({
   moveHeader
 }) => {
 
+  const [userMenu, setUserMenu] = useState(false);
+
+  const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
  
   return (
     <div className="header">
@@ -36,7 +40,8 @@ const Header = ({
           </ul>
         </div>
         <div className="user-info">
-          <button onClick={logout}>Выйти</button>
+          <button onClick={userMenuHandler}>Userinfo</button>
+          {userMenu &&  <UserMenu logout={logout} />}
         </div>
       </div>
     </div>
