@@ -17,7 +17,6 @@ function App() {
   }
   const loginFormHandler = () => {
     setRegister(true)
-    setIslogin(true)
   }
 
   const hideForm = () => {

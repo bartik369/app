@@ -44,7 +44,13 @@
     align-items: center;
 }
 .user-info {
-    background-color: coral;
     position: relative;
     right: 40px;
+    z-index: 9 !important;
 }
+/* .dropuser-menu {
+    background-color: rgb(138, 11, 131);
+    position: absolute;
+    z-index: 999;
+    top: 25px;
+} */

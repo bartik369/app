@@ -19,7 +19,7 @@ const Header = ({
  
   return (
     <div className="header">
-      <div className={moveHeader === false ? "header__inner" : "slided-content"}>
+      <div className={!moveHeader ? "header__inner" : "slided-content"}>
         <div className="search">
           {pageName === "deviceSearhPage" && (
             <SearchData
@@ -41,7 +41,7 @@ const Header = ({
         </div>
         <div className="user-info">
           <button onClick={userMenuHandler}>Userinfo</button>
-          {userMenu &&  <UserMenu logout={logout} />}
+            {userMenu && <UserMenu logout={logout} />}
         </div>
       </div>
     </div>
