@@ -110,12 +110,6 @@ const DeviceSearch = ({
                   ))}
               </tbody>
           </table>
-      {/* <DeviceLists
-        update={handleUpdateDeviceInfo}
-        remove={removeDevice}
-        title="Список устройств"
-        devices={filterData}
-      /> */}
        <Pagination
         devicesPerPage={devicesPerPage}
         totalDevices={devices.length}
