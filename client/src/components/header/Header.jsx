@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
 import React, {useState} from 'react';
 import SearchData from '../UI/search/SearchData';
-import UserMenu from '../user-menu/UserMenu';
+import ProfileMenu from '../profile-menu/ProfileMenu';
 import './header.css';
 
 const Header = ({
@@ -13,10 +15,15 @@ const Header = ({
   moveHeader
 }) => {
 
+
   const [userMenu, setUserMenu] = useState(false);
 
   const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
- 
+
+  window.addEventListener("click", () => {
+    setUserMenu(false);
+  });
+  
   return (
     <div className="header">
       <div className={!moveHeader ? "header__inner" : "slided-content"}>
@@ -39,9 +46,11 @@ const Header = ({
             <li>menu 4</li>
           </ul>
         </div>
-        <div className="user-info">
-          <button onClick={userMenuHandler}>Userinfo</button>
-            {userMenu && <UserMenu logout={logout} />}
+        <div className="user-info" onClick={(e) => e.stopPropagation()}>
+          <i className="bi bi-person" onClick={userMenuHandler}></i>
+            <div className="drop-usermenu">
+            {userMenu && <ProfileMenu logout={logout} />}
+            </div>
         </div>
       </div>
     </div>

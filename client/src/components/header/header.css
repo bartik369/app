@@ -3,11 +3,12 @@
     height: 65px;
     width: 100%;
     box-shadow: 0 4px 4px -5px rgba(0, 0, 0, .5);
-    z-index: 3;
+    z-index: 4;
     position: fixed;
     top: 0;
     display: flex;
     left: 0;
+    justify-content: center;
 }
 
 .header__inner {
@@ -18,7 +19,6 @@
     margin-left: 140px;
     position: relative;
     transition: .5s ease-in-out;
-    
 }
 
 .slided-content {
@@ -29,28 +29,39 @@
     margin-left: 260px;
     position: relative;
     transition: .5s ease-in-out;
-    
 }
 
 .header .search {
     position: relative;
 }
+
 .header-menu {
     background-color: aquamarine;
     position: relative;
 }
-.header-menu ul{
+
+.header-menu ul {
     display: flex;
     align-items: center;
 }
+
 .user-info {
     position: relative;
     right: 40px;
-    z-index: 9 !important;
 }
-/* .dropuser-menu {
-    background-color: rgb(138, 11, 131);
+
+.drop-usermenu {
+    top: 38px;
     position: absolute;
-    z-index: 999;
-    top: 25px;
-} */
+    right: 0px;
+}
+
+.user-info .bi-person {
+    padding: 7px 9px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: #6059c3;
+    color: antiquewhite;
+    font-weight: 300;
+    cursor: pointer;
+}

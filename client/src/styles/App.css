@@ -222,9 +222,7 @@ h6 {
     display: flex;
 }
 
-.menu-container {
-    
-}
+.menu-container {}
 
 .content-wrapper {
     width: 100%;
@@ -292,9 +290,7 @@ h6 {
     max-width: 700px;
 }
 
-.wrapper {
-    
-}
+.wrapper {}
 
 .row {
     margin-top: 15px;
