@@ -48,6 +48,11 @@
 .profile-menu .profile__link {
     display: inline-block;
     color: #b6bdcc;
+    transition: all .5s;
+}
+
+.profile-menu .profile__link:hover {
+    color: #26bea6;
 }
 
 .bi-person-check,
