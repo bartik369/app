@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
 import React, {useState} from 'react';
 import SearchData from '../UI/search/SearchData';
 import ProfileMenu from '../profile-menu/ProfileMenu';
+import useravatar from "../../assets/users/profile-avatar.jpg"
 import './header.css';
 
 const Header = ({
@@ -47,7 +46,7 @@ const Header = ({
           </ul>
         </div>
         <div className="user-info" onClick={(e) => e.stopPropagation()}>
-          <i className="bi bi-person" onClick={userMenuHandler}></i>
+          <img className="user-avatar" src={useravatar} alt="" onClick={userMenuHandler} />
             <div className="drop-usermenu">
             {userMenu && <ProfileMenu logout={logout} />}
             </div>

@@ -51,17 +51,14 @@
 }
 
 .drop-usermenu {
-    top: 38px;
+    top: 43px;
     position: absolute;
     right: 0px;
 }
 
-.user-info .bi-person {
-    padding: 7px 9px;
-    border-radius: 50%;
-    font-size: 18px;
-    background-color: #6059c3;
-    color: antiquewhite;
-    font-weight: 300;
+.user-info .user-avatar {
+    width: 33px;
+    height: auto;
     cursor: pointer;
+    border-radius: 50%;
 }

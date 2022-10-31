@@ -7,12 +7,36 @@
     -webkit-box-shadow: 14px 15px 25px 0px rgba(34, 46, 80, 0.5);
     -moz-box-shadow: 14px 15px 25px 0px rgba(34, 46, 80, 0.5);
     box-shadow: 14px 15px 25px 0px rgba(34, 46, 80, 0.5);
+    border-radius: 7px;
     width: 200px;
     height: fit-content;
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
+
+.profile::before {
+    content: "";
+    width: 60px;
+    height: 20px;
+    right: 0px;
+    top: -6px;
+    position: absolute;
+    background-color: #312f49;
+    border-radius: 8px 8px 8px;
+}
+
+.profile-circle {
+    width: 0;
+    height: 0;
+    top: -10px;
+    right: 7px;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 14px solid #312f49;
+}
+
 
 .profile__user {
     text-align: center;
@@ -49,6 +73,8 @@
     display: inline-block;
     color: #b6bdcc;
     transition: all .5s;
+    font-size: 12px;
+    font-family: inherit;
 }
 
 .profile-menu .profile__link:hover {
@@ -60,7 +86,7 @@
 .bi-box-arrow-right,
 .bi-chat-square {
     color: #b6bdcc;
-    font-size: 18px;
+    font-size: 16px;
     display: inline-block;
     margin-right: 10px;
 }
