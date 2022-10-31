@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import SearchData from '../UI/search/SearchData';
 import ProfileMenu from '../profile-menu/ProfileMenu';
@@ -45,7 +46,7 @@ const Header = ({
             <li>menu 4</li>
           </ul>
         </div>
-        <div className="user-info" onClick={(e) => e.stopPropagation()}>
+        <div className="header__user-info" onClick={(e) => e.stopPropagation()}>
           <img className="user-avatar" src={useravatar} alt="" onClick={userMenuHandler} />
             <div className="drop-usermenu">
             {userMenu && <ProfileMenu logout={logout} />}

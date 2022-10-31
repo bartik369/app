@@ -5,7 +5,6 @@ import "./profilemenu.css";
 export default function ProfileMenu({ logout }) {
   return (
     <div className="profile">
-       {/* <div className="profile-circle"></div> */}
       <div className="profile__user">
         <div className="username">Fergus Roderic</div>
         <div className="description">web designer</div>
