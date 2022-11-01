@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react';
 import SearchData from '../UI/search/SearchData';
 import ProfileMenu from '../profile-menu/ProfileMenu';
@@ -17,6 +16,8 @@ const Header = ({
 
 
   const [userMenu, setUserMenu] = useState(false);
+  const [countMessages, setCountMessages] = useState(2);
+  const [countTodos, setCountTodos] = useState(1)
 
   const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
 
@@ -47,6 +48,20 @@ const Header = ({
           </ul>
         </div>
         <div className="header__user-panel" onClick={(e) => e.stopPropagation()}>
+          <div className="header__user-panel--notification">
+            <div className="todos-notification">
+            <div className="todos-notification_count">
+              {countTodos}
+            </div>
+            <i className="bi bi-clipboard-check"></i>
+            </div>
+            <div className="chat-messagess">
+              <div className="chat-messagess__count">
+               {countMessages}
+              </div>
+            <i className="bi bi-chat"></i>
+            </div>
+          </div>
           <img className="user-avatar" src={useravatar} alt="" onClick={userMenuHandler} />
             <div className="drop-menu">
             {userMenu && <ProfileMenu logout={logout} />}

@@ -45,9 +45,48 @@
     align-items: center;
 }
 
+.header__user-panel--notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 80px;
+}
+
+.todos-notification { 
+    margin-right: 30px;
+    position: relative;
+}
+.chat-messagess {
+    margin-right: 30px;
+    position: relative;
+}
+
+.bi-clipboard-check, .bi-chat {
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.todos-notification_count, .chat-messagess__count {
+    height: 20px;
+    width: 20px;
+    background-color: rgb(209, 51, 99);
+    color: aliceblue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+
+}
+
 .header__user-panel {
     position: relative;
     right: 40px;
+    display: flex;
+
 }
 
 .drop-menu {
