@@ -4,12 +4,12 @@ import "./profilemenu.css";
 
 export default function ProfileMenu({ logout }) {
   return (
-    <div className="profile">
-      <div className="profile__user">
+    <div className="profile-menu">
+      <div className="profile__userinfo">
         <div className="username">Fergus Roderic</div>
         <div className="description">web designer</div>
       </div>
-      <ul className="profile-menu">
+      <ul className="profile__items">
         <li className="profile__item">
         <i className="bi bi-person-check"></i>
           <Link className="profile__link" to="">Мой профиль</Link>

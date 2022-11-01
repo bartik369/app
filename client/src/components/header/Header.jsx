@@ -26,8 +26,8 @@ const Header = ({
   
   return (
     <div className="header">
-      <div className={!moveHeader ? "header__inner" : "slided-content"}>
-        <div className="search">
+      <div className={!moveHeader ? "header__inner" : "header__slided"}>
+        <div className="header__search">
           {pageName === "deviceSearhPage" && (
             <SearchData
               placeholder="Поиск..."
@@ -38,7 +38,7 @@ const Header = ({
             />
           )}
         </div>
-        <div className="header-menu">
+        <div className="header__menu">
           <ul>
             <li>menu 1</li>
             <li>menu 2</li>
@@ -46,9 +46,9 @@ const Header = ({
             <li>menu 4</li>
           </ul>
         </div>
-        <div className="header__user-info" onClick={(e) => e.stopPropagation()}>
+        <div className="header__user-panel" onClick={(e) => e.stopPropagation()}>
           <img className="user-avatar" src={useravatar} alt="" onClick={userMenuHandler} />
-            <div className="drop-usermenu">
+            <div className="drop-menu">
             {userMenu && <ProfileMenu logout={logout} />}
             </div>
         </div>

@@ -21,7 +21,7 @@
     transition: .5s ease-in-out;
 }
 
-.slided-content {
+.header__slided {
     width: 100%;
     display: flex;
     align-items: center;
@@ -31,32 +31,32 @@
     transition: .5s ease-in-out;
 }
 
-.header .search {
+.header__search {
     position: relative;
 }
 
-.header-menu {
+.header__menu {
     background-color: aquamarine;
     position: relative;
 }
 
-.header-menu ul {
+.header__menu ul {
     display: flex;
     align-items: center;
 }
 
-.header__user-info {
+.header__user-panel {
     position: relative;
     right: 40px;
 }
 
-.drop-usermenu {
+.drop-menu {
     top: 43px;
     position: absolute;
     right: 0px;
 }
 
-.header__user-info .user-avatar {
+.header__user-panel .user-avatar {
     width: 33px;
     height: auto;
     cursor: pointer;
