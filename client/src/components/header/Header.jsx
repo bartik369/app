@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import SearchData from '../UI/search/SearchData';
 import ProfileMenu from '../profile-menu/ProfileMenu';
 import useravatar from "../../assets/users/profile-avatar.jpg"
@@ -16,8 +17,22 @@ const Header = ({
 
 
   const [userMenu, setUserMenu] = useState(false);
-  const [countMessages, setCountMessages] = useState(2);
+  const [countMessages, setCountMessages] = useState("0");
   const [countTodos, setCountTodos] = useState(1)
+  const {todos} = useSelector(state => state.todos);
+  const overdueTodos = [];
+
+
+  useEffect(() => {
+    todos.map((todo) => {
+      if (Date.parse(todo.endTime) <= Date.now() && todo.status !== "done") {
+        overdueTodos.push(todo)
+      };
+    });
+    setCountTodos(overdueTodos.length)
+  }, [todos])
+
+  
 
   const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
 

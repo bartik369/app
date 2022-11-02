@@ -1,4 +1,5 @@
 import React from 'react';
+import TodosAlert from '../header/notifications/TodosAlert';
 
 
 const Calendar = () => {
@@ -6,7 +7,7 @@ const Calendar = () => {
 
     return (
         <div className="calendar">
-         
+            <TodosAlert />
         </div>
     )
 }
