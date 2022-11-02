@@ -69,7 +69,7 @@ const Header = ({
               {countTodos}
             </div>
             <i className="bi bi-clipboard-check"></i>
-            <TodosAlert over={overdueTodos}/>
+            <TodosAlert overTodos={overdueTodos}/>
             </div>
             <div className="chat-messagess">
               <div className="chat-messagess__count">

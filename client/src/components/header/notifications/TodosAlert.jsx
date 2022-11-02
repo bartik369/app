@@ -2,25 +2,22 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import moment from 'moment';
 
-export default function TodosAlert({over}) {
-
-    console.log(over)
+export default function TodosAlert({overTodos}) {
 
     return (
-
-        <div className="todo-alert">
+      <div className="todo-alert">
         <ul className="todo-alert__items">
-            {over.map((item, index) => (
-               <li className="todo-alert__item">
-                   <Link className="todo-alert__link" to="" key={index}>
-                      {item.title}
-                      <p></p>
-                      {moment(item.endTime).format("DD.MM.YYYY HH:mm")}
-                    </Link>
-                 </li>
-            ))}
+          {overTodos.map((todo, index) => (
+            <li className="todo-alert__item">
+              <Link className="todo-alert__link" to="" key={index}>
+                {todo.title}
+                <p></p>
+                {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
+              </Link>
+            </li>
+          ))}
         </ul>
-        </div>
+      </div>
     );
 }
 
