@@ -4,6 +4,7 @@ import SearchData from '../UI/search/SearchData';
 import ProfileMenu from '../profile-menu/ProfileMenu';
 import useravatar from "../../assets/users/profile-avatar.jpg"
 import './header.css';
+import TodosAlert from './notifications/TodosAlert';
 
 const Header = ({
   pageName, 
@@ -31,14 +32,13 @@ const Header = ({
     });
     setCountTodos(overdueTodos.length)
   }, [todos])
-
   
-
   const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
 
   window.addEventListener("click", () => {
     setUserMenu(false);
   });
+
   
   return (
     <div className="header">
@@ -69,6 +69,7 @@ const Header = ({
               {countTodos}
             </div>
             <i className="bi bi-clipboard-check"></i>
+            <TodosAlert over={overdueTodos}/>
             </div>
             <div className="chat-messagess">
               <div className="chat-messagess__count">
