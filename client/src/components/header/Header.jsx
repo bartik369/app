@@ -19,27 +19,25 @@ const Header = ({
 
   const [userMenu, setUserMenu] = useState(false);
   const [countMessages, setCountMessages] = useState("0");
-  const [countTodos, setCountTodos] = useState(1)
+  const [countTodos, setCountTodos] = useState()
   const {todos} = useSelector(state => state.todos);
-  const overdueTodos = [];
-
-
+  const overTodos = []
+  
   useEffect(() => {
     todos.map((todo) => {
       if (Date.parse(todo.endTime) <= Date.now() && todo.status !== "done") {
-        overdueTodos.push(todo)
-      };
-    });
-    setCountTodos(overdueTodos.length)
+        overTodos.push(todo)
+      }
+      setCountTodos(overTodos.length)
+    })
   }, [todos])
-  
+
   const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
 
   window.addEventListener("click", () => {
     setUserMenu(false);
   });
 
-  
   return (
     <div className="header">
       <div className={!moveHeader ? "header__inner" : "header__slided"}>
@@ -69,7 +67,6 @@ const Header = ({
               {countTodos}
             </div>
             <i className="bi bi-clipboard-check"></i>
-            <TodosAlert overTodos={overdueTodos}/>
             </div>
             <div className="chat-messagess">
               <div className="chat-messagess__count">
@@ -83,6 +80,7 @@ const Header = ({
             {userMenu && <ProfileMenu logout={logout} />}
             </div>
         </div>
+        <TodosAlert todos={todos}/>
       </div>
     </div>
   );
