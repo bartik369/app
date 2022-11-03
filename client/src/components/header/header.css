@@ -52,10 +52,11 @@
     margin-right: 80px;
 }
 
-.todos-notification { 
+.todos-notification {
     margin-right: 30px;
     position: relative;
 }
+
 .todos-notification__dropmenu {
     position: absolute;
     display: flex;
@@ -63,7 +64,7 @@
     -webkit-box-shadow: 0 20px 40px rgb(34 46 80 / 40%), 0 4px 20px rgb(34 46 80 / 25%);
     box-shadow: 0 20px 40px rgb(34 46 80 / 40%), 0 4px 20px rgb(34 46 80 / 25%);
     border-radius: 7px;
-    background-color: rgb(255, 255, 255);
+    background-color: #ebf2fe;
     left: -200px;
     top: 35px;
 }
@@ -75,24 +76,27 @@
     right: 0px;
     top: -6px;
     position: absolute;
-    background-color: #ffffff;
+    background-color: #ebf2fe;
     border-radius: 8px 8px 8px;
 }
 
 .todos-notification__dropmenu-disabled {
     display: none;
 }
+
 .chat-messagess {
     margin-right: 30px;
     position: relative;
 }
 
-.bi-clipboard-check, .bi-chat {
+.bi-clipboard-check,
+.bi-chat {
     font-size: 23px;
     cursor: pointer;
 }
 
-.todos-notification_count, .chat-messagess__count {
+.todos-notification_count,
+.chat-messagess__count {
     height: 20px;
     width: 20px;
     background-color: rgb(209, 51, 99);
@@ -105,14 +109,12 @@
     position: absolute;
     top: -14px;
     right: -14px;
-
 }
 
 .header__user-panel {
     position: relative;
     right: 40px;
     display: flex;
-
 }
 
 .drop-menu {

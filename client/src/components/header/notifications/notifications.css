@@ -12,9 +12,8 @@
 }
 
 .todo-alert__item {
-    background-color: yellow;
-    border-top: 1px solid #3c3958;
-    border-bottom: 1px solid #262439;
+    border-top: 1px solid #fcfdff;
+    border-bottom: 1px solid #d9e0ed;
     padding: 5px 0;
 }
 
@@ -27,20 +26,23 @@
 }
 
 .todo-alert__item .title {
-    color: blue;
+    color: #212431;
     font-size: 12px;
     font-family: inherit;
 }
 
 .todo-alert__item .time {
-    color: rgb(14, 87, 5);
+    color: #737f96;
     font-size: 11px;
     font-family: inherit;
 }
 
 .check-todos {
-    padding: 7px 12px;
-    background-color: brown;
+    padding: 7px 10px;
+    background-color: #13bfa6;
+}
+
+.check-todos a {
     color: aliceblue;
     font-size: 11px;
     font-family: inherit;
