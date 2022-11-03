@@ -7,6 +7,16 @@
     height: fit-content;
 }
 
+.notification-title {
+    font-family: inherit;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -.5px;
+}
+
 .todo-alert__items {
     margin-bottom: 20px;
 }
