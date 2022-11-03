@@ -1,24 +1,29 @@
 import React from 'react';
 import moment from 'moment';
+import "./notifications.css"
 
 export default function TodosAlert({todos}) {
 
     return (
       <div className="todo-alert">
-        <ul className="todo-alert__items">
+        <div className="todo-alert__items">
           {todos.map((todo, index) => {
             if (Date.parse(todo.endTime) <= Date.now() && todo.status !== "done") {
               return (
-                <li className="todo-alert__item" key={index}>
+                <div className="todo-alert__item" key={index}>
+                  <div className="title">
                   {todo.title}
-                  <p></p>
+                  </div>
+                  <div className="time">
                   {moment(todo.endTime).format("DD.MM.YYYY HH:mm")}
-              </li>
+                  </div>
+              </div>
               )
             }
           }
           )}
-        </ul>
+        </div>
+        <button className="check-todos">Посмотреть все</button>
       </div>
     );
 }

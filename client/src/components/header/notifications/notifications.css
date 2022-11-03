@@ -1,0 +1,33 @@
+* {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.todo-alert {
+    width: 200px;
+    height: fit-content;
+}
+.todo-alert__items {
+    margin-bottom: 20px;
+}
+.todo-alert__item {
+
+}
+
+.todo-alert__item .title {
+    color: blue;
+    font-size: 12px;
+    font-family: inherit;
+}
+
+.todo-alert__item .time {
+    color: rgb(14, 87, 5);
+    font-size: 11px;
+    font-family: inherit;
+}
+.check-todos {
+    padding: 7px 12px;
+    background-color: brown;
+    color: aliceblue;
+    font-size: 11px;
+    font-family: inherit;
+}

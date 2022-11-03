@@ -18,8 +18,9 @@ const Header = ({
 
 
   const [userMenu, setUserMenu] = useState(false);
-  const [countMessages, setCountMessages] = useState("0");
-  const [countTodos, setCountTodos] = useState()
+  const [todosDropMenu, setTodosDropMenu] = useState(false)
+  const [countMessages, setCountMessages] = useState(0);
+  const [countTodos, setCountTodos] = useState(0)
   const {todos} = useSelector(state => state.todos);
   const overTodos = []
   
@@ -32,11 +33,22 @@ const Header = ({
     })
   }, [todos])
 
-  const userMenuHandler = () => userMenu ? setUserMenu(false) : setUserMenu(true);
+  const userMenuHandler = () => 
+  userMenu 
+  ? setUserMenu(false) 
+  : setUserMenu(true);
+
+  const todosNotificationHandler = () => 
+  todosDropMenu 
+  ? setTodosDropMenu(false) 
+  : setTodosDropMenu(true)
+
 
   window.addEventListener("click", () => {
     setUserMenu(false);
+    setTodosDropMenu(false);
   });
+
 
   return (
     <div className="header">
@@ -62,11 +74,14 @@ const Header = ({
         </div>
         <div className="header__user-panel" onClick={(e) => e.stopPropagation()}>
           <div className="header__user-panel--notification">
-            <div className="todos-notification">
+            <div className="todos-notification" onClick={todosNotificationHandler}>
             <div className="todos-notification_count">
               {countTodos}
             </div>
             <i className="bi bi-clipboard-check"></i>
+            <div className={todosDropMenu ? "todos-notification__dropmenu" : "todos-notification__dropmenu-disabled"}>
+            <TodosAlert todos={todos} className={todosDropMenu ? "todos-notification__dropmenu" : "todos-notification__dropmenu-disabled"}/>
+            </div>
             </div>
             <div className="chat-messagess">
               <div className="chat-messagess__count">
@@ -80,7 +95,6 @@ const Header = ({
             {userMenu && <ProfileMenu logout={logout} />}
             </div>
         </div>
-        <TodosAlert todos={todos}/>
       </div>
     </div>
   );
