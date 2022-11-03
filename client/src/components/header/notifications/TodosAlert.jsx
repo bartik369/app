@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import "./notifications.css"
 
@@ -23,7 +24,7 @@ export default function TodosAlert({todos}) {
           }
           )}
         </div>
-        <button className="check-todos">Посмотреть все</button>
+        <button className="check-todos"><Link to="/todos">Посмотреть все</Link></button>
       </div>
     );
 }

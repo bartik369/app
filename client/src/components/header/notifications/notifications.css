@@ -6,11 +6,24 @@
     width: 200px;
     height: fit-content;
 }
+
 .todo-alert__items {
     margin-bottom: 20px;
 }
-.todo-alert__item {
 
+.todo-alert__item {
+    background-color: yellow;
+    border-top: 1px solid #3c3958;
+    border-bottom: 1px solid #262439;
+    padding: 5px 0;
+}
+
+.todo-alert__item:last-child {
+    border-bottom: none;
+}
+
+.todo-alert__item:first-child {
+    border-top: none;
 }
 
 .todo-alert__item .title {
@@ -24,6 +37,7 @@
     font-size: 11px;
     font-family: inherit;
 }
+
 .check-todos {
     padding: 7px 12px;
     background-color: brown;

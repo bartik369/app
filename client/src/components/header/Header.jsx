@@ -50,6 +50,7 @@ const Header = ({
   });
 
 
+
   return (
     <div className="header">
       <div className={!moveHeader ? "header__inner" : "header__slided"}>
