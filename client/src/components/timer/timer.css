@@ -27,7 +27,7 @@
     align-items: center;
     font-size: 10px;
     text-decoration: none;
-    color: #eb9137;
+    color: #11243e;
 }
 
 .show-counter .countdown {
@@ -35,8 +35,8 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    background-color: #fffbf9;
-    border: 1px solid #f5dbc1;
+    background-color: #fce575;
+    border: 1px solid #fae160;
     border-radius: 3px;
     margin: 3px;
 }

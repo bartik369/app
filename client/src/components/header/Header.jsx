@@ -66,12 +66,12 @@ const Header = ({
           )}
         </div>
         <div className="header__menu">
-          <ul>
+          {/* <ul>
             <li>menu 1</li>
             <li>menu 2</li>
             <li>menu 3</li>
             <li>menu 4</li>
-          </ul>
+          </ul> */}
         </div>
         <div className="header__user-panel" onClick={(e) => e.stopPropagation()}>
           <div className="header__user-panel--notification">

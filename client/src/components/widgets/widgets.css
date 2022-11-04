@@ -9,7 +9,8 @@
     width: 100%;
     position: relative;
     background-color: #fff;
-    box-shadow: 0 2px 2px 0 rgba(179, 183, 201, .2), 0 4px 4px 0 rgba(179, 183, 201, .2), 0 8px 8px 0 rgba(179, 183, 201, .2), 0 16px 16px 0 rgba(179, 183, 201, .2), 0 32px 32px 0 rgba(179, 183, 201, .2);
+    /* box-shadow: rgba(36, 38, 47, 0.2) 0px 40px 30px -7px; */
+    box-shadow: rgba(36, 38, 47, 0.35) 0px 30px 30px -20px;
     border: 1px solid #dde8f9;
     border-radius: 11px;
 }
@@ -21,7 +22,7 @@
 .widget-table {
     border-collapse: collapse;
     font-family: sans-serif;
-    color: #2f323e;
+    color: #24262f;
     font-size: 12px;
     width: 100%;
 }
@@ -35,11 +36,11 @@
 }
 
 .widget-table tr:nth-child(even) {
-    background-color: #f5f6fb;
+    background-color: #f4edfe;
 }
 
 .widget-table tr:hover {
-    background-color: rgb(240, 240, 240);
+    background-color: #f6f1fd;
 }
 
 .widget-table th {
@@ -49,7 +50,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #7c7fd7;
+    background-color: #8a6be0;
     color: #fff;
 }
 
@@ -73,7 +74,7 @@
 .widget-item__title {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #212431;
+    color: #0A2540;
     text-transform: uppercase;
     font-weight: 700;
     font-family: 'Roboto Condensed', sans-serif;
@@ -99,7 +100,7 @@
 
 .todos_info__endtime-danger {
     padding: 5px 0;
-    color: #de4f4a;
+    color: #ea3e71;
     font-family: inherit;
     font-weight: 700;
     letter-spacing: -.4px;
