@@ -7,14 +7,11 @@
     height: fit-content;
 }
 
-.todo-alert__items {
-    margin-bottom: 20px;
-}
+.todo-alert__items {}
 
 .todo-alert__item {
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #f5deda;
-    padding: 5px 0;
+    border-bottom: 1px solid #e8e5ed;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,12 +21,8 @@
     border-bottom: none;
 }
 
-.todo-alert__item:first-child {
-    border-top: none;
-}
-
 .todo-alert__item .icon {
-    color: #c1bdc8;
+    color: rgb(239, 55, 120);
     font-size: 21px;
     margin-right: 10px;
 }
@@ -48,6 +41,7 @@
 }
 
 .check-todos {
+    margin-top: 10px;
     padding: 7px 10px;
     background-color: #e8e5ed;
 }

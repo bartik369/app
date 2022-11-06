@@ -13,6 +13,11 @@ export default function Signup({selectLoginForm}) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    displayname: "",
+    email: "",
+    password: ""
+  });
 
   const {
     register,
@@ -33,7 +38,13 @@ export default function Signup({selectLoginForm}) {
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    console.log(data);
+    const newUser = {
+      ...userInfo,
+      displayname: data.displayname,
+      email: data.email,
+      password: data.password
+    }
+    setUserInfo(newUser)
     setAnimationPaperAirplane(true)
     reset();
     setShowInfo(true);
@@ -50,6 +61,7 @@ export default function Signup({selectLoginForm}) {
   }
 
   console.log("dfsfsfsfs")
+  console.log("userInfo", userInfo)
 
   return (
     <div className="main">

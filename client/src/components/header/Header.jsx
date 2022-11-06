@@ -19,7 +19,7 @@ const Header = ({
 
   const [userMenu, setUserMenu] = useState(false);
   const [todosDropMenu, setTodosDropMenu] = useState(false)
-  const [countMessages, setCountMessages] = useState(0);
+  const [countMessages, setCountMessages] = useState(5);
   const [countTodos, setCountTodos] = useState(0)
   const {todos} = useSelector(state => state.todos);
   const overTodos = []

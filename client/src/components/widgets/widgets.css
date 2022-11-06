@@ -13,6 +13,7 @@
     box-shadow: rgba(36, 38, 47, 0.35) 0px 30px 30px -20px;
     border: 1px solid #dde8f9;
     border-radius: 11px;
+    overflow: hidden;
 }
 
 .widget-item:not(:last-child) {
