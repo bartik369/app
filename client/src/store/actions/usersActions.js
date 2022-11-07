@@ -32,7 +32,7 @@ export const createUser = (user) => {
     console.log("data from form", user)
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}registration`, user)
+            await axios.post(`${ENV.HOSTNAME}api/registration`, user)
             .then((response) => {
                 dispatch(addUser(response.data));
                 console.log(response.data)
