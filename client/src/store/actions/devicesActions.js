@@ -66,7 +66,7 @@ export const addDevice = (device) => {
         try {
             await axios.post(`${ENV.HOSTNAME}insert`, device)
             .then((response) => {
-                dispatch(deviceAdd());
+                dispatch(deviceAdd(response.data));
                 dispatch(loadDevices());
             })
         } 

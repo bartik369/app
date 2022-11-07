@@ -8,14 +8,14 @@ import ApiError from '../exceptions/api-error.js'
 
 class UserService {
 
-    async registration(email, password) {
+    async registration(displayname, email, password) {
         const candidate = await UserModel.findOne({ email })
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
         };  
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuidv4();
-        const user = await UserModel.create({ email, password: hashPassword, activationLink });
+        const user = await UserModel.create({ displayname, email, password: hashPassword, activationLink });
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user);

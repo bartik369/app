@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -29,6 +31,8 @@ export default function Signup({selectLoginForm}) {
     mode: "onBlur",
   });
 
+  let dispatch = useDispatch();
+
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   const isValidPassword = /[A-Za-z0-9]/;
   const isValidDisplayName = /[A-Za-z0-9]/;
@@ -45,6 +49,7 @@ export default function Signup({selectLoginForm}) {
       password: data.password
     }
     setUserInfo(newUser)
+    dispatch(createUser(newUser))
     setAnimationPaperAirplane(true)
     reset();
     setShowInfo(true);
@@ -59,8 +64,7 @@ export default function Signup({selectLoginForm}) {
     e.preventDefault();
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
-
-  console.log("dfsfsfsfs")
+  
   console.log("userInfo", userInfo)
 
   return (

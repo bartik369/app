@@ -13,7 +13,7 @@ const getUsers = (users) => ({
     loading: true,
 });
 
-const getUser = () => ({
+const getUser = (user) => ({
     type: GET_USER,
     payload: user,
 });
@@ -29,12 +29,14 @@ const userUpdatePassword = () => ({
 
 
 export const createUser = (user) => {
+    console.log("data from form", user)
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}newuser`, user)
+            await axios.post(`${ENV.HOSTNAME}registration`, user)
             .then((response) => {
                 dispatch(addUser(response.data));
-            })
+                console.log(response.data)
+            });
         } catch (error) {
             console.log(error)
         }
