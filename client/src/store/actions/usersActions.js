@@ -38,7 +38,7 @@ export const createUser = (user) => {
                 console.log(response.data)
             });
         } catch (error) {
-            console.log(error)
+            console.log("тест на email ==>", error.response.data.message)
         }
     }
 }
