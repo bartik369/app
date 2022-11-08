@@ -40,11 +40,13 @@ class UserService {
 
     async login(email, password) {
         const user = await UserModel.findOne({email});
+
         if (!user) {
             throw ApiError.BadRequest('Пользователь с таким email не найден')
         };
 
         const isPasswordEquals = await bcrypt.compare(password, user.password);
+
         if (!isPasswordEquals) {
             throw ApiError.BadRequest('Неверный пароль')
         }
@@ -64,11 +66,13 @@ class UserService {
     };
 
     async refresh(refreshToken) {
+
         if (!refreshToken) {
             throw ApiError.UnauthorizedError();
         };
         const userData = tokenService.validateAccessToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
+        
         if (!userData || tokenFromDb) {
             throw ApiError.UnauthorizedError();
         };
