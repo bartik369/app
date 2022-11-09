@@ -17,7 +17,7 @@ export default function Signup({selectLoginForm}) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [existEmail, setExistEmail] = useState(false)
+  const [existEmail, setExistEmail] = useState("")
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -59,7 +59,7 @@ export default function Signup({selectLoginForm}) {
     users.map((user) => {
 
       if (user.email === newUser.email) {
-        setExistEmail(true)
+        setExistEmail(newUser.email)
       } else {
         setUserInfo(newUser)
         dispatch(createUser(newUser))
@@ -147,7 +147,7 @@ export default function Signup({selectLoginForm}) {
                   pattern: {
                     value: isValidEmail,
                     message: "Неправильный формат почты",
-                  }
+                  },
                 })}
               />
             </div>
