@@ -2,8 +2,8 @@ import {
     CREATE_USER,
     GET_USER,
     GET_USERS,
-    UPDATE_USER_PASSWORD
-} from "../types/typesUser";
+    UPDATE_USER_PASSWORD,
+} from "../types/typesUsers";
 
 const initialState = {
     users: [],
@@ -12,29 +12,31 @@ const initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case CREATE_USER:
-            return {
-                ...state,
-                user: action.payload,
-            }
-        case GET_USER:
-            return {
-                ...state,
-                user: action.payload
-            }
-        case GET_USERS:
-            return {
-                ...state,
-                loading: false,
-            }
-        case UPDATE_USER_PASSWORD:
-            return {
-                ...state,
-            }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case UPDATE_USER_PASSWORD:
+      return {
+        ...state,
+      };
+    default:
+      return state;
+  }
+};
 
 export default usersReducer;

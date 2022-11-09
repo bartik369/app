@@ -1,6 +1,9 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch} from "react-redux";
+import { useSelector } from "react-redux"
 import { createUser } from "../../store/actions/usersActions";
+import { loadTodos } from "../../store/actions/todosActions";
+import { loadUsers } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -32,28 +35,40 @@ export default function Signup({selectLoginForm}) {
   });
 
   let dispatch = useDispatch();
+  const {users} = useSelector(state => state.users);
 
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   const isValidPassword = /[A-Za-z0-9]/;
   const isValidDisplayName = /[A-Za-z0-9]/;
 
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, [])
+
+  console.log(users)
   
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    const newUser = {
-      ...userInfo,
-      displayname: data.displayname,
-      email: data.email,
-      password: data.password
+    console.log(data.email)
+
+    if (users.email === data.email) {
+      console.log("user already exist")
+    } else {
+      const newUser = {
+        ...userInfo,
+        displayname: data.displayname,
+        email: data.email,
+        password: data.password
+      }
+      setUserInfo(newUser)
+      dispatch(createUser(newUser))
+      setAnimationPaperAirplane(true)
+      reset();
+      setShowInfo(true);
+      setTimeout(() => selectLoginForm(true), 9000)
     }
-    setUserInfo(newUser)
-    dispatch(createUser(newUser))
-    setAnimationPaperAirplane(true)
-    reset();
-    setShowInfo(true);
-    setTimeout(() => selectLoginForm(true), 9000)
   };
 
   const showPassword = (e) => {
@@ -64,8 +79,6 @@ export default function Signup({selectLoginForm}) {
     e.preventDefault();
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
-  
-  console.log("userInfo", userInfo)
 
   return (
     <div className="main">
