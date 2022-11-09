@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch} from "react-redux";
 import { useSelector } from "react-redux"
 import { createUser } from "../../store/actions/usersActions";
-import { loadTodos } from "../../store/actions/todosActions";
 import { loadUsers } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +17,7 @@ export default function Signup({selectLoginForm}) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [existEmail, setExistEmail] = useState(false)
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -44,31 +44,31 @@ export default function Signup({selectLoginForm}) {
   useEffect(() => {
     dispatch(loadUsers());
   }, [])
-
-  console.log(users)
   
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    console.log(data.email)
-
-    if (users.email === data.email) {
-      console.log("user already exist")
-    } else {
-      const newUser = {
-        ...userInfo,
-        displayname: data.displayname,
-        email: data.email,
-        password: data.password
-      }
-      setUserInfo(newUser)
-      dispatch(createUser(newUser))
-      setAnimationPaperAirplane(true)
-      reset();
-      setShowInfo(true);
-      setTimeout(() => selectLoginForm(true), 9000)
+    const newUser = {
+      ...userInfo,
+      displayname: data.displayname,
+      email: data.email,
+      password: data.password
     }
+
+    users.map((user) => {
+
+      if (user.email === newUser.email) {
+        setExistEmail(true)
+      } else {
+        setUserInfo(newUser)
+        dispatch(createUser(newUser))
+        setAnimationPaperAirplane(true)
+        // reset();
+        setShowInfo(true);
+        // setTimeout(() => selectLoginForm(true), 9000)
+      }
+    })
   };
 
   const showPassword = (e) => {
@@ -147,7 +147,7 @@ export default function Signup({selectLoginForm}) {
                   pattern: {
                     value: isValidEmail,
                     message: "Неправильный формат почты",
-                  },
+                  }
                 })}
               />
             </div>
