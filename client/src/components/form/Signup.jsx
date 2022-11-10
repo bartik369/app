@@ -49,26 +49,35 @@ export default function Signup({selectLoginForm}) {
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    const newUser = {
-      ...userInfo,
-      displayname: data.displayname,
-      email: data.email,
-      password: data.password
-    }
-
     users.map((user) => {
 
-      if (user.email === newUser.email) {
-        setExistEmail(newUser.email)
-      } else {
+      if (user.email !== data.email) {
+        const newUser = {
+          ...userInfo,
+          displayname: data.displayname,
+          email: data.email,
+          password: data.password
+        }
         setUserInfo(newUser)
         dispatch(createUser(newUser))
         setAnimationPaperAirplane(true)
-        // reset();
         setShowInfo(true);
-        // setTimeout(() => selectLoginForm(true), 9000)
+      } else {
+        setExistEmail(data.email)
       }
-    })
+     
+    });
+
+     // if (user.email === newUser.email) {
+      //   setExistEmail(newUser.email)
+      // } else {
+      //   setUserInfo(newUser)
+      //   dispatch(createUser(newUser))
+      //   setAnimationPaperAirplane(true)
+      //   reset();
+      //   setShowInfo(true);
+      //   setTimeout(() => selectLoginForm(true), 9000)
+      // }
   };
 
   const showPassword = (e) => {
@@ -148,6 +157,7 @@ export default function Signup({selectLoginForm}) {
                     value: isValidEmail,
                     message: "Неправильный формат почты",
                   },
+                  validate: value => value !== existEmail || "Email already exist"
                 })}
               />
             </div>
