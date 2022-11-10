@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch} from "react-redux";
-import { useSelector } from "react-redux"
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { createUser } from "../../store/actions/usersActions";
 import { loadUsers } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from 'react-transition-group';
 import "./Login.css";
 import paperAirplane from "../../assets/portal/paper_airplane.png"
+import { useEffect } from "react";
 
 export default function Signup({selectLoginForm}) {
 
@@ -37,47 +38,73 @@ export default function Signup({selectLoginForm}) {
   let dispatch = useDispatch();
   const {users} = useSelector(state => state.users);
 
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
+
+  useEffect(() => {
+    if (userInfo.email === users.email) {
+      alert("goooooot")
+    } else {
+      checkExistEmail()
+    }
+  }, [userInfo.email])
+
+
+  console.log(users)
+
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   const isValidPassword = /[A-Za-z0-9]/;
   const isValidDisplayName = /[A-Za-z0-9]/;
 
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, [])
   
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit = (data) => {
+  const checkExistEmail = () => {
     users.map((user) => {
-
-      if (user.email !== data.email) {
-        const newUser = {
-          ...userInfo,
-          displayname: data.displayname,
-          email: data.email,
-          password: data.password
-        }
-        setUserInfo(newUser)
-        dispatch(createUser(newUser))
-        setAnimationPaperAirplane(true)
-        setShowInfo(true);
+      
+      if (user.email === userInfo.email) {
+        alert("there is already exist email")
       } else {
-        setExistEmail(data.email)
+      checkExistEmail()
+      dispatch(createUser(userInfo))
+      setAnimationPaperAirplane(true)
+      reset();
+      setShowInfo(true);
+      setTimeout(() => selectLoginForm(true), 9000)
       }
-     
-    });
+    })
+  }
 
-     // if (user.email === newUser.email) {
-      //   setExistEmail(newUser.email)
-      // } else {
-      //   setUserInfo(newUser)
-      //   dispatch(createUser(newUser))
-      //   setAnimationPaperAirplane(true)
-      //   reset();
-      //   setShowInfo(true);
-      //   setTimeout(() => selectLoginForm(true), 9000)
-      // }
+  const onSubmit = (data) => {
+    const newUser = {
+      ...userInfo,
+      displayname: data.displayname,
+      email: data.email,
+      password: data.password
+    }
+    setUserInfo(newUser)
+
+    // users.map((user) => {
+    //   if (data.email === user.email) {
+    //     setExistEmail(data.email)
+    //     console.log(existEmail)
+    //   } else {
+    //     const newUser = {
+    //       ...userInfo,
+    //       displayname: data.displayname,
+    //       email: data.email,
+    //       password: data.password
+    //     }
+    //     setUserInfo(newUser)
+    //     dispatch(createUser(newUser))
+    //     setAnimationPaperAirplane(true)
+    //     reset();
+    //     setShowInfo(true);
+    //     setTimeout(() => selectLoginForm(true), 9000)
+    //   }
+    // })
   };
 
   const showPassword = (e) => {
@@ -88,6 +115,8 @@ export default function Signup({selectLoginForm}) {
     e.preventDefault();
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
+  
+  console.log("userInfo", userInfo)
 
   return (
     <div className="main">
@@ -175,8 +204,8 @@ export default function Signup({selectLoginForm}) {
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
                   minLength: {
-                    value: 3,
-                    message: "Пароль должен быть минимум 3 символов",
+                    value: 4,
+                    message: "Пароль должен быть минимум 7 символов",
                   },
                   pattern: {
                     value: isValidPassword,

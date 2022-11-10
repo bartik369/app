@@ -12,7 +12,7 @@ class UserService {
         const candidate = await UserModel.findOne({ email })
         if (candidate) {
             throw ApiError.EmailExist(`Пользователь с почтовым адресом ${email} уже существует`);
-        };  
+        };
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuidv4();
         const user = await UserModel.create({ displayname, email, password: hashPassword, activationLink });
@@ -29,9 +29,9 @@ class UserService {
     };
 
     async activate(activationLink) {
-        const user = await UserModel.findOne({activationLink});
+        const user = await UserModel.findOne({ activationLink });
 
-        if(!user) {
+        if (!user) {
             throw ApiError.BadRequest('Некорректная ссылка активации');
         };
         user.isActivated = true;
@@ -39,7 +39,7 @@ class UserService {
     };
 
     async login(email, password) {
-        const user = await UserModel.findOne({email});
+        const user = await UserModel.findOne({ email });
 
         if (!user) {
             throw ApiError.BadRequest('Пользователь с таким email не найден')
@@ -72,7 +72,7 @@ class UserService {
         };
         const userData = tokenService.validateAccessToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
-        
+
         if (!userData || tokenFromDb) {
             throw ApiError.UnauthorizedError();
         };
