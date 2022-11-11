@@ -56,7 +56,7 @@ export default function Signup({selectLoginForm}) {
           email: data.email,
           password: data.password
         }
-        searchUser = users.find((user) => user.email === data.email);
+        searchUser = users.find((user) => user.email === data.email); 
         
         if (!searchUser) {
           setUserInfo(newUser)
@@ -66,7 +66,7 @@ export default function Signup({selectLoginForm}) {
           setShowInfo(true);
           setTimeout(() => selectLoginForm(true), 9000)
         } else {
-          setError("email", {type: "email", message: "The email already exist"})
+          setError("email", {type: "email", message: `Пользователь с почтой ${searchUser.email} уже существует`});
         }
   };
 
