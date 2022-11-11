@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch} from "react-redux";
+import { useSelector } from "react-redux"
 import { createUser } from "../../store/actions/usersActions";
 import { loadUsers } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from 'react-transition-group';
 import "./Login.css";
 import paperAirplane from "../../assets/portal/paper_airplane.png"
-import { useEffect } from "react";
 
 export default function Signup({selectLoginForm}) {
 
@@ -18,7 +17,6 @@ export default function Signup({selectLoginForm}) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [existEmail, setExistEmail] = useState("")
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -31,6 +29,7 @@ export default function Signup({selectLoginForm}) {
     formState: { errors },
     handleSubmit,
     watch,
+    setError,
   } = useForm({
     mode: "onBlur",
   });
@@ -38,73 +37,37 @@ export default function Signup({selectLoginForm}) {
   let dispatch = useDispatch();
   const {users} = useSelector(state => state.users);
 
+  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+  const isValidPassword = /[A-Za-z0-9]/;
+  const isValidDisplayName = /[A-Za-z0-9]/;
+  let searchUser;
+
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
 
-  useEffect(() => {
-    if (userInfo.email === users.email) {
-      alert("goooooot")
-    } else {
-      checkExistEmail()
-    }
-  }, [userInfo.email])
-
-
-  console.log(users)
-
-  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-  const isValidPassword = /[A-Za-z0-9]/;
-  const isValidDisplayName = /[A-Za-z0-9]/;
-
-  
   const password = useRef({});
   password.current = watch("password", "");
 
-  const checkExistEmail = () => {
-    users.map((user) => {
-      
-      if (user.email === userInfo.email) {
-        alert("there is already exist email")
-      } else {
-      checkExistEmail()
-      dispatch(createUser(userInfo))
-      setAnimationPaperAirplane(true)
-      reset();
-      setShowInfo(true);
-      setTimeout(() => selectLoginForm(true), 9000)
-      }
-    })
-  }
-
   const onSubmit = (data) => {
-    const newUser = {
-      ...userInfo,
-      displayname: data.displayname,
-      email: data.email,
-      password: data.password
-    }
-    setUserInfo(newUser)
-
-    // users.map((user) => {
-    //   if (data.email === user.email) {
-    //     setExistEmail(data.email)
-    //     console.log(existEmail)
-    //   } else {
-    //     const newUser = {
-    //       ...userInfo,
-    //       displayname: data.displayname,
-    //       email: data.email,
-    //       password: data.password
-    //     }
-    //     setUserInfo(newUser)
-    //     dispatch(createUser(newUser))
-    //     setAnimationPaperAirplane(true)
-    //     reset();
-    //     setShowInfo(true);
-    //     setTimeout(() => selectLoginForm(true), 9000)
-    //   }
-    // })
+        const newUser = {
+          ...userInfo,
+          displayname: data.displayname,
+          email: data.email,
+          password: data.password
+        }
+        searchUser = users.find((user) => user.email === data.email);
+        
+        if (!searchUser) {
+          setUserInfo(newUser)
+          dispatch(createUser(newUser))
+          setAnimationPaperAirplane(true)
+          reset()
+          setShowInfo(true);
+          setTimeout(() => selectLoginForm(true), 9000)
+        } else {
+          setError("email", {type: "email", message: "The email already exist"})
+        }
   };
 
   const showPassword = (e) => {
@@ -115,8 +78,8 @@ export default function Signup({selectLoginForm}) {
     e.preventDefault();
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
-  
-  console.log("userInfo", userInfo)
+
+  console.log(errors)
 
   return (
     <div className="main">
@@ -178,7 +141,7 @@ export default function Signup({selectLoginForm}) {
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 placeholder="Почта"
-                type="text"
+                type="email"
                 name="email"
                 {...register("email", {
                   required: "Укажите, пожалуйста, email",
@@ -186,7 +149,6 @@ export default function Signup({selectLoginForm}) {
                     value: isValidEmail,
                     message: "Неправильный формат почты",
                   },
-                  validate: value => value !== existEmail || "Email already exist"
                 })}
               />
             </div>
@@ -204,8 +166,8 @@ export default function Signup({selectLoginForm}) {
                 {...register("password", {
                   required: "Укажите, пожалуйста, пароль",
                   minLength: {
-                    value: 4,
-                    message: "Пароль должен быть минимум 7 символов",
+                    value: 3,
+                    message: "Пароль должен быть минимум 3 символов",
                   },
                   pattern: {
                     value: isValidPassword,
