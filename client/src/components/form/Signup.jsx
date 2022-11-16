@@ -34,7 +34,7 @@ export default function Signup({selectLoginForm}) {
     mode: "onBlur",
   });
 
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   const {users} = useSelector(state => state.users);
 
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
@@ -79,7 +79,7 @@ export default function Signup({selectLoginForm}) {
     setRepeatPasswordType(repeatPasswordType ? false : true)
   }
 
-  console.log(errors)
+  console.log(users)
 
   return (
     <div className="main">

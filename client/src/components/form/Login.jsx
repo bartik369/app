@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import  {loginUser} from "../../store/actions/usersActions"
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +10,10 @@ import "./Login.css";
 export default function Login({selectSignupForm, loginHandler}) {
 
   const [passwordType, setPasswordType] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
 
   const {
     register,
@@ -25,10 +31,20 @@ export default function Login({selectSignupForm, loginHandler}) {
   const password = useRef({});
   password.current = watch("password", "");
 
+  const dispatch = useDispatch();
+
 
   const onSubmit = (data) => {
     console.log(data);
-    loginHandler();
+    const userLoginData = {
+      ...userInfo,
+      email: data.email,
+      password: data.password,
+    };
+    setUserInfo(userLoginData);
+    dispatch(loginUser(userLoginData))
+    console.log("user Data", userInfo)
+    // loginHandler();
   };
 
   const showPassword = (e) => {

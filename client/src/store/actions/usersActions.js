@@ -3,7 +3,8 @@ import ENV from "../../env.config";
 import {
     GET_USER,
     GET_USERS, 
-    CREATE_USER, 
+    CREATE_USER,
+    LOGIN_USER,
     UPDATE_USER_PASSWORD,
 } from "../types/typesUsers.js";
 
@@ -15,6 +16,11 @@ const getUsers = (users) => ({
 
 const getUser = (user) => ({
     type: GET_USER,
+    payload: user,
+});
+
+const login = (user) => ({
+    type: LOGIN_USER,
     payload: user,
 });
 
@@ -37,6 +43,20 @@ export const createUser = (user) => {
             });
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export const loginUser = (data) => {
+    return async function(dispatch) {
+        try {
+            await axios.post(`${ENV.HOSTNAME}api/login`, data)
+            .then((response) => {
+                dispatch(login(response.data));
+                localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken))
+            })
+        } catch (error) {
+            
         }
     }
 }

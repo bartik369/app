@@ -1,5 +1,6 @@
 import {
     CREATE_USER,
+    LOGIN_USER,
     GET_USER,
     GET_USERS,
     UPDATE_USER_PASSWORD,
@@ -30,6 +31,10 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case LOGIN_USER:
+      return {
+        ...state,
+      }
     case UPDATE_USER_PASSWORD:
       return {
         ...state,
