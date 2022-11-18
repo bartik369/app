@@ -6,6 +6,7 @@ import usersReducer from "./usersReducer";
 
 const rootReducer = combineReducers({
     users: usersReducer,
+    errors: usersReducer,
     user: usersReducer,
     devices: devicesReducer,
     device: devicesReducer,
