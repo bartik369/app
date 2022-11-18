@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FormInput from "./FormInput";
+import FormInput from "../FormInput";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDevices, updateDevice } from "../../store/actions/devicesActions";
-import { updateModal } from "../../store/actions/modalActions";
+import { loadDevices, updateDevice } from "../../../store/actions/devicesActions";
+import { updateModal } from "../../../store/actions/modalActions";
 
 const UpdateDeviceForm = ({ modal, update }) => {
   const [editDevice, setEditDevice] = useState({

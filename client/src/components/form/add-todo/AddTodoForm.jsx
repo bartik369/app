@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FormInput from "./FormInput";
+import FormInput from "../FormInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';

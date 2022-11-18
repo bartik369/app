@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../UI/modal/Modal";
-import UpdateDeviceForm from "../form/UpdateDeviceForm";
+import UpdateDeviceForm from "../form/update-device/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
 import '../../styles/App.css'
-import AddDeviceForm from "../form/AddDeviceForm";
+import AddDeviceForm from "../form/add-device/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../store/actions/devicesActions";
 import { updateModal } from "../../store/actions/modalActions";

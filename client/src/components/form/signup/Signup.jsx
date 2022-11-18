@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch} from "react-redux";
 import { useSelector } from "react-redux"
-import { createUser } from "../../store/actions/usersActions";
-import { loadUsers } from "../../store/actions/usersActions";
+import { createUser } from "../../../store/actions/usersActions";
+import { loadUsers } from "../../../store/actions/usersActions";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from 'react-transition-group';
-import "./Login.css";
-import paperAirplane from "../../assets/portal/paper_airplane.png"
+import "../Login.css";
+import paperAirplane from "../../../assets/portal/paper_airplane.png"
 
 export default function Signup({selectLoginForm}) {
 

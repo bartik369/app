@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import  {loginUser} from "../../store/actions/usersActions"
+import  {loginUser} from "../../../store/actions/usersActions"
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import "./Login.css";
+import "../Login.css";
 
 export default function Login({selectSignupForm, loginHandler}) {
 

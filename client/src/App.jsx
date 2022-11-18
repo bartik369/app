@@ -1,13 +1,13 @@
 import React, { useState} from "react";
 import "./styles/App.css";
-import LoginForm from "./components/form/Login";
-import SignupForm from "./components/form/Signup";
+import LoginForm from "./components/form/login/Login";
+import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
 
 function App() {
 
 
-  const [isLogin, setIslogin] = useState(false)
+  const [isLogin, setIslogin] = useState(true)
   const [registered, setRegister] = useState(false)
 
 

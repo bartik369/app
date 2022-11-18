@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import AddTodoForm from "../form/AddTodoForm";
+import AddTodoForm from "../form/add-todo/AddTodoForm";
 import "./Todos.css";
 import "../../styles/App.css"
 import Modal from "../UI/modal/Modal";
-import UpdateTodoForm from "../form/UpdateTodoForm";
+import UpdateTodoForm from "../form/update-todo/UpdateTodoForm";
 import Masonry from 'react-masonry-css';
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
