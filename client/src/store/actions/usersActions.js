@@ -8,7 +8,11 @@ import {
     UPDATE_USER_PASSWORD,
 } from "../types/typesUsers.js";
 
-import { REGISTER_FAIL, LOGIN_FAIL } from "../types/typesMessages";
+import {
+     REGISTER_FAIL,
+    LOGIN_FAIL,
+    LOAD_MESSAGES,
+ } from "../types/typesMessages";
 
 
 const getUsers = (users) => ({
@@ -45,6 +49,7 @@ const failRegistration = (message) => ({
     type: REGISTER_FAIL,
     payload: message,
 });
+
 
 
 export const createUser = (user) => {

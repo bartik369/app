@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import  {loginUser} from "../../../store/actions/usersActions"
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,8 +17,6 @@ export default function Login({selectSignupForm, loginHandler}) {
     error: "",
   });
 
-  const [err, setErr] = useState([])
-
   const {
     register,
     formState: { errors },
@@ -30,12 +28,11 @@ export default function Login({selectSignupForm, loginHandler}) {
 
   const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   const isValidPassword = /[A-Za-z0-9]/;
-  const {validateError} = useSelector(state => state.errors)
+  const {messages} = useSelector(state => state.messages)
 
   useEffect(() => {
-    setErr(validateError)
-    console.log(err)
-  }, [validateError]);
+    console.log(messages)
+  }, [messages]);
 
   
   const password = useRef({});
@@ -61,8 +58,6 @@ export default function Login({selectSignupForm, loginHandler}) {
     e.preventDefault();
     setPasswordType(passwordType ? false : true)
   }
-
-  console.log("error after useeffect", validateError)
 
   return (
     <div className="main">
