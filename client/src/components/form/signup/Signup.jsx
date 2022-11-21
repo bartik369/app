@@ -3,6 +3,8 @@ import { useDispatch} from "react-redux";
 import { useSelector } from "react-redux"
 import { createUser } from "../../../store/actions/usersActions";
 import { loadUsers } from "../../../store/actions/usersActions";
+import * as REGEX from "../../../utils/constants/regex.constants"
+import * as formConstants from "../../../utils/constants/form.constants";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -37,9 +39,6 @@ export default function Signup({selectLoginForm}) {
   const dispatch = useDispatch();
   const {users} = useSelector(state => state.users);
 
-  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-  const isValidPassword = /[A-Za-z0-9]/;
-  const isValidDisplayName = /[A-Za-z0-9]/;
   let searchUser;
 
   useEffect(() => {
@@ -121,10 +120,10 @@ export default function Signup({selectLoginForm}) {
                 type="text"
                 name="displayname"
                 {...register("displayname", {
-                  required: "Укажите, пожалуйста, Ваше имя",
+                  required: formConstants.fillName,
                   pattern: {
-                    value: isValidDisplayName,
-                    message: "Неправильный формат имени",
+                    value: REGEX.isValidDisplayName,
+                    message: formConstants.wrongNameFormat,
                   },
                 })}
               />
@@ -144,10 +143,10 @@ export default function Signup({selectLoginForm}) {
                 type="email"
                 name="email"
                 {...register("email", {
-                  required: "Укажите, пожалуйста, email",
+                  required: formConstants.fillEmail,
                   pattern: {
-                    value: isValidEmail,
-                    message: "Неправильный формат почты",
+                    value: REGEX.isValidEmail,
+                    message: formConstants.wrongEmailFormat,
                   },
                 })}
               />
@@ -164,22 +163,22 @@ export default function Signup({selectLoginForm}) {
                 placeholder="Пароль"
                 type={passwordType ? "text" : "password"}
                 {...register("password", {
-                  required: "Укажите, пожалуйста, пароль",
+                  required: formConstants.fillPassword,
                   minLength: {
                     value: 3,
-                    message: "Пароль должен быть минимум 3 символов",
+                    message: formConstants.minSymbolsOfPassword,
                   },
                   pattern: {
-                    value: isValidPassword,
-                    message: "Только латинские буквы",
+                    value: REGEX.isValidPassword,
+                    message: formConstants.onlyLatinCharacters,
                   },
                 })}
               />
               <button className="show-password" onClick={showPassword}>
                 {passwordType ? (
-                  <i className="bi bi-eye-slash" title="Скрыть пароль"></i>
+                  <i className="bi bi-eye-slash" title={formConstants.hidePassword}></i>
                 ) : (
-                  <i className="bi bi-eye" title="Показать пароль"></i>
+                  <i className="bi bi-eye" title={formConstants.openPassword}></i>
                 )}
               </button>
             </div>
@@ -197,7 +196,7 @@ export default function Signup({selectLoginForm}) {
                 {...register("confirmPassword", {
                   required: "Укажите, пожалуйста, пароль",
                   validate: (value) =>
-                    value === password.current || "Пароли не совпадают",
+                    value === password.current || formConstants.passwordsDoNotMatch,
                 })}
               />
               <button className="show-password" onClick={showConfirmPassword}>

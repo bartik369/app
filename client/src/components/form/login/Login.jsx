@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
 import  {loginUser} from "../../../store/actions/usersActions"
 import * as REGEX from "../../../utils/constants/regex.constants";
-import * as formConstants from "../../../utils/constants/form.constants"
+import * as formConstants from "../../../utils/constants/form.constants";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -82,7 +82,7 @@ export default function Login({selectSignupForm, loginHandler}) {
                   required: formConstants.fillEmail,
                   pattern: {
                     value: REGEX.isValidEmail,
-                    message: formConstants.wrongEmailFormatText,
+                    message: formConstants.wrongEmailFormat,
                   },
                 })}
               />
