@@ -116,7 +116,7 @@ export default function Signup({selectLoginForm}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faUser} className="input-icon" />
               <input
-                placeholder="Ваше имя"
+                placeholder={formConstants.yourName}
                 type="text"
                 name="displayname"
                 {...register("displayname", {
@@ -139,7 +139,7 @@ export default function Signup({selectLoginForm}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
-                placeholder="Почта"
+                placeholder={formConstants.yourEmail}
                 type="email"
                 name="email"
                 {...register("email", {
@@ -160,7 +160,7 @@ export default function Signup({selectLoginForm}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
-                placeholder="Пароль"
+                placeholder={formConstants.yourPassword}
                 type={passwordType ? "text" : "password"}
                 {...register("password", {
                   required: formConstants.fillPassword,
@@ -191,19 +191,19 @@ export default function Signup({selectLoginForm}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
-                placeholder="Повторите пароль"
+                placeholder={formConstants.repeatPassword}
                 type={repeatPasswordType ? "text" : "password"}
                 {...register("confirmPassword", {
-                  required: "Укажите, пожалуйста, пароль",
+                  required: formConstants.fillPassword,
                   validate: (value) =>
                     value === password.current || formConstants.passwordsDoNotMatch,
                 })}
               />
               <button className="show-password" onClick={showConfirmPassword}>
                 {repeatPasswordType ? (
-                  <i className="bi bi-eye-slash"></i>
+                  <i className="bi bi-eye-slash" title={formConstants.hidePassword}></i>
                 ) : (
-                  <i className="bi bi-eye"></i>
+                  <i className="bi bi-eye" title={formConstants.openPassword}></i>
                 )}
               </button>
             </div>

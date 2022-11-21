@@ -75,7 +75,7 @@ export default function Login({selectSignupForm, loginHandler}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
-                placeholder="Почта"
+                placeholder={formConstants.yourEmail}
                 type="text"
                 name="email"
                 {...register("email", {
@@ -96,7 +96,7 @@ export default function Login({selectSignupForm, loginHandler}) {
             <div className="login-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
-                placeholder="Пароль"
+                placeholder={formConstants.yourPassword}
                 type={passwordType ? "text" : "password"}
                 {...register("password", {
                   required: formConstants.fillPassword,
