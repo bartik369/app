@@ -28,7 +28,6 @@ export default function Login({selectSignupForm, loginHandler}) {
     mode: "onBlur",
   });
 
-
   const {messages} = useSelector(state => state.messages);
   const dispatch = useDispatch();
 
