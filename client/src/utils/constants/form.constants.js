@@ -1,2 +1,6 @@
-export const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-export const isValidPassword = /[A-Za-z0-9]/;
+export const wrongEmailFormatText = "Неправильный формат почты";
+export const onlyLatinCharacters = "Только латинские буквы";
+export const fillPassword = "Укажите, пожалуйста, пароль";
+export const fillEmail = "Укажите, пожалуйста, email"
+export const openPassword = "Показать пароль";
+export const hidePassword = "Скрыть пароль";

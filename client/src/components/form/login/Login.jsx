@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
 import  {loginUser} from "../../../store/actions/usersActions"
-import { isValidEmail } from "../../../utils/constants/form.constants";
-import { isValidPassword } from "../../../utils/constants/form.constants";
+import * as REGEX from "../../../utils/constants/regex.constants";
+import * as formConstants from "../../../utils/constants/form.constants"
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -79,10 +79,10 @@ export default function Login({selectSignupForm, loginHandler}) {
                 type="text"
                 name="email"
                 {...register("email", {
-                  required: "Укажите, пожалуйста, email",
+                  required: formConstants.fillEmail,
                   pattern: {
-                    value: isValidEmail,
-                    message: "Неправильный формат почты",
+                    value: REGEX.isValidEmail,
+                    message: formConstants.wrongEmailFormatText,
                   },
                 })}
               />
@@ -99,18 +99,18 @@ export default function Login({selectSignupForm, loginHandler}) {
                 placeholder="Пароль"
                 type={passwordType ? "text" : "password"}
                 {...register("password", {
-                  required: "Укажите, пожалуйста, пароль",
+                  required: formConstants.fillPassword,
                   pattern: {
-                    value: isValidPassword,
-                    message: "Только латинские буквы",
+                    value: REGEX.isValidPassword,
+                    message: formConstants.onlyLatinCharacters,
                   },
                 })}
               />
               <button className="show-password" onClick={showPassword}>
                 {passwordType ? (
-                  <i className="bi bi-eye-slash" title="Скрыть пароль"></i>
+                  <i className="bi bi-eye-slash" title={formConstants.hidePassword}></i>
                 ) : (
-                  <i className="bi bi-eye" title="Показать пароль"></i>
+                  <i className="bi bi-eye" title={formConstants.openPassword}></i>
                 )}
               </button>
             </div>
