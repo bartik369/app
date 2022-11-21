@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
 import  {loginUser} from "../../../store/actions/usersActions"
+import { isValidEmail } from "../../../utils/constants/form.constants";
+import { isValidPassword } from "../../../utils/constants/form.constants";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +16,6 @@ export default function Login({selectSignupForm, loginHandler}) {
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
-    error: "",
   });
 
   const {
@@ -22,27 +23,29 @@ export default function Login({selectSignupForm, loginHandler}) {
     formState: { errors },
     handleSubmit,
     watch,
+    setError,
   } = useForm({
     mode: "onBlur",
   });
 
-  const isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-  const isValidPassword = /[A-Za-z0-9]/;
-  const {messages} = useSelector(state => state.messages)
+
+  const {messages} = useSelector(state => state.messages);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(messages)
+    messages.map((item) => {
+      if (item.email) {
+        setError("email", {type: "email", message: item.email})
+      } else if (item.password) {
+        setError("password", {type: "password", message: item.password})
+      }
+    })
   }, [messages]);
 
-  
   const password = useRef({});
   password.current = watch("password", "");
 
-  const dispatch = useDispatch();
-
-
   const onSubmit = (data) => {
-    console.log(data);
     const userLoginData = {
       ...userInfo,
       email: data.email,
@@ -50,7 +53,6 @@ export default function Login({selectSignupForm, loginHandler}) {
     };
     setUserInfo(userLoginData);
     dispatch(loginUser(userLoginData))
-    console.log("user Data", userInfo)
     // loginHandler();
   };
 
@@ -58,6 +60,9 @@ export default function Login({selectSignupForm, loginHandler}) {
     e.preventDefault();
     setPasswordType(passwordType ? false : true)
   }
+
+
+  console.log("check memory")
 
   return (
     <div className="main">

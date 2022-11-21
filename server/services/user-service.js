@@ -42,13 +42,13 @@ class UserService {
         const user = await UserModel.findOne({ email });
 
         if (!user) {
-            throw ApiError.BadRequest('Пользователь с таким email не найден')
+            throw ApiError.EmailError('Пользователь с таким email не найден')
         };
 
         const isPasswordEquals = await bcrypt.compare(password, user.password);
 
         if (!isPasswordEquals) {
-            throw ApiError.BadRequest('Неверный пароль')
+            throw ApiError.PasswordError('Неверный пароль')
         }
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto });

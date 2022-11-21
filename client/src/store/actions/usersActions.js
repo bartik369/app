@@ -75,10 +75,7 @@ export const loginUser = (data) => {
                 localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken))
             })
         } catch (error) {
-            // console.log("error from back =>", error.response.data)
-            const message = (error.response 
-                && error.response.data
-                && error.response.data.message) || error.message || error.toString();
+            const message = error.response.data.errors;
             dispatch(failLogin(message));
         }
     }
