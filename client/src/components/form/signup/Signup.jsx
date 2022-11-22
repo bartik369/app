@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch} from "react-redux";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../store/actions/usersActions";
 import { loadUsers } from "../../../store/actions/usersActions";
-import * as REGEX from "../../../utils/constants/regex.constants"
+import { CleanMessages } from "../../../store/actions/usersActions";
+import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from "react-transition-group";
 import "../Login.css";
-import paperAirplane from "../../../assets/portal/paper_airplane.png"
+import paperAirplane from "../../../assets/portal/paper_airplane.png";
 
-export default function Signup({selectLoginForm}) {
-
+export default function Signup({ selectLoginForm }) {
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
@@ -22,7 +21,7 @@ export default function Signup({selectLoginForm}) {
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const {
@@ -37,48 +36,53 @@ export default function Signup({selectLoginForm}) {
   });
 
   const dispatch = useDispatch();
-  const {users} = useSelector(state => state.users);
-
-  let searchUser;
+  const { messages } = useSelector((state) => state.messages);
 
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
 
+  useEffect(() => {
+    messages.map((item) => {
+      if (item.email) {
+        setError("email", { type: "email", message: item.email });
+      }
+    });
+  }, [messages]);
+
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-        const newUser = {
-          ...userInfo,
-          displayname: data.displayname,
-          email: data.email,
-          password: data.password
-        }
-        searchUser = users.find((user) => user.email === data.email); 
-        
-        if (!searchUser) {
-          setUserInfo(newUser)
-          dispatch(createUser(newUser))
-          setAnimationPaperAirplane(true)
-          reset()
-          setShowInfo(true);
-          setTimeout(() => selectLoginForm(true), 9000)
-        } else {
-          setError("email", {type: "email", message: `Пользователь с почтой ${searchUser.email} уже существует`});
-        }
+    const newUser = {
+      ...userInfo,
+      displayname: data.displayname,
+      email: data.email,
+      password: data.password,
+    };
+    setUserInfo(newUser);
+    dispatch(createUser(newUser));
+    messages.map((message) => {
+      if (!message.email) {
+        setAnimationPaperAirplane(true);
+        reset();
+        setShowInfo(true);
+        setTimeout(() => selectLoginForm(true), 9000);
+      } else {
+      }
+    });
   };
 
   const showPassword = (e) => {
     e.preventDefault();
-    setPasswordType(passwordType ? false : true)
-  }
+    setPasswordType(passwordType ? false : true);
+  };
   const showConfirmPassword = (e) => {
     e.preventDefault();
-    setRepeatPasswordType(repeatPasswordType ? false : true)
-  }
+    setRepeatPasswordType(repeatPasswordType ? false : true);
+  };
 
-  console.log(users)
+  console.log("check memmory");
 
   return (
     <div className="main">
@@ -98,13 +102,15 @@ export default function Signup({selectLoginForm}) {
               <div
                 className={animationPaperAirplane ? "back-notification" : ""}
               >
-                <div className={showInfo ? "completed" : "completion-registration"}>
-                <div className="title">Подтверждние регистрации</div>
-                <span>
-                  На Вашу почту было отправлено письмо с ссылкой для активации
-                  аккаунта.
-                </span>
-              </div>
+                <div
+                  className={showInfo ? "completed" : "completion-registration"}
+                >
+                  <div className="title">Подтверждние регистрации</div>
+                  <span>
+                    На Вашу почту было отправлено письмо с ссылкой для активации
+                    аккаунта.
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -176,9 +182,15 @@ export default function Signup({selectLoginForm}) {
               />
               <button className="show-password" onClick={showPassword}>
                 {passwordType ? (
-                  <i className="bi bi-eye-slash" title={formConstants.hidePassword}></i>
+                  <i
+                    className="bi bi-eye-slash"
+                    title={formConstants.hidePassword}
+                  ></i>
                 ) : (
-                  <i className="bi bi-eye" title={formConstants.openPassword}></i>
+                  <i
+                    className="bi bi-eye"
+                    title={formConstants.openPassword}
+                  ></i>
                 )}
               </button>
             </div>
@@ -196,14 +208,21 @@ export default function Signup({selectLoginForm}) {
                 {...register("confirmPassword", {
                   required: formConstants.fillPassword,
                   validate: (value) =>
-                    value === password.current || formConstants.passwordsDoNotMatch,
+                    value === password.current ||
+                    formConstants.passwordsDoNotMatch,
                 })}
               />
               <button className="show-password" onClick={showConfirmPassword}>
                 {repeatPasswordType ? (
-                  <i className="bi bi-eye-slash" title={formConstants.hidePassword}></i>
+                  <i
+                    className="bi bi-eye-slash"
+                    title={formConstants.hidePassword}
+                  ></i>
                 ) : (
-                  <i className="bi bi-eye" title={formConstants.openPassword}></i>
+                  <i
+                    className="bi bi-eye"
+                    title={formConstants.openPassword}
+                  ></i>
                 )}
               </button>
             </div>
@@ -218,7 +237,10 @@ export default function Signup({selectLoginForm}) {
           </button>
           <div className="signin">
             Уже есть аккаунт?{" "}
-            <Link to="#" onClick={selectLoginForm}>
+            <Link to="#" onClick={() => {
+              selectLoginForm();
+              dispatch(CleanMessages());
+            }}>
               Войти
             </Link>
           </div>

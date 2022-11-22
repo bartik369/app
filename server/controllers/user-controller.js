@@ -6,9 +6,11 @@ class UserController {
     async registration(req, res, next) {
         try {
             const errors = validationResult(req);
+
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest('Ошибка валидации', errors.array()));
             }
+            
             const {displayname, email, password} = req.body;
             const userData = await userService.registration(displayname, email, password);
             res.cookie('refreshToken', userData.refreshToken, 

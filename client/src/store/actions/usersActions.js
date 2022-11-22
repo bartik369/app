@@ -9,9 +9,8 @@ import {
 } from "../types/typesUsers.js";
 
 import {
-     REGISTER_FAIL,
+    CLEAN_MESSAGES,
     LOGIN_FAIL,
-    LOAD_MESSAGES,
  } from "../types/typesMessages";
 
 
@@ -45,12 +44,9 @@ const failLogin = (message) => ({
 
 });
 
-const failRegistration = (message) => ({
-    type: REGISTER_FAIL,
-    payload: message,
+const removeMessages = () => ({
+    type: CLEAN_MESSAGES,
 });
-
-
 
 export const createUser = (user) => {
     return async function(dispatch) {
@@ -61,7 +57,9 @@ export const createUser = (user) => {
                 console.log(response.data)
             });
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            const message = error.response.data.errors;
+            dispatch(failLogin(message));
         }
     }
 }
@@ -75,6 +73,7 @@ export const loginUser = (data) => {
                 localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken))
             })
         } catch (error) {
+            console.log(error)
             const message = error.response.data.errors;
             dispatch(failLogin(message));
         }
@@ -118,5 +117,11 @@ export const updateUserPassword = (user, id) => {
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+export const CleanMessages = () => {
+    return function (dispatch) {
+        dispatch(removeMessages());
     }
 }

@@ -2,6 +2,7 @@ import {
     LOGIN_FAIL,
     REGISTER_FAIL,
     LOAD_MESSAGES,
+    CLEAN_MESSAGES,
 } from "../types/typesMessages";
 
 const initialState = {
@@ -26,6 +27,11 @@ const messageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: action.payload,
+            }
+        case CLEAN_MESSAGES:
+            return {
+                ...state,
+                messages: [],
             }
         default:
             return state

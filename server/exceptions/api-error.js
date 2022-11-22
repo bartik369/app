@@ -27,6 +27,7 @@ export default class ApiError extends Error {
     };
 
     static EmailExist(message, errors = []) {
+        errors.push({email: message})
         return new ApiError(400, message, errors);
     };
 };
