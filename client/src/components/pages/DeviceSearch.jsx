@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "../UI/modal/Modal";
 import UpdateDeviceForm from "../form/update-device/UpdateDeviceForm";
 import Pagination from "../UI/pagination/Pagination";
+import * as deviceConstants from "../../utils/constants/devices.constants";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/add-device/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
@@ -73,11 +74,11 @@ const DeviceSearch = ({
       <table className="devices-table">
               <thead>
                   <tr>
-                      <th>Тип устройства</th>
-                      <th>Название</th>
-                      <th>Серийный номер</th>
-                      <th>Пользователь</th>
-                      <th>Дата добавления</th>
+                      <th>{deviceConstants.deviceType}</th>
+                      <th>{deviceConstants.deviceName}</th>
+                      <th>{deviceConstants.deviceNumber}</th>
+                      <th>{deviceConstants.deviceUser}</th>
+                      <th>{deviceConstants.deviceDateAdded}</th>
                       <th></th>
                       <th></th>
                   </tr>

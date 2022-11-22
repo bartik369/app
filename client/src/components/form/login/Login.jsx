@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../store/actions/usersActions";
-import { CleanMessages } from "../../../store/actions/usersActions";
+import { loginUser, CleanMessages } from "../../../store/actions/usersActions";
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
@@ -66,7 +65,7 @@ export default function Login({ selectSignupForm, loginHandler }) {
       <div className="login">
         <div className="login-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="login-form__title">Войти в систему</div>
+          <div className="login-form__title">{formConstants.titleLogin}</div>
 
           <div className="input-layer">
             <div className="login-form__input">
@@ -123,18 +122,18 @@ export default function Login({ selectSignupForm, loginHandler }) {
           </div>
 
           <div className="restore-password">
-            <Link to="#">Забыли пароль?</Link>
+            <Link to="#">{formConstants.forgotPassword}</Link>
           </div>
           <button className="login-btn" type="submit">
-            Отправить
+            {formConstants.send}
           </button>
           <div className="signin">
-            Нет аккаунта?{" "}
+            {formConstants.accountNotExist}
             <Link to="#" onClick={() => {
               selectSignupForm();
               dispatch(CleanMessages());
             }}>
-              Зарегистрироваться
+              {formConstants.register}
             </Link>
           </div>
         </form>

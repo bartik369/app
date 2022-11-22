@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../../store/actions/usersActions";
-import { loadUsers } from "../../../store/actions/usersActions";
-import { CleanMessages } from "../../../store/actions/usersActions";
+import { createUser, loadUsers, CleanMessages } from "../../../store/actions/usersActions";
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
@@ -105,18 +103,15 @@ export default function Signup({ selectLoginForm }) {
                 <div
                   className={showInfo ? "completed" : "completion-registration"}
                 >
-                  <div className="title">Подтверждние регистрации</div>
-                  <span>
-                    На Вашу почту было отправлено письмо с ссылкой для активации
-                    аккаунта.
-                  </span>
+                  <div className="title">{formConstants.confirmRegistration}</div>
+                  <span>{formConstants.registrationInfo}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="login-form__title">Регистрация</div>
+          <div className="login-form__title">{formConstants.titleRegistrationForm}</div>
 
           <div className="input-layer">
             <div className="login-form__input">
@@ -233,15 +228,15 @@ export default function Signup({ selectLoginForm }) {
             </div>
           </div>
           <button className="login-btn" type="submit">
-            Отправить
+            {formConstants.send}
           </button>
           <div className="signin">
-            Уже есть аккаунт?{" "}
+            {formConstants.accountExist}
             <Link to="#" onClick={() => {
               selectLoginForm();
               dispatch(CleanMessages());
             }}>
-              Войти
+              {formConstants.enter}
             </Link>
           </div>
         </form>
