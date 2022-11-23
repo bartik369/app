@@ -6,13 +6,12 @@ import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
 
 function App() {
-  const [isLogin, setIslogin] = useState("");
+  const [isLogin, setIslogin] = useState(false);
   const [registered, setRegister] = useState(false);
 
-  const loginStatus = useSelector((state) => state.auth);
+  const loginStatus = useSelector((state) => state.users.isAuth);
 
   useEffect(() => {
-    setIslogin(loginStatus.isLoggedIn)
     console.log("login from app", loginStatus)
   }, [loginStatus])
   

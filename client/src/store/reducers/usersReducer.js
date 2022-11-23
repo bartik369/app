@@ -10,6 +10,7 @@ import {
 const initialState = {
     users: [],
     user: {},
+    isAuth: false,
     loading: true,
 };
 
@@ -36,7 +37,7 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isLoggedIn: true,
+        isAuth: true,
       }
     case UPDATE_USER_PASSWORD:
       return {

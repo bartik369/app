@@ -13,9 +13,6 @@ import {
     LOGIN_FAIL,
  } from "../types/typesMessages";
 
- import { SET_LOGIN_STATUS } from "../types/authTypes";
-
-
 const getUsers = (users) => ({
     type: GET_USERS,
     payload: users,
@@ -31,15 +28,6 @@ const login = (user) => ({
     type: LOGIN_USER,
     payload: user,
 });
-
-const provideLoginStatus = () => ({
-    type: SET_LOGIN_STATUS,
-});
-
-const loadLoginStatus = () => ({
-    type: LOAD_LOGIN_STATUS,
-})
-
 
 const addUser = () => ({
     type:CREATE_USER,
@@ -80,9 +68,9 @@ export const loginUser = (data) => {
         try {
             await axios.post(`${ENV.HOSTNAME}api/login`, data)
             .then((response) => {
+                console.log(response.data.user.isActivated)
                 dispatch(login(response.data));
                 localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
-                dispatch(provideLoginStatus());
             })
         } catch (error) {
             console.log(error)
