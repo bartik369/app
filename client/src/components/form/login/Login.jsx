@@ -26,8 +26,8 @@ export default function Login({ selectSignupForm, loginHandler }) {
     mode: "onBlur",
   });
 
-  const { messages } = useSelector((state) => state.messages);
   const dispatch = useDispatch();
+  const { messages } = useSelector((state) => state.messages);
 
   useEffect(() => {
     messages.map((item) => {
@@ -50,7 +50,6 @@ export default function Login({ selectSignupForm, loginHandler }) {
     };
     setUserInfo(userLoginData);
     dispatch(loginUser(userLoginData));
-    // loginHandler();
   };
 
   const showPassword = (e) => {

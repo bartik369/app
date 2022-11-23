@@ -4,6 +4,7 @@ import {
     GET_USER,
     GET_USERS,
     UPDATE_USER_PASSWORD,
+
 } from "../types/typesUsers";
 
 const initialState = {
@@ -34,6 +35,8 @@ const usersReducer = (state = initialState, action) => {
     case LOGIN_USER:
       return {
         ...state,
+        user: action.payload,
+        isLoggedIn: true,
       }
     case UPDATE_USER_PASSWORD:
       return {

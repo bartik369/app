@@ -1,0 +1,2 @@
+export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
+export const LOAD_LOGIN_STATUS = "LOAD_LOGIN_STATUS";
