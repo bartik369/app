@@ -14,7 +14,7 @@ class UserService {
       throw ApiError.EmailExist(`Пользователь ${email} уже существует`);
     }
 
-    const hashPassword = await bcrypt.hash(password, 3);
+    const hashPassword = await bcrypt.hash(password, 4);
     const activationLink = uuidv4();
     const user = await UserModel.create({
       displayname,
@@ -77,14 +77,15 @@ class UserService {
   }
 
   async refresh(refreshToken) {
+
     if (!refreshToken) {
       throw ApiError.UnauthorizedError();
     }
 
-    const userData = tokenService.validateAccessToken(refreshToken);
-    const tokenFromDb = await tokenService.findToken(refreshToken);
+    const userData = tokenService.validateRefreshToken(refreshToken);
+    const tokenFromDatabase = await tokenService.findToken(refreshToken);
 
-    if (!userData || tokenFromDb) {
+    if (!userData || !tokenFromDatabase) {
       throw ApiError.UnauthorizedError();
     }
 

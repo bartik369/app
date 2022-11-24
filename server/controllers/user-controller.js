@@ -1,15 +1,15 @@
 import userService from "../services/user-service.js";
-import {validationResult} from "express-validator";
-import ApiError from "../exceptions/api-error.js";
+// import {validationResult} from "express-validator";
+// import ApiError from "../exceptions/api-error.js";
 
 class UserController {
     async registration(req, res, next) {
         try {
-            const errors = validationResult(req);
+            // const errors = validationResult(req);
 
-            if (!errors.isEmpty()) {
-                return next(ApiError.BadRequest('Ошибка валидации', errors.array()));
-            }
+            // if (!errors.isEmpty()) {
+            //     return next(ApiError.BadRequest('Ошибка валидации', errors.array()));
+            // }
             
             const {displayname, email, password} = req.body;
             const userData = await userService.registration(displayname, email, password);
@@ -19,7 +19,7 @@ class UserController {
                 httpOnly: true,
                 httpsOnly: true,
             });
-            return res.json(userData);
+            return res.json(userData);       
         } 
         catch (err) {
             next(err);

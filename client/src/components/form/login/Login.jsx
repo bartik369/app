@@ -9,7 +9,8 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import "../Login.css";
 
-export default function Login({ selectSignupForm, loginHandler }) {
+export default function Login({ selectSignupForm }) {
+  
   const [passwordType, setPasswordType] = useState(false);
   const [userInfo, setUserInfo] = useState({
     email: "",
