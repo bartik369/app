@@ -1,6 +1,8 @@
+
 import {
     CREATE_USER,
     LOGIN_USER,
+    LOGOUT_USER,
     GET_USER,
     GET_USERS,
     UPDATE_USER_PASSWORD,
@@ -38,6 +40,12 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isAuth: true,
+      }
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: null,
+        isAuth: false,
       }
     case UPDATE_USER_PASSWORD:
       return {

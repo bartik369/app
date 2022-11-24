@@ -6,7 +6,6 @@ import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
 
 function App() {
-  const [isLogin, setIslogin] = useState(false);
   const [registered, setRegister] = useState(false);
 
   const loginStatus = useSelector((state) => state.users.isAuth);
@@ -23,20 +22,10 @@ function App() {
     setRegister(true);
   };
 
-  const hideForm = () => {
-    // setIslogin(loginStatus.isLoggedIn)
-    // console.log(loginStatus.isLoggedIn)
-  };
-
-  const logoutHandler = () => {
-
-  };
-
-
   return (
     <div className={loginStatus ? "App" : "App-out"}>
       {loginStatus ? (
-        <Content logout={logoutHandler} />
+        <Content />
       ) : registered ? (
         <SignupForm
           selectSignupForm={selectSignupHandler}
@@ -45,7 +34,6 @@ function App() {
       ) : (
         <LoginForm
           selectSignupForm={loginFormHandler}
-          loginHandler={hideForm}
         />
       )}
       <div></div>

@@ -19,7 +19,7 @@ import { addModal, updateModal } from "../../store/actions/modalActions";
 const Todos = () => {
   const [deleteId, setDeleteId] = useState();
 
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { todos } = useSelector((state) => state.todos);
   const modal = useSelector((state) => state.modal);
 

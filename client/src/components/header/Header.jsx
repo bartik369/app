@@ -11,8 +11,7 @@ const Header = ({
   getSearchQuery, 
   value, 
   delSearchQuery, 
-  searchQueryLength, 
-  logout,
+  searchQueryLength,
   moveHeader
 }) => {
 
@@ -93,7 +92,7 @@ const Header = ({
           </div>
           <img className="user-avatar" src={useravatar} alt="" onClick={userMenuHandler} />
             <div className="drop-menu">
-            {userMenu && <ProfileMenu logout={logout} />}
+            {userMenu && <ProfileMenu />}
             </div>
         </div>
       </div>

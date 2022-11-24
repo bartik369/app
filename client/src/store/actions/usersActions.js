@@ -5,6 +5,7 @@ import {
     GET_USERS, 
     CREATE_USER,
     LOGIN_USER,
+    LOGOUT_USER,
     UPDATE_USER_PASSWORD,
 } from "../types/typesUsers.js";
 
@@ -28,6 +29,10 @@ const login = (user) => ({
     type: LOGIN_USER,
     payload: user,
 });
+
+const logout = () => ({
+    type:LOGOUT_USER,
+})
 
 const addUser = () => ({
     type:CREATE_USER,
@@ -79,6 +84,13 @@ export const loginUser = (data) => {
         }
     }
 }
+
+export const logoutUser = () => {
+    return function(dispatch) {
+        localStorage.removeItem("accessToken");
+        dispatch(logout());
+    }
+};
 
 export const loadUser = (id) => {
     return async function(dispatch) {
