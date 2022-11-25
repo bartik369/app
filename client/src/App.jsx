@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "./store/actions/usersActions";
 import "./styles/App.css";
 import LoginForm from "./components/form/login/Login";
 import SignupForm from "./components/form/signup/Signup";
@@ -9,6 +10,13 @@ function App() {
   
   const [registered, setRegister] = useState(false);
   const loginStatus = useSelector((state) => state.users.isAuth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch(loginUser());
+    }
+  })
 
   const selectSignupHandler = () => {
     setRegister(false);

@@ -9,7 +9,7 @@ import todoRoutes from './routes/todos.js';
 import authRoutes from './routes/authRouter.js';
 import { updateDevice } from './controllers/device-controller.js';
 import { updateTodo } from './controllers/todo-controller.js';
-import errorMiddleware from './middlewares/error-middleware.js';
+import errorMiddleware from './middlewares/error-middleware.js'
 
 
 const app = express();
@@ -18,7 +18,10 @@ const PORT = process.env.PORT || 5001
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', authRoutes, deviceRoutes, todoRoutes);
 app.use(errorMiddleware);
