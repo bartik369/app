@@ -126,6 +126,10 @@ export default function Signup({ selectLoginForm }) {
                     value: REGEX.isValidDisplayName,
                     message: formConstants.wrongNameFormat,
                   },
+                  minLength: {
+                    value: 3,
+                    message:formConstants.minLengthOfDisplayName,
+                  }
                 })}
               />
             </div>

@@ -8,8 +8,10 @@ export const wrongNameFormat = "Неправильный формат имени
 export const yourName = "Ваше имя";
 export const fillName = "Укажите, пожалуйста, Ваше имя"
 export const onlyLatinCharacters = "Только латинские буквы";
+export const minLengthOfDisplayName = "Имя должно состоять минимум из 3 символов"
 
 //password
+
 export const yourPassword = "Пароль"
 export const minSymbolsOfPassword  = "Пароль должен быть минимум 3 символов";
 export const passwordsDoNotMatch = "Пароли не совпадают";
