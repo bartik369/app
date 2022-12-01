@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { loginUser } from "./store/actions/usersActions";
 import "./styles/App.css";
 import LoginForm from "./components/form/login/Login";
@@ -13,10 +14,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch(loginUser());
-    }
-  })
+    console.log("log from useeffect", loginStatus)
+  }, [])
 
   const selectSignupHandler = () => {
     setRegister(false);
@@ -29,18 +28,14 @@ function App() {
 
   return (
     <div className={loginStatus ? "App" : "App-out"}>
-      {loginStatus ? (
-        <Content />
-      ) : registered ? (
-        <SignupForm
-          selectSignupForm={selectSignupHandler}
-          selectLoginForm={selectSignupHandler}
-        />
-      ) : (
-        <LoginForm
-          selectSignupForm={loginFormHandler}
-        />
-      )}
+      { loginStatus 
+      ? <Content /> 
+      : <Navigate to="" />
+      }
+      { registered 
+      ? <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} /> 
+      : <LoginForm selectSignupForm={loginFormHandler} />
+      }
       <div></div>
     </div>
   );

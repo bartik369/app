@@ -74,7 +74,7 @@ export const loginUser = (data) => {
             await axios.post(`${ENV.HOSTNAME}api/login`, data)
             .then((response) => {
                 // console.log(response.data.user.isActivated)
-                console.log("data after login", response.data)
+                console.log("from user acti", response.data)
                 dispatch(login(response.data));
                 localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
             })
