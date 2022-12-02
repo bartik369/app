@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { loginUser } from "./store/actions/usersActions";
@@ -8,14 +8,13 @@ import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
 
 function App() {
-  
   const [registered, setRegister] = useState(false);
   const loginStatus = useSelector((state) => state.users.isAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("log from useeffect", loginStatus)
-  }, [])
+    console.log("log from useeffect", loginStatus);
+  }, []);
 
   const selectSignupHandler = () => {
     setRegister(false);
@@ -25,17 +24,14 @@ function App() {
     setRegister(true);
   };
 
-
   return (
     <div className={loginStatus ? "App" : "App-out"}>
-      { loginStatus 
-      ? <Content /> 
-      : <Navigate to="" />
-      }
-      { registered 
-      ? <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} /> 
-      : <LoginForm selectSignupForm={loginFormHandler} />
-      }
+      {loginStatus 
+      ? ( <Content /> ) 
+      : registered 
+      ? ( <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} />) 
+      : ( <LoginForm selectSignupForm={loginFormHandler} />)}
+      {!loginStatus ? <Navigate to="/" /> : ""}
       <div></div>
     </div>
   );
