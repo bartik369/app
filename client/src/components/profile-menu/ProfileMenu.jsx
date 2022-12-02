@@ -3,13 +3,20 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/actions/usersActions";
 import {Link} from "react-router-dom";
 import "./profilemenu.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProfileMenu() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+  }, [])
 
   const logoutHandler = () => {
     dispatch(logoutUser());
+    navigate("/ghhhhhhhhhhhhhhhhhhhh")
   };
 
   return (

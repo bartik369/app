@@ -1,5 +1,6 @@
 import axios from "axios";
 import ENV from "../../env.config";
+
 import {
     GET_USER,
     GET_USERS, 
@@ -77,7 +78,8 @@ export const loginUser = (data) => {
                 console.log("from user acti", response.data)
                 dispatch(login(response.data));
                 localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
-            })
+
+            });
         } catch (error) {
             console.log(error)
             const message = error.response.data.errors;
