@@ -12,6 +12,7 @@ export default function ProfileMenu() {
   const navigate = useNavigate()
 
   useEffect(() => {
+
   }, [])
 
   const logoutHandler = () => {

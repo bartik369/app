@@ -51,6 +51,7 @@ export default function Login({ selectSignupForm }) {
     };
     setUserInfo(userLoginData);
     dispatch(loginUser(userLoginData));
+    console.log(messages)
   };
 
   const showPassword = (e) => {
