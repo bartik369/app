@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "../Login.css";
 
 export default function Login({ selectSignupForm }) {
@@ -29,6 +30,7 @@ export default function Login({ selectSignupForm }) {
 
   const dispatch = useDispatch();
   const { messages } = useSelector((state) => state.messages);
+  const navigate = useNavigate();
 
   useEffect(() => {
     messages.map((item) => {
@@ -43,6 +45,7 @@ export default function Login({ selectSignupForm }) {
   const password = useRef({});
   password.current = watch("password", "");
 
+
   const onSubmit = (data) => {
     const userLoginData = {
       ...userInfo,
@@ -50,9 +53,10 @@ export default function Login({ selectSignupForm }) {
       password: data.password,
     };
     setUserInfo(userLoginData);
-    dispatch(loginUser(userLoginData));
-    console.log(messages)
+    setUserInfo(userLoginData);
+    dispatch(loginUser(userLoginData, navigate));
   };
+
 
   const showPassword = (e) => {
     e.preventDefault();

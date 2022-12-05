@@ -72,7 +72,7 @@ export const createUser = (user) => {
     }
 }
 
-export const loginUser = (data) => {
+export const loginUser = (data, navigate) => {
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}api/login`, data)
@@ -80,8 +80,7 @@ export const loginUser = (data) => {
                     console.log("from user acti", response.data)
                     dispatch(login(response.data));
                     localStorage.setItem("token", JSON.stringify(response.data.accessToken));
-                    const history = createBrowserHistory()
-                    history.push('/dashboard');
+                    return navigate('/dashboard')
                 });
         } catch (error) {
             console.log(error)
@@ -98,8 +97,8 @@ export const logoutUser = () => {
                 .then((response) => {
                     localStorage.removeItem("token");
                     dispatch(logout());
-                    const history = createBrowserHistory()
-                    history.push('/')
+                    // const history = createBrowserHistory()
+                    // history.push('/')
                 })
         } catch (error) {
             console.log(error)
