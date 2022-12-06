@@ -16,6 +16,7 @@ export default function Signup({ selectLoginForm }) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [testerror, setTestError] = useState(false)
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -37,19 +38,20 @@ export default function Signup({ selectLoginForm }) {
   const { messages } = useSelector((state) => state.messages);
 
   useEffect(() => {
-    dispatch(loadUsers());
-  }, []);
-
-  useEffect(() => {
     messages.map((item) => {
       if (item.email) {
         setError("email", { type: "email", message: item.email });
+      } else {
+        setTestError(true)
       }
     });
+
   }, [messages]);
+
 
   const password = useRef({});
   password.current = watch("password", "");
+
 
   const onSubmit = (data) => {
     const newUser = {
@@ -60,15 +62,19 @@ export default function Signup({ selectLoginForm }) {
     };
     setUserInfo(newUser);
     dispatch(createUser(newUser));
-    messages.map((message) => {
-      if (!message.email) {
-        setAnimationPaperAirplane(true);
-        reset();
-        setShowInfo(true);
-        setTimeout(() => selectLoginForm(true), 9000);
-      } else {
-      }
-    });
+    if (!testerror) {
+      setAnimationPaperAirplane(true);
+      reset();
+      setShowInfo(true);
+      setTimeout(() => selectLoginForm(true), 9000);
+    } else {
+      return
+    }
+      // setAnimationPaperAirplane(true);
+      // reset();
+      // setShowInfo(true);
+      // setTimeout(() => selectLoginForm(true), 9000);
+
   };
 
   const showPassword = (e) => {
