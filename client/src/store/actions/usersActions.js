@@ -1,6 +1,5 @@
 import axios from "axios";
 import ENV from "../../env.config";
-import { createBrowserHistory } from "history";
 
 import {
     GET_USER,
@@ -80,7 +79,7 @@ export const loginUser = (data, navigate) => {
                     console.log("from user acti", response.data)
                     dispatch(login(response.data));
                     localStorage.setItem("token", JSON.stringify(response.data.accessToken));
-                    return navigate('/dashboard')
+                    navigate('/dashboard')
                 });
         } catch (error) {
             console.log(error)
@@ -90,15 +89,15 @@ export const loginUser = (data, navigate) => {
     }
 }
 
-export const logoutUser = () => {
+export const logoutUser = (navigate) => {
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}api/logout`)
                 .then((response) => {
                     localStorage.removeItem("token");
                     dispatch(logout());
-                    // const history = createBrowserHistory()
-                    // history.push('/')
+                    navigate("/")
+
                 })
         } catch (error) {
             console.log(error)

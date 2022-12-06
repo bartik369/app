@@ -16,8 +16,7 @@ export default function ProfileMenu() {
   }, [])
 
   const logoutHandler = () => {
-    dispatch(logoutUser());
-    navigate("/ghhhhhhhhhhhhhhhhhhhh")
+    dispatch(logoutUser(navigate));
   };
 
   return (

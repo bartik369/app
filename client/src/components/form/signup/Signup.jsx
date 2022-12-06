@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, loadUsers, CleanMessages } from "../../../store/actions/usersActions";
+import { createUser, CleanMessages } from "../../../store/actions/usersActions";
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ export default function Signup({ selectLoginForm }) {
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [testerror, setTestError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -42,7 +42,7 @@ export default function Signup({ selectLoginForm }) {
       if (item.email) {
         setError("email", { type: "email", message: item.email });
       } else {
-        setTestError(true)
+        setEmailError(true)
       }
     });
 
@@ -62,7 +62,7 @@ export default function Signup({ selectLoginForm }) {
     };
     setUserInfo(newUser);
     dispatch(createUser(newUser));
-    if (!testerror) {
+    if (!emailError) {
       setAnimationPaperAirplane(true);
       reset();
       setShowInfo(true);
@@ -70,11 +70,6 @@ export default function Signup({ selectLoginForm }) {
     } else {
       return
     }
-      // setAnimationPaperAirplane(true);
-      // reset();
-      // setShowInfo(true);
-      // setTimeout(() => selectLoginForm(true), 9000);
-
   };
 
   const showPassword = (e) => {
