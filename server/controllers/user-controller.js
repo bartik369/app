@@ -77,6 +77,14 @@ class UserController {
             next(err);
         }
     };
+
+    async getUser(req, res, next) {
+        try {
+            const user = await userService.getUser();
+        } catch (error) {
+            
+        }
+    }
 };
 
 export default new UserController();

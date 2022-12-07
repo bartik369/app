@@ -150,3 +150,16 @@ export const CleanMessages = () => {
         dispatch(removeMessages());
     }
 }
+
+export const compareAccessToken = (id) => {
+    return async function(dispatch) {
+        try {
+            await axios.get(`${ENV.HOSTNAME}user${id}`)
+            .then((response) => {
+                console.log(response.data)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

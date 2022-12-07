@@ -11,8 +11,9 @@ import {
 
 const initialState = {
     users: [],
-    user: {},
-    isAuth: null,
+    user: null,
+    isAuth: false,
+    accessToken: null,
     loading: true,
 };
 
@@ -39,7 +40,8 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isAuth: action.payload.accessToken,
+        isAuth: true,
+        accessToken: action.payload.accessToken,
       }
     case LOGOUT_USER:
       return {
