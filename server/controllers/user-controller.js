@@ -1,4 +1,6 @@
 import userService from "../services/user-service.js";
+import ApiError from "../exceptions/api-error.js";
+import tokenService from "../services/token-service.js";
 
 class UserController {
     async registration(req, res, next) {
@@ -81,6 +83,28 @@ class UserController {
     async getUser(req, res, next) {
         try {
             const user = await userService.getUser();
+        } catch (error) {
+            
+        }
+    }
+
+    async authUser(req, res, next) {
+
+        if (req.method === 'OPTIONS') {
+            return next();
+        }
+
+        try {
+
+            const token = req.headers.authorization.split(' ')[1];
+
+            if (!token) {
+                throw ApiError.UnauthorizedError("Ошибка авторизации")
+            }
+
+            const userData = await tokenService.compareAccessToken(token);
+            console.log("back response", userData._id)
+            return res.json(userData)
         } catch (error) {
             
         }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { compareValidTioken } from "./store/actions/usersActions";
+import { useDispatch } from "react-redux";
+import { compareAccessToken } from "./store/actions/usersActions";
 import "./styles/App.css";
 import LoginForm from "./components/form/login/Login";
 import SignupForm from "./components/form/signup/Signup";
@@ -11,8 +12,18 @@ function App() {
   const [registered, setRegister] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const isAuth = useSelector((state) => state.users.isAuth);
+
+
+
+  useEffect(() => {
+    console.log(isAuth)
+    dispatch(compareAccessToken())
+  }, []);
+
   // const user = useSelector((state) => state.users.user)
-  // const isAuth = useSelector((state) => state.users.isAuth);
   // const isToken = localStorage.getItem("token");
 
   // useEffect(() => {
@@ -34,8 +45,8 @@ function App() {
   };
 
   return (
-    <div className={showContent ? "App" : "App-out"}>
-      {showContent 
+    <div className={isAuth ? "App" : "App-out"}>
+      {isAuth 
       ? ( <Content /> ) 
       : registered 
       ? ( <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} />) 

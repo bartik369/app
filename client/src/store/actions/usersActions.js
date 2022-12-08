@@ -151,15 +151,21 @@ export const CleanMessages = () => {
     }
 }
 
-export const compareAccessToken = (id) => {
+export const compareAccessToken = () => {
+
     return async function(dispatch) {
         try {
-            await axios.get(`${ENV.HOSTNAME}user${id}`)
+            await axios.get(`${ENV.HOSTNAME}api/auth`, {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
             .then((response) => {
-                console.log(response.data)
+                console.log("data from compare token", response.data)
+                dispatch(login(response.data));
             })
         } catch (error) {
             console.log(error)
+            localStorage.removeItem("token");
+            dispatch(logout());
         }
     }
 }

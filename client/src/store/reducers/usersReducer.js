@@ -47,7 +47,7 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
-        isAuth: null,
+        isAuth: false,
       }
     case UPDATE_USER_PASSWORD:
       return {
