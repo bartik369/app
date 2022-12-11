@@ -19,8 +19,8 @@ function App() {
 
 
   useEffect(() => {
-    console.log(isAuth)
-    dispatch(compareAccessToken())
+    // console.log(isAuth)
+    // dispatch(compareAccessToken())
   }, []);
 
   // const user = useSelector((state) => state.users.user)

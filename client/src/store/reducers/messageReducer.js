@@ -6,7 +6,7 @@ import {
 } from "../types/typesMessages";
 
 const initialState = {
-    messages: [], 
+    messages: [],
     loading: true,
 };
 

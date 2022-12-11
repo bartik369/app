@@ -55,7 +55,7 @@ const removeMessages = () => ({
 
 
 
-export const createUser = (user) => {
+export const createUser = (user, setError) => {
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}api/registration`, user)
@@ -65,8 +65,12 @@ export const createUser = (user) => {
                 });
         } catch (error) {
             console.log(error);
-            const message = error.response.data.errors;
-            dispatch(failLogin(message));
+            const messageEmail = error.response.data.errors;
+            console.log(messageEmail)
+            setError("email", { type: "email", message: messageEmail });
+            // setError("email", { type: "email", message: message.email });
+
+            // dispatch(failLogin(message));
         }
     }
 }
@@ -156,12 +160,12 @@ export const compareAccessToken = () => {
     return async function(dispatch) {
         try {
             await axios.get(`${ENV.HOSTNAME}api/auth`, {
-                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
-            })
-            .then((response) => {
-                console.log("data from compare token", response.data)
-                dispatch(login(response.data));
-            })
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then((response) => {
+                    console.log("data from compare token", response.data)
+                    dispatch(login(response.data));
+                })
         } catch (error) {
             console.log(error)
             localStorage.removeItem("token");

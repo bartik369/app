@@ -17,18 +17,17 @@ export default class ApiError extends Error {
     };
 
     static EmailError(message, errors = []) {
-        errors.push({ email: message})
-        return new ApiError(400, message, errors);
+        errors.push({ email: message })
+        return new ApiError(400, message, errors.email);
     };
 
     static PasswordError(message, errors = []) {
-        errors.push({password: message})
+        errors.push({ password: message })
         return new ApiError(400, message, errors);
     };
 
     static EmailExist(message, errors = []) {
-        errors.push({email: message})
-        return new ApiError(400, message, errors);
+        errors.push({ email: message })
+        return new ApiError(400, message, errors.email);
     };
 };
-
