@@ -7,7 +7,6 @@ import "./styles/App.css";
 import LoginForm from "./components/form/login/Login";
 import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
-import { useForm } from "react-hook-form"
 
 function App() {
   const [registered, setRegister] = useState(false);
@@ -19,22 +18,22 @@ function App() {
 
 
   useEffect(() => {
-    // console.log(isAuth)
-    // dispatch(compareAccessToken())
-  }, []);
+    console.log(isAuth)
+    dispatch(compareAccessToken())
+  }, [isAuth]);
 
   // const user = useSelector((state) => state.users.user)
-  // const isToken = localStorage.getItem("token");
+  const isToken = localStorage.getItem("token");
 
   // useEffect(() => {
 
-  //   if (isAuth || isToken) {
+  //   if (isToken) {
   //     setShowContent(true)
   //   } else {
   //     setShowContent(false)
   //     navigate("/")
   //   }
-  // }, [isAuth, isToken]);
+  // }, [isAuth, isToken, showContent]);
 
   const selectSignupHandler = () => {
     setRegister(false);

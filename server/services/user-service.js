@@ -22,6 +22,7 @@ class UserService {
       password: hashPassword,
       activationLink,
     });
+
     await mailService.sendActivationMail(
       email,
       `${process.env.API_URL}/api/activate/${activationLink}`
@@ -63,6 +64,7 @@ class UserService {
 
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });
+
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
     return {
@@ -92,12 +94,23 @@ class UserService {
     const user = await UserModel.findById(userData.id);
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });
+
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
     return {
       ...tokens,
       user: userDto,
     };
+  }
+
+  async compareAccessToken(token) {
+
+    if (!token) {
+      throw ApiError.UnauthorizedError("Вы не авторизированы")
+    }
+    const userData = tokenService.validateAccessToken(token)
+    return userData
+
   }
 
   async getUsers() {

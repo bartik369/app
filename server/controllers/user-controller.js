@@ -1,6 +1,4 @@
 import userService from "../services/user-service.js";
-import ApiError from "../exceptions/api-error.js";
-import tokenService from "../services/token-service.js";
 
 class UserController {
     async registration(req, res, next) {
@@ -95,16 +93,10 @@ class UserController {
         }
 
         try {
-
             const token = req.headers.authorization.split(' ')[1];
-
-            if (!token) {
-                throw ApiError.UnauthorizedError("Ошибка авторизации")
-            }
-
-            const userData = await tokenService.compareAccessToken(token);
-            console.log("back response", userData._id)
+            const userData = await userService.compareAccessToken(token)
             return res.json(userData)
+
         } catch (error) {
             
         }

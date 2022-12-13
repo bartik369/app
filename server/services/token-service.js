@@ -22,14 +22,6 @@ class TokenService {
         }
     };
 
-    async compareAccessToken(token) {
-         const userData =  await tokenModel.findOne({token})
-
-         if (!userData) {
-            throw ApiError("Такого токена нет")
-         }
-          return userData
-    }
 
     validateRefreshToken(token) {
         try {

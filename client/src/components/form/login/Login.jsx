@@ -30,17 +30,6 @@ export default function Login({ selectSignupForm }) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   messages.map((item) => {
-  //     if (item.email) {
-  //       setError("email", { type: "email", message: item.email });
-  //     } else if (item.password) {
-  //       setError("password", { type: "password", message: item.password });
-  //     }
-  //   });
-  // }, [messages]);
-
   const password = useRef({});
   password.current = watch("password", "");
 
