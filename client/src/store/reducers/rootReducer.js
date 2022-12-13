@@ -3,13 +3,11 @@ import devicesReducer from "./devicesReducer";
 import modalReducer from "./modalReduces";
 import todosReducer from "./todosReducer";
 import usersReducer from "./usersReducer";
-import messageReducer from "./messageReducer";
 
 const rootReducer = combineReducers({
     users: usersReducer,
     user: usersReducer,
     isAuth: usersReducer,
-    messages: messageReducer,
     devices: devicesReducer,
     device: devicesReducer,
     todos: todosReducer,

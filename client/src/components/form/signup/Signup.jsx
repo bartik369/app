@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createUser, CleanMessages } from "../../../store/actions/usersActions";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../store/actions/usersActions";
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
@@ -12,11 +12,12 @@ import "../Login.css";
 import paperAirplane from "../../../assets/portal/paper_airplane.png";
 
 export default function Signup({ selectLoginForm }) {
+
   const [passwordType, setPasswordType] = useState(false);
   const [repeatPasswordType, setRepeatPasswordType] = useState(false);
   const [animationPaperAirplane, setAnimationPaperAirplane] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [emailError, setEmailError] = useState([])
+
   const [userInfo, setUserInfo] = useState({
     displayname: "",
     email: "",
@@ -35,11 +36,15 @@ export default function Signup({ selectLoginForm }) {
   });
 
   const dispatch = useDispatch();
-  const messages = useSelector((state) => state.messages.messages);
-
-
   const password = useRef({});
   password.current = watch("password", "");
+
+  const animationSignup = () => {
+     setAnimationPaperAirplane(true);
+     setShowInfo(true);
+     setTimeout(() => selectLoginForm(true), 9000);
+     reset()
+  }
 
 
   const onSubmit = (data) => {
@@ -50,12 +55,7 @@ export default function Signup({ selectLoginForm }) {
       password: data.password,
     };
     setUserInfo(newUser);
-    dispatch(createUser(newUser, setError));
-
-      // setAnimationPaperAirplane(true);
-      // reset();
-      // setShowInfo(true);
-      // setTimeout(() => selectLoginForm(true), 9000);
+    dispatch(createUser(newUser, animationSignup, setError));
   };
 
   const showPassword = (e) => {
@@ -225,7 +225,6 @@ export default function Signup({ selectLoginForm }) {
             {formConstants.accountExist}
             <Link to="#" onClick={() => {
               selectLoginForm();
-              dispatch(CleanMessages());
             }}>
               {formConstants.enter}
             </Link>

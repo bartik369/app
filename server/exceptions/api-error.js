@@ -18,7 +18,7 @@ export default class ApiError extends Error {
 
     static EmailError(message, errors = []) {
         errors.push({ email: message })
-        return new ApiError(400, message, errors.email);
+        return new ApiError(400, message, errors);
     };
 
     static PasswordError(message, errors = []) {
@@ -28,6 +28,6 @@ export default class ApiError extends Error {
 
     static EmailExist(message, errors = []) {
         errors.push({ email: message })
-        return new ApiError(400, message, errors.email);
+        return new ApiError(400, message, errors);
     };
 };

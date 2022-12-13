@@ -7,13 +7,13 @@ import "./styles/App.css";
 import LoginForm from "./components/form/login/Login";
 import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
+import { useForm } from "react-hook-form"
 
 function App() {
   const [registered, setRegister] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch()
-
   const isAuth = useSelector((state) => state.users.isAuth);
 
 

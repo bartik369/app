@@ -10,10 +10,6 @@ import {
     UPDATE_USER_PASSWORD,
 } from "../types/typesUsers.js";
 
-import {
-    CLEAN_MESSAGES,
-    LOGIN_FAIL,
-} from "../types/typesMessages";
 
 const getUsers = (users) => ({
     type: GET_USERS,
@@ -43,39 +39,31 @@ const userUpdatePassword = () => ({
     type: UPDATE_USER_PASSWORD,
 });
 
-const failLogin = (message) => ({
-    type: LOGIN_FAIL,
-    payload: message,
-
-});
-
-const removeMessages = () => ({
-    type: CLEAN_MESSAGES,
-});
 
 
-
-export const createUser = (user, setError) => {
+export const createUser = (user, animationSignup, setError) => {
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}api/registration`, user)
                 .then((response) => {
                     dispatch(addUser(response.data));
                     console.log(response.data)
+                    animationSignup();
                 });
         } catch (error) {
             console.log(error);
-            const messageEmail = error.response.data.errors;
-            console.log(messageEmail)
-            setError("email", { type: "email", message: messageEmail });
-            // setError("email", { type: "email", message: message.email });
-
-            // dispatch(failLogin(message));
+            const messageRegistration = error.response.data.errors;
+            messageRegistration.map((item) => {
+            if (item.email) {
+                setError("email", { type: "email", message: item.email });
+            }
+        });
+            // dispatch(failLogin(messageEmail));
         }
     }
 }
 
-export const loginUser = (data, navigate) => {
+export const loginUser = (data, navigate, setError) => {
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}api/login`, data)
@@ -87,8 +75,14 @@ export const loginUser = (data, navigate) => {
                 });
         } catch (error) {
             console.log(error)
-            const message = error.response.data.errors;
-            dispatch(failLogin(message));
+            const messageRegistration = error.response.data.errors;
+            messageRegistration.map((item) => {
+            if (item.email) {
+                setError("email", { type: "email", message: item.email });
+            } else if (item.password) {
+                setError("password", { type: "password", message: item.password });
+            }
+            });
         }
     }
 }
@@ -149,11 +143,7 @@ export const updateUserPassword = (user, id) => {
     }
 }
 
-export const CleanMessages = () => {
-    return function(dispatch) {
-        dispatch(removeMessages());
-    }
-}
+
 
 export const compareAccessToken = () => {
 

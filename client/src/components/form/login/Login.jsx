@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, CleanMessages } from "../../../store/actions/usersActions";
+import { loginUser } from "../../../store/actions/usersActions";
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
@@ -29,18 +29,17 @@ export default function Login({ selectSignupForm }) {
   });
 
   const dispatch = useDispatch();
-  const { messages } = useSelector((state) => state.messages);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    messages.map((item) => {
-      if (item.email) {
-        setError("email", { type: "email", message: item.email });
-      } else if (item.password) {
-        setError("password", { type: "password", message: item.password });
-      }
-    });
-  }, [messages]);
+  // useEffect(() => {
+  //   messages.map((item) => {
+  //     if (item.email) {
+  //       setError("email", { type: "email", message: item.email });
+  //     } else if (item.password) {
+  //       setError("password", { type: "password", message: item.password });
+  //     }
+  //   });
+  // }, [messages]);
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -53,8 +52,7 @@ export default function Login({ selectSignupForm }) {
       password: data.password,
     };
     setUserInfo(userLoginData);
-    setUserInfo(userLoginData);
-    dispatch(loginUser(userLoginData, navigate));
+    dispatch(loginUser(userLoginData, navigate, setError));
   };
 
 
@@ -136,7 +134,6 @@ export default function Login({ selectSignupForm }) {
             {formConstants.accountNotExist}
             <Link to="#" onClick={() => {
               selectSignupForm();
-              dispatch(CleanMessages());
             }}>
               {formConstants.register}
             </Link>
