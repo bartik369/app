@@ -1,4 +1,7 @@
 import userService from "../services/user-service.js";
+import ApiError from "../exceptions/api-error.js";
+import tokenService from "../services/token-service.js";
+
 
 class UserController {
     async registration(req, res, next) {
@@ -89,16 +92,23 @@ class UserController {
     async authUser(req, res, next) {
 
         if (req.method === 'OPTIONS') {
-            return next();
+            next();
         }
 
         try {
             const token = req.headers.authorization.split(' ')[1];
-            const userData = await userService.compareAccessToken(token)
-            return res.json(userData)
+
+            if (!token) {
+                throw ApiError.UnauthorizedError("Вы не авторизированы")
+            }
+            const userData = tokenService.validateAccessToken(token);
+            // return res.json(userData)
+            req.userData = userData;
+            next()
+
 
         } catch (error) {
-            
+            return res.status(403).json({message: "Пользователь не авторизован"})
         }
     }
 };

@@ -23,17 +23,16 @@ function App() {
   }, [isAuth]);
 
   // const user = useSelector((state) => state.users.user)
-  const isToken = localStorage.getItem("token");
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (isToken) {
-  //     setShowContent(true)
-  //   } else {
-  //     setShowContent(false)
-  //     navigate("/")
-  //   }
-  // }, [isAuth, isToken, showContent]);
+    if (isAuth) {
+      setShowContent(true)
+    } else {
+      setShowContent(false)
+      navigate("/")
+    }
+  }, [isAuth]);
 
   const selectSignupHandler = () => {
     setRegister(false);
@@ -44,8 +43,8 @@ function App() {
   };
 
   return (
-    <div className={isAuth ? "App" : "App-out"}>
-      {isAuth 
+    <div className={showContent ? "App" : "App-out"}>
+      {showContent 
       ? ( <Content /> ) 
       : registered 
       ? ( <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} />) 

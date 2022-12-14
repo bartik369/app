@@ -142,12 +142,11 @@ export const updateUserPassword = (user, id) => {
 export const compareAccessToken = () => {
   return async function (dispatch) {
     try {
-      await axios
-        .get(`${ENV.HOSTNAME}api/auth`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      await axios.get(`${ENV.HOSTNAME}api/auth`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
         .then((response) => {
-          console.log(response)
+          console.log("from action compareAccess", response.data)
           dispatch(login(response.data));
         });
     } catch (error) {

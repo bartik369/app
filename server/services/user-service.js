@@ -103,15 +103,16 @@ class UserService {
     };
   }
 
-  async compareAccessToken(token) {
+  // async compareAccessToken(token) {
 
-    if (!token) {
-      throw ApiError.UnauthorizedError("Вы не авторизированы")
-    }
-    const userData = tokenService.validateAccessToken(token)
-    return userData
+  //   const userData = tokenService.validateAccessToken(token)
 
-  }
+  //   if (!userData) {
+  //     throw ApiError.UnauthorizedError();
+  //   }
+
+  //   return userData
+  // }
 
   async getUsers() {
     const users = await UserModel.find();
