@@ -102,10 +102,9 @@ class UserController {
                 throw ApiError.UnauthorizedError("Вы не авторизированы")
             }
             const userData = tokenService.validateAccessToken(token);
-            // return res.json(userData)
-            req.userData = userData;
-            next()
-
+            return res.json(userData)
+            // req.user = userData;
+            // next()
 
         } catch (error) {
             return res.status(403).json({message: "Пользователь не авторизован"})

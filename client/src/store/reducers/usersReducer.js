@@ -41,6 +41,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isAuth: true,
+        accessToken: action.payload.accessToken,
       }
     case LOGOUT_USER:
       return {

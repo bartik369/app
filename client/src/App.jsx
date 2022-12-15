@@ -14,25 +14,25 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.users.isAuth);
+  const token = localStorage.getItem("token")
 
 
 
   useEffect(() => {
-    console.log(isAuth)
-    dispatch(compareAccessToken())
-  }, [isAuth]);
-
-  // const user = useSelector((state) => state.users.user)
+    if (isAuth || token) {
+      dispatch(compareAccessToken())
+    }
+  }, [isAuth, token]);
 
   useEffect(() => {
 
-    if (isAuth) {
+    if (token || isAuth ) {
       setShowContent(true)
     } else {
       setShowContent(false)
       navigate("/")
     }
-  }, [isAuth]);
+  }, [isAuth, token]);
 
   const selectSignupHandler = () => {
     setRegister(false);
