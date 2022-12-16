@@ -146,8 +146,8 @@ export const compareAccessToken = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
         .then((response) => {
-          console.log("from action compareAccess", response.data)
           dispatch(login(response.data));
+          console.log(response.data)
         });
     } catch (error) {
       console.log(error);

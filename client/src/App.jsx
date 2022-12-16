@@ -16,22 +16,26 @@ function App() {
   const isAuth = useSelector((state) => state.users.isAuth);
   const token = localStorage.getItem("token")
 
-
+ 
 
   useEffect(() => {
     if (isAuth || token) {
       dispatch(compareAccessToken())
+      console.log(isAuth)
     }
   }, [isAuth, token]);
 
   useEffect(() => {
 
-    if (token || isAuth ) {
+    if (isAuth ) {
+
       setShowContent(true)
     } else {
       setShowContent(false)
       navigate("/")
     }
+
+    console.log(isAuth)
   }, [isAuth, token]);
 
   const selectSignupHandler = () => {
