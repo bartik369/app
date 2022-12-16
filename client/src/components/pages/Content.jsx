@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import "../../styles/App.css";
 import SideBar from "../sidebar/SideBar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
 import EditDevice from "./EditDevice";
 import DeviceSearch from "./DeviceSearch";
@@ -50,6 +50,7 @@ export default function Content({logout}) {
         />
         <div className="content-container">
           <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
             <Route path="/search"

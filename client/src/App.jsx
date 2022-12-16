@@ -16,7 +16,7 @@ function App() {
   const isAuth = useSelector((state) => state.users.isAuth);
   const token = localStorage.getItem("token")
 
- 
+  console.log("check memory")
 
   useEffect(() => {
     if (isAuth || token) {
@@ -26,9 +26,7 @@ function App() {
   }, [isAuth, token]);
 
   useEffect(() => {
-
     if (isAuth ) {
-
       setShowContent(true)
     } else {
       setShowContent(false)

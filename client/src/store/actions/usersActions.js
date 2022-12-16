@@ -61,7 +61,7 @@ export const createUser = (user, animationSignup, setError) => {
   };
 };
 
-export const loginUser = (data, navigate, setError) => {
+export const loginUser = (data, setError) => {
   return async function (dispatch) {
     try {
       await axios.post(`${ENV.HOSTNAME}api/login`, data).then((response) => {
@@ -71,7 +71,6 @@ export const loginUser = (data, navigate, setError) => {
           "token",
           JSON.stringify(response.data.accessToken)
         );
-        navigate("/dashboard");
       });
     } catch (error) {
       console.log(error);
