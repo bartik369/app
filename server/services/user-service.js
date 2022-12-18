@@ -85,7 +85,18 @@ class UserService {
             throw ApiError.EmailError("Пользователь с таким email не найден");
         }
         const resetPasswordLink = uuidv4();
+        await mailService.sendResetPasswordMail(
+            email,
+            `${process.env.API_URL}api/reset/${resetPasswordLink}`,
+        )
+    }
 
+    async reset(resetPasswordLink) {
+        try {
+
+        } catch (error) {
+
+        }
     }
 
     async refresh(refreshToken) {
@@ -112,17 +123,6 @@ class UserService {
             user: userDto,
         };
     }
-
-    // async compareAccessToken(token) {
-
-    //   const userData = tokenService.validateAccessToken(token)
-
-    //   if (!userData) {
-    //     throw ApiError.UnauthorizedError();
-    //   }
-
-    //   return userData
-    // }
 
     async getUsers() {
         const users = await UserModel.find();

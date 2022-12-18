@@ -11,6 +11,7 @@ import Todos from "./Todos";
 import Calendar from "./Calendar";
 import Settings from "./Settings";
 import Header from "../header/Header";
+import SetNewPassword from "../form/reset-password/SetNewPassword";
 
 export default function Content({logout}) {
 
@@ -18,6 +19,8 @@ export default function Content({logout}) {
     const [slideStateContainer, setSlideStateContainer] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [pageName, setPageName] = useState("");
+
+    const resetLink = ""
   
   
     const delSearchQuery = () => {
@@ -50,6 +53,7 @@ export default function Content({logout}) {
         />
         <div className="content-container">
           <Routes>
+            <Route path={resetLink} element={<SetNewPassword />}></Route>
             <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>

@@ -82,6 +82,15 @@ class UserController {
         }
     }
 
+    async reset(reg, res, next) {
+        try {
+            const resetPasswordLink = req.params.link
+            await userService.reset(resetPasswordLink)
+        } catch (error) {
+
+        }
+    }
+
     async getUsers(req, res, next) {
         try {
             const users = await userService.getUsers();
