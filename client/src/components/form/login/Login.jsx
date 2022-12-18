@@ -10,13 +10,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../Login.css";
 
-export default function Login({ selectSignupForm }) {
+export default function Login({ selectSignupForm, selectResetPasswordForm }) {
   
   const [passwordType, setPasswordType] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
-  });
 
   const {
     register,
@@ -36,12 +32,10 @@ export default function Login({ selectSignupForm }) {
 
   const onSubmit = (data) => {
     const userLoginData = {
-      ...userInfo,
       email: data.email,
       password: data.password,
     };
-    setUserInfo(userLoginData);
-    dispatch(loginUser(userLoginData, navigate, setError));
+    dispatch(loginUser(userLoginData, setError, navigate));
   };
 
 
@@ -114,7 +108,9 @@ export default function Login({ selectSignupForm }) {
           </div>
 
           <div className="restore-password">
-            <Link to="#">{formConstants.forgotPassword}</Link>
+            <Link to="#" onClick={() => {
+              selectResetPasswordForm();
+            }}>{formConstants.forgotPassword}</Link>
           </div>
           <button className="login-btn" type="submit">
             {formConstants.send}

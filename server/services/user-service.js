@@ -7,121 +7,131 @@ import UserDto from "../dtos/user-dto.js";
 import ApiError from "../exceptions/api-error.js";
 
 class UserService {
-  async registration(displayname, email, password) {
-    const candidate = await UserModel.findOne({ email });
+    async registration(displayname, email, password) {
+        const candidate = await UserModel.findOne({ email });
 
-    if (candidate) {
-      throw ApiError.EmailExist(`Пользователь ${email} уже существует`);
+        if (candidate) {
+            throw ApiError.EmailExist(`Пользователь ${email} уже существует`);
+        }
+
+        const hashPassword = await bcrypt.hash(password, 4);
+        const activationLink = uuidv4();
+        const user = await UserModel.create({
+            displayname,
+            email,
+            password: hashPassword,
+            activationLink,
+        });
+
+        await mailService.sendActivationMail(
+            email,
+            `${process.env.API_URL}/api/activate/${activationLink}`
+        );
+
+        const userDto = new UserDto(user);
+        const tokens = tokenService.generateTokens({...userDto });
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+        return {
+            ...tokens,
+            user: userDto,
+        };
     }
 
-    const hashPassword = await bcrypt.hash(password, 4);
-    const activationLink = uuidv4();
-    const user = await UserModel.create({
-      displayname,
-      email,
-      password: hashPassword,
-      activationLink,
-    });
+    async activate(activationLink) {
+        const user = await UserModel.findOne({ activationLink });
 
-    await mailService.sendActivationMail(
-      email,
-      `${process.env.API_URL}/api/activate/${activationLink}`
-    );
+        if (!user) {
+            throw ApiError.BadRequest("Некорректная ссылка активации");
+        }
 
-    const userDto = new UserDto(user);
-    const tokens = tokenService.generateTokens({ ...userDto });
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
-
-    return {
-      ...tokens,
-      user: userDto,
-    };
-  }
-
-  async activate(activationLink) {
-    const user = await UserModel.findOne({ activationLink });
-
-    if (!user) {
-      throw ApiError.BadRequest("Некорректная ссылка активации");
+        user.isActivated = true;
+        await user.save();
     }
 
-    user.isActivated = true;
-    await user.save();
-  }
+    async login(email, password) {
+        const user = await UserModel.findOne({ email });
 
-  async login(email, password) {
-    const user = await UserModel.findOne({ email });
+        if (!user) {
+            throw ApiError.EmailError("Пользователь с таким email не найден");
+        }
 
-    if (!user) {
-      throw ApiError.EmailError("Пользователь с таким email не найден");
+        const isPasswordEquals = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordEquals) {
+            throw ApiError.PasswordError("Неверный пароль");
+        }
+
+        const userDto = new UserDto(user);
+        const tokens = tokenService.generateTokens({...userDto });
+
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+        return {
+            ...tokens,
+            user: userDto,
+        };
     }
 
-    const isPasswordEquals = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordEquals) {
-      throw ApiError.PasswordError("Неверный пароль");
+    async logout(refreshToken) {
+        const token = await tokenService.removeToken(refreshToken);
+        return token;
     }
 
-    const userDto = new UserDto(user);
-    const tokens = tokenService.generateTokens({ ...userDto });
+    async resetPassword(email) {
+        const candidate = await UserModel.findOne({ email });
 
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+        if (!candidate) {
+            throw ApiError.EmailError("Пользователь с таким email не найден");
+        }
+        const resetPasswordLink = uuidv4();
 
-    return {
-      ...tokens,
-      user: userDto,
-    };
-  }
-
-  async logout(refreshToken) {
-    const token = await tokenService.removeToken(refreshToken);
-    return token;
-  }
-
-  async refresh(refreshToken) {
-
-    if (!refreshToken) {
-      throw ApiError.UnauthorizedError();
     }
 
-    const userData = tokenService.validateRefreshToken(refreshToken);
-    const tokenFromDatabase = await tokenService.findToken(refreshToken);
+    async refresh(refreshToken) {
 
-    if (!userData || !tokenFromDatabase) {
-      throw ApiError.UnauthorizedError();
+        if (!refreshToken) {
+            throw ApiError.UnauthorizedError();
+        }
+
+        const userData = tokenService.validateRefreshToken(refreshToken);
+        const tokenFromDatabase = await tokenService.findToken(refreshToken);
+
+        if (!userData || !tokenFromDatabase) {
+            throw ApiError.UnauthorizedError();
+        }
+
+        const user = await UserModel.findById(userData.id);
+        const userDto = new UserDto(user);
+        const tokens = tokenService.generateTokens({...userDto });
+
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+        return {
+            ...tokens,
+            user: userDto,
+        };
     }
 
-    const user = await UserModel.findById(userData.id);
-    const userDto = new UserDto(user);
-    const tokens = tokenService.generateTokens({ ...userDto });
+    // async compareAccessToken(token) {
 
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    //   const userData = tokenService.validateAccessToken(token)
 
-    return {
-      ...tokens,
-      user: userDto,
-    };
-  }
+    //   if (!userData) {
+    //     throw ApiError.UnauthorizedError();
+    //   }
 
-  // async compareAccessToken(token) {
+    //   return userData
+    // }
 
-  //   const userData = tokenService.validateAccessToken(token)
+    async getUsers() {
+        const users = await UserModel.find();
+        return users;
+    }
 
-  //   if (!userData) {
-  //     throw ApiError.UnauthorizedError();
-  //   }
+    async getUser() {
 
-  //   return userData
-  // }
-
-  async getUsers() {
-    const users = await UserModel.find();
-    return users;
-  }
-
-  async getUser() {
-    
-  }
+    }
 }
 
 export default new UserService();

@@ -72,6 +72,16 @@ class UserController {
         }
     };
 
+    async resetPassword(req, res, next) {
+        try {
+            const { email } = req.body;
+            const userData = await userService.resetPassword(email)
+            return res.json(userData);
+        } catch (error) {
+
+        }
+    }
+
     async getUsers(req, res, next) {
         try {
             const users = await userService.getUsers();
@@ -85,7 +95,7 @@ class UserController {
         try {
             const user = await userService.getUser();
         } catch (error) {
-            
+
         }
     }
 
@@ -103,11 +113,11 @@ class UserController {
             }
             const userData = tokenService.validateAccessToken(token);
             return res.json(userData)
-            // req.user = userData;
-            // next()
+                // req.user = userData;
+                // next()
 
         } catch (error) {
-            return res.status(403).json({message: "Пользователь не авторизован"})
+            return res.status(403).json({ message: "Пользователь не авторизован" })
         }
     }
 };
