@@ -1,4 +1,5 @@
 import UserModel from "../models/user-model.js";
+import ResetPasswordModel from "../models/reset-password-model.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import mailService from "./mail-service.js";
@@ -89,7 +90,21 @@ class UserService {
             email,
             `${process.env.API_URL}api/reset/${resetPasswordLink}`,
         )
+        await ResetPasswordModel.create({ candidate.id, resetPasswordLink })
+
     }
+
+    // async saveToken(userId, refreshToken) {
+    //     const tokenData = await tokenModel.findOne({user: userId});
+
+    //     if (tokenData) {
+    //         tokenData.refreshToken = refreshToken;
+    //         return tokenData.save();
+    //     };
+    //     const token = await tokenModel.create({user: userId, refreshToken});
+    //     return token;
+    // };
+
 
     async reset(resetPasswordLink) {
         try {
