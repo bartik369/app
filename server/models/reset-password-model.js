@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ResetPasswordSheme = new Schema({
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    resetPasswordLink: {
+    link: {
         type: String,
     }
 });

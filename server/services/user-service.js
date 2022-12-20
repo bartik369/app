@@ -48,21 +48,21 @@ class UserService {
         const resetPasswordLink = uuidv4();
         await mailService.sendResetPasswordMail(
             email,
-            `${process.env.CLIENT_URL}/reset/${resetPasswordLink}`,
+            `${process.env.CLIENT_URL}/reset/${candidate._id}/${resetPasswordLink}`,
         )
-        const reslinkpass = await ResetPasswordModel.create({user: candidate._id, resetPasswordLink})
+        const reslinkpass = await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
         return reslinkpass
     }
 
-    async reset(resetPasswordLink) {
+    // async reset() {
 
-        try {
-            const userData = await ResetPasswordModel.findOne({userId: resetPasswordLink})
-            return userData._id
-        } catch (error) {
+    //     try {
+    //         const userData = await ResetPasswordModel.findOne({ userId: resetPasswordLink })
+    //         return userData._id
+    //     } catch (error) {
 
-        }
-    }
+    //     }
+    // }
 
 
     async activate(activationLink) {

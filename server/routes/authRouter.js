@@ -11,6 +11,6 @@ router.get('/users', userController.getUsers);
 router.get('/user/:id', userController.getUser);
 router.get('/auth', userController.authUser);
 router.post('/reset', userController.resetPassword);
-router.get('/reset/:link', userController.reset);
+router.get('/reset/:userId/:link', userController.reset);
 
 export default router;

@@ -130,15 +130,29 @@ export const updateUserPassword = (data) => {
     console.log(data)
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}api/reset`, data).then((response) => {
-                // dispatch(userUpdatePassword(response.data));
-                // dispatch(loadUsers());
-            });
+            await axios.post(`${ENV.HOSTNAME}api/reset`, data)
+                .then((response) => {
+                    // dispatch(userUpdatePassword(response.data));
+                    // dispatch(loadUsers());
+                });
         } catch (error) {
             console.log(error);
         }
     };
 };
+
+export const setNewUserPassword = (data) => {
+    return async function(dispatch) {
+        try {
+            await axios.post(`${ENV.HOSTNAME}api/:id/:link`, data)
+                .then((response) => {
+
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 export const compareAccessToken = () => {
     return async function(dispatch) {

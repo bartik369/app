@@ -20,9 +20,6 @@ export default function Content({logout}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [pageName, setPageName] = useState("");
 
-    const resetLink = ""
-  
-  
     const delSearchQuery = () => {
       setSearchQuery("");
     };
@@ -53,7 +50,7 @@ export default function Content({logout}) {
         />
         <div className="content-container">
           <Routes>
-            <Route path={resetLink} element={<SetNewPassword />}></Route>
+            <Route path="/:id/:link" element={<SetNewPassword />}></Route>
             <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
