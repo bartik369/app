@@ -82,10 +82,14 @@ class UserController {
         }
     }
 
-    async reset(reg, res, next) {
+    async reset(req, res, next) {
         try {
             const resetPasswordLink = req.params.link
-            await userService.reset(resetPasswordLink)
+            const userData = await userService.reset(resetPasswordLink);
+            return res.redirect(`${process.env.CLIENT_URL}/${resetPasswordLink}`)
+            // return res.redirect(process.env.CLIENT_URL);
+            console.log("userId is:", userData)
+            // await userService.reset(resetPasswordLink)
         } catch (error) {
 
         }

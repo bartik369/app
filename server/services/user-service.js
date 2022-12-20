@@ -48,18 +48,22 @@ class UserService {
         const resetPasswordLink = uuidv4();
         await mailService.sendResetPasswordMail(
             email,
-            `${process.env.API_URL}api/reset/${resetPasswordLink}`,
+            `${process.env.CLIENT_URL}/reset/${resetPasswordLink}`,
         )
         const reslinkpass = await ResetPasswordModel.create({user: candidate._id, resetPasswordLink})
         return reslinkpass
     }
 
+    async reset(resetPasswordLink) {
 
-    // async saveResetLinkToBD(userID, resetPasswordLink) {
-    //     // const passwordResetLinkData = await ResetPasswordModel.findOne({user: userID});
-    //     const reslinkpass = await ResetPasswordModel.create({user: userID, resetPasswordLink})
-    //     return reslinkpass
-    // }
+        try {
+            const userData = await ResetPasswordModel.findOne({userId: resetPasswordLink})
+            return userData._id
+        } catch (error) {
+
+        }
+    }
+
 
     async activate(activationLink) {
         const user = await UserModel.findOne({ activationLink });
@@ -99,14 +103,6 @@ class UserService {
     async logout(refreshToken) {
         const token = await tokenService.removeToken(refreshToken);
         return token;
-    }
-
-    async reset(resetPasswordLink) {
-        try {
-
-        } catch (error) {
-
-        }
     }
 
     async refresh(refreshToken) {

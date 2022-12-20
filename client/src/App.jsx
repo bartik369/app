@@ -32,7 +32,7 @@ function App() {
       setShowContent(true)
     } else {
       setShowContent(false)
-      navigate("/")
+      // navigate("/")
     }
     console.log(isAuth)
   }, [isAuth, token]);
