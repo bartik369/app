@@ -84,9 +84,9 @@ class UserController {
 
     async reset(req, res, next) {
         try {
-            const { user, resetPasswordLink } = req.params;
-            console.log(user)
-            console.log(resetPasswordLink)
+            const { userId, link } = req.params;
+            console.log(userId)
+            console.log(link)
         } catch (error) {
 
         }

@@ -45,10 +45,10 @@ class UserService {
         if (!candidate) {
             throw ApiError.EmailError("Пользователь с таким email не найден");
         }
-        const resetPasswordLink = uuidv4();
+        const link = uuidv4();
         await mailService.sendResetPasswordMail(
             email,
-            `${process.env.CLIENT_URL}/reset/${candidate._id}/${resetPasswordLink}`,
+            `${process.env.CLIENT_URL}/reset/${candidate._id}/${link}`,
         )
         const reslinkpass = await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
         return reslinkpass
