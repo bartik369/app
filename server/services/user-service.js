@@ -15,7 +15,7 @@ class UserService {
             throw ApiError.EmailExist(`Пользователь ${email} уже существует`);
         }
 
-        const hashPassword = await bcrypt.hash(password, 4);
+        const hashPassword = await bcrypt.hash(password, 7);
         const activationLink = uuidv4();
         const user = await UserModel.create({
             displayname,
@@ -38,6 +38,28 @@ class UserService {
             user: userDto,
         };
     }
+
+    async resetPassword(email) {
+        const candidate = await UserModel.findOne({ email });
+
+        if (!candidate) {
+            throw ApiError.EmailError("Пользователь с таким email не найден");
+        }
+        const resetPasswordLink = uuidv4();
+        await mailService.sendResetPasswordMail(
+            email,
+            `${process.env.API_URL}api/reset/${resetPasswordLink}`,
+        )
+        const reslinkpass = await ResetPasswordModel.create({user: candidate._id, resetPasswordLink})
+        return reslinkpass
+    }
+
+
+    // async saveResetLinkToBD(userID, resetPasswordLink) {
+    //     // const passwordResetLinkData = await ResetPasswordModel.findOne({user: userID});
+    //     const reslinkpass = await ResetPasswordModel.create({user: userID, resetPasswordLink})
+    //     return reslinkpass
+    // }
 
     async activate(activationLink) {
         const user = await UserModel.findOne({ activationLink });
@@ -78,33 +100,6 @@ class UserService {
         const token = await tokenService.removeToken(refreshToken);
         return token;
     }
-
-    async resetPassword(email) {
-        const candidate = await UserModel.findOne({ email });
-
-        if (!candidate) {
-            throw ApiError.EmailError("Пользователь с таким email не найден");
-        }
-        const resetPasswordLink = uuidv4();
-        await mailService.sendResetPasswordMail(
-            email,
-            `${process.env.API_URL}api/reset/${resetPasswordLink}`,
-        )
-        await ResetPasswordModel.create({ candidate.id, resetPasswordLink })
-
-    }
-
-    // async saveToken(userId, refreshToken) {
-    //     const tokenData = await tokenModel.findOne({user: userId});
-
-    //     if (tokenData) {
-    //         tokenData.refreshToken = refreshToken;
-    //         return tokenData.save();
-    //     };
-    //     const token = await tokenModel.create({user: userId, refreshToken});
-    //     return token;
-    // };
-
 
     async reset(resetPasswordLink) {
         try {
