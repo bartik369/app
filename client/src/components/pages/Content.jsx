@@ -12,6 +12,10 @@ import Calendar from "./Calendar";
 import Settings from "./Settings";
 import Header from "../header/Header";
 import SetNewPassword from "../form/reset-password/SetNewPassword";
+import Login from "./Login";
+import Signup from "./Signup";
+import ResetPassword from "./ResetPassword";
+
 
 export default function Content({logout}) {
 
@@ -50,6 +54,9 @@ export default function Content({logout}) {
         />
         <div className="content-container">
           <Routes>
+            {/* <Route path="/login" element={<Login/>}></Route>
+            <Route path="/singup" element={<Signup/>}></Route>
+            <Route path="/reset-password" element={<ResetPassword/>}></Route> */}
             <Route path="/:id/:link" element={<SetNewPassword />}></Route>
             <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>

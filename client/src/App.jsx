@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Routes, Router, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { compareAccessToken } from "./store/actions/usersActions";
 import "./styles/App.css";
-import LoginForm from "./components/form/login/Login";
-import SignupForm from "./components/form/signup/Signup";
+// import SignupForm from "./components/form/signup/Signup";
 import Content from "./components/pages/Content";
-import ResetPassword from "./components/form/reset-password/ResetPassword";
+import Login from "./components/pages/Login";
+import ResetPassword from "./components/pages/ResetPassword";
+import Signup from "./components/pages/Signup";
 
 function App() {
-  const [registered, setRegister] = useState(false);
-  const [resetPassword, setResetPassword] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -37,30 +36,24 @@ function App() {
     console.log(isAuth)
   }, [isAuth, token]);
 
-  const selectSignupHandler = () => {
-    setRegister(false);
-  };
-
-  const loginFormHandler = () => {
-    setRegister(true);
-  };
-
-  const resetPasswordFormHandler = () => {
-    setResetPassword(true)
-  }
+  const routes = [
+    {path: '/', element: <Login />},
+    {path: '/singup', element: <Signup />},
+    {path: '/reset-password', element: <ResetPassword />},
+    {path: '*', element: <div>404</div>},
+]
 
   return (
     <div className={showContent ? "App" : "App-out"}>
-      {showContent 
-      ? ( <Content /> ) 
-      : resetPassword
-      ? (<ResetPassword />)
-      : registered 
-      ? ( <SignupForm selectSignupForm={selectSignupHandler} selectLoginForm={selectSignupHandler} />) 
-      : ( <LoginForm selectSignupForm={loginFormHandler} selectResetPasswordForm={resetPasswordFormHandler} />)
+      {showContent
+      ? <Content /> 
+      : 
+        <Routes>
+           {routes.map(route => (
+              <Route key={route.path} path={route.path} element={route.element} />
+             ))}
+        </Routes>
       }
-
-     
       <div></div>
     </div>
   );

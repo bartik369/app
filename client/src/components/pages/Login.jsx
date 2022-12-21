@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../store/actions/usersActions";
-import * as REGEX from "../../../utils/constants/regex.constants";
-import * as formConstants from "../../../utils/constants/form.constants";
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/actions/usersActions";
+import * as REGEX from "../../utils/constants/regex.constants";
+import * as formConstants from "../../utils/constants/form.constants";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import "../Login.css";
+import "../Login/Login.css";
 
-export default function Login({ selectSignupForm, selectResetPasswordForm }) {
+export default function Login() {
   
   const [passwordType, setPasswordType] = useState(false);
 
@@ -108,18 +108,14 @@ export default function Login({ selectSignupForm, selectResetPasswordForm }) {
           </div>
 
           <div className="restore-password">
-            <Link to="#" onClick={() => {
-              selectResetPasswordForm();
-            }}>{formConstants.forgotPassword}</Link>
+            <Link to="/reset-password">{formConstants.forgotPassword}</Link>
           </div>
           <button className="login-btn" type="submit">
             {formConstants.send}
           </button>
           <div className="signin">
             {formConstants.accountNotExist}
-            <Link to="#" onClick={() => {
-              selectSignupForm();
-            }}>
+            <Link to="/singup">
               {formConstants.register}
             </Link>
           </div>

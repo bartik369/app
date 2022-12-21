@@ -31,7 +31,7 @@ class UserService {
 
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto });
-        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+        await tokeService.saveToken(userDto.id, tokens.refreshToken);
 
         return {
             ...tokens,
@@ -50,20 +50,9 @@ class UserService {
             email,
             `${process.env.CLIENT_URL}/reset/${candidate._id}/${link}`,
         )
-        const reslinkpass = await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
-        return reslinkpass
+        await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
+        
     }
-
-    // async reset() {
-
-    //     try {
-    //         const userData = await ResetPasswordModel.findOne({ userId: resetPasswordLink })
-    //         return userData._id
-    //     } catch (error) {
-
-    //     }
-    // }
-
 
     async activate(activationLink) {
         const user = await UserModel.findOne({ activationLink });
