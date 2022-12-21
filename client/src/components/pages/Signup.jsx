@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createUser } from "../../store/actions/usersActions";
 import * as REGEX from "../../utils/constants/regex.constants";
 import * as formConstants from "../../utils/constants/form.constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
@@ -35,6 +35,7 @@ export default function Signup() {
     mode: "onBlur",
   });
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch("password", "");
@@ -42,7 +43,7 @@ export default function Signup() {
   const animationSignup = () => {
      setAnimationPaperAirplane(true);
      setShowInfo(true);
-    //  setTimeout(() => selectLoginForm(true), 9000);
+     setTimeout(() => navigate("/"), 9000);
      reset()
   }
 
@@ -223,7 +224,7 @@ export default function Signup() {
           </button>
           <div className="signin">
             {formConstants.accountExist}
-            <Link to="#" onClick={() => {}}>
+            <Link to="/">
               {formConstants.enter}
             </Link>
           </div>

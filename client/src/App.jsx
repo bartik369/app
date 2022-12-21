@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, Routes, Router, Route } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { compareAccessToken } from "./store/actions/usersActions";
 import "./styles/App.css";
@@ -31,7 +31,7 @@ function App() {
       setShowContent(true)
     } else {
       setShowContent(false)
-      // navigate("/")
+      navigate("/")
     }
     console.log(isAuth)
   }, [isAuth, token]);
