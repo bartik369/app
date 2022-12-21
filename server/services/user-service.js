@@ -50,8 +50,8 @@ class UserService {
             email,
             `${process.env.CLIENT_URL}/reset/${candidate._id}/${link}`,
         )
-        await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
-        
+        const reslinkpass = await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
+        return reslinkpass
     }
 
     async activate(activationLink) {
