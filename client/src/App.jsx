@@ -5,10 +5,9 @@ import { useDispatch } from "react-redux";
 import { compareAccessToken } from "./store/actions/usersActions";
 import "./styles/App.css";
 import Content from "./components/pages/Content";
-import Login from "./components/pages/Login";
+import Login from "./components/pages/Login/Login";
 import ResetPassword from "./components/pages/ResetPassword";
 import Signup from "./components/pages/Signup";
-import Homepage from "./components/pages/Homepage";
 
 function App() {
   const [showContent, setShowContent] = useState(false);
@@ -17,7 +16,14 @@ function App() {
   const isAuth = useSelector((state) => state.users.isAuth);
   const token = localStorage.getItem("token");
 
-  const routes = [
+  const authRoutes = [
+    { path: "/", element: <Login /> },
+    { path: "/singup", element: <Signup /> },
+    { path: "/reset-password", element: <ResetPassword /> },
+    { path: "*", element: <div>404</div> },
+  ];
+
+  const contentRoutes = [
     { path: "/", element: <Login /> },
     { path: "/singup", element: <Signup /> },
     { path: "/reset-password", element: <ResetPassword /> },

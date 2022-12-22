@@ -11,7 +11,7 @@ import Todos from "./Todos";
 import Calendar from "./Calendar";
 import Settings from "./Settings";
 import Header from "../header/Header";
-import SetNewPassword from "../form/reset-password/SetNewPassword";
+import NotFoundPage from "./NotFoundPage/NotFoundPage";
 
 export default function Content({logout}) {
 
@@ -50,7 +50,6 @@ export default function Content({logout}) {
         />
         <div className="content-container">
           <Routes>
-            <Route path="/:id/:link" element={<SetNewPassword />}></Route>
             <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
@@ -69,6 +68,7 @@ export default function Content({logout}) {
             <Route path="/todos" element={<Todos />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
+            <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </div>
       </div>
