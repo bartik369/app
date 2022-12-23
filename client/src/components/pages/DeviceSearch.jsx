@@ -9,9 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../store/actions/devicesActions";
 import { updateModal } from "../../store/actions/modalActions";
 
-const DeviceSearch = ({
-  searchQuery, 
-  setPageName }) => {
+const DeviceSearch = ({ searchQuery}) => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices);
@@ -21,9 +19,9 @@ const DeviceSearch = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
 
-  useEffect(() => {
-    dispatch(loadDevices());
-  }, [setPageName])
+  // useEffect(() => {
+  //   dispatch(loadDevices());
+  // }, [setPageName])
 
   // Pagination
 
@@ -41,8 +39,6 @@ const DeviceSearch = ({
   const pageNumberHandler = (pageNumber) => {
     setCurrentPage(pageNumber);
   }
-
-  setPageName('deviceSearhPage');
 
   // Delete device
 

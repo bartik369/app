@@ -80,17 +80,7 @@ function App() {
                 </Route>
                 <Route path="/dashboard" element={<Homepage />}></Route>
                 <Route path="/edit_device" element={<EditDevice />}></Route>
-                <Route
-                  path="/search"
-                  element={
-                    <DeviceSearch
-                      searchQuery={searchQuery}
-                      setPageName={setPageName}
-                      setModalActive={setModalActive}
-                      modalActive={modalActive}
-                    />
-                  }
-                ></Route>
+                <Route path="/search" element={ <DeviceSearch searchQuery={searchQuery} />}></Route>
                 <Route path="/statistic" element={<Statistic />}></Route>
                 <Route path="/users" element={<Users />}></Route>
                 <Route path="/todos" element={<Todos />}></Route>

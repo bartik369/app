@@ -5,6 +5,7 @@ import ProfileMenu from '../profile-menu/ProfileMenu';
 import useravatar from "../../assets/users/profile-avatar.jpg"
 import './header.css';
 import TodosAlert from './notifications/TodosAlert';
+import { useLocation } from 'react-router-dom';
 
 const Header = ({
   pageName, 
@@ -22,6 +23,7 @@ const Header = ({
   const [countTodos, setCountTodos] = useState(0)
   const {todos} = useSelector(state => state.todos);
   const overTodos = []
+  const location = useLocation();
   
   useEffect(() => {
     todos.map((todo) => {
@@ -29,7 +31,9 @@ const Header = ({
         overTodos.push(todo)
       }
       setCountTodos(overTodos.length)
-    })
+    });
+
+    console.log(location)
   }, [todos])
 
   const userMenuHandler = () => 
@@ -54,7 +58,7 @@ const Header = ({
     <div className="header">
       <div className={!moveHeader ? "header__inner" : "header__slided"}>
         <div className="header__search">
-          {pageName === "deviceSearhPage" && (
+          {location.pathname === "/search" && (
             <SearchData
               placeholder="Поиск..."
               value={value}
