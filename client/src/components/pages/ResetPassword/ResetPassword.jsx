@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { updateUserPassword } from "../../store/actions/usersActions";
-import * as REGEX from "../../utils/constants/regex.constants";
-import * as formConstants from "../../utils/constants/form.constants";
+import { updateUserPassword } from "../../../store/actions/usersActions";
+import * as REGEX from "../../../utils/constants/regex.constants";
+import * as formConstants from "../../../utils/constants/form.constants";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./ResetPassword.css"
 
 function ResetPassword() {
   const {
@@ -33,7 +34,7 @@ function ResetPassword() {
       <div className="reset-password">
         <div className="reset-password-sidebar"></div>
         <form className="reset-password-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="reset-password-form__title">Reset password</div>
+          <div className="reset-password-form__title">Восстановление пароля</div>
           <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
@@ -55,7 +56,7 @@ function ResetPassword() {
             </div>
           </div>
           <button className="reset-password-btn" type="submit">
-          {formConstants.register}
+          {formConstants.send}
           </button>
         </form>
       </div>

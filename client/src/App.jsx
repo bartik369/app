@@ -15,7 +15,7 @@ import Users from "./components/pages/Users";
 import Todos from "./components/pages/Todos";
 import Calendar from "./components/pages/Calendar";
 import Settings from "./components/pages/Settings";
-import ResetPassword from "./components/pages/ResetPassword";
+import ResetPassword from "./components/pages/ResetPassword/ResetPassword";
 import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
 import "./styles/App.css";
 
