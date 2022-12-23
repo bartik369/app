@@ -12,6 +12,10 @@ import Calendar from "./Calendar";
 import Settings from "./Settings";
 import Header from "../header/Header";
 import NotFoundPage from "./NotFoundPage/NotFoundPage";
+import { useSelector } from "react-redux";
+import Signup from "./Signup";
+import Login from "./Login/Login";
+
 
 export default function Content({logout}) {
 
@@ -20,11 +24,13 @@ export default function Content({logout}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [pageName, setPageName] = useState("");
 
+
     const delSearchQuery = () => {
       setSearchQuery("");
     };
     
     const searchQueryLength = searchQuery.length;
+    const isAuth = useSelector((state) => state.users.isAuth);
 
   return (
     <div className="afterlogin">
@@ -49,7 +55,16 @@ export default function Content({logout}) {
           moveHeader={slideStateContainer}
         />
         <div className="content-container">
+          etetet
           <Routes>
+          <Route path="/login" element={isAuth
+            ? <Login />
+            : <Navigate to={"/dashboard"} />
+            }></Route>
+            <Route path="/singup" element={!isAuth
+            ? <Signup />
+            : <Navigate to={"/dashboard"} />
+            }></Route>
             <Route path="/" element={<Navigate to="/dashboard" />}> </Route>
             <Route path="/dashboard" element={<Homepage />}></Route>
             <Route path="/edit_device" element={<EditDevice />}></Route>
@@ -68,7 +83,6 @@ export default function Content({logout}) {
             <Route path="/todos" element={<Todos />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
-            <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </div>
       </div>
