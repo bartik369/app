@@ -5,19 +5,8 @@ import { useDispatch } from "react-redux";
 import { compareAccessToken } from "./store/actions/usersActions";
 import Sidebar from "./components/sidebar/SideBar";
 import Header from "./components/header/Header";
-import Homepage from "./components/pages/Homepage";
-import EditDevice from "./components/pages/EditDevice";
-import Login from "./components/pages/Login/Login";
-import Signup from "./components/pages/Signup";
-import DeviceSearch from "./components/pages/DeviceSearch";
-import Statistic from "./components/pages/Statistic";
-import Users from "./components/pages/Users";
-import Todos from "./components/pages/Todos";
-import Calendar from "./components/pages/Calendar";
-import Settings from "./components/pages/Settings";
-import ResetPassword from "./components/pages/ResetPassword/ResetPassword";
-import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
 import "./styles/App.css";
+import { routes, authRoutes } from "./routes/routes.js";
 
 function App() {
   const navigate = useNavigate();
@@ -27,14 +16,11 @@ function App() {
 
   console.log("check memory");
 
-  const [modalActive, setModalActive] = useState(false);
   const [slideStateContainer, setSlideStateContainer] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [pageName, setPageName] = useState("");
 
-  
   useEffect(() => {
-
     if (isAuth || token) {
       dispatch(compareAccessToken());
       console.log(isAuth);
@@ -70,33 +56,30 @@ function App() {
               value={searchQuery}
               searchQueryLength={searchQueryLength}
               pageName={pageName}
-              // logout={logout}
               moveHeader={slideStateContainer}
             />
             <div className="content-container">
               <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" />}></Route>
-                <Route path="/dashboard" element={<Homepage />}></Route>
-                <Route path="/edit_device" element={<EditDevice />}></Route>
-                <Route path="/search" element={ <DeviceSearch />}></Route>
-                <Route path="/statistic" element={<Statistic />}></Route>
-                <Route path="/users" element={<Users />}></Route>
-                <Route path="/todos" element={<Todos />}></Route>
-                <Route path="/calendar" element={<Calendar />}></Route>
-                <Route path="/settings" element={<Settings />}></Route>
-                <Route path="*" element={<NotFoundPage />}></Route>
-                <Route path="/" element={!isAuth ? <Login /> : <Navigate to={"/dashboard"} />}></Route>
-                <Route path="/singup" element={!isAuth ? <Signup /> : <Navigate to={"/dashboard"} />}></Route>
-                <Route path="/reset-password" element={!isAuth ? <ResetPassword /> : <Navigate to={"/dashboard"} />}></Route>
+                {routes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
               </Routes>
             </div>
           </div>
         </div>
       ) : (
         <Routes>
-          <Route path="/" element={<Login />} ></Route>
-          <Route path="/singup" element={<Signup />}></Route>
-          <Route path="/reset-password" element={ <ResetPassword />}></Route>
+          {authRoutes.map((route) => (
+            <Route
+            key={route.path}
+            path={route.path}
+            element={route.element}
+          />
+          ))}
         </Routes>
       )}
     </div>
@@ -104,3 +87,4 @@ function App() {
 }
 
 export default App;
+
