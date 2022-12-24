@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import SearchData from '../UI/search/SearchData';
+import { setSearchQuery } from '../../store/actions/searchDataAction';
+import { useDispatch } from 'react-redux';
 import ProfileMenu from '../profile-menu/ProfileMenu';
 import useravatar from "../../assets/users/profile-avatar.jpg"
 import './header.css';
@@ -8,7 +10,6 @@ import TodosAlert from './notifications/TodosAlert';
 import { useLocation } from 'react-router-dom';
 
 const Header = ({
-  pageName, 
   getSearchQuery, 
   value, 
   delSearchQuery, 
@@ -16,7 +17,9 @@ const Header = ({
   moveHeader
 }) => {
 
-
+  const [searchData, setSearchData] = useState(
+    { query: "" }
+    );
   const [userMenu, setUserMenu] = useState(false);
   const [todosDropMenu, setTodosDropMenu] = useState(false)
   const [countMessages, setCountMessages] = useState(5);
@@ -24,6 +27,7 @@ const Header = ({
   const {todos} = useSelector(state => state.todos);
   const overTodos = []
   const location = useLocation();
+  const dispatch = useDispatch();
   
   useEffect(() => {
     todos.map((todo) => {
@@ -31,9 +35,7 @@ const Header = ({
         overTodos.push(todo)
       }
       setCountTodos(overTodos.length)
-    });
-
-    console.log(location)
+    }, []); 
   }, [todos])
 
   const userMenuHandler = () => 
@@ -52,6 +54,12 @@ const Header = ({
     setTodosDropMenu(false);
   });
 
+  const setSearchQuery = (e) => {
+    const {name, value} = e.target
+    setSearchData({...searchData, value})
+    dispatch(setSearchQuery(searchData))
+  }
+
 
 
   return (
@@ -61,8 +69,9 @@ const Header = ({
           {location.pathname === "/search" && (
             <SearchData
               placeholder="Поиск..."
-              value={value}
-              onChange={(e) => getSearchQuery(e.target.value)}
+              value={searchData.query}
+              name="query"
+              onChange={(e) => setSearchQuery(e)}
               delSearchQuery={delSearchQuery}
               searchQueryLength={searchQueryLength}
             />

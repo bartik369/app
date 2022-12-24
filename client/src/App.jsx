@@ -70,14 +70,11 @@ function App() {
               value={searchQuery}
               searchQueryLength={searchQueryLength}
               pageName={pageName}
-              // logout={logout}
               moveHeader={slideStateContainer}
             />
             <div className="content-container">
               <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" />}>
-                  {" "}
-                </Route>
+                <Route path="/" element={<Navigate to="/dashboard" />}></Route>
                 <Route path="/dashboard" element={<Homepage />}></Route>
                 <Route path="/edit_device" element={<EditDevice />}></Route>
                 <Route path="/search" element={ <DeviceSearch searchQuery={searchQuery} />}></Route>
