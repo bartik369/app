@@ -17,9 +17,7 @@ const Header = ({
   moveHeader
 }) => {
 
-  const [searchData, setSearchData] = useState(
-    { query: "" }
-    );
+  const [searchData, setSearchData] = useState("");
   const [userMenu, setUserMenu] = useState(false);
   const [todosDropMenu, setTodosDropMenu] = useState(false)
   const [countMessages, setCountMessages] = useState(5);
@@ -38,6 +36,10 @@ const Header = ({
     }, []); 
   }, [todos])
 
+  useEffect(() => {
+    dispatch(setSearchQuery(searchData))
+  }, [searchData])
+
   const userMenuHandler = () => 
   userMenu 
   ? setUserMenu(false) 
@@ -54,14 +56,6 @@ const Header = ({
     setTodosDropMenu(false);
   });
 
-  const setSearchQuery = (e) => {
-    const {name, value} = e.target
-    setSearchData({...searchData, value})
-    dispatch(setSearchQuery(searchData))
-  }
-
-
-
   return (
     <div className="header">
       <div className={!moveHeader ? "header__inner" : "header__slided"}>
@@ -69,9 +63,8 @@ const Header = ({
           {location.pathname === "/search" && (
             <SearchData
               placeholder="Поиск..."
-              value={searchData.query}
-              name="query"
-              onChange={(e) => setSearchQuery(e)}
+              value={searchData}
+              onChange={(e) => setSearchData(e.target.value)}
               delSearchQuery={delSearchQuery}
               searchQueryLength={searchQueryLength}
             />

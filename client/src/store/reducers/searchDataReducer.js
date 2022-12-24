@@ -1,7 +1,7 @@
 import { SET_SEARCH_QUERY } from "../types/typesSearchData";
 
 const initialState = {
-    seqrchQuery: []
+    seqrchQuery: "",
 };
 
 const searchDataReducer = (state = initialState, action) => {

@@ -6,6 +6,7 @@ const setQuery = (query) => ({
 })
 
 export const setSearchQuery = (query) => {
+    console.log(query)
     return function(dispatch) {
         try {
             dispatch(setQuery(query))

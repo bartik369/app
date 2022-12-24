@@ -6,27 +6,19 @@ import * as deviceConstants from "../../utils/constants/devices.constants";
 import '../../styles/App.css'
 import AddDeviceForm from "../form/add-device/AddDeviceForm";
 import { useDispatch, useSelector } from "react-redux";
-import { addDevice, deleteDevice, getsingleDevice, loadDevices } from "../../store/actions/devicesActions";
+import { addDevice, deleteDevice, getsingleDevice} from "../../store/actions/devicesActions";
 import { updateModal } from "../../store/actions/modalActions";
 
-const DeviceSearch = ({ searchQuery}) => {
+const DeviceSearch = () => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices);
-  const {seqrchQuery} = useSelector(state => state.seqrchQuery)
+  const searchQuery = useSelector(state => state.seqrchQuery.query)
   const modal = useSelector(state => state.modal);
 
   // const [updateDeviceId, setUpdateDeviceId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [devicesPerPage] = useState(25);
-
-  // useEffect(() => {
-  //   dispatch(loadDevices());
-  // }, [setPageName])
-
-  useEffect(() => {
-    console.log("",seqrchQuery)
-  }, [seqrchQuery])
 
   // Pagination
 
