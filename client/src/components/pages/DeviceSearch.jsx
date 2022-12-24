@@ -13,6 +13,7 @@ const DeviceSearch = ({ searchQuery}) => {
 
   let dispatch = useDispatch();
   const {devices} = useSelector(state => state.devices);
+  const {seqrchQuery} = useSelector(state => state.seqrchQuery)
   const modal = useSelector(state => state.modal);
 
   // const [updateDeviceId, setUpdateDeviceId] = useState("");
@@ -22,6 +23,10 @@ const DeviceSearch = ({ searchQuery}) => {
   // useEffect(() => {
   //   dispatch(loadDevices());
   // }, [setPageName])
+
+  useEffect(() => {
+    console.log("",seqrchQuery)
+  }, [seqrchQuery])
 
   // Pagination
 
