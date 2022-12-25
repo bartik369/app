@@ -17,8 +17,6 @@ function App() {
   console.log("check memory");
 
   const [slideStateContainer, setSlideStateContainer] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [pageName, setPageName] = useState("");
 
   useEffect(() => {
     if (isAuth || token) {
@@ -29,35 +27,19 @@ function App() {
     }
   }, [isAuth, token]);
 
-  const delSearchQuery = () => {
-    setSearchQuery("");
-  };
-
-  const searchQueryLength = searchQuery.length;
-
   return (
     <div className={isAuth ? "App" : "App-out"}>
       {isAuth ? (
         <div className="afterlogin">
           <div className="menu-container">
-            <Sidebar
-              slideContentContainer={setSlideStateContainer}
-              getLinkName={setPageName}
-            />
+            <Sidebar slideContentContainer={setSlideStateContainer} />
           </div>
           <div
             className={`content-wrapper slided-content${
               slideStateContainer === false ? "slided-content" : ""
             }`}
           >
-            <Header
-              getSearchQuery={setSearchQuery}
-              delSearchQuery={delSearchQuery}
-              value={searchQuery}
-              searchQueryLength={searchQueryLength}
-              pageName={pageName}
-              moveHeader={slideStateContainer}
-            />
+            <Header moveHeader={slideStateContainer} />
             <div className="content-container">
               <Routes>
                 {routes.map((route) => (
@@ -77,7 +59,7 @@ function App() {
             <Route
             key={route.path}
             path={route.path}
-            element={route.element}
+            element={isAuth ? <Navigate to={"/dashboard"} /> : route.element}
           />
           ))}
         </Routes>

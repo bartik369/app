@@ -1,10 +1,16 @@
 import {React, useState} from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "../../../store/actions/searchDataAction";
+import { deleteSearchQuery } from "../../../store/actions/searchDataAction";
 import './SearchData.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
+const SearchData = ({...props}) => {
     const [activeSearch, setActiveSearch] = useState(true);
+    const searchQuery = useSelector(state => state.seqrchQuery.query)
+    const dispatch = useDispatch();
 
     const setStatusSearch = () => {
         setActiveSearch(false);
@@ -12,8 +18,11 @@ const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
     
     window.addEventListener('click', () => {
         setActiveSearch(true);
-        delSearchQuery();
     });
+
+    const deleteSearch = () => {
+        dispatch(deleteSearchQuery());
+    }
 
     return (
         <div>
@@ -21,13 +30,13 @@ const SearchData = ({searchQueryLength, delSearchQuery, ...props}) => {
             <button className="btn-search" onClick={setStatusSearch}>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </button>
-            <input {...props} className={`input-search active-search${activeSearch 
+            <input {...props} value={searchQuery} className={`input-search active-search${activeSearch 
                 ? "active-search" 
-                : "" && delSearchQuery}`}/>
+                : "" && "delSearchQuery"}`}/>
             <FontAwesomeIcon 
-            icon={faXmark} 
-            className={`delete-searchquery ${searchQueryLength <= 0 ? "" : "active"}`} 
-            onClick={delSearchQuery}/>
+            icon={faXmark}
+            className={`delete-searchquery ${searchQuery === "" ? "" : "active"}`} 
+            onClick={deleteSearch}/>
         </div>
         </div>
     )

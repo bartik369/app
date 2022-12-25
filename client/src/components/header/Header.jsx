@@ -9,14 +9,8 @@ import './header.css';
 import TodosAlert from './notifications/TodosAlert';
 import { useLocation } from 'react-router-dom';
 
-const Header = ({
-  getSearchQuery, 
-  value, 
-  delSearchQuery, 
-  searchQueryLength,
-  moveHeader
-}) => {
-
+const Header = ({ moveHeader }) => {
+  
   const [searchData, setSearchData] = useState("");
   const [userMenu, setUserMenu] = useState(false);
   const [todosDropMenu, setTodosDropMenu] = useState(false)
@@ -65,8 +59,6 @@ const Header = ({
               placeholder="Поиск..."
               value={searchData}
               onChange={(e) => setSearchData(e.target.value)}
-              delSearchQuery={delSearchQuery}
-              searchQueryLength={searchQueryLength}
             />
           )}
         </div>
