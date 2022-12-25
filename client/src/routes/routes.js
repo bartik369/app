@@ -23,6 +23,9 @@ export const routes = [
     { path: "/calendar", element: < Calendar / > },
     { path: "/settings", element: < Settings / > },
     { path: "*", element: < NotFoundPage / > },
+    { path: "/", element: < Login / > },
+    { path: "/singup", element: < Signup / > },
+    { path: "/reset-password", element: < ResetPassword / > },
 ];
 
 export const authRoutes = [

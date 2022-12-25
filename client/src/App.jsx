@@ -19,9 +19,9 @@ function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
 
   useEffect(() => {
+    
     if (isAuth || token) {
       dispatch(compareAccessToken());
-      console.log(isAuth);
     } else {
       navigate("/");
     }
