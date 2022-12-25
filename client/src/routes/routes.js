@@ -11,6 +11,7 @@ import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
 import Login from "../components/pages/Login/Login";
 import Signup from "../components/pages/Signup";
 import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
+import SetNewPassword from "../components/form/reset-password/SetNewPassword";
 
 export const routes = [
     { path: "/", element: < Navigate to = "/dashboard" / > },
@@ -23,30 +24,10 @@ export const routes = [
     { path: "/calendar", element: < Calendar / > },
     { path: "/settings", element: < Settings / > },
     { path: "*", element: < NotFoundPage / > },
-    { path: "/", element: < Login / > },
-    { path: "/singup", element: < Signup / > },
-    { path: "/reset-password", element: < ResetPassword / > },
 ];
-
 export const authRoutes = [
     { path: "/", element: < Login / > },
     { path: "/singup", element: < Signup / > },
     { path: "/reset-password", element: < ResetPassword / > },
+    { path: "/reset/:userId/:link", element: < SetNewPassword / > },
 ]
-
-
-{
-    /* <Route path="/" element={<Navigate to="/dashboard" />}></Route>
-                  <Route path="/dashboard" element={<Homepage />}></Route>
-                  <Route path="/edit_device" element={<EditDevice />}></Route>
-                  <Route path="/search" element={ <DeviceSearch />}></Route>
-                  <Route path="/statistic" element={<Statistic />}></Route>
-                  <Route path="/users" element={<Users />}></Route>
-                  <Route path="/todos" element={<Todos />}></Route>
-                  <Route path="/calendar" element={<Calendar />}></Route>
-                  <Route path="/settings" element={<Settings />}></Route>
-                  <Route path="*" element={<NotFoundPage />}></Route>
-                  <Route path="/" element={!isAuth ? <Login /> : <Navigate to={"/dashboard"} />}></Route>
-                  <Route path="/singup" element={!isAuth ? <Signup /> : <Navigate to={"/dashboard"} />}></Route>
-                  <Route path="/reset-password" element={!isAuth ? <ResetPassword /> : <Navigate to={"/dashboard"} />}></Route> */
-}

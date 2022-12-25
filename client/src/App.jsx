@@ -19,11 +19,12 @@ function App() {
   const [slideStateContainer, setSlideStateContainer] = useState(false);
 
   useEffect(() => {
-    
+
     if (isAuth || token) {
       dispatch(compareAccessToken());
     } else {
-      navigate("/");
+      
+      
     }
   }, [isAuth, token]);
 
