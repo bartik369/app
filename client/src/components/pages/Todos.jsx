@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
 import { addModal, updateModal } from "../../store/actions/modalActions";
 import TodoButton from "../UI/buttons/TodoButton";
+import * as buttonConstants from "../../utils/constants/buttons.constants"
 
 const Todos = () => {
 
@@ -145,7 +146,11 @@ const Todos = () => {
                       </button>
                     </li>
                     <li className="todo-btns__item">
-                    <TodoButton action={() => handleTodoDelete(todo._id)}/>
+                    <TodoButton action={() => handleTodoDelete(todo._id)} 
+                      classNameBtn={"tododel-btn"} 
+                      classNameIcon={"bi bi-trash3"}
+                      title={buttonConstants.titleDelete}
+                    />
                     </li>
                     <li className="todo-btns__item" title="Переоткрыть">
                       <button

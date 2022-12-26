@@ -14,20 +14,20 @@ import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
 import SetNewPassword from "../components/form/reset-password/SetNewPassword";
 
 export const routes = [
-    { path: "/", element: < Navigate to = "/dashboard" / > },
-    { path: "/dashboard", element: < Homepage / > },
-    { path: "/edit_device", element: < EditDevice / > },
-    { path: "/search", element: < DeviceSearch / > },
-    { path: "/statistic", element: < Statistics / > },
-    { path: "/users", element: < Users / > },
-    { path: "/todos", element: < Todos / > },
-    { path: "/calendar", element: < Calendar / > },
-    { path: "/settings", element: < Settings / > },
-    { path: "*", element: < NotFoundPage / > },
+    { path: "/", element: < Navigate to = "/dashboard" /> },
+    { path: "/dashboard", element: < Homepage /> },
+    { path: "/edit_device", element: < EditDevice /> },
+    { path: "/search", element: < DeviceSearch /> },
+    { path: "/statistic", element: < Statistics /> },
+    { path: "/users", element: < Users /> },
+    { path: "/todos", element: < Todos /> },
+    { path: "/calendar", element: < Calendar /> },
+    { path: "/settings", element: < Settings /> },
+    { path: "*", element: < NotFoundPage /> },
 ];
 export const authRoutes = [
-    { path: "/", element: < Login / > },
-    { path: "/singup", element: < Signup / > },
-    { path: "/reset-password", element: < ResetPassword / > },
-    { path: "/reset/:userId/:link", element: < SetNewPassword / > },
+    { path: "/", element: < Login /> },
+    { path: "/singup", element: < Signup /> },
+    { path: "/reset-password", element: < ResetPassword /> },
+    { path: "/reset/:userId/:link", element: < SetNewPassword /> },
 ]

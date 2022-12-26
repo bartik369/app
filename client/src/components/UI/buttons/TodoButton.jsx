@@ -1,10 +1,10 @@
 import React from 'react'
 
-function TodoButton({ action}) {
+function TodoButton({ action, ...props }) {
 
   return (
-    <button className="tododel-btn" onClick={action}>
-    <i className="bi bi-trash3" title="Удалить"></i>
+  <button className={props.classNameBtn} onClick={action}>
+    <i className={props.classNameIcon} title={props.title}></i>
   </button>
   )
 }

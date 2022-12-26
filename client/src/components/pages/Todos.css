@@ -297,3 +297,7 @@
 .todo-item.done .todoreopen-btn {
     display: block;
 }
+.sometextclass {
+    font-size: 40px;
+    color: #19b158;
+}
