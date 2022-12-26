@@ -7,16 +7,13 @@ import UpdateTodoForm from "../form/update-todo/UpdateTodoForm";
 import Masonry from "react-masonry-css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  deleteTodo,
-  getSingleTodo,
-  loadTodos,
-  updateTodo,
-  addTodo,
-} from "../../store/actions/todosActions";
+import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
 import { addModal, updateModal } from "../../store/actions/modalActions";
+import TodoButton from "../UI/buttons/TodoButton";
 
 const Todos = () => {
+
+  console.log("check memory")
   const [deleteId, setDeleteId] = useState();
 
   const dispatch = useDispatch();
@@ -37,6 +34,7 @@ const Todos = () => {
   };
 
   const handleTodoDelete = (id) => {
+    console.log("click")
     dispatch(deleteTodo(id));
     setDeleteId(id);
   };
@@ -132,12 +130,7 @@ const Todos = () => {
                     <li className="todo-btns__item">
                       <button
                         onClick={() => handleTodoComplete(todo._id)}
-                        className="todoend-btn"
-                      >
-                        <i
-                          className="bi bi-check2-square"
-                          title="Завершить"
-                        ></i>
+                        className="todoend-btn"><i className="bi bi-check2-square" title="Завершить"></i>
                       </button>
                     </li>
                     <li className="todo-btns__item">
@@ -152,12 +145,7 @@ const Todos = () => {
                       </button>
                     </li>
                     <li className="todo-btns__item">
-                      <button
-                        onClick={() => handleTodoDelete(todo._id)}
-                        className="tododel-btn"
-                      >
-                        <i className="bi bi-trash3" title="Удалить"></i>
-                      </button>
+                    <TodoButton action={() => handleTodoDelete(todo._id)}/>
                     </li>
                     <li className="todo-btns__item" title="Переоткрыть">
                       <button

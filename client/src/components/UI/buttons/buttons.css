@@ -1,0 +1,14 @@
+/*Submit button*/
+
+.submit-btn {
+    padding: 14px 17px;
+    background-color: #4c4bb1;
+    color: aliceblue;
+    transition: all .5s;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.submit-btn:hover {
+    background-color: #d639e1;
+}

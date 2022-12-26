@@ -9,6 +9,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../../Login/Login.css";
+import SubmitButton from "../../UI/buttons/SubmitButton";
 
 export default function Login() {
   
@@ -110,9 +111,7 @@ export default function Login() {
           <div className="restore-password">
             <Link to="/reset-password">{formConstants.forgotPassword}</Link>
           </div>
-          <button className="login-btn" type="submit">
-            {formConstants.send}
-          </button>
+          <SubmitButton title={formConstants.send} />
           <div className="signin">
             {formConstants.accountNotExist}
             <Link to="/singup">

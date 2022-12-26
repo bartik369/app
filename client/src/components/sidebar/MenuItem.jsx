@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
 
-const MenuItem = ({getLinkName, ...props}) => {
-
+const MenuItem = ({...props}) => {
 
   return (
-    <li onClick={() => getLinkName(props.name)} className="menu__item">
+    <li className="menu__item">
       <Link to={props.to}>
         <div className="icon">
           <i className={props.icon}></i>
@@ -19,3 +18,4 @@ const MenuItem = ({getLinkName, ...props}) => {
 };
 
 export default MenuItem;
+// 

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
+import SubmitButton from "../UI/buttons/SubmitButton";
 import "../Login/Login.css";
 import paperAirplane from "../../assets/portal/paper_airplane.png";
 
@@ -219,9 +220,7 @@ export default function Signup() {
               )}
             </div>
           </div>
-          <button className="login-btn" type="submit">
-            {formConstants.send}
-          </button>
+          <SubmitButton title={formConstants.send} />
           <div className="signin">
             {formConstants.accountExist}
             <Link to="/">

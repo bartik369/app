@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { updateUserPassword } from "../../../store/actions/usersActions";
@@ -6,6 +7,7 @@ import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SubmitButton from "../../UI/buttons/SubmitButton";
 import "./ResetPassword.css"
 
 function ResetPassword() {
@@ -13,7 +15,6 @@ function ResetPassword() {
     register,
     formState: { errors },
     handleSubmit,
-    watch,
     setError,
   } = useForm({
     mode: "onBlur",
@@ -55,9 +56,15 @@ function ResetPassword() {
               {errors.email && <p>{errors.email.message || "Error"}</p>}
             </div>
           </div>
-          <button className="reset-password-btn" type="submit">
-          {formConstants.send}
-          </button>
+          <SubmitButton title={formConstants.send} />
+          <div className="auth-links">
+          <Link to="/">
+              {formConstants.enter}
+          </Link>
+          <Link to="/singup">
+              {formConstants.register}
+          </Link>
+          </div>
         </form>
       </div>
     </div>
