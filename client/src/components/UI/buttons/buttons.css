@@ -12,3 +12,20 @@
 .submit-btn:hover {
     background-color: #d639e1;
 }
+
+/*Add button*/
+
+.add-todo-btn {
+    padding: 10px 14px;
+    color: #fff;
+    border-radius: 4px;
+    background: #26bea6;
+    font-family: inherit;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: all .7s ease-out;
+}
+
+.add-todo-btn:hover {
+    background-color: rgb(109, 95, 160);
+}

@@ -221,19 +221,6 @@
     border-bottom: 1px solid #dc4760 !important;
 }
 
-.main .login-btn {
-    padding: 14px 17px;
-    background-color: #4c4bb1;
-    color: aliceblue;
-    transition: all .5s;
-    margin: 20px 0;
-    font-size: 14px;
-}
-
-.main .login-btn:hover {
-    background-color: #d639e1;
-}
-
 .restore-password {
     padding: 15px 0;
 }

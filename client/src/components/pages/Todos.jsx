@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import AddTodoForm from "../form/add-todo/AddTodoForm";
-import "./Todos.css";
-import "../../styles/App.css";
+import moment from "moment";
 import Modal from "../UI/modal/Modal";
 import UpdateTodoForm from "../form/update-todo/UpdateTodoForm";
-import Masonry from "react-masonry-css";
-import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getSingleTodo, loadTodos, updateTodo, addTodo } from "../../store/actions/todosActions";
 import { addModal, updateModal } from "../../store/actions/modalActions";
 import TodoButton from "../UI/buttons/TodoButton";
-import * as buttonConstants from "../../utils/constants/buttons.constants"
+import * as uiConstants from "../../utils/constants/ui.constants";
+import AddButton from "../UI/buttons/AddButton";
+import "./Todos.css";
+import "../../styles/App.css";
+import Masonry from "react-masonry-css";
 
 const Todos = () => {
-
-  console.log("check memory")
+  console.log("check memory");
   const [deleteId, setDeleteId] = useState();
 
   const dispatch = useDispatch();
@@ -35,7 +35,6 @@ const Todos = () => {
   };
 
   const handleTodoDelete = (id) => {
-    console.log("click")
     dispatch(deleteTodo(id));
     setDeleteId(id);
   };
@@ -84,9 +83,7 @@ const Todos = () => {
         <UpdateTodoForm update={updateTodoData} />
       </Modal>
       <div className="add-todo">
-        <button className="add-todo-btn" onClick={() => newTodoHandler()}>
-          Новая задача
-        </button>
+        <AddButton action={() => newTodoHandler()} title={uiConstants.newTask}/>
       </div>
       <Masonry
         breakpointCols={breakpoints}
@@ -118,9 +115,9 @@ const Todos = () => {
               <div className="todo-item__description">{todo.description}</div>
               <hr className="separate" />
               <div className="time-info">
-                <span className="time-text">Начать с:</span>
+                <span className="time-text">{uiConstants.startTime}</span>
                 <span className="start-time">{startTodoDate}</span>
-                <span className="time-text">Закончить до:</span>
+                <span className="time-text">{uiConstants.endTime}</span>
                 <span className="end-time">
                   {moment(endTodoDate).format("DD.MM.YYYY HH:mm")}
                 </span>
@@ -129,36 +126,36 @@ const Todos = () => {
                 <div className="todo-btns">
                   <ul className="todo-btns__inner">
                     <li className="todo-btns__item">
-                      <button
-                        onClick={() => handleTodoComplete(todo._id)}
-                        className="todoend-btn"><i className="bi bi-check2-square" title="Завершить"></i>
-                      </button>
+                      <TodoButton
+                        action={() => handleTodoComplete(todo._id)}
+                        classNameBtn={"todoend-btn"}
+                        classNameIcon={"bi bi-check2-square"}
+                        title={uiConstants.titleСomplete}
+                      />
                     </li>
                     <li className="todo-btns__item">
-                      <button
-                        onClick={() => handleTodoUpdate(todo._id)}
-                        className="todoupdate-btn"
-                      >
-                        <i
-                          className="bi bi-arrow-clockwise"
-                          title="Обновить"
-                        ></i>
-                      </button>
+                    <TodoButton
+                        action={() => handleTodoUpdate(todo._id)}
+                        classNameBtn={"todoupdate-btn"}
+                        classNameIcon={"bi bi-arrow-clockwise"}
+                        title={uiConstants.titleUpdate}
+                      />
                     </li>
                     <li className="todo-btns__item">
-                    <TodoButton action={() => handleTodoDelete(todo._id)} 
-                      classNameBtn={"tododel-btn"} 
-                      classNameIcon={"bi bi-trash3"}
-                      title={buttonConstants.titleDelete}
-                    />
+                      <TodoButton
+                        action={() => handleTodoDelete(todo._id)}
+                        classNameBtn={"tododel-btn"}
+                        classNameIcon={"bi bi-trash3"}
+                        title={uiConstants.titleDelete}
+                      />
                     </li>
-                    <li className="todo-btns__item" title="Переоткрыть">
-                      <button
-                        onClick={() => handleTodoReopen(todo._id)}
-                        className="todoreopen-btn"
-                      >
-                        <i className="bi bi-arrow-counterclockwise"></i>
-                      </button>
+                    <li className="todo-btns__item">
+                    <TodoButton
+                        action={() => handleTodoReopen(todo._id)}
+                        classNameBtn={"todoreopen-btn"}
+                        classNameIcon={"bi bi-arrow-counterclockwise"}
+                        title={uiConstants.titleReopen}
+                      />
                     </li>
                   </ul>
                 </div>
