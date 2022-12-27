@@ -12,7 +12,6 @@ import "../../Login/Login.css";
 import SubmitButton from "../../UI/buttons/SubmitButton";
 
 export default function Login() {
-  
   const [passwordType, setPasswordType] = useState(false);
 
   const {
@@ -30,7 +29,6 @@ export default function Login() {
   const password = useRef({});
   password.current = watch("password", "");
 
-
   const onSubmit = (data) => {
     const userLoginData = {
       email: data.email,
@@ -38,7 +36,6 @@ export default function Login() {
     };
     dispatch(loginUser(userLoginData, setError, navigate));
   };
-
 
   const showPassword = (e) => {
     e.preventDefault();
@@ -53,7 +50,6 @@ export default function Login() {
         <div className="login-sidebar"></div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-form__title">{formConstants.titleLogin}</div>
-
           <div className="input-layer">
             <div className="login-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
@@ -114,9 +110,7 @@ export default function Login() {
           <SubmitButton title={formConstants.send} />
           <div className="signin">
             {formConstants.accountNotExist}
-            <Link to="/singup">
-              {formConstants.register}
-            </Link>
+            <Link to="/singup">{formConstants.register}</Link>
           </div>
         </form>
       </div>
