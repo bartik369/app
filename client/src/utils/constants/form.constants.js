@@ -36,3 +36,10 @@ export const titleRegistrationForm = "Регистрация";
 export const confirmRegistration = "Подтверждние регистрации";
 export const registrationInfo = "На Вашу почту было отправлено письмо с ссылкой для активации аккаунта";
 export const titleLogin = "Войти в систему";
+
+//devices
+
+export const wrongDeviceName = "Укажите корректное имя"
+export const wrongDeviceNumber = "Укажите корректное имя устройства"
+export const wrongUserName = "Укажите корректное имя пользователя"
+export const requiredText = "Обязательно к заполнению"

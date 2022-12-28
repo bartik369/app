@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import SubmitButton from "../../UI/buttons/SubmitButton";
 import * as uiConstants from "../../../utils/constants/ui.constants";
+import * as formConstants from "../../../utils/constants/form.constants"
 import * as REGEX from "../../../utils/constants/regex.constants";
 
 export default function AddDevice() {
@@ -9,12 +10,13 @@ export default function AddDevice() {
     register,
     formState: { errors },
     handleSubmit,
-    setError,
   } = useForm({
     mode: "onBlur",
   });
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    
+  };
 
   return (
     <div className="main">
@@ -25,10 +27,10 @@ export default function AddDevice() {
             type="text"
             name="name"
             {...register("name", {
-              required: "text error",
+              required: formConstants.requiredText,
               pattern: {
                 value: REGEX.isValidDisplayName,
-                message: "message about error",
+                message: formConstants.wrongDeviceName,
               },
             })}
           />
@@ -43,10 +45,10 @@ export default function AddDevice() {
             type="text"
             name="number"
             {...register("number", {
-              required: "text error",
+              required: formConstants.requiredText,
               pattern: {
                 value: REGEX.isValidDisplayName,
-                message: "message about error",
+                message: formConstants.wrongDeviceNumber,
               },
             })}
           />
@@ -61,10 +63,10 @@ export default function AddDevice() {
             type="text"
             name="user"
             {...register("user", {
-              required: "text error",
+              required: formConstants.requiredText,
               pattern: {
                 value: REGEX.isValidDisplayName,
-                message: "message about error",
+                message: formConstants.wrongUserName,
               },
             })}
           />
