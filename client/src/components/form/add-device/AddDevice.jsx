@@ -14,6 +14,15 @@ export default function AddDevice() {
     mode: "onBlur",
   });
 
+  
+  const deviceTypeArray = [
+    {name: 'Компьютеры', value: 'pc'},
+    {name: 'Сетевое оборудование', value: 'network'},
+    {name: 'Принтеры', value: 'printers'},
+    {name: 'Телефоны', value: 'phones'},
+    {name: 'Аксессуары', value: 'accessories'},
+  ];
+
   const onSubmit = () => {
     
   };
@@ -21,6 +30,11 @@ export default function AddDevice() {
   return (
     <div className="main">
       <form className="main-form" onSubmit={handleSubmit(onSubmit)}>
+      <select placeholder="Тип устройства"{...register("type")}>
+        {deviceTypeArray.map((item) => {
+          return <option value={item.value}/>
+        })}
+      </select>
         <div className="main-form__input">
           <input
             placeholder="constant device name"
