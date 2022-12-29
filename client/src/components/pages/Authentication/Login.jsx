@@ -8,8 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import "../../Login/Login.css";
-import "../../form/forms.css"
+import "../Authentication/Authentication.css"
 import SubmitButton from "../../UI/buttons/SubmitButton";
 
 export default function Login() {

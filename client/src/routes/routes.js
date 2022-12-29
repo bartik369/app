@@ -8,10 +8,10 @@ import Todos from "../components/pages/Todos";
 import Calendar from "../components/pages/Calendar";
 import Settings from "../components/pages/Settings";
 import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
-import Login from "../components/pages/Login/Login";
-import Signup from "../components/pages/Signup";
-import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
-import SetNewPassword from "../components/form/reset-password/SetNewPassword";
+import Login from "../components/pages/Authentication/Login";
+import Signup from "../components/pages/Authentication/Signup";
+import ResetPassword from "../components/pages/Authentication/ResetPassword";
+import SetNewPassword from "../components/pages/Authentication/SetNewPassword";
 
 export const routes = [
     { path: "/", element: < Navigate to = "/dashboard" /> },

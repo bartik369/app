@@ -8,7 +8,7 @@ import * as formConstants from "../../../utils/constants/form.constants";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubmitButton from "../../UI/buttons/SubmitButton";
-import "./ResetPassword.css"
+import "../Authentication/Authentication.css"
 
 function ResetPassword() {
   const {
@@ -32,12 +32,12 @@ function ResetPassword() {
 
   return (
     <div className="main">
-      <div className="reset-password">
-        <div className="reset-password-sidebar"></div>
-        <form className="reset-password-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="reset-password-form__title">Восстановление пароля</div>
+      <div className="auth">
+        <div className="auth-sidebar"></div>
+        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="auth-form__title">Восстановление пароля</div>
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 placeholder={formConstants.yourEmail}

@@ -1,16 +1,16 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../store/actions/usersActions";
-import * as REGEX from "../../utils/constants/regex.constants";
-import * as formConstants from "../../utils/constants/form.constants";
+import { createUser } from "../../../store/actions/usersActions";
+import * as REGEX from "../../../utils/constants/regex.constants";
+import * as formConstants from "../../../utils/constants/form.constants";
 import { Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
-import SubmitButton from "../UI/buttons/SubmitButton";
-import "../Login/Login.css";
-import paperAirplane from "../../assets/portal/paper_airplane.png";
+import SubmitButton from "../../UI/buttons/SubmitButton";
+import "../Authentication/Authentication.css"
+import paperAirplane from "../../../assets/portal/paper_airplane.png";
 
 export default function Signup() {
 
@@ -73,10 +73,10 @@ export default function Signup() {
 
   return (
     <div className="main">
-      <div className="login">
-        <div className="signup-sidebar">
-          <div className="signup-sidebar__info">
-            <div className="login__notification">
+      <div className="auth">
+        <div className="auth-sidebar">
+          <div className="auth-sidebar__info">
+            <div className="auth__notification">
               <CSSTransition
                 in={animationPaperAirplane}
                 timeout={1000}
@@ -99,11 +99,11 @@ export default function Signup() {
             </div>
           </div>
         </div>
-        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="login-form__title">{formConstants.titleRegistrationForm}</div>
+        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="auth-form__title">{formConstants.titleRegistrationForm}</div>
 
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faUser} className="input-icon" />
               <input
                 placeholder={formConstants.yourName}
@@ -130,7 +130,7 @@ export default function Signup() {
           </div>
 
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 placeholder={formConstants.yourEmail}
@@ -151,7 +151,7 @@ export default function Signup() {
           </div>
 
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
                 placeholder={formConstants.yourPassword}
@@ -188,7 +188,7 @@ export default function Signup() {
           </div>
 
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
                 placeholder={formConstants.repeatPassword}

@@ -102,7 +102,7 @@ const AddDeviceForm = ({ create }) => {
 
   return (
     <form className="add-device-form">
-      {errors.type && <div className="form-error">{errors.type}</div>}
+      {errors.type && <div className="form-error">{errors.type}</div>}na
       <select
       defaultValue=""
       name="type" 

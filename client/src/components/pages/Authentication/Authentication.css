@@ -7,14 +7,14 @@
     justify-content: center;
 }
 
-.main .reset-password {
+.main .auth {
     background: #252339;
     display: flex;
     min-height: 600px;
     box-shadow: 0 3px 3px 0 rgba(18, 17, 27, .5), 0 6px 6px 0 rgba(18, 17, 27, .5), 0 12px 12px 0 rgba(18, 17, 27, .5), 0 24px 24px 0 rgba(18, 17, 27, .5), 0 48px 48px 0 rgba(18, 17, 27, .5), 0 96px 96px 0 rgba(18, 17, 27, .5);
 }
 
-.reset-password-form__title {
+.auth-form__title {
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 22px;
@@ -24,7 +24,7 @@
     font-family: inherit;
 }
 
-.main .reset-password-sidebar {
+.main .auth-sidebar {
     background-image: url("../../../assets/portal/login.jpg");
     background-position: center;
     background-size: cover;
@@ -34,7 +34,7 @@
     width: 100%;
 }
 
-.main .reset-password-sidebar {
+.main .auth-sidebar {
     background-image: url("../../../assets/portal/login.jpg");
     background-position: center;
     background-size: cover;
@@ -44,7 +44,7 @@
     width: 100%;
 }
 
-.main .reset-password-sidebar__info {
+.main .auth-sidebar__info {
     display: flex;
     width: 100%;
     height: 100%;
@@ -52,14 +52,14 @@
     align-items: center;
 }
 
-.reset-password__notification {
+.auth__notification {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
 }
 
-.reset-password__notification .paperAirplane {
+.auth__notification .paperAirplane {
     width: 150px;
     position: absolute;
     left: 20px;
@@ -67,7 +67,7 @@
     z-index: 1;
 }
 
-.reset-password__notification .paperAirplane img {
+.auth__notification .paperAirplane img {
     width: 100%
 }
 
@@ -109,7 +109,7 @@
     }
 }
 
-.reset-password__notification .completion-registration {
+.auth__notification .completion-registration {
     display: none;
 }
 
@@ -140,7 +140,7 @@
     margin-bottom: 10px;
 }
 
-.register-notification {
+.auth-notification {
     display: block;
     display: flex;
     width: 100%;
@@ -156,12 +156,12 @@
     margin-bottom: 20px;
 }
 
-.main .reset-password-sidebar img {
+.main .auth-sidebar img {
     width: 100%;
     height: 100%;
 }
 
-.main .reset-password-form {
+.main .auth-form {
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -174,7 +174,7 @@
     font-size: 16px;
 }
 
-.main .reset-password-form label {
+.main .auth-form label {
     padding: 5px 0;
     color: #90959e;
     font-size: 13px;
@@ -198,7 +198,7 @@
     position: relative;
 }
 
-.main .reset-password-form input {
+.main .auth-form input {
     background-color: transparent;
     border-bottom: 1px solid #273141;
     padding: 12px 40px 12px 8px;
@@ -208,30 +208,17 @@
     width: 100%;
 }
 
-.main .reset-password-form input:hover {
+.main .auth-form input:hover {
     border-bottom: 1px solid #4687e2;
 }
 
-.main .reset-password-form__input {
+.main .auth-form__input {
     display: flex;
     align-items: center;
 }
 
 .main .validation-error {
     border-bottom: 1px solid #dc4760 !important;
-}
-
-.main .reset-password-btn {
-    padding: 14px 17px;
-    background-color: #4c4bb1;
-    color: aliceblue;
-    transition: all .5s;
-    margin: 20px 0;
-    font-size: 14px;
-}
-
-.main .reset-password-btn:hover {
-    background-color: #d639e1;
 }
 
 .restore-password {
@@ -247,7 +234,7 @@
     color: #dc4760;
 }
 
-.main .login-form__error {
+.main .auth-form__error {
     color: #dc4760;
     font-size: 11px;
     font-style: inherit;
@@ -283,15 +270,13 @@
 }
 
 @media (max-width: 1100px) {
-    .main .login-sidebar,
-    .signup-sidebar {
+    .main .auth-sidebar {
         display: none;
     }
 }
 
 @media (max-width: 768px) {
-    .main .login-sidebar,
-    .signup-sidebar {
+    .main .auth-sidebar {
         display: none;
     }
 }
