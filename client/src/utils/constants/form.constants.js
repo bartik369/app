@@ -39,7 +39,8 @@ export const titleLogin = "Войти в систему";
 
 //devices
 
-export const wrongDeviceName = "Укажите корректное имя"
-export const wrongDeviceNumber = "Укажите корректное имя устройства"
-export const wrongUserName = "Укажите корректное имя пользователя"
-export const requiredText = "Обязательно к заполнению"
+export const wrongDeviceName = "Укажите корректное имя";
+export const wrongDeviceNumber = "Укажите корректное имя устройства";
+export const wrongUserName = "Укажите корректное имя пользователя";
+export const requiredText = "Обязательно к заполнению";
+export const typeDevices = "Тип устройства";

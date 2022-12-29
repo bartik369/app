@@ -62,6 +62,7 @@ export const deleteDevice = (id) => {
 }
 
 export const addDevice = (device) => {
+    console.log(device)
     return async function(dispatch) {
         try {
             await axios.post(`${ENV.HOSTNAME}insert`, device)

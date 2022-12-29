@@ -1,39 +1,66 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import { useForm } from "react-hook-form";
+import { addDevice } from "../../../store/actions/devicesActions";
+import { useDispatch } from "react-redux";
 import SubmitButton from "../../UI/buttons/SubmitButton";
 import * as uiConstants from "../../../utils/constants/ui.constants";
 import * as formConstants from "../../../utils/constants/form.constants"
 import * as REGEX from "../../../utils/constants/regex.constants";
+import { deviceTypes } from "../../../utils/data-arrays/arrays";
 
 export default function AddDevice() {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     mode: "onBlur",
   });
-
   
-  const deviceTypeArray = [
-    {name: 'Компьютеры', value: 'pc'},
-    {name: 'Сетевое оборудование', value: 'network'},
-    {name: 'Принтеры', value: 'printers'},
-    {name: 'Телефоны', value: 'phones'},
-    {name: 'Аксессуары', value: 'accessories'},
-  ];
+  const [device, setDevice] = useState({
+    id: "",
+    type: "",
+    name: "",
+    number: "",
+    user: "",
+    addTime: "",
+  });
 
-  const onSubmit = () => {
-    
+  useEffect(() => {
+    console.log("device ==>", device)
+  }, [device])
+
+  const dispatch = useDispatch()
+
+  const onSubmit = (data) => {
+    const date = new Date();
+    const deviceTime = date.toLocaleDateString() + " " + date.toLocaleTimeString("ru-RU");
+    const newDevice = {
+      ...device,
+      id: Date.now(),
+      type: data.type,
+      name: data.name,
+      number: data.number,
+      user: data.user,
+      addTime: deviceTime,
+    }
+
+    console.log(newDevice)
+
+    dispatch(addDevice(newDevice))
+    reset();
   };
+
+
+  console.log("check memory")
 
   return (
     <div className="main">
       <form className="main-form" onSubmit={handleSubmit(onSubmit)}>
-      <select placeholder="Тип устройства"{...register("type")}>
-        {deviceTypeArray.map((item) => {
-          return <option value={item.value}/>
-        })}
+      <select defaultValue=""{...register("type")}>
+        <option value="" disabled>{formConstants.typeDevices}</option>
+        {deviceTypes.map((item, index) => <option key={index} name={item.value} value={item.value}>{item.name}</option>)}
       </select>
         <div className="main-form__input">
           <input
@@ -88,8 +115,6 @@ export default function AddDevice() {
             {errors.user && <p>{errors.user.message || "Error"}</p>}
           </div>
         </div>
-
-
         <SubmitButton title={uiConstants.titleAdd} />
       </form>
     </div>
