@@ -9,6 +9,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../../Login/Login.css";
+import "../../form/forms.css"
 import SubmitButton from "../../UI/buttons/SubmitButton";
 
 export default function Login() {
@@ -46,12 +47,12 @@ export default function Login() {
 
   return (
     <div className="main">
-      <div className="login">
-        <div className="login-sidebar"></div>
-        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="login-form__title">{formConstants.titleLogin}</div>
+      <div className="auth">
+        <div className="auth-sidebar"></div>
+        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="auth-form__title">{formConstants.titleLogin}</div>
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 placeholder={formConstants.yourEmail}
@@ -72,7 +73,7 @@ export default function Login() {
           </div>
 
           <div className="input-layer">
-            <div className="login-form__input">
+            <div className="auth-form__input">
               <FontAwesomeIcon icon={faLock} className="input-icon" />
               <input
                 placeholder={formConstants.yourPassword}

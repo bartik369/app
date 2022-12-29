@@ -7,6 +7,7 @@ import * as uiConstants from "../../../utils/constants/ui.constants";
 import * as formConstants from "../../../utils/constants/form.constants"
 import * as REGEX from "../../../utils/constants/regex.constants";
 import { deviceTypes } from "../../../utils/data-arrays/arrays";
+import "../forms.css"
 
 export default function AddDevice() {
   const {
@@ -58,7 +59,7 @@ export default function AddDevice() {
   return (
     <div className="main">
       <form className="main-form" onSubmit={handleSubmit(onSubmit)}>
-      <select defaultValue=""{...register("type")}>
+      <select className="main-form__select" defaultValue=""{...register("type")}>
         <option value="" disabled>{formConstants.typeDevices}</option>
         {deviceTypes.map((item, index) => <option key={index} name={item.value} value={item.value}>{item.name}</option>)}
       </select>
@@ -76,7 +77,7 @@ export default function AddDevice() {
             })}
           />
           <div className="form-error">
-            {errors.name && <p>{errors.name.message || "Error"}</p>}
+            {errors.name && <p>{errors.name.message || formConstants.unknownError}</p>}
           </div>
         </div>
 
@@ -94,7 +95,7 @@ export default function AddDevice() {
             })}
           />
           <div className="form-error">
-            {errors.number && <p>{errors.number.message || "Error"}</p>}
+            {errors.number && <p>{errors.number.message || formConstants.unknownError}</p>}
           </div>
         </div>
 
@@ -112,7 +113,7 @@ export default function AddDevice() {
             })}
           />
           <div className="form-error">
-            {errors.user && <p>{errors.user.message || "Error"}</p>}
+            {errors.user && <p>{errors.user.message || formConstants.unknownError}</p>}
           </div>
         </div>
         <SubmitButton title={uiConstants.titleAdd} />

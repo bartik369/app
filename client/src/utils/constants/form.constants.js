@@ -36,6 +36,8 @@ export const titleRegistrationForm = "Регистрация";
 export const confirmRegistration = "Подтверждние регистрации";
 export const registrationInfo = "На Вашу почту было отправлено письмо с ссылкой для активации аккаунта";
 export const titleLogin = "Войти в систему";
+export const unknownError = "Непредвиденная ошибка";
+
 
 //devices
 
