@@ -45,13 +45,28 @@ class UserService {
         if (!candidate) {
             throw ApiError.EmailError("Пользователь с таким email не найден");
         }
-        const link = uuidv4();
+        const resetPasswordLink = uuidv4();
         await mailService.sendResetPasswordMail(
             email,
-            `${process.env.CLIENT_URL}/reset/${candidate._id}/${link}`,
+            `${process.env.API_URL}/api/setpassword/${candidate._id}/${resetPasswordLink}`,
         )
-        const reslinkpass = await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
-        return reslinkpass
+        await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
+
+    }
+
+    async checkValidResetPasswordLink (link) {
+        try {
+            const resetPasswordLink = await ResetPasswordModel.findOne({link})
+
+            if (!resetPasswordLink) {
+                throw ApiError.WrongLink("Ссылка подделана")
+            }
+            await ResetPasswordModel.deleteOne({resetPasswordLink})
+
+            
+        } catch (error) {
+            
+        }
     }
 
     async activate(activationLink) {

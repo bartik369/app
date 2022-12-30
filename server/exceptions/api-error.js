@@ -30,4 +30,8 @@ export default class ApiError extends Error {
         errors.push({ email: message })
         return new ApiError(400, message, errors);
     };
+
+    static WrongLink(message, errors = []) {
+        return new ApiError(403, message, errors)
+    };
 };

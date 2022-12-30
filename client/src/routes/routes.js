@@ -29,5 +29,5 @@ export const authRoutes = [
     { path: "/", element: < Login /> },
     { path: "/singup", element: < Signup /> },
     { path: "/reset-password", element: < ResetPassword /> },
-    { path: "/reset/:userId/:link", element: < SetNewPassword /> },
+    { path: "/setpassword/:id/:link", element: < SetNewPassword /> },
 ]

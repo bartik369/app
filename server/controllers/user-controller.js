@@ -82,10 +82,12 @@ class UserController {
         }
     }
 
-    async reset(req, res, next) {
+    async setNewPassword(req, res, next) {
         try {
-            const { userId, link } = req.params;
-            console.log(req.params)
+            const setPasswordLink = req.params.link;
+            const userData = await userService.checkValidResetPasswordLink(setPasswordLink);
+
+            console.log("this is userId for link", userData)
         } catch (error) {
 
         }

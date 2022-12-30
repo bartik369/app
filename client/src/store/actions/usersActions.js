@@ -144,6 +144,7 @@ export const updateUserPassword = (data) => {
 export const setNewUserPassword = (data) => {
     return async function(dispatch) {
         try {
+            console.log("acion reset")
             await axios.post(`${ENV.HOSTNAME}api/:id/:link`, data)
                 .then((response) => {
 
