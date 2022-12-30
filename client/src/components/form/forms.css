@@ -289,19 +289,19 @@
     padding-left: 3px;
 }
 
-.main .signin {
+.main .auth-links {
     display: flex;
     justify-content: center;
     color: #90959e;
 }
 
-.main .signin a {
+.main .auth-links a {
     color: #4687e2;
     margin-left: 7px;
     transition: all .8s;
 }
 
-.main .signin a:hover {
+.main .auth-links a:hover {
     color: #dc4760;
 }
 

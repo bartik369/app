@@ -7,7 +7,7 @@ import * as uiConstants from "../../../utils/constants/ui.constants";
 import * as formConstants from "../../../utils/constants/form.constants"
 import * as REGEX from "../../../utils/constants/regex.constants";
 import { deviceTypes } from "../../../utils/data-arrays/arrays";
-import "../forms.css"
+import "../forms.css";
 
 export default function AddDevice() {
   const {
@@ -61,11 +61,11 @@ export default function AddDevice() {
       <form className="main-form" onSubmit={handleSubmit(onSubmit)}>
       <select className="main-form__select" defaultValue=""{...register("type")}>
         <option value="" disabled>{formConstants.typeDevices}</option>
-        {deviceTypes.map((item, index) => <option key={index} name={item.value} value={item.value}>{item.name}</option>)}
+        {deviceTypes.map((item, index) => <option key={index} name={item.name} value={item.value}>{item.name}</option>)}
       </select>
         <div className="main-form__input">
           <input
-            placeholder="constant device name"
+            placeholder={formConstants.fillDeviceName}
             type="text"
             name="name"
             {...register("name", {
@@ -83,7 +83,7 @@ export default function AddDevice() {
 
         <div className="main-form__input">
           <input
-            placeholder="constant device number"
+            placeholder={formConstants.fillDeviceNumber}
             type="text"
             name="number"
             {...register("number", {
@@ -101,7 +101,7 @@ export default function AddDevice() {
 
         <div className="main-form__input">
           <input
-            placeholder="constant user"
+            placeholder={formConstants.fillUserName}
             type="text"
             name="user"
             {...register("user", {
@@ -116,7 +116,7 @@ export default function AddDevice() {
             {errors.user && <p>{errors.user.message || formConstants.unknownError}</p>}
           </div>
         </div>
-        <SubmitButton title={uiConstants.titleAdd} />
+        <SubmitButton className={"submit-btn-small"} title={uiConstants.titleAdd} />
       </form>
     </div>
   );

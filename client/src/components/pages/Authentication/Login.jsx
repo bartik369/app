@@ -107,8 +107,8 @@ export default function Login() {
           <div className="restore-password">
             <Link to="/reset-password">{formConstants.forgotPassword}</Link>
           </div>
-          <SubmitButton title={formConstants.send} />
-          <div className="signin">
+          <SubmitButton className={"submit-btn"} title={formConstants.send} />
+          <div className="auth-links">
             {formConstants.accountNotExist}
             <Link to="/singup">{formConstants.register}</Link>
           </div>

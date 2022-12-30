@@ -13,6 +13,21 @@
     background-color: #d639e1;
 }
 
+
+.submit-btn-small {
+    padding: 10px 14px;
+    background-color: #612097;
+    color: aliceblue;
+    transition: all .5s;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.submit-btn-small:hover {
+    background-color: #d639e1;
+}
+
+
 /*Add button*/
 
 .add-todo-btn {

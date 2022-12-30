@@ -33,6 +33,8 @@ export const accountExist = "Уже есть аккаунт?";
 //
 
 export const titleRegistrationForm = "Регистрация";
+export const titleResetPasswordForm = "Восстановление пароля";
+export const titleSetNewPasswordForm = "Введите новый пароль";
 export const confirmRegistration = "Подтверждние регистрации";
 export const registrationInfo = "На Вашу почту было отправлено письмо с ссылкой для активации аккаунта";
 export const titleLogin = "Войти в систему";
@@ -46,3 +48,6 @@ export const wrongDeviceNumber = "Укажите корректное имя у�
 export const wrongUserName = "Укажите корректное имя пользователя";
 export const requiredText = "Обязательно к заполнению";
 export const typeDevices = "Тип устройства";
+export const fillDeviceName = "Имя устройства";
+export const fillDeviceNumber = "Серийный номер";
+export const fillUserName = "Имя пользователя";

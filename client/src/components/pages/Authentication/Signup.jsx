@@ -220,8 +220,8 @@ export default function Signup() {
               )}
             </div>
           </div>
-          <SubmitButton title={formConstants.send} />
-          <div className="signin">
+          <SubmitButton className={"submit-btn"} title={formConstants.send} />
+          <div className="auth-links">
             {formConstants.accountExist}
             <Link to="/">
               {formConstants.enter}

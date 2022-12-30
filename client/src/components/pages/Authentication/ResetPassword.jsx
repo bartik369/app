@@ -35,7 +35,7 @@ function ResetPassword() {
       <div className="auth">
         <div className="auth-sidebar"></div>
         <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="auth-form__title">Восстановление пароля</div>
+          <div className="auth-form__title">{formConstants.titleResetPasswordForm}</div>
           <div className="input-layer">
             <div className="auth-form__input">
               <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
@@ -56,7 +56,7 @@ function ResetPassword() {
               {errors.email && <p>{errors.email.message || "Error"}</p>}
             </div>
           </div>
-          <SubmitButton title={formConstants.send} />
+          <SubmitButton className={"submit-btn"} title={formConstants.send} />
           <div className="auth-links">
           <Link to="/">
               {formConstants.enter}
