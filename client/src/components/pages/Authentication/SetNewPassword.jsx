@@ -1,12 +1,14 @@
 import React, {useRef, useState}from 'react';
+import { comparePasswordLink } from '../../../store/actions/usersActions';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock} from "@fortawesome/free-solid-svg-icons";
 import SubmitButton from '../../UI/buttons/SubmitButton';
 import * as REGEX from "../../../utils/constants/regex.constants";
 import * as formConstants from "../../../utils/constants/form.constants";
+import { useEffect } from 'react';
 
 function SetNewPassword() {
 
@@ -21,10 +23,17 @@ function SetNewPassword() {
     setError,
   } = useForm({
     mode: "onBlur",
-  })
+  });
+
+  const params = useParams()
+
+  useEffect(() => {
+    dispatch(comparePasswordLink(params.link))
+  }, [])
 
   const password = useRef({});
   password.current = watch("password", "");
+  const dispatch = useDispatch()
 
   const showPassword = (e) => {
     e.preventDefault();

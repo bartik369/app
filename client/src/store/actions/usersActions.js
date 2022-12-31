@@ -141,11 +141,24 @@ export const updateUserPassword = (data) => {
     };
 };
 
+export const comparePasswordLink = () => {
+    return async function(dispatch) {
+        try {
+            await axios.get(`${ENV.HOSTNAME}api/setpassword/:link`)
+                .then((response) => {
+
+                })
+        } catch (error) {
+
+        }
+    }
+}
+
 export const setNewUserPassword = (data) => {
     return async function(dispatch) {
         try {
             console.log("acion reset")
-            await axios.post(`${ENV.HOSTNAME}api/:id/:link`, data)
+            await axios.post(`${ENV.HOSTNAME}api/setpassword/:link`, data)
                 .then((response) => {
 
                 })

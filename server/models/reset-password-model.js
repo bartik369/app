@@ -8,7 +8,11 @@ const ResetPasswordSheme = new Schema({
     },
     link: {
         type: String,
-    }
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 const ResetPasswordModel = mongoose.model('ResetPassword', ResetPasswordSheme);
