@@ -85,17 +85,19 @@ class UserController {
     async checkResetLink(req, res, next) {
         try {
             const resetPasswordLink = req.params.link;
-            const link = await userService.checkResetPasswordLink(resetPasswordLink);
-            return res.redirect(`${process.env.CLIENT_URL}/setpassword/${link}`)
-        } catch (error) {
-            return res.redirect("yandex.ru")
+            const userData = await userService.checkResetPasswordLink(resetPasswordLink);
+            return res.json(userData)
+        } catch (err) {
+            next(err);
         }
     }
 
     async setNewPassword(req, res, next) {
         try {
             console.log("this is userId for link", userData)
-        } catch (error) {}
+        } catch (error) {
+
+        }
     }
 
     async getUsers(req, res, next) {

@@ -7,7 +7,7 @@ import {
     CREATE_USER,
     LOGIN_USER,
     LOGOUT_USER,
-    UPDATE_USER_PASSWORD,
+    CHECK_RESET_PASSWORD_LINK,
 } from "../types/typesUsers.js";
 
 const getUsers = (users) => ({
@@ -34,9 +34,11 @@ const addUser = () => ({
     type: CREATE_USER,
 });
 
-const userUpdatePassword = () => ({
-    type: UPDATE_USER_PASSWORD,
+const checkPasswordLink = (data) => ({
+    type: CHECK_RESET_PASSWORD_LINK,
+    payload: data,
 });
+
 
 export const createUser = (user, animationSignup, setError) => {
     return async function(dispatch) {
@@ -52,7 +54,6 @@ export const createUser = (user, animationSignup, setError) => {
             console.log(error);
             const messagesRegistration = error.response.data.errors;
             messagesRegistration.map((item) => {
-
                 if (item.email) {
                     setError("email", { type: "email", message: item.email });
                 }
@@ -71,13 +72,12 @@ export const loginUser = (data, setError, navigate) => {
                     "token",
                     JSON.stringify(response.data.accessToken)
                 );
-                navigate("/dashboard")
+                navigate("/dashboard");
             });
         } catch (error) {
             console.log(error);
             const messagesLogin = error.response.data.errors;
             messagesLogin.map((item) => {
-
                 if (item.email) {
                     setError("email", { type: "email", message: item.email });
                 } else if (item.password) {
@@ -127,13 +127,27 @@ export const loadUsers = () => {
 };
 
 export const updateUserPassword = (data) => {
-    console.log(data)
     return async function(dispatch) {
         try {
-            await axios.post(`${ENV.HOSTNAME}api/reset`, data)
+            await axios.post(`${ENV.HOSTNAME}api/reset`, data).then((response) => {
+                // dispatch(userUpdatePassword(response.data));
+                // dispatch(loadUsers());
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export const comparePasswordLink = (link, navigate) => {
+    return async function(dispatch) {
+        try {
+            await axios
+                .get(`${ENV.HOSTNAME}api/setpassword/${link}`)
                 .then((response) => {
-                    // dispatch(userUpdatePassword(response.data));
-                    // dispatch(loadUsers());
+                    if (!response.data) {
+                        navigate("/reset-password");
+                    }
                 });
         } catch (error) {
             console.log(error);
@@ -141,42 +155,29 @@ export const updateUserPassword = (data) => {
     };
 };
 
-export const comparePasswordLink = () => {
-    return async function(dispatch) {
-        try {
-            await axios.get(`${ENV.HOSTNAME}api/setpassword/:link`)
-                .then((response) => {
-
-                })
-        } catch (error) {
-
-        }
-    }
-}
-
 export const setNewUserPassword = (data) => {
     return async function(dispatch) {
         try {
-            console.log("acion reset")
-            await axios.post(`${ENV.HOSTNAME}api/setpassword/:link`, data)
-                .then((response) => {
-
-                })
+            console.log("acion reset");
+            await axios
+                .post(`${ENV.HOSTNAME}api/setpassword/:link`, data)
+                .then((response) => {});
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
-}
+    };
+};
 
 export const compareAccessToken = () => {
     return async function(dispatch) {
         try {
-            await axios.get(`${ENV.HOSTNAME}api/auth`, {
+            await axios
+                .get(`${ENV.HOSTNAME}api/auth`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                 })
                 .then((response) => {
                     dispatch(login(response.data));
-                    console.log(response.data)
+                    console.log(response.data);
                 });
         } catch (error) {
             console.log(error);

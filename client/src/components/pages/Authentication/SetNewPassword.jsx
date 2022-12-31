@@ -1,7 +1,7 @@
 import React, {useRef, useState}from 'react';
 import { comparePasswordLink } from '../../../store/actions/usersActions';
 import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock} from "@fortawesome/free-solid-svg-icons";
@@ -25,11 +25,14 @@ function SetNewPassword() {
     mode: "onBlur",
   });
 
-  const params = useParams()
+  const params = useParams();
+  const navigate = useNavigate()
+  console.log("check memory")
 
   useEffect(() => {
-    dispatch(comparePasswordLink(params.link))
-  }, [])
+    dispatch(comparePasswordLink(params.link, navigate));
+  }, [params.link])
+
 
   const password = useRef({});
   password.current = watch("password", "");

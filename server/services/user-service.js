@@ -48,7 +48,7 @@ class UserService {
         const resetPasswordLink = uuidv4();
         await mailService.sendResetPasswordMail(
             email,
-            `${process.env.API_URL}/api/setpassword/${resetPasswordLink}`,
+            `${process.env.CLIENT_URL}/setpassword/${resetPasswordLink}`,
         )
         await ResetPasswordModel.create({ userId: candidate._id, link: resetPasswordLink })
 
@@ -61,11 +61,14 @@ class UserService {
             if (!user) {
                 throw ApiError.WrongLink("Ссылка подделана");
             }
-            return link
-
+            return user
         } catch (error) {
 
         }
+    }
+
+    async resetPassword() {
+
     }
 
     async activate(activationLink) {
